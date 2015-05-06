@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
+	<ui:style>
+	</ui:style>
+	<g:HTMLPanel styleName="gwt-HeaderView">
+		<g:Button ui:field="home" text="[home]"/>
+		<g:Button ui:field="formMultipleUrl" text="[formMultipleUrl]"/>
+		<g:Button ui:field="formSingleUrl" text="[formSingleUrl]"/>
+		<g:Button ui:field="eCommerce" text="[eCommerce]"/>
+		<g:Button ui:field="iFrame" text="[iFrame]"/>
+		<g:Button ui:field="tracingPaper" text="[tracing paper]" />
+		<g:Button ui:field="connexion" text="[connexion]"></g:Button>
+	</g:HTMLPanel>
+</ui:UiBinder> 

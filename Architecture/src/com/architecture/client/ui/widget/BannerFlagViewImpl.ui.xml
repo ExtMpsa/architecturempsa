@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel styleName="gwt-FlagView">
+		<a ui:field="frLink">
+			<g:Image styleName="{res.css.flagFrSprite}" resource="{res.flagFr}" ui:field="frFlag"/>
+		</a>
+		<a ui:field="enLink">
+			<g:Image styleName="{res.css.flagEnSprite}" resource="{res.flagEn}" ui:field="enFlag"/>
+		</a>
+	</g:HTMLPanel>
+</ui:UiBinder> 

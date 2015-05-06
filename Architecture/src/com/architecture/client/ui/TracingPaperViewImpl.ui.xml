@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.architecture.client.ui.widget">
+	<ui:with field='res' type='com.architecture.client.resources.ResourcesTracingPaper'/>
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel ui:field="main">
+		<g:VerticalPanel>
+			<g:HorizontalPanel>
+				<g:Button ui:field="background_none" text="background_none"/>
+				<g:Button text="background_c3" ui:field="background_c3"/>
+				<g:Button ui:field="background_c3p" text="background_c3p"/>
+				<g:Button ui:field="background_c4" text="background_c4"/>
+				<g:Button ui:field="backgroundMountain" text="[BackgroundMountain]"/>
+				<g:Button ui:field="backgroundNyc" text="[BackgroundNyc]"/>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Button ui:field="text_none" text="text_none"/>
+				<g:Button ui:field="text_c3" text="text_c3"/>
+				<g:Button ui:field="text_c3p" text="text_c3p"/>
+				<g:Button ui:field="text_c4" text="text_c4"/>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Button ui:field="name_none" text="name_none"/>
+				<g:Button ui:field="name_c3" text="name_c3"/>
+				<g:Button ui:field="name_c3p" text="name_c3p"/>
+				<g:Button ui:field="name_c4" text="name_c4"/>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Button ui:field="price_none" text="price_none"/>
+				<g:Button ui:field="price_c3" text="price_c3"/>
+				<g:Button ui:field="price_c3p" text="price_c3p"/>
+				<g:Button ui:field="price_c4" text="price_c4"/>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Button ui:field="car_none" text="car_none"/>
+				<g:Button ui:field="car_c3" text="car_c3"/>
+				<g:Button ui:field="car_c3p" text="car_c3p"/>
+				<g:Button text="car_c4" ui:field="car_c4"/>
+				<g:Button text="v3d_c3" ui:field="v3d_c3"/>
+				<g:Button text="v3d_c3p" ui:field="v3d_c3p"/>
+				<g:Button text="v3d_c4" ui:field="v3d_c4"/>
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+		<g:HTMLPanel ui:field="content">
+			<g:Image styleName="{res.css.c3_background_calque}" ui:field="background"/>
+			<g:Image styleName="{res.css.c3_text_calque}" ui:field="text"/>
+			<g:Image styleName="v3d" resource="{res.c3_car_calque}" ui:field="car"/>
+			<g:Image styleName="{res.css.c3_name_calque}" ui:field="name"/>
+			<g:Image styleName="{res.css.c3_price_calque}" ui:field="price"/>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

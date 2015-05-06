@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel >
+		<g:Button ui:field="demo">Demo</g:Button>
+		<g:Button ui:field="inLineImplied">InlineImplied</g:Button>
+		<g:Button ui:field="hoverImpliedTop">HoverImpliedTop</g:Button>
+		<g:Button ui:field="hoverOnly">HoverOnly</g:Button>
+		<g:Button ui:field="apHover">TEST_PSA_AP_FR_FR__Hover</g:Button>
+		<g:Button ui:field="apInPage">TEST_PSA_AP_FR_FR__InPage</g:Button>
+		<g:Button ui:field="apExplicitPage">TEST_PSA_AP_FR_FR_Explicit_Hover</g:Button>
+		<g:Button ui:field="apImpliedHover">TEST_PSA_AP_FR_FR_Implied_Hover</g:Button>
+		<g:Button ui:field="apImpliedInline">TEST_PSA_AP_FR_FR_Implied_Inline</g:Button>
+		<p ui:field="content"></p>
+	</g:HTMLPanel>
+</ui:UiBinder> 

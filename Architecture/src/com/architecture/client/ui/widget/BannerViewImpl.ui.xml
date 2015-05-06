@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
+	<ui:style>
+	</ui:style>
+	<g:HTMLPanel styleName="gwt-HeaderView">
+		<a ui:field="citroenLink">
+			<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
+		</a>
+		<a ui:field="dsLink">
+			<g:Image resource="{res.logoDs}" ui:field="dsLogo"/>
+		</a>
+		<h1 ui:field="title">Formation Google Analytics PSA</h1>
+		<a ui:field="peugeotLink">
+			<g:Image resource="{res.logoPeugeot}" ui:field="peugeotLogo"/>
+		</a>
+	</g:HTMLPanel>
+</ui:UiBinder> 

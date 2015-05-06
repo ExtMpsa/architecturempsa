@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+@sprite .c3_background_calque{
+	gwt-image: "c3_background_calque";
+	position: absolute;
+}
+
+@sprite .c3_text_calque{
+	gwt-image: "c3_text_calque";
+	position: absolute;
+}
+
+@sprite .c3_name_calque{
+	gwt-image: "c3_name_calque";
+	position: absolute;
+}
+
+@sprite .c3_price_calque{
+	gwt-image: "c3_price_calque";
+	position: absolute;
+}
+
+@sprite .c3_car_calque{
+	gwt-image: "c3_car_calque";
+	position: absolute;
+}
+
+@sprite .c3p_background_calque{
+	gwt-image: "c3p_background_calque";
+	position: absolute;
+}
+
+@sprite .c3p_text_calque{
+	gwt-image: "c3p_text_calque";
+	position: absolute;
+}
+
+@sprite .c3p_name_calque{
+	gwt-image: "c3p_name_calque";
+	position: absolute;
+}
+
+@sprite .c3p_price_calque{
+	gwt-image: "c3p_price_calque";
+	position: absolute;
+}
+
+@sprite .c3p_car_calque{
+	gwt-image: "c3p_car_calque";
+	position: absolute;
+}
+
+@sprite .c4_background_calque{
+	gwt-image: "c4_background_calque";
+	position: absolute;
+}
+
+@sprite .c4_text_calque{
+	gwt-image: "c4_text_calque";
+	position: absolute;
+}
+
+@sprite .c4_name_calque{
+	gwt-image: "c4_name_calque";
+	position: absolute;
+}
+
+@sprite .c4_price_calque{
+	gwt-image: "c4_price_calque";
+	position: absolute;
+}
+
+@sprite .c4_car_calque{
+	gwt-image: "c4_car_calque";
+	position: absolute;
+}
+
+@sprite .background_calque_mountain{
+	gwt-image: "background_calque_mountain";
+	position: absolute;
+}
+
+@sprite .background_calque_NYC{
+	gwt-image: "background_calque_NYC";
+	position: absolute;
+}
+
+.v3d{
+	position: absolute;
+}

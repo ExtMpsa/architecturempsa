@@ -1,0 +1,38 @@
+package com.architecture.client.resources;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.CssResource;
+import com.google.gwt.resources.client.CssResource.NotStrict;
+import com.google.gwt.resources.client.ImageResource;
+
+public interface Resources extends ClientBundle {
+	public static final Resources INSTANCE =  GWT.create(Resources.class);
+
+	@NotStrict
+	@Source("css/Architecture.css")
+	Style css();
+	
+	@Source("images/logo_citroen.jpg")
+	ImageResource logoCitroen();
+	
+	@Source("images/logo_ds.png")
+	ImageResource logoDs();
+	
+	@Source("images/logo_peugeot.png")
+	ImageResource logoPeugeot();
+	
+	@Source("images/flag_fr.png")
+	ImageResource flagFr();
+	
+	@Source("images/flag_en.png")
+	ImageResource flagEn();
+	
+	public interface Style extends CssResource {
+		String logoPeugeotSprite();
+		String logoCitroenSprite();
+		String logoDsSprite();
+		String flagFrSprite();
+		String flagEnSprite();
+	}
+}
