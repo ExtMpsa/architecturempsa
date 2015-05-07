@@ -49,11 +49,14 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.dom.client.ScriptElement;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -166,24 +169,32 @@ public class ClientFactoryImpl implements ClientFactory {
 	}-*/;
 
 	@Override
-	public void eventGtm(String e) {
-		pushEvent(e);
+	public void eventGtm(String description, String launcher) {
+		pushEvent(description, launcher);
 	}
 
-	private native void pushEvent(String e) /*-{
+	private native void pushEvent(String description, String launcher) /*-{
 		try {
 			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
 			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
 			$wnd.dataLayer.push({
-				event : e,
+				description : description,
+				launcher : launcher,
 				startTime : $wnd.startTime,
 				elapsedTime : $wnd.elapsedTime
 			});
 		} catch (e) {
 			$wnd.dataLayer.push({
-				event : e
+				event : launcher
 			});
 		}
+	}-*/;
+
+	private native void pushUpdateVirtualPath() /*-{
+		$wnd["dataLayer"] = $wnd["dataLayer"] || [];
+		$wnd.dataLayer.push({
+			event : "updatevirtualpath"
+		});
 	}-*/;
 
 	private native void resetStartTime() /*-{
@@ -284,6 +295,13 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	private void bind() {
+		History.addValueChangeHandler(new ValueChangeHandler<String>() {
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				pushUpdateVirtualPath();
+			}
+		});
+
 		eventBus.addHandler(HomeEvent.TYPE, new HomeEventHandler() {
 			@Override
 			public void onHome(HomeEvent event) {
@@ -384,7 +402,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventGtm(this.getClass().toString());
+		eventGtm("Fin du chargement/exécution de l'application", this.getClass().toString());
 		clickHandler();
 	}
 }

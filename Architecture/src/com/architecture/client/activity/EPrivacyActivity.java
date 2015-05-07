@@ -23,7 +23,7 @@ public class EPrivacyActivity extends AbstractActivity implements Activity {
 		ePrivacyView.setToken(this.token);
 		containerWidget.setWidget(ePrivacyView.asWidget());
 		// temps d'affichage poussé dans le dataLayer
-		this.clientFactory.eventGtm(this.getClass().toString());
+		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override

@@ -38,9 +38,24 @@ public class AppActivityMapper implements ActivityMapper {
 		} else if (place instanceof SignInPlace) {
 			activity = new SignInActivity((SignInPlace) place, clientFactory);
 		}
-
-		// clientFactory.eventGtm(this.getClass().toString());
-
+		pushEvent("getActivity", this.getClass().toString());
 		return activity;
 	}
+
+	private native void pushEvent(String description, String launcher) /*-{
+		try {
+			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
+			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
+			$wnd.dataLayer.push({
+				description : description,
+				launcher : launcher,
+				startTime : $wnd.startTime,
+				elapsedTime : $wnd.elapsedTime
+			});
+		} catch (e) {
+			$wnd.dataLayer.push({
+				event : launcher
+			});
+		}
+	}-*/;
 }

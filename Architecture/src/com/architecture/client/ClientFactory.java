@@ -45,5 +45,5 @@ public interface ClientFactory {
 	/*
 	 * Google Tag Manager
 	 */
-	void eventGtm(String e);
+	void eventGtm(String description, String launcher);
 }

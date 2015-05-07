@@ -21,7 +21,7 @@ public class HomeActivity extends AbstractActivity implements Activity {
 		homeView.setActivity(this);
 		containerWidget.setWidget(homeView.asWidget());
 		// temps d'affichage poussé dans le dataLayer
-		clientFactory.eventGtm(this.getClass().toString());
+		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class TracingPaperActivity extends AbstractActivity implements Activity {
 		tracingPaperView.setActivity(this);
 		containerWidget.setWidget(tracingPaperView.asWidget());
 		// temps d'affichage poussé dans le dataLayer
-		clientFactory.eventGtm(this.getClass().toString());
+		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override

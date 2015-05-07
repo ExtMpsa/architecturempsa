@@ -21,7 +21,7 @@ public class SignInActivity extends AbstractActivity implements Activity {
 		signInView.setActivity(this);
 		containerWidget.setWidget(signInView.asWidget());
 		// temps d'affichage poussé dans le dataLayer
-		clientFactory.eventGtm(this.getClass().toString());
+		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override

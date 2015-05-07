@@ -29,7 +29,7 @@ public class FormsActivity extends AbstractActivity implements Activity {
 		formsView.setStep(step);
 		containerWidget.setWidget(formsView.asWidget());
 		// temps d'affichage poussé dans le dataLayer
-		clientFactory.eventGtm(this.getClass().toString());
+		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override
