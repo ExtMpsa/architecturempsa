@@ -49,14 +49,12 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.dom.client.ScriptElement;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -89,6 +87,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static FormsView formsView;
 	private static TracingPaperView tracingPaperView;
 	private static SignInView signInView;
+
+	// Etat du chargement de l'application
+	private static boolean loaded = false;
 
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
@@ -170,10 +171,15 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public void eventGtm(String description, String launcher) {
-		pushEvent(description, launcher);
+		if (ClientFactoryImpl.isLoaded()) {
+			pushTimeAjax(description, launcher);
+		} else {
+			pushTimeStatic(description, launcher);
+		}
 	}
 
-	private native void pushEvent(String description, String launcher) /*-{
+	// Calcul du temps d'affichage d'une page en Ajax à partir d'une action utilisateur ou de l'application lors de son chargement complet.
+	private native void pushTimeAjax(String description, String launcher) /*-{
 		try {
 			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
 			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
@@ -181,8 +187,28 @@ public class ClientFactoryImpl implements ClientFactory {
 				description : description,
 				launcher : launcher,
 				startTime : $wnd.startTime,
-				elapsedTime : $wnd.elapsedTime
+				elapsedTimeSinceUserAction : $wnd.elapsedTime
 			});
+		} catch (e) {
+			$wnd.dataLayer.push({
+				event : launcher
+			});
+		}
+	}-*/;
+
+	// Calcul du temps d'affichage de la première page lors du chargement complet de l'application.
+	private native void pushTimeStatic(String description, String launcher) /*-{
+		try {
+			$wnd["elapsedTime"] = new Date().getTime()
+					- $wnd.performance.timing.connectStart;
+			$wnd.dataLayer
+					.push({
+						description : description,
+						descriptionTechnique : "Temps écoulé entre window.performance.timing.connectStart et ce push",
+						launcher : launcher,
+						startTime : $wnd.startTime,
+						elapsedTimeSinceUserAction : $wnd.elapsedTime
+					});
 		} catch (e) {
 			$wnd.dataLayer.push({
 				event : launcher
@@ -197,21 +223,11 @@ public class ClientFactoryImpl implements ClientFactory {
 		});
 	}-*/;
 
-	private native void resetStartTime() /*-{
+	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
+	@Override
+	public native void resetStartTime() /*-{
 		try {
 			$wnd["startTime"] = new Date().getTime();
-		} catch (e) {
-			$wnd.dataLayer.push({
-				event : e
-			});
-		}
-	}-*/;
-
-	private native void clickHandler() /*-{
-		try {
-			$wnd.document.addEventListener("click", function() {
-				$wnd["startTime"] = new Date().getTime();
-			});
 		} catch (e) {
 			$wnd.dataLayer.push({
 				event : e
@@ -294,10 +310,16 @@ public class ClientFactoryImpl implements ClientFactory {
 		return signInView;
 	}
 
+	public static boolean isLoaded() {
+		return loaded;
+	}
+
 	private void bind() {
-		History.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+		eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+
 			@Override
-			public void onValueChange(ValueChangeEvent<String> event) {
+			public void onPlaceChange(PlaceChangeEvent event) {
 				pushUpdateVirtualPath();
 			}
 		});
@@ -305,7 +327,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(HomeEvent.TYPE, new HomeEventHandler() {
 			@Override
 			public void onHome(HomeEvent event) {
-				resetStartTime();
 				ClientFactoryImpl.getInstance().getPlaceController().goTo(new HomePlace());
 			}
 		});
@@ -313,7 +334,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(FormsMultipleUrlEvent.TYPE, new FormsMultipleUrlEventHandler() {
 			@Override
 			public void onFormsMultipleUrl(FormsMultipleUrlEvent event) {
-				resetStartTime();
 				ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step1"));
 			}
 		});
@@ -321,7 +341,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(FormsSingleUrlEvent.TYPE, new FormsSingleUrlEventHandler() {
 			@Override
 			public void onFormsSingleUrl(FormsSingleUrlEvent event) {
-				resetStartTime();
 				ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace());
 			}
 		});
@@ -329,7 +348,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1EventHandler() {
 			@Override
 			public void onValidateStep1(ValidateSignStep1Event event) {
-				resetStartTime();
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
@@ -344,7 +362,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(ModifySignStep1Event.TYPE, new ModifySignStep1EventHandler() {
 			@Override
 			public void onModifyStep1(ModifySignStep1Event event) {
-				resetStartTime();
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
@@ -359,7 +376,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(ValidateSignStep2Event.TYPE, new ValidateSignStep2EventHandler() {
 			@Override
 			public void onValidateStep2(ValidateSignStep2Event event) {
-				resetStartTime();
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
@@ -389,7 +405,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(TracingPaperEvent.TYPE, new TracingPaperEventHandler() {
 			@Override
 			public void onTracingPaper(TracingPaperEvent event) {
-				resetStartTime();
 				ClientFactoryImpl.getInstance().getPlaceController().goTo(new TracingPaperPlace());
 			}
 		});
@@ -397,12 +412,11 @@ public class ClientFactoryImpl implements ClientFactory {
 		eventBus.addHandler(SignInEvent.TYPE, new SignInEventHandler() {
 			@Override
 			public void onSignIn(SignInEvent event) {
-				resetStartTime();
 				ClientFactoryImpl.getInstance().getPlaceController().goTo(new SignInPlace());
 			}
 		});
 
 		eventGtm("Fin du chargement/exécution de l'application", this.getClass().toString());
-		clickHandler();
+		loaded = true;
 	}
 }

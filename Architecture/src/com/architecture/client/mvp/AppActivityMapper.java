@@ -25,6 +25,9 @@ public class AppActivityMapper implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
+		// Première instruction lors d'un chargement ajax suite à une modification d'url.
+		clientFactory.resetStartTime();
+
 		Activity activity = null;
 
 		if (place instanceof HomePlace) {
@@ -38,24 +41,7 @@ public class AppActivityMapper implements ActivityMapper {
 		} else if (place instanceof SignInPlace) {
 			activity = new SignInActivity((SignInPlace) place, clientFactory);
 		}
-		pushEvent("getActivity", this.getClass().toString());
+		clientFactory.eventGtm("getActivity", this.getClass().toString());
 		return activity;
 	}
-
-	private native void pushEvent(String description, String launcher) /*-{
-		try {
-			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
-			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
-			$wnd.dataLayer.push({
-				description : description,
-				launcher : launcher,
-				startTime : $wnd.startTime,
-				elapsedTime : $wnd.elapsedTime
-			});
-		} catch (e) {
-			$wnd.dataLayer.push({
-				event : launcher
-			});
-		}
-	}-*/;
 }

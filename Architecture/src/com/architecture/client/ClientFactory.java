@@ -46,4 +46,6 @@ public interface ClientFactory {
 	 * Google Tag Manager
 	 */
 	void eventGtm(String description, String launcher);
+
+	void resetStartTime();
 }
