@@ -1,4 +1,4 @@
-package com.architecture.client.ui.widget;
+package com.architecture.client.ui.composite;
 
 import com.architecture.client.resources.txt.SignText;
 import com.google.gwt.core.client.GWT;

@@ -1,4 +1,4 @@
-package com.architecture.client.ui.widget;
+package com.architecture.client.ui.composite;
 
 import com.architecture.client.resources.Resources;
 import com.architecture.client.resources.txt.BannerFlagText;

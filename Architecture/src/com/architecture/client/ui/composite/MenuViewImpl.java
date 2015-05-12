@@ -1,14 +1,11 @@
-package com.architecture.client.ui.widget;
+package com.architecture.client.ui.composite;
 
-import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.resources.txt.MenuText;
+import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -82,40 +79,5 @@ public class MenuViewImpl extends Composite {
 		connexion.setText(menuText.connexion());
 		connexion.setHref(pathWithParameterWithoutHash + "#SignInPlace:");
 		connexion.getElement().setId("connexion");
-	}
-
-	@UiHandler("home")
-	void onHomeClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("formMultipleUrl")
-	void onFormMultipleUrlClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("formSingleUrl")
-	void onFormSingleUrlClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("eCommerce")
-	void onECommerceClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("iFrame")
-	void onIFrameClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("tracingPaper")
-	void onTracingPaperClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
-	}
-
-	@UiHandler("connexion")
-	void onConnexionClick(ClickEvent event) {
-		ClientFactoryImpl.resetStartTime();
 	}
 }

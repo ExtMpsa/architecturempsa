@@ -1,4 +1,4 @@
-package com.architecture.client.ui.widget;
+package com.architecture.client.ui.composite;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.ValidateSignStep2Event;

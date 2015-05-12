@@ -1,4 +1,4 @@
-package com.architecture.client.ui.widget;
+package com.architecture.client.ui.composite;
 
 import java.util.Set;
 

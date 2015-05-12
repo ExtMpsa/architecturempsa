@@ -2,9 +2,9 @@ package com.architecture.client.ui;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.resources.Resources;
-import com.architecture.client.ui.widget.BannerFlagViewImpl;
-import com.architecture.client.ui.widget.BannerViewImpl;
-import com.architecture.client.ui.widget.MenuViewImpl;
+import com.architecture.client.ui.composite.BannerFlagViewImpl;
+import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.MenuViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

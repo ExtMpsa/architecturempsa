@@ -8,9 +8,9 @@ import com.architecture.client.ui.FormsView;
 import com.architecture.client.ui.HomeView;
 import com.architecture.client.ui.SignInView;
 import com.architecture.client.ui.TracingPaperView;
-import com.architecture.client.ui.widget.BannerFlagViewImpl;
-import com.architecture.client.ui.widget.BannerViewImpl;
-import com.architecture.client.ui.widget.MenuViewImpl;
+import com.architecture.client.ui.composite.BannerFlagViewImpl;
+import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.MenuViewImpl;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 
