@@ -1836,3 +1836,1231 @@ Compiling...
    Compilation completed in 0,00 seconds
 Removing invalidated units
 Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3037 units from cache.
+Compiling...
+   20% complete (ETR: 21 seconds)
+   20% complete (ETR: 21 seconds)
+   20% complete (ETR: 21 seconds)
+   30% complete (ETR: 18 seconds)
+   40% complete (ETR: 13 seconds)
+   50% complete (ETR: 10 seconds)
+   60% complete (ETR: 7 seconds)
+   70% complete (ETR: 5 seconds)
+   80% complete (ETR: 3 seconds)
+   90% complete (ETR: 2 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 45,09 seconds
+Validating units:
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/.apt_generated/com/architecture/client/requestfactory/ArchitectureRequestFactoryDeobfuscatorBuilder.java'
+      Line 7: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder; did you forget to inherit a required module?
+      Line 9: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationKey; did you forget to inherit a required module?
+      Line 10: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationData.Builder; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418461850.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418461850.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418461850_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.resources.Resources
+   Invoking generator com.google.gwt.resources.rebind.context.InlineClientBundleGenerator
+      Preparing method flagEn
+         Adding image 'com.architecture.client.resources.Resources.flagEn'
+      Preparing method flagFr
+         Adding image 'com.architecture.client.resources.Resources.flagFr'
+      Preparing method logoCitroen
+         Adding image 'com.architecture.client.resources.Resources.logoCitroen'
+      Preparing method logoDs
+         Adding image 'com.architecture.client.resources.Resources.logoDs'
+      Preparing method logoPeugeot
+         Adding image 'com.architecture.client.resources.Resources.logoPeugeot'
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418466669.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418466669.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418466669_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418518311.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418518311.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418518311_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418521382.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418521382.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418521382_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418555049.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418555049.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418555049_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418557561.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418557561.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418557561_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418653486.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418653486.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431418653486_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2737 units from cache.
+Compiling...
+   10% complete (ETR: 22 seconds)
+   10% complete (ETR: 22 seconds)
+   20% complete (ETR: 22 seconds)
+   30% complete (ETR: 16 seconds)
+   40% complete (ETR: 12 seconds)
+   50% complete (ETR: 9 seconds)
+   60% complete (ETR: 7 seconds)
+   70% complete (ETR: 5 seconds)
+   80% complete (ETR: 3 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 17,96 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3037 units from cache.
+Compiling...
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   60% complete (ETR: 3 seconds)
+   70% complete (ETR: 2 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 10,09 seconds
+Validating units:
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/.apt_generated/com/architecture/client/requestfactory/ArchitectureRequestFactoryDeobfuscatorBuilder.java'
+      Line 7: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder; did you forget to inherit a required module?
+      Line 9: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationKey; did you forget to inherit a required module?
+      Line 10: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationData.Builder; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422556558.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422556558.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422556558_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.resources.Resources
+   Invoking generator com.google.gwt.resources.rebind.context.InlineClientBundleGenerator
+      Preparing method flagEn
+         Adding image 'com.architecture.client.resources.Resources.flagEn'
+      Preparing method flagFr
+         Adding image 'com.architecture.client.resources.Resources.flagFr'
+      Preparing method logoCitroen
+         Adding image 'com.architecture.client.resources.Resources.logoCitroen'
+      Preparing method logoDs
+         Adding image 'com.architecture.client.resources.Resources.logoDs'
+      Preparing method logoPeugeot
+         Adding image 'com.architecture.client.resources.Resources.logoPeugeot'
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422558096.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422558096.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422558096_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422580158.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422580158.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422580158_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422605099.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422605099.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,09 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422605099_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,05 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422662403.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422662403.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422662403_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422674224.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422674224.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422674224_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422690338.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422690338.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422690338_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422698628.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422698628.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422698628_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708556.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708556.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708556_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708831.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708831.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422708831_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422725897.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422725897.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422725897_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422731897.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422731897.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422731897_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422732220.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422732220.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422732220_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422740482.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422740482.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422740482_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422744837.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422744837.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422744837_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422745046.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422745046.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422745046_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422756798.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422756798.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422756798_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422758451.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422758451.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422758451_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422763830.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422763830.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422763830_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422770814.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422770814.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422770814_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422772566.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422772566.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431422772566_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423053639.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423053639.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423053639_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423057250.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423057250.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423057250_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423060699.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423060699.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423060699_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423064300.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423064300.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423064300_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423068715.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423068715.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423068715_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423071462.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423071462.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423071462_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423094435.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423094435.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423094435_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423096489.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423096489.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423096489_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423099173.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423099173.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423099173_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423101640.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423101640.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423101640_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423104487.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423104487.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423104487_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423106451.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423106451.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423106451_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,08 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423108383.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423108383.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423108383_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423119711.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423119711.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423119711_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121776.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121776.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121776_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121891.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121891.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423121891_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423130543.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423130543.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423130543_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 3036 cached/archived units.  Used 3036 / 3037 units from cache.
+Compiling...
+   Compilation completed in 0,02 seconds
+Invalid Unit: com.architecture.client.ui.ArchitectureView
+Invalid Unit: com.architecture.client.ClientFactoryImpl
+Invalid Unit: com.architecture.client.ui.ArchitectureViewImpl
+Invalid Unit: com.architecture.client.ClientFactory
+Invalid units found: 4
+Compiling...
+   Compilation completed in 0,06 seconds
+Validating units:
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/.apt_generated/com/architecture/client/requestfactory/ArchitectureRequestFactoryDeobfuscatorBuilder.java'
+      Line 7: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder; did you forget to inherit a required module?
+      Line 9: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationKey; did you forget to inherit a required module?
+      Line 10: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationData.Builder; did you forget to inherit a required module?
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+      Line 58: homeL cannot be resolved
+      Line 59: homeL cannot be resolved
+      Line 61: formMultipleUrl cannot be resolved
+      Line 65: formSingleUrl cannot be resolved
+      Line 69: eCommerce cannot be resolved
+      Line 72: iFrame cannot be resolved
+      Line 75: tracingPaper cannot be resolved
+      Line 79: connexion cannot be resolved
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+[ERROR] Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+   [ERROR] Line 58: homeL cannot be resolved
+   [ERROR] Line 59: homeL cannot be resolved
+   [ERROR] Line 61: formMultipleUrl cannot be resolved
+   [ERROR] Line 65: formSingleUrl cannot be resolved
+   [ERROR] Line 69: eCommerce cannot be resolved
+   [ERROR] Line 72: iFrame cannot be resolved
+   [ERROR] Line 75: tracingPaper cannot be resolved
+   [ERROR] Line 79: connexion cannot be resolved
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+      [ERROR] Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+         [ERROR] Line 58: homeL cannot be resolved
+         [ERROR] Line 59: homeL cannot be resolved
+         [ERROR] Line 61: formMultipleUrl cannot be resolved
+         [ERROR] Line 65: formSingleUrl cannot be resolved
+         [ERROR] Line 69: eCommerce cannot be resolved
+         [ERROR] Line 72: iFrame cannot be resolved
+         [ERROR] Line 75: tracingPaper cannot be resolved
+         [ERROR] Line 79: connexion cannot be resolved
+      [ERROR] Unable to find type 'com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder'
+         [ERROR] Hint: Previous compiler errors may have made this type unavailable
+         [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Deferred binding failed for 'com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder'; expect subsequent failures
+Public resources found in...
+Translatable source found in...
+Found 3036 cached/archived units.  Used 3036 / 3037 units from cache.
+Compiling...
+   Compilation completed in 0,01 seconds
+Invalid Unit: com.architecture.client.ClientFactory
+Invalid Unit: com.architecture.client.ui.ArchitectureViewImpl
+Invalid Unit: com.architecture.client.ClientFactoryImpl
+Invalid Unit: com.architecture.client.ui.ArchitectureView
+Invalid units found: 4
+Compiling...
+   Compilation completed in 0,04 seconds
+Validating units:
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/.apt_generated/com/architecture/client/requestfactory/ArchitectureRequestFactoryDeobfuscatorBuilder.java'
+      Line 7: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder; did you forget to inherit a required module?
+      Line 9: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationKey; did you forget to inherit a required module?
+      Line 10: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationData.Builder; did you forget to inherit a required module?
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+      Line 58: homeL cannot be resolved
+      Line 59: homeL cannot be resolved
+      Line 62: formMultipleUrlL cannot be resolved
+      Line 63: formMultipleUrlL cannot be resolved
+      Line 65: formSingleUrl cannot be resolved
+      Line 69: eCommerce cannot be resolved
+      Line 72: iFrame cannot be resolved
+      Line 75: tracingPaper cannot be resolved
+      Line 79: connexion cannot be resolved
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+[ERROR] Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+   [ERROR] Line 58: homeL cannot be resolved
+   [ERROR] Line 59: homeL cannot be resolved
+   [ERROR] Line 62: formMultipleUrlL cannot be resolved
+   [ERROR] Line 63: formMultipleUrlL cannot be resolved
+   [ERROR] Line 65: formSingleUrl cannot be resolved
+   [ERROR] Line 69: eCommerce cannot be resolved
+   [ERROR] Line 72: iFrame cannot be resolved
+   [ERROR] Line 75: tracingPaper cannot be resolved
+   [ERROR] Line 79: connexion cannot be resolved
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+      [ERROR] Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/src/com/architecture/client/ui/widget/MenuViewImpl.java'
+         [ERROR] Line 58: homeL cannot be resolved
+         [ERROR] Line 59: homeL cannot be resolved
+         [ERROR] Line 62: formMultipleUrlL cannot be resolved
+         [ERROR] Line 63: formMultipleUrlL cannot be resolved
+         [ERROR] Line 65: formSingleUrl cannot be resolved
+         [ERROR] Line 69: eCommerce cannot be resolved
+         [ERROR] Line 72: iFrame cannot be resolved
+         [ERROR] Line 75: tracingPaper cannot be resolved
+         [ERROR] Line 79: connexion cannot be resolved
+      [ERROR] Unable to find type 'com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder'
+         [ERROR] Hint: Previous compiler errors may have made this type unavailable
+         [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Deferred binding failed for 'com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder'; expect subsequent failures
+Public resources found in...
+Translatable source found in...
+Found 3036 cached/archived units.  Used 3036 / 3037 units from cache.
+Compiling...
+   Compilation completed in 0,03 seconds
+Invalid Unit: com.architecture.client.ClientFactoryImpl
+Invalid Unit: com.architecture.client.ui.ArchitectureViewImpl
+Invalid Unit: com.architecture.client.ui.ArchitectureView
+Invalid Unit: com.architecture.client.ClientFactory
+Invalid units found: 4
+Compiling...
+   Compilation completed in 0,04 seconds
+Validating units:
+   Errors in 'file:/C:/e452547/Developpement/gitLocal/Architecture/.apt_generated/com/architecture/client/requestfactory/ArchitectureRequestFactoryDeobfuscatorBuilder.java'
+      Line 7: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder; did you forget to inherit a required module?
+      Line 9: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationKey; did you forget to inherit a required module?
+      Line 10: No source code is available for type com.google.web.bindery.requestfactory.vm.impl.OperationData.Builder; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254301.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254301.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254301_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.resources.Resources
+   Invoking generator com.google.gwt.resources.rebind.context.InlineClientBundleGenerator
+      Preparing method flagEn
+         Adding image 'com.architecture.client.resources.Resources.flagEn'
+      Preparing method flagFr
+         Adding image 'com.architecture.client.resources.Resources.flagFr'
+      Preparing method logoCitroen
+         Adding image 'com.architecture.client.resources.Resources.logoCitroen'
+      Preparing method logoDs
+         Adding image 'com.architecture.client.resources.Resources.logoDs'
+      Preparing method logoPeugeot
+         Adding image 'com.architecture.client.resources.Resources.logoPeugeot'
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl.MenuViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254953.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254953.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.widget.MenuViewImpl_MenuViewImplUiBinderImpl_designTime1431423254953_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units

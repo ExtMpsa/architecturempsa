@@ -127,6 +127,8 @@ public class ClientFactoryImpl implements ClientFactory {
 		if (!(Window.Location.getHash().startsWith("#SignInPlace:"))) {
 			getSignInView();
 		}
+		eventGtm("Fin de la création des parties non visible de l'application.", this.getClass().toString());
+		loaded = true;
 	}
 
 	/** Holder */
@@ -416,7 +418,6 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventGtm("Fin du chargement/exécution de l'application", this.getClass().toString());
-		loaded = true;
+		eventGtm("Fin du chargement/exécution de la partie visible de l'application", this.getClass().toString());
 	}
 }

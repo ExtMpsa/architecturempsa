@@ -58,7 +58,21 @@
 }
 
 body{margin:0px}
-.gwt-Button{margin:0;padding:5px 7px;text-decoration:none;cursor:pointer;cursor:hand;font-size:small;border:1px solid #bbb;border-bottom:1px solid #a0a0a0;border-radius:3px;-moz-border-radius:3px;}
+.gwt-Button{
+	color: buttontext;
+	font: -webkit-small-control;
+	line-height: normal;
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	align-items: flex-start;
+	text-align: center;
+	background-color: buttonface;
+	box-sizing: border-box;
+	margin:0;padding:5px 7px;text-decoration:none;cursor:pointer;font-size:small;border:1px solid #bbb;border-bottom:1px solid #a0a0a0;border-radius:3px;-moz-border-radius:3px;}
 .gwt-Button:active{border:1px inset #ccc;}
 .gwt-Button:hover{border-color:#939393;}
 .gwt-Button[disabled]{cursor:default;color:#888;}

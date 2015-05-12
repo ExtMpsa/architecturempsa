@@ -5,12 +5,12 @@
 	<ui:style>
 	</ui:style>
 	<g:HTMLPanel styleName="gwt-HeaderView">
-		<g:Button ui:field="home" text="[home]"/>
-		<g:Button ui:field="formMultipleUrl" text="[formMultipleUrl]"/>
-		<g:Button ui:field="formSingleUrl" text="[formSingleUrl]"/>
-		<g:Button ui:field="eCommerce" text="[eCommerce]"/>
-		<g:Button ui:field="iFrame" text="[iFrame]"/>
-		<g:Button ui:field="tracingPaper" text="[tracing paper]" />
-		<g:Button ui:field="connexion" text="[connexion]"></g:Button>
+		<g:Anchor ui:field="home" text="Home" styleName="gwt-Button"/>
+		<g:Anchor ui:field="formMultipleUrl" text="formMultipleUrl" styleName="gwt-Button"/>
+		<g:Anchor text="formSingleUrl" ui:field="formSingleUrl" styleName="gwt-Button"/>
+		<g:Anchor text="eCommerce" ui:field="eCommerce" styleName="gwt-Button"/>
+		<g:Anchor ui:field="iFrame" text="iFrame" styleName="gwt-Button"/>
+		<g:Anchor ui:field="tracingPaper" text="tracingPaper" styleName="gwt-Button"/>
+		<g:Anchor ui:field="connexion" text="connexion" styleName="gwt-Button"/>
 	</g:HTMLPanel>
 </ui:UiBinder> 
