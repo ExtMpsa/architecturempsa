@@ -3,18 +3,8 @@ package com.architecture.client;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-import com.architecture.client.event.FormsMultipleUrlEvent;
-import com.architecture.client.event.FormsMultipleUrlEventHandler;
-import com.architecture.client.event.FormsSingleUrlEvent;
-import com.architecture.client.event.FormsSingleUrlEventHandler;
-import com.architecture.client.event.HomeEvent;
-import com.architecture.client.event.HomeEventHandler;
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1EventHandler;
-import com.architecture.client.event.SignInEvent;
-import com.architecture.client.event.SignInEventHandler;
-import com.architecture.client.event.TracingPaperEvent;
-import com.architecture.client.event.TracingPaperEventHandler;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.event.ValidateSignStep1EventHandler;
 import com.architecture.client.event.ValidateSignStep2Event;
@@ -23,8 +13,6 @@ import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.FormsPlace;
 import com.architecture.client.place.HomePlace;
-import com.architecture.client.place.SignInPlace;
-import com.architecture.client.place.TracingPaperPlace;
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
 import com.architecture.client.requestfactory.ArchitectureRequestTransport;
 import com.architecture.client.requestfactory.PersonRequest;
@@ -326,27 +314,6 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventBus.addHandler(HomeEvent.TYPE, new HomeEventHandler() {
-			@Override
-			public void onHome(HomeEvent event) {
-				ClientFactoryImpl.getInstance().getPlaceController().goTo(new HomePlace());
-			}
-		});
-
-		eventBus.addHandler(FormsMultipleUrlEvent.TYPE, new FormsMultipleUrlEventHandler() {
-			@Override
-			public void onFormsMultipleUrl(FormsMultipleUrlEvent event) {
-				ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step1"));
-			}
-		});
-
-		eventBus.addHandler(FormsSingleUrlEvent.TYPE, new FormsSingleUrlEventHandler() {
-			@Override
-			public void onFormsSingleUrl(FormsSingleUrlEvent event) {
-				ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace());
-			}
-		});
-
 		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1EventHandler() {
 			@Override
 			public void onValidateStep1(ValidateSignStep1Event event) {
@@ -404,20 +371,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventBus.addHandler(TracingPaperEvent.TYPE, new TracingPaperEventHandler() {
-			@Override
-			public void onTracingPaper(TracingPaperEvent event) {
-				ClientFactoryImpl.getInstance().getPlaceController().goTo(new TracingPaperPlace());
-			}
-		});
-
-		eventBus.addHandler(SignInEvent.TYPE, new SignInEventHandler() {
-			@Override
-			public void onSignIn(SignInEvent event) {
-				ClientFactoryImpl.getInstance().getPlaceController().goTo(new SignInPlace());
-			}
-		});
-
 		eventGtm("Fin du chargement/exécution de la partie visible de l'application", this.getClass().toString());
+
 	}
 }
