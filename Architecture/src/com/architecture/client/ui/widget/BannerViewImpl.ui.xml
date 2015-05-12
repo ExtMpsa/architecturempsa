@@ -5,14 +5,14 @@
 	<ui:style>
 	</ui:style>
 	<g:HTMLPanel styleName="gwt-HeaderView">
-		<a ui:field="citroenLink">
+		<a ui:field="citroenLink" target="_blank">
 			<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
 		</a>
-		<a ui:field="dsLink">
+		<a ui:field="dsLink" target="_blank">
 			<g:Image resource="{res.logoDs}" ui:field="dsLogo"/>
 		</a>
 		<h1 ui:field="title">Formation Google Analytics PSA</h1>
-		<a ui:field="peugeotLink">
+		<a ui:field="peugeotLink" target="_blank">
 			<g:Image resource="{res.logoPeugeot}" ui:field="peugeotLogo"/>
 		</a>
 	</g:HTMLPanel>

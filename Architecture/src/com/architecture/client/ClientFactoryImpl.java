@@ -173,16 +173,14 @@ public class ClientFactoryImpl implements ClientFactory {
 		try {
 			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
 			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
-			$wnd["elapsedClickTime"] = new Date().getTime()
-					- $wnd.startClickTime;
-			$wnd["elapsedActivityTime"] = new Date().getTime() - $wnd.startTime;
+			$wnd["elapsedActivityTime"] = new Date().getTime()
+					- $wnd.getActivityStartTime;
 			$wnd.dataLayer.push({
 				description : description,
 				launcher : launcher,
 				startTime : $wnd.startTime,
-				elapsedTimeSinceClick : $wnd.elapsedClickTime,
 				elapsedTimeSinceGetActivity : $wnd.elapsedActivityTime,
-				elapsedTimeSinceUserAction : $wnd.elapsedClickTime
+				elapsedTimeSinceUserAction : $wnd.elapsedTime
 			});
 		} catch (e) {
 			$wnd.dataLayer.push({
@@ -219,27 +217,8 @@ public class ClientFactoryImpl implements ClientFactory {
 	}-*/;
 
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
-	@Override
-	public native void resetStartTime() /*-{
-		try {
-			$wnd["startTime"] = new Date().getTime();
-		} catch (e) {
-			$wnd.dataLayer.push({
-				event : e
-			});
-		}
-	}-*/;
-
-	private native void clickHandler() /*-{
-		try {
-			$wnd.document.addEventListener("click", function() {
-				$wnd["startClickTime"] = new Date().getTime();
-			});
-		} catch (e) {
-			$wnd.dataLayer.push({
-				event : e
-			});
-		}
+	public static native void resetStartTime() /*-{
+		$wnd["startTime"] = new Date().getTime();
 	}-*/;
 
 	@Override
@@ -389,7 +368,5 @@ public class ClientFactoryImpl implements ClientFactory {
 		});
 
 		eventGtm("Fin du chargement/exécution de la partie visible de l'application", this.getClass().toString());
-		// Permet de faire un reset du timer pour le calcul du temps d'affichage des pages Ajax.
-		clickHandler();
 	}
 }

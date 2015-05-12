@@ -26,7 +26,7 @@ public class AppActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 		// Première instruction lors d'un chargement ajax suite à une modification d'url.
-		clientFactory.resetStartTime();
+		getActivityStartTime();
 
 		Activity activity = null;
 
@@ -44,4 +44,8 @@ public class AppActivityMapper implements ActivityMapper {
 		clientFactory.eventGtm("getActivity", this.getClass().toString());
 		return activity;
 	}
+
+	public static native void getActivityStartTime() /*-{
+		$wnd["getActivityStartTime"] = new Date().getTime();
+	}-*/;
 }
