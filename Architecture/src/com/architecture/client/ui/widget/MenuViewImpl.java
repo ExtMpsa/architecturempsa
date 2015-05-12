@@ -56,23 +56,28 @@ public class MenuViewImpl extends Composite {
 
 		home.setText(menuText.home());
 		home.setHref(pathWithParameterWithoutHash + "#HomePlace:");
+		home.getElement().setId("home");
 
 		formMultipleUrl.setText(menuText.formMultipleUrl());
 		formMultipleUrl.setHref(pathWithParameterWithoutHash + "#FormsPlace:step1");
+		formMultipleUrl.getElement().setId("formMultipleUrl");
 
 		formSingleUrl.setText(menuText.formSingleUrl());
 		formSingleUrl.setHref(pathWithParameterWithoutHash + "#FormsPlace:");
+		formSingleUrl.getElement().setId("formSingleUrl");
 
 		eCommerce.setText(menuText.eCommerce());
-		eCommerce.setText(menuText.eCommerce());
+		eCommerce.getElement().setId("eCommerce");
 
 		iFrame.setText(menuText.iFrame());
-		iFrame.setText(menuText.iFrame());
+		iFrame.getElement().setId("iFrame");
 
 		tracingPaper.setText(menuText.tracingPaper());
 		tracingPaper.setHref(pathWithParameterWithoutHash + "#TracingPaperPlace:");
+		tracingPaper.getElement().setId("tracingPaper");
 
 		connexion.setText(menuText.connexion());
 		connexion.setHref(pathWithParameterWithoutHash + "#SignInPlace:");
+		connexion.getElement().setId("connexion");
 	}
 }
