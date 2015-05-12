@@ -173,11 +173,16 @@ public class ClientFactoryImpl implements ClientFactory {
 		try {
 			$wnd["startTime"] = $wnd["startTime"] || new Date().getTime();
 			$wnd["elapsedTime"] = new Date().getTime() - $wnd.startTime;
+			$wnd["elapsedClickTime"] = new Date().getTime()
+					- $wnd.startClickTime;
+			$wnd["elapsedActivityTime"] = new Date().getTime() - $wnd.startTime;
 			$wnd.dataLayer.push({
 				description : description,
 				launcher : launcher,
 				startTime : $wnd.startTime,
-				elapsedTimeSinceUserAction : $wnd.elapsedTime
+				elapsedTimeSinceClick : $wnd.elapsedClickTime,
+				elapsedTimeSinceGetActivity : $wnd.elapsedActivityTime,
+				elapsedTimeSinceUserAction : $wnd.elapsedClickTime
 			});
 		} catch (e) {
 			$wnd.dataLayer.push({
@@ -218,6 +223,18 @@ public class ClientFactoryImpl implements ClientFactory {
 	public native void resetStartTime() /*-{
 		try {
 			$wnd["startTime"] = new Date().getTime();
+		} catch (e) {
+			$wnd.dataLayer.push({
+				event : e
+			});
+		}
+	}-*/;
+
+	private native void clickHandler() /*-{
+		try {
+			$wnd.document.addEventListener("click", function() {
+				$wnd["startClickTime"] = new Date().getTime();
+			});
 		} catch (e) {
 			$wnd.dataLayer.push({
 				event : e
@@ -372,6 +389,7 @@ public class ClientFactoryImpl implements ClientFactory {
 		});
 
 		eventGtm("Fin du chargement/exécution de la partie visible de l'application", this.getClass().toString());
-
+		// Permet de faire un reset du timer pour le calcul du temps d'affichage des pages Ajax.
+		clickHandler();
 	}
 }
