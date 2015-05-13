@@ -8,8 +8,8 @@ import com.google.gwt.core.client.EntryPoint;
 public class Architecture implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
-		@SuppressWarnings("unused")
 		ClientFactory clientFactory = ClientFactoryImpl.getInstance();
-
+		clientFactory.eventGtm("Affichage de la 1ere vue de l'application", this.getClass().toString());
+		ClientFactoryImpl.setLoaded(true);
 	}
 }

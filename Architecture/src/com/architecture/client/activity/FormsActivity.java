@@ -21,23 +21,21 @@ public class FormsActivity extends AbstractActivity implements Activity {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		formsView = clientFactory.getFormsView();
-		if (formsView.getPerson() == null) {
-			formsView.setPerson(clientFactory.getArchitectureRequestFactory().getPersonRequest().create(PersonProxy.class));
+		this.formsView = this.clientFactory.getFormsView();
+		if (this.formsView.getPerson() == null) {
+			this.formsView.setPerson(this.clientFactory.getArchitectureRequestFactory().getPersonRequest().create(PersonProxy.class));
 		}
-		formsView.setActivity(this);
-		formsView.setStep(step);
-		containerWidget.setWidget(formsView.asWidget());
-		// temps d'affichage poussé dans le dataLayer
-		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
+		this.formsView.setActivity(this);
+		this.formsView.setStep(this.step);
+		containerWidget.setWidget(this.formsView.asWidget());
 	}
 
 	@Override
 	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
+		this.clientFactory.getPlaceController().goTo(place);
 	}
 
 	public ClientFactory getClientFactory() {
-		return clientFactory;
+		return this.clientFactory;
 	}
 }

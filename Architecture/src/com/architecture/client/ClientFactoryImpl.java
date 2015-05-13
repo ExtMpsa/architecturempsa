@@ -103,20 +103,18 @@ public class ClientFactoryImpl implements ClientFactory {
 		// initGoogleTagManager();
 
 		// Création des vues
-		if (!(Window.Location.getHash().equalsIgnoreCase("") || Window.Location.getHash().startsWith("#HomePlace:"))) {
-			getHomeView();
-		}
-		if (!(Window.Location.getHash().startsWith("#FormsPlace:"))) {
-			getFormsView();
-		}
-		if (!(Window.Location.getHash().startsWith("#TracingPaperPlace:"))) {
-			getTracingPaperView();
-		}
-		if (!(Window.Location.getHash().startsWith("#SignInPlace:"))) {
-			getSignInView();
-		}
-		eventGtm("Fin de la création des parties non visible de l'application.", this.getClass().toString());
-		loaded = true;
+		// if (!(Window.Location.getHash().equalsIgnoreCase("") || Window.Location.getHash().startsWith("#HomePlace:"))) {
+		// getHomeView();
+		// }
+		// if (!(Window.Location.getHash().startsWith("#FormsPlace:"))) {
+		// getFormsView();
+		// }
+		// if (!(Window.Location.getHash().startsWith("#TracingPaperPlace:"))) {
+		// getTracingPaperView();
+		// }
+		// if (!(Window.Location.getHash().startsWith("#SignInPlace:"))) {
+		// getSignInView();
+		// }
 	}
 
 	/** Holder */
@@ -178,7 +176,6 @@ public class ClientFactoryImpl implements ClientFactory {
 			$wnd.dataLayer.push({
 				description : description,
 				launcher : launcher,
-				startTime : $wnd.startTime,
 				elapsedTimeSinceGetActivity : $wnd.elapsedActivityTime,
 				elapsedTimeSinceUserAction : $wnd.elapsedTime
 			});
@@ -199,21 +196,33 @@ public class ClientFactoryImpl implements ClientFactory {
 						description : description,
 						descriptionTechnique : "Temps écoulé entre window.performance.timing.connectStart et ce push",
 						launcher : launcher,
-						startTime : $wnd.startTime,
+						elapsedTimeSinceGetActivity : new Date().getTime()
+								- $wnd.getActivityStartTime,
 						elapsedTimeSinceUserAction : $wnd.elapsedTime
 					});
 		} catch (e) {
 			$wnd.dataLayer.push({
-				event : launcher
+				event : launcher,
 			});
 		}
 	}-*/;
 
 	private native void pushUpdateVirtualPath() /*-{
-		$wnd["dataLayer"] = $wnd["dataLayer"] || [];
-		$wnd.dataLayer.push({
-			event : "updatevirtualpath"
-		});
+		try {
+			$wnd["dataLayer"] = $wnd["dataLayer"] || [];
+			$wnd.dataLayer.push({
+				event : "updatevirtualpath",
+				elapsedTimeSinceUserAction : new Date().getTime()
+						- $wnd.startTime,
+				elapsedTimeSinceGetActivity : new Date().getTime()
+						- $wnd.getActivityStartTime,
+				lastAjaxUrl : $wnd["lastAjaxUrl"]
+			});
+		} catch (e) {
+			$wnd.dataLayer.push({
+				event : launcher,
+			});
+		}
 	}-*/;
 
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
@@ -300,6 +309,10 @@ public class ClientFactoryImpl implements ClientFactory {
 		return loaded;
 	}
 
+	public static void setLoaded(boolean loaded) {
+		ClientFactoryImpl.loaded = loaded;
+	}
+
 	private void bind() {
 
 		eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
@@ -366,7 +379,5 @@ public class ClientFactoryImpl implements ClientFactory {
 				}
 			}
 		});
-
-		eventGtm("Fin du chargement/exécution de la partie visible de l'application", this.getClass().toString());
 	}
 }

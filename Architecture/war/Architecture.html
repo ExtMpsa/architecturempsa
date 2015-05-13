@@ -9,7 +9,12 @@
   	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJ7D96"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<script id="scriptGtm">
-	var startTime = new Date().getTime();
+	var dataLayer = [{
+		elapsedTimeSinceUserAction : new Date().getTime()
+		- window.performance.timing.connectStart,
+		referrer : document.referrer,
+		previousPath : document.referrer
+	}];
     (function(w,d,s,l,i){
     	w[l]=w[l]||[];
     	w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});

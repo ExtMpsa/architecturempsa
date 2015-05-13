@@ -17,16 +17,14 @@ public class TracingPaperActivity extends AbstractActivity implements Activity {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		TracingPaperView tracingPaperView = clientFactory.getTracingPaperView();
+		TracingPaperView tracingPaperView = this.clientFactory.getTracingPaperView();
 		tracingPaperView.setActivity(this);
 		containerWidget.setWidget(tracingPaperView.asWidget());
-		// temps d'affichage poussé dans le dataLayer
-		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override
 	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
+		this.clientFactory.getPlaceController().goTo(place);
 	}
 
 }

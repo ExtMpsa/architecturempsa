@@ -31,17 +31,17 @@ public class AppActivityMapper implements ActivityMapper {
 		Activity activity = null;
 
 		if (place instanceof HomePlace) {
-			activity = new HomeActivity((HomePlace) place, clientFactory);
+			activity = new HomeActivity((HomePlace) place, this.clientFactory);
 		} else if (place instanceof FormsPlace) {
-			activity = new FormsActivity((FormsPlace) place, clientFactory);
+			activity = new FormsActivity((FormsPlace) place, this.clientFactory);
 		} else if (place instanceof TracingPaperPlace) {
-			activity = new TracingPaperActivity((TracingPaperPlace) place, clientFactory);
+			activity = new TracingPaperActivity((TracingPaperPlace) place, this.clientFactory);
 		} else if (place instanceof EPrivacyPlace) {
-			activity = new EPrivacyActivity((EPrivacyPlace) place, clientFactory);
+			activity = new EPrivacyActivity((EPrivacyPlace) place, this.clientFactory);
 		} else if (place instanceof SignInPlace) {
-			activity = new SignInActivity((SignInPlace) place, clientFactory);
+			activity = new SignInActivity((SignInPlace) place, this.clientFactory);
 		}
-		clientFactory.eventGtm("getActivity", this.getClass().toString());
+		this.clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
 		return activity;
 	}
 

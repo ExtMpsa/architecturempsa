@@ -5,23 +5,23 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class HomePlace extends Place {
 	private String homeName;
-	
+
 	public HomePlace() {
-    }
+	}
 
 	public String getHomeName() {
-		return homeName;
+		return this.homeName;
 	}
-	
-	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
-        @Override
-        public String getToken(HomePlace place) {
-            return "";
-        }
 
-        @Override
-        public HomePlace getPlace(String token) {
-            return new HomePlace();
-        }
-    }
+	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
+		@Override
+		public String getToken(HomePlace place) {
+			return "";
+		}
+
+		@Override
+		public HomePlace getPlace(String token) {
+			return new HomePlace();
+		}
+	}
 }

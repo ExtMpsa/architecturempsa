@@ -17,15 +17,13 @@ public class SignInActivity extends AbstractActivity implements Activity {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		SignInView signInView = clientFactory.getSignInView();
+		SignInView signInView = this.clientFactory.getSignInView();
 		signInView.setActivity(this);
 		containerWidget.setWidget(signInView.asWidget());
-		// temps d'affichage poussé dans le dataLayer
-		this.clientFactory.eventGtm("Fin de l'affichage de la vue", this.getClass().toString());
 	}
 
 	@Override
 	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
+		this.clientFactory.getPlaceController().goTo(place);
 	}
 }
