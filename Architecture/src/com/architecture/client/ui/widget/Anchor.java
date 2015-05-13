@@ -39,8 +39,8 @@ public class Anchor extends com.google.gwt.user.client.ui.Anchor {
 		this.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				if (!isSameHref(Window.Location.getHref())) {
-					resetStartTime(getAnchorElement().toString());
+				if (!isSameHref(Window.Location.getHref()) && !getHref().equalsIgnoreCase("")) {
+					resetStartTime(event.getSource().toString());
 				}
 			}
 		});
