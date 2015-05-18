@@ -6,7 +6,6 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.ModifySignStep1Event;
-import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
 import com.architecture.shared.proxy.PersonProxy;
@@ -16,10 +15,11 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
@@ -38,16 +38,17 @@ public class SignStep1ViewImpl extends Composite {
 	@UiField
 	Anchor validate1;
 	@UiField
-	FieldViewImpl lastName;
+	FieldComposite lastName;
 	@UiField
-	FieldViewImpl mail;
+	FieldComposite mail;
 	@UiField
-	FieldViewImpl firstName;
+	FieldComposite firstName;
 	@UiField
-	FieldViewImpl psaEntity;
+	FieldComposite psaEntity;
 	@UiField
 	Grid content;
 	PersonProxy person;
+	HandlerRegistration disabledValidate = null;
 
 	interface SignStep1ViewImplUiBinder extends UiBinder<Widget, SignStep1ViewImpl> {
 	}
@@ -60,54 +61,50 @@ public class SignStep1ViewImpl extends Composite {
 
 	private void init() {
 		SignText signText = GWT.create(SignText.class);
-		step.setTitle(signText.step1());
-		step.setInnerHTML(signText.step1());
-		modify.setText(signText.modify());
-		lastName.setLabel(signText.name());
-		lastName.setPlaceHolder(signText.eg() + " : Dupont");
-		lastName.setTextValidation("Le nom doit contenir au moins 7 caractères.");
-		lastName.setValidationVisible(false);
+		this.step.setTitle(signText.step1());
+		this.step.setInnerHTML(signText.step1());
+		this.modify.setText(signText.modify());
+		this.lastName.setLabel(signText.name());
+		this.lastName.setPlaceHolder(signText.eg() + " : Dupont");
+		this.lastName.setValidationVisible(false);
 
-		firstName.setLabel(signText.firstName());
-		firstName.setPlaceHolder(signText.eg() + " : Jean");
-		firstName.setTextValidation("Le nom doit contenir au moins 1 caractère.");
-		firstName.setValidationVisible(false);
+		this.firstName.setLabel(signText.firstName());
+		this.firstName.setPlaceHolder(signText.eg() + " : Jean");
+		this.firstName.setValidationVisible(false);
 
-		mail.setLabel(signText.mail());
-		mail.setPlaceHolder(signText.eg() + " : jean.dupont@mpsa.com");
-		mail.setTextValidation("Le nom doit contenir au moins 1 caractère.");
-		mail.setValidationVisible(false);
+		this.mail.setLabel(signText.mail());
+		this.mail.setPlaceHolder(signText.eg() + " : jean.dupont@mpsa.com");
+		this.mail.setValidationVisible(false);
 
-		psaEntity.setLabel(signText.psaEntity());
-		psaEntity.setPlaceHolder(signText.eg() + " : DSIN/SPCD/D4U");
-		psaEntity.setTextValidation("Le nom doit contenir au moins 1 caractère.");
-		psaEntity.setValidationVisible(false);
+		this.psaEntity.setLabel(signText.psaEntity());
+		this.psaEntity.setPlaceHolder(signText.eg() + " : DSIN/SPCD/D4U");
+		this.psaEntity.setValidationVisible(false);
 
-		validate.setText(signText.validate());
-		validate1.setText(signText.validate());
-		validate1.setHash("#FormsPlace:step2");
+		this.validate.setText(signText.validate());
+		this.validate1.setText(signText.validate());
+		this.validate1.setHash("#FormsPlace:step2");
 
 		// Focus
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			@Override
 			public void execute() {
-				lastName.getTextBox().setFocus(true);
+				SignStep1ViewImpl.this.lastName.getTextBox().setFocus(true);
 			}
 		});
 	}
 
 	public PersonProxy getUpdatedPerson(PersonProxy p) {
 		if (p != null) {
-			p.setFirstName(firstName.getTextBox().getValue());
-			p.setLastName(lastName.getTextBox().getValue());
-			p.setEmail(mail.getTextBox().getValue());
-			p.setDepartment(psaEntity.getTextBox().getValue());
+			p.setFirstName(this.firstName.getTextBox().getValue());
+			p.setLastName(this.lastName.getTextBox().getValue());
+			p.setEmail(this.mail.getTextBox().getValue());
+			p.setDepartment(this.psaEntity.getTextBox().getValue());
 		}
 		return p;
 	}
 
 	public PersonProxy getPerson() {
-		return person;
+		return this.person;
 	}
 
 	public void setPerson(PersonProxy person) {
@@ -116,42 +113,57 @@ public class SignStep1ViewImpl extends Composite {
 
 	@UiHandler("validate1")
 	void onValidateClick(ClickEvent event) {
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(this.person);
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				Window.alert(constraintViolation.getMessage());
+				switch (constraintViolation.getPropertyPath().toString()) {
+				case "department":
+					this.psaEntity.getValidation().setVisible(true);
+					this.psaEntity.getValidation().setText(constraintViolation.getMessage());
+					break;
+				case "lastName":
+					this.lastName.getValidation().setVisible(true);
+					this.lastName.getValidation().setText(constraintViolation.getMessage());
+					break;
+				case "firstName":
+					this.firstName.getValidation().setVisible(true);
+					this.firstName.getValidation().setText(constraintViolation.getMessage());
+					break;
+				case "email":
+					this.mail.getValidation().setVisible(true);
+					this.mail.getValidation().setText(constraintViolation.getMessage());
+					break;
+				}
 			}
-		} else {
-			ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep1Event());
 		}
 	}
 
 	public Grid getContent() {
-		return content;
+		return this.content;
 	}
 
 	public Button getValidate() {
-		return validate;
+		return this.validate;
 	}
 
 	public void setOpen() {
-		modify.setVisible(false);
-		content.setVisible(true);
-		validate.setVisible(true);
+		this.modify.setVisible(false);
+		this.content.setVisible(true);
+		this.validate.setVisible(true);
 	}
 
 	public void setClose() {
-		modify.setVisible(true);
-		content.setVisible(false);
-		validate.setVisible(false);
+		this.modify.setVisible(true);
+		this.content.setVisible(false);
+		this.validate.setVisible(false);
 	}
 
 	public void reset() {
-		lastName.getTextBox().setValue(null);
-		firstName.getTextBox().setValue(null);
-		mail.getTextBox().setValue(null);
-		psaEntity.getTextBox().setValue(null);
+		this.lastName.getTextBox().setValue(null);
+		this.firstName.getTextBox().setValue(null);
+		this.mail.getTextBox().setValue(null);
+		this.psaEntity.getTextBox().setValue(null);
 	}
 
 	@UiHandler("modify")
@@ -160,74 +172,128 @@ public class SignStep1ViewImpl extends Composite {
 	}
 
 	public TextBox getNameValue() {
-		return lastName.getTextBox();
+		return this.lastName.getTextBox();
 	}
 
 	public TextBox getFirstNameValue() {
-		return firstName.getTextBox();
+		return this.firstName.getTextBox();
 	}
 
 	public TextBox getMailValue() {
-		return mail.getTextBox();
+		return this.mail.getTextBox();
 	}
 
 	public TextBox getPsaEntityValue() {
-		return psaEntity.getTextBox();
+		return this.psaEntity.getTextBox();
 	}
-	
+
 	@UiHandler("lastName")
 	void onLastNameBlur(BlurEvent event) {
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "lastName");
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "lastName");
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				lastName.getValidation().setVisible(true);
-				lastName.getValidation().setText(constraintViolation.getMessage());
+				this.lastName.getValidation().setVisible(true);
+				this.lastName.getValidation().setText(constraintViolation.getMessage());
 			}
-		}else{
-			lastName.getValidation().setVisible(false);
+			if (this.disabledValidate == null) {
+				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						event.preventDefault();
+					}
+				});
+			}
+		} else {
+			this.lastName.getValidation().setVisible(false);
+			if (updateValidate()) {
+				this.disabledValidate.removeHandler();
+			}
 		}
 	}
-	
+
 	@UiHandler("mail")
 	void onMailBlur(BlurEvent event) {
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "email");
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "email");
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				mail.getValidation().setVisible(true);
-				mail.getValidation().setText(constraintViolation.getMessage());
+				this.mail.getValidation().setVisible(true);
+				this.mail.getValidation().setText(constraintViolation.getMessage());
 			}
-		}else{
-			mail.getValidation().setVisible(false);
+			if (this.disabledValidate == null) {
+				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						event.preventDefault();
+					}
+				});
+			}
+		} else {
+			this.mail.getValidation().setVisible(false);
+			if (updateValidate()) {
+				this.disabledValidate.removeHandler();
+			}
 		}
 	}
-	
+
 	@UiHandler("firstName")
 	void onFirstNameBlur(BlurEvent event) {
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "firstName");
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "firstName");
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				firstName.getValidation().setVisible(true);
-				firstName.getValidation().setText(constraintViolation.getMessage());
+				this.firstName.getValidation().setVisible(true);
+				this.firstName.getValidation().setText(constraintViolation.getMessage());
 			}
-		}else{
-			firstName.getValidation().setVisible(false);
+			if (this.disabledValidate == null) {
+				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						event.preventDefault();
+					}
+				});
+			}
+		} else {
+			this.firstName.getValidation().setVisible(false);
+			if (updateValidate()) {
+				this.disabledValidate.removeHandler();
+			}
 		}
 	}
-	
+
 	@UiHandler("psaEntity")
 	void onPsaEntityBlur(BlurEvent event) {
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "psaEntity");
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "department");
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				psaEntity.getValidation().setVisible(true);
-				psaEntity.getValidation().setText(constraintViolation.getMessage());
+				this.psaEntity.getValidation().setVisible(true);
+				this.psaEntity.getValidation().setText(constraintViolation.getMessage());
 			}
-		}else{
-			psaEntity.getValidation().setVisible(false);
+			if (this.disabledValidate == null) {
+				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						event.preventDefault();
+					}
+				});
+			}
+		} else {
+			this.psaEntity.getValidation().setVisible(false);
+			if (updateValidate()) {
+				this.disabledValidate.removeHandler();
+			}
 		}
+	}
+
+	public boolean updateValidate() {
+		boolean validate = false;
+		getUpdatedPerson(this.person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "department");
+		if (violations.isEmpty()) {
+			validate = true;
+		}
+		return validate;
 	}
 }

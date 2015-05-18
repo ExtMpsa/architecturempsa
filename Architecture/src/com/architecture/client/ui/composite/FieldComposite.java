@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class FieldViewImpl extends Composite {
+public class FieldComposite extends Composite {
 
 	private static FieldViewUiBinder uiBinder = GWT.create(FieldViewUiBinder.class);
 	@UiField
@@ -22,16 +22,16 @@ public class FieldViewImpl extends Composite {
 	@UiField
 	Label validation;
 
-	interface FieldViewUiBinder extends UiBinder<Widget, FieldViewImpl> {
+	interface FieldViewUiBinder extends UiBinder<Widget, FieldComposite> {
 	}
 
-	public FieldViewImpl() {
+	public FieldComposite() {
 		initWidget(uiBinder.createAndBindUi(this));
 		setLabel("Name");
 		validation.setVisible(true);
 	}
 
-	public FieldViewImpl(String text) {
+	public FieldComposite(String text) {
 		initWidget(uiBinder.createAndBindUi(this));
 		setLabel(text);
 		validation.setVisible(false);
