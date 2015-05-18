@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.event.dom.client.BlurEvent;
 
 public class SignStep1ViewImpl extends Composite {
 
@@ -172,5 +173,9 @@ public class SignStep1ViewImpl extends Composite {
 
 	public TextBox getPsaEntityValue() {
 		return psaEntity.getTextBox();
+	}
+	@UiHandler("lastName")
+	void onLastNameBlur(BlurEvent event) {
+		lastName.getValidation().setVisible(true);
 	}
 }

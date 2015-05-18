@@ -4,13 +4,15 @@ import com.architecture.client.ui.widget.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.BlurHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiHandler;
 
 public class FieldViewImpl extends Composite {
 
@@ -80,13 +82,16 @@ public class FieldViewImpl extends Composite {
 	public void setValidation(Label validation) {
 		this.validation = validation;
 	}
-
+	
+	public HandlerRegistration addBlurHandler(BlurHandler handler) {
+	    return addDomHandler(handler, BlurEvent.getType());
+	}
+	
+	public HandlerRegistration addClickHandler(ClickHandler handler) {
+	    return addDomHandler(handler, ClickEvent.getType());
+	}
 	@UiHandler("value")
 	void onValueBlur(BlurEvent event) {
-		validation.setVisible(true);
-	}
-
-	public HandlerRegistration addBlurHandler(BlurHandler handler) {
-		return addDomHandler(handler, BlurEvent.getType());
+		this.fireEvent(event);
 	}
 }
