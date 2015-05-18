@@ -45,7 +45,7 @@
 		</div>
 		<div class="gwt-HeaderView">
 			<a class="gwt-Button" id="homeStatic" href="/HomeStatic">Accueil</a>
-			<a class="gwt-Button" id="formStaticMultiple" href="/FormStatic">Formulaire sur plusieurs pages</a>
+			<a class="gwt-Button" id="formStaticMultiple" href="/#FormsPlace:step1">Formulaire sur plusieurs pages</a>
 			<a class="gwt-Button" id="formStaticSingle" href="/FormStatic">Formulaire sur une page</a>
 			<a class="gwt-Button" id="eCommerceStatic" href="/ECommerceStatic">e-Commerce</a>
 			<a class="gwt-Button" id="iFrameStatic" href="/IFrameStatic">iFrame</a>

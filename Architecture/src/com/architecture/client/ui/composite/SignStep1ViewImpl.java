@@ -8,8 +8,11 @@ import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
+import com.architecture.client.ui.widget.Anchor;
 import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -18,8 +21,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -31,25 +33,19 @@ public class SignStep1ViewImpl extends Composite {
 	@UiField
 	Button modify;
 	@UiField
-	Label name;
-	@UiField
-	TextBox nameValue;
-	@UiField
-	Label firstName;
-	@UiField
-	TextBox firstNameValue;
-	@UiField
-	TextBox mailValue;
-	@UiField
-	Label mail;
-	@UiField
-	Label psaEntity;
-	@UiField
-	TextBox psaEntityValue;
-	@UiField
 	Button validate;
 	@UiField
-	HorizontalPanel content;
+	Anchor validate1;
+	@UiField
+	FieldViewImpl lastName;
+	@UiField
+	FieldViewImpl mail;
+	@UiField
+	FieldViewImpl firstName;
+	@UiField
+	FieldViewImpl psaEntity;
+	@UiField
+	Grid content;
 	PersonProxy person;
 
 	interface SignStep1ViewImplUiBinder extends UiBinder<Widget, SignStep1ViewImpl> {
@@ -66,23 +62,45 @@ public class SignStep1ViewImpl extends Composite {
 		step.setTitle(signText.step1());
 		step.setInnerHTML(signText.step1());
 		modify.setText(signText.modify());
-		name.setText(signText.name());
-		nameValue.getElement().setAttribute("placeholder", signText.eg() + " : Dupont");
-		firstName.setText(signText.firstName());
-		firstNameValue.getElement().setAttribute("placeholder", signText.eg() + " : Jean");
-		mail.setText(signText.mail());
-		mailValue.getElement().setAttribute("placeholder", signText.eg() + " : jean.dupont@mpsa.com");
-		psaEntity.setText(signText.psaEntity());
-		psaEntityValue.getElement().setAttribute("placeholder", signText.eg() + " : DSIN/SPCD/D4U");
+		lastName.setLabel(signText.name());
+		lastName.setPlaceHolder(signText.eg() + " : Dupont");
+		lastName.setTextValidation("Le nom doit contenir au moins 7 caractères.");
+		lastName.setValidationVisible(false);
+
+		firstName.setLabel(signText.firstName());
+		firstName.setPlaceHolder(signText.eg() + " : Jean");
+		firstName.setTextValidation("Le nom doit contenir au moins 1 caractère.");
+		firstName.setValidationVisible(false);
+
+		mail.setLabel(signText.mail());
+		mail.setPlaceHolder(signText.eg() + " : jean.dupont@mpsa.com");
+		mail.setTextValidation("Le nom doit contenir au moins 1 caractère.");
+		mail.setValidationVisible(false);
+
+		psaEntity.setLabel(signText.psaEntity());
+		psaEntity.setPlaceHolder(signText.eg() + " : DSIN/SPCD/D4U");
+		psaEntity.setTextValidation("Le nom doit contenir au moins 1 caractère.");
+		psaEntity.setValidationVisible(false);
+
 		validate.setText(signText.validate());
+		validate1.setText(signText.validate());
+		validate1.setHash("#FormsPlace:step2");
+
+		// Focus
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				lastName.getTextBox().setFocus(true);
+			}
+		});
 	}
 
 	public PersonProxy getUpdatedPerson(PersonProxy p) {
 		if (p != null) {
-			p.setFirstName(firstNameValue.getValue());
-			p.setLastName(nameValue.getValue());
-			p.setEmail(mailValue.getValue());
-			p.setDepartment(psaEntityValue.getValue());
+			p.setFirstName(firstName.getTextBox().getValue());
+			p.setLastName(lastName.getTextBox().getValue());
+			p.setEmail(mail.getTextBox().getValue());
+			p.setDepartment(psaEntity.getTextBox().getValue());
 		}
 		return p;
 	}
@@ -95,7 +113,7 @@ public class SignStep1ViewImpl extends Composite {
 		this.person = person;
 	}
 
-	@UiHandler("validate")
+	@UiHandler("validate1")
 	void onValidateClick(ClickEvent event) {
 		getUpdatedPerson(person);
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
@@ -108,7 +126,7 @@ public class SignStep1ViewImpl extends Composite {
 		}
 	}
 
-	public HorizontalPanel getContent() {
+	public Grid getContent() {
 		return content;
 	}
 
@@ -129,10 +147,10 @@ public class SignStep1ViewImpl extends Composite {
 	}
 
 	public void reset() {
-		nameValue.setValue(null);
-		firstNameValue.setValue(null);
-		mailValue.setValue(null);
-		psaEntityValue.setValue(null);
+		lastName.getTextBox().setValue(null);
+		firstName.getTextBox().setValue(null);
+		mail.getTextBox().setValue(null);
+		psaEntity.getTextBox().setValue(null);
 	}
 
 	@UiHandler("modify")
@@ -141,18 +159,18 @@ public class SignStep1ViewImpl extends Composite {
 	}
 
 	public TextBox getNameValue() {
-		return nameValue;
+		return lastName.getTextBox();
 	}
 
 	public TextBox getFirstNameValue() {
-		return firstNameValue;
+		return firstName.getTextBox();
 	}
 
 	public TextBox getMailValue() {
-		return mailValue;
+		return mail.getTextBox();
 	}
 
 	public TextBox getPsaEntityValue() {
-		return psaEntityValue;
+		return psaEntity.getTextBox();
 	}
 }

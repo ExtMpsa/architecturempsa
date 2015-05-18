@@ -58,6 +58,10 @@
 }
 
 body{margin:0px}
+
+.gwt-Grid td{
+	vertical-align: top;
+}
 .gwt-Button{
 	color: buttontext;
 	font: -webkit-small-control;

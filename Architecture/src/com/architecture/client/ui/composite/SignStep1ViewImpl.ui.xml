@@ -1,6 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.architecture.client.ui.widget" xmlns:p2="urn:import:com.architecture.client.ui.composite">
 	<ui:style>
 	
 	</ui:style>
@@ -9,20 +9,31 @@
 		<h3 ui:field="step">Step 1</h3>
 		<g:Button text="Modify" ui:field="modify"/>
 	</g:HTMLPanel>
-	<g:HorizontalPanel ui:field="content">
-		<g:VerticalPanel>
-			<g:Label text="Name" ui:field="name"/>
-			<g:TextBox ui:field="nameValue"/>
-			<g:Label text="First Name" ui:field="firstName"/>
-			<g:TextBox ui:field="firstNameValue"/>
-		</g:VerticalPanel>
-		<g:VerticalPanel>
-			<g:Label text="Mail" ui:field="mail"/>
-			<g:TextBox ui:field="mailValue"/>
-			<g:Label text="PSA Entity" ui:field="psaEntity"/>
-			<g:TextBox ui:field="psaEntityValue"/>
-		</g:VerticalPanel>
-	</g:HorizontalPanel>
-	<g:Button text="Validate" ui:field="validate">Valider</g:Button>
+	<g:Grid styleName="gwt-Grid" ui:field="content">
+		<g:row>
+			<g:customCell>
+				<p2:FieldViewImpl validationVisible="true" ui:field="lastName"/>
+			</g:customCell>
+			<g:customCell>
+				<p2:FieldViewImpl validationVisible="false" ui:field="mail"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<p2:FieldViewImpl ui:field="firstName"/>
+			</g:customCell>
+			<g:customCell>
+				<p2:FieldViewImpl ui:field="psaEntity"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Button text="Validate" ui:field="validate">Valider</g:Button>
+			</g:customCell>
+			<g:customCell>
+				<p1:Anchor ui:field="validate1" text="Validate" styleName="gwt-Button"/>
+			</g:customCell>
+		</g:row>
+	</g:Grid>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -5,7 +5,6 @@ import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -48,22 +47,17 @@ public class MenuViewImpl extends Composite {
 
 	private void init() {
 		MenuText menuText = GWT.create(MenuText.class);
-		String url = Window.Location.getHref();
-		String pathWithParameterWithoutHash = url.substring(url.indexOf(Window.Location.getPath()));
-		if (!Window.Location.getHash().equalsIgnoreCase("")) {
-			pathWithParameterWithoutHash = url.substring(url.indexOf(Window.Location.getPath()), url.indexOf(Window.Location.getHash()));
-		}
 
 		home.setText(menuText.home());
-		home.setHref(pathWithParameterWithoutHash + "#HomePlace:");
+		home.setHash("#HomePlace:");
 		home.getElement().setId("home");
 
 		formMultipleUrl.setText(menuText.formMultipleUrl());
-		formMultipleUrl.setHref(pathWithParameterWithoutHash + "#FormsPlace:step1");
+		formMultipleUrl.setHash("#FormsPlace:step1");
 		formMultipleUrl.getElement().setId("formMultipleUrl");
 
 		formSingleUrl.setText(menuText.formSingleUrl());
-		formSingleUrl.setHref(pathWithParameterWithoutHash + "#FormsPlace:");
+		formSingleUrl.setHash("#FormsPlace:");
 		formSingleUrl.getElement().setId("formSingleUrl");
 
 		eCommerce.setText(menuText.eCommerce());
@@ -73,11 +67,11 @@ public class MenuViewImpl extends Composite {
 		iFrame.getElement().setId("iFrame");
 
 		tracingPaper.setText(menuText.tracingPaper());
-		tracingPaper.setHref(pathWithParameterWithoutHash + "#TracingPaperPlace:");
+		tracingPaper.setHash("#TracingPaperPlace:");
 		tracingPaper.getElement().setId("tracingPaper");
 
 		connexion.setText(menuText.connexion());
-		connexion.setHref(pathWithParameterWithoutHash + "#SignInPlace:");
+		connexion.setHash("#SignInPlace:");
 		connexion.getElement().setId("connexion");
 	}
 }
