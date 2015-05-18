@@ -14,6 +14,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.HeadingElement;
+import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -24,7 +25,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.event.dom.client.BlurEvent;
 
 public class SignStep1ViewImpl extends Composite {
 
@@ -174,8 +174,60 @@ public class SignStep1ViewImpl extends Composite {
 	public TextBox getPsaEntityValue() {
 		return psaEntity.getTextBox();
 	}
+	
 	@UiHandler("lastName")
 	void onLastNameBlur(BlurEvent event) {
-		lastName.getValidation().setVisible(true);
+		getUpdatedPerson(person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "lastName");
+		if (!violations.isEmpty()) {
+			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+				lastName.getValidation().setVisible(true);
+				lastName.getValidation().setText(constraintViolation.getMessage());
+			}
+		}else{
+			lastName.getValidation().setVisible(false);
+		}
+	}
+	
+	@UiHandler("mail")
+	void onMailBlur(BlurEvent event) {
+		getUpdatedPerson(person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "email");
+		if (!violations.isEmpty()) {
+			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+				mail.getValidation().setVisible(true);
+				mail.getValidation().setText(constraintViolation.getMessage());
+			}
+		}else{
+			mail.getValidation().setVisible(false);
+		}
+	}
+	
+	@UiHandler("firstName")
+	void onFirstNameBlur(BlurEvent event) {
+		getUpdatedPerson(person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "firstName");
+		if (!violations.isEmpty()) {
+			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+				firstName.getValidation().setVisible(true);
+				firstName.getValidation().setText(constraintViolation.getMessage());
+			}
+		}else{
+			firstName.getValidation().setVisible(false);
+		}
+	}
+	
+	@UiHandler("psaEntity")
+	void onPsaEntityBlur(BlurEvent event) {
+		getUpdatedPerson(person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(person, "psaEntity");
+		if (!violations.isEmpty()) {
+			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+				psaEntity.getValidation().setVisible(true);
+				psaEntity.getValidation().setText(constraintViolation.getMessage());
+			}
+		}else{
+			psaEntity.getValidation().setVisible(false);
+		}
 	}
 }

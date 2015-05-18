@@ -12,10 +12,10 @@
 	<g:Grid styleName="gwt-Grid" ui:field="content">
 		<g:row>
 			<g:customCell>
-				<p2:FieldViewImpl validationVisible="true" ui:field="lastName"/>
+				<p2:FieldViewImpl ui:field="lastName"/>
 			</g:customCell>
 			<g:customCell>
-				<p2:FieldViewImpl validationVisible="false" ui:field="mail"/>
+				<p2:FieldViewImpl ui:field="mail"/>
 			</g:customCell>
 		</g:row>
 		<g:row>
