@@ -20,6 +20,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
@@ -189,38 +190,29 @@ public class SignStep1ViewImpl extends Composite {
 
 	@UiHandler("lastName")
 	void onLastNameBlur(BlurEvent event) {
-		log("blur lastname");
 		getUpdatedPerson(this.person);
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "lastName");
 		if (!violations.isEmpty()) {
-			log("violation isn t empty lastname");
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
 				this.lastName.getValidation().setVisible(true);
 				this.lastName.getValidation().setText(constraintViolation.getMessage());
 			}
 			if (this.disabledValidate == null) {
-				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent event) {
-						event.preventDefault();
-					}
-				});
+				disabledValidate = DisableValidateHandler();
 			}
 		} else {
+			SetVisibleTimer(lastName).schedule(100);
 			if (updateValidate()) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
-			} else {
-				this.lastName.getValidation().setVisible(false);
 			}
 		}
 	}
 
 	@UiHandler("mail")
 	void onMailBlur(BlurEvent event) {
-		log("blur mail");
 		getUpdatedPerson(this.person);
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "email");
 		if (!violations.isEmpty()) {
@@ -229,21 +221,15 @@ public class SignStep1ViewImpl extends Composite {
 				this.mail.getValidation().setText(constraintViolation.getMessage());
 			}
 			if (this.disabledValidate == null) {
-				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent event) {
-						event.preventDefault();
-					}
-				});
+				disabledValidate = DisableValidateHandler();
 			}
 		} else {
+			SetVisibleTimer(mail).schedule(100);
 			if (updateValidate()) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
-			} else {
-				this.mail.getValidation().setVisible(false);
 			}
 		}
 	}
@@ -258,21 +244,15 @@ public class SignStep1ViewImpl extends Composite {
 				this.firstName.getValidation().setText(constraintViolation.getMessage());
 			}
 			if (this.disabledValidate == null) {
-				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent event) {
-						event.preventDefault();
-					}
-				});
+				disabledValidate = DisableValidateHandler();
 			}
 		} else {
+			SetVisibleTimer(firstName).schedule(100);
 			if (updateValidate()) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
-			} else {
-				this.firstName.getValidation().setVisible(false);
 			}
 		}
 	}
@@ -283,25 +263,19 @@ public class SignStep1ViewImpl extends Composite {
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "department");
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				this.psaEntity.getValidation().setVisible(true);
-				this.psaEntity.getValidation().setText(constraintViolation.getMessage());
+				psaEntity.getValidation().setVisible(true);
+				psaEntity.getValidation().setText(constraintViolation.getMessage());
 			}
-			if (this.disabledValidate == null) {
-				this.disabledValidate = SignStep1ViewImpl.this.validate1.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent event) {
-						event.preventDefault();
-					}
-				});
+			if (disabledValidate == null) {
+				disabledValidate = DisableValidateHandler();
 			}
 		} else {
+			SetVisibleTimer(psaEntity).schedule(100);
 			if (updateValidate()) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
-			} else {
-				this.psaEntity.getValidation().setVisible(false);
 			}
 		}
 	}
@@ -316,8 +290,22 @@ public class SignStep1ViewImpl extends Composite {
 		return validate;
 	}
 
-	private static native void log(String s) /*-{
-		console.log(s);
-	}-*/;
+	private HandlerRegistration DisableValidateHandler() {
+		return validate1.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				event.preventDefault();
+			}
+		});
+	}
 
+	// Timer for keep the click event when the blur event change the render of the document.
+	private Timer SetVisibleTimer(final FieldComposite field) {
+		return new Timer() {
+			@Override
+			public void run() {
+				field.getValidation().setVisible(false);
+			}
+		};
+	}
 }
