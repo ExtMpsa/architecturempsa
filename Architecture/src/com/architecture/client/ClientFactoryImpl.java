@@ -154,7 +154,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	}-*/;
 
 	private static native void insertGtm(ScriptElement j, Element f) /*-{
-		f.parentNode.insertBefore(j, f)
+		f.parentNode.insertBefore(j, f);
 	}-*/;
 
 	@Override

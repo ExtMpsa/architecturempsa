@@ -189,9 +189,11 @@ public class SignStep1ViewImpl extends Composite {
 
 	@UiHandler("lastName")
 	void onLastNameBlur(BlurEvent event) {
+		log("blur lastname");
 		getUpdatedPerson(this.person);
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "lastName");
 		if (!violations.isEmpty()) {
+			log("violation isn t empty lastname");
 			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
 				this.lastName.getValidation().setVisible(true);
 				this.lastName.getValidation().setText(constraintViolation.getMessage());
@@ -205,15 +207,20 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			this.lastName.getValidation().setVisible(false);
 			if (updateValidate()) {
-				this.disabledValidate.removeHandler();
+				if (disabledValidate != null) {
+					this.disabledValidate.removeHandler();
+					disabledValidate = null;
+				}
+			} else {
+				this.lastName.getValidation().setVisible(false);
 			}
 		}
 	}
 
 	@UiHandler("mail")
 	void onMailBlur(BlurEvent event) {
+		log("blur mail");
 		getUpdatedPerson(this.person);
 		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "email");
 		if (!violations.isEmpty()) {
@@ -230,9 +237,13 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			this.mail.getValidation().setVisible(false);
 			if (updateValidate()) {
-				this.disabledValidate.removeHandler();
+				if (disabledValidate != null) {
+					this.disabledValidate.removeHandler();
+					disabledValidate = null;
+				}
+			} else {
+				this.mail.getValidation().setVisible(false);
 			}
 		}
 	}
@@ -255,9 +266,13 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			this.firstName.getValidation().setVisible(false);
 			if (updateValidate()) {
-				this.disabledValidate.removeHandler();
+				if (disabledValidate != null) {
+					this.disabledValidate.removeHandler();
+					disabledValidate = null;
+				}
+			} else {
+				this.firstName.getValidation().setVisible(false);
 			}
 		}
 	}
@@ -280,20 +295,29 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			this.psaEntity.getValidation().setVisible(false);
 			if (updateValidate()) {
-				this.disabledValidate.removeHandler();
+				if (disabledValidate != null) {
+					this.disabledValidate.removeHandler();
+					disabledValidate = null;
+				}
+			} else {
+				this.psaEntity.getValidation().setVisible(false);
 			}
 		}
 	}
 
 	public boolean updateValidate() {
 		boolean validate = false;
-		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "department");
+		getUpdatedPerson(person);
+		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
 		if (violations.isEmpty()) {
 			validate = true;
 		}
 		return validate;
 	}
+
+	private static native void log(String s) /*-{
+		console.log(s);
+	}-*/;
+
 }
