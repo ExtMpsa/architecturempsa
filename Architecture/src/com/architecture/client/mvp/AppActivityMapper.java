@@ -17,6 +17,7 @@ import com.google.gwt.place.shared.Place;
 
 public class AppActivityMapper implements ActivityMapper {
 	private ClientFactory clientFactory;
+	private static double random;
 
 	public AppActivityMapper(ClientFactory clientFactory) {
 		super();
@@ -27,14 +28,7 @@ public class AppActivityMapper implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		// Première instruction lors d'un chargement ajax suite à une modification d'url.
 		getActivityStartTime();
-		double random = Math.random();
-		if (random < 0.3) {
-			pushRealTimeKrux(random);
-		} else if (random < 0.6) {
-			pushNonRealTimeKrux(random);
-		} else {
-			pushWithoutKrux(random);
-		}
+		pushKrux();
 
 		Activity activity = null;
 
@@ -52,38 +46,65 @@ public class AppActivityMapper implements ActivityMapper {
 		this.clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
 		return activity;
 	}
+	
+	public static double getRandom(){
+		return random;
+	}
 
 	public static native void getActivityStartTime() /*-{
 		$wnd["getActivityStartTime"] = new Date().getTime();
 	}-*/;
+	
+	public void pushKrux(){
+		random = Math.random()*100;
+		if (random < 30) {
+			pushRealTimeKrux(random);
+		} else if (random < 60) {
+			pushNonRealTimeKrux(random);
+		} else {
+			pushWithoutKrux(random);
+		}
+	}
 
 	public static native void pushRealTimeKrux(double time) /*-{
+		$wnd["dateDDM"]=new Date().getTime();
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					time : time,
-					tools : "real time cross domain segment",
-					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : "Utilisation par le Moteur de Perso des segments Cross-Domain temps réels fournis par la DMP",
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"]
 				});
 	}-*/;
 
 	public static native void pushNonRealTimeKrux(double time) /*-{
+		$wnd["dateDDM"]=new Date().getTime();
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					time : time,
-					tools : "non time cross domain segment",
-					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.",
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"]
 				});
 	}-*/;
 
 	public static native void pushWithoutKrux(double time) /*-{
+		$wnd["dateDDM"]=new Date().getTime();
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					time : time,
-					tools : "no segment",
-					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : "Utilisation du Moteur de Perso sans les segments de la DMP.",
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"]
 				});
 	}-*/;
 
