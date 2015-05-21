@@ -5,7 +5,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
 import com.architecture.shared.proxy.PersonProxy;
@@ -21,7 +20,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
@@ -33,11 +31,9 @@ public class SignStep1ViewImpl extends Composite {
 	@UiField
 	HeadingElement step;
 	@UiField
-	Button modify;
+	Anchor modify;
 	@UiField
-	Button validate;
-	@UiField
-	Anchor validate1;
+	Anchor validate;
 	@UiField
 	FieldComposite lastName;
 	@UiField
@@ -50,6 +46,10 @@ public class SignStep1ViewImpl extends Composite {
 	Grid content;
 	PersonProxy person;
 	HandlerRegistration disabledValidate = null;
+	boolean lastNameFocus = false;
+	boolean firstNameFocus = false;
+	boolean emailFocus = false;
+	boolean departmentFocus = false;
 
 	interface SignStep1ViewImplUiBinder extends UiBinder<Widget, SignStep1ViewImpl> {
 	}
@@ -82,16 +82,29 @@ public class SignStep1ViewImpl extends Composite {
 		this.psaEntity.setValidationVisible(false);
 
 		this.validate.setText(signText.validate());
-		this.validate1.setText(signText.validate());
-		this.validate1.setHash("#FormsPlace:step2");
+		this.validate.setText(signText.validate());
+		this.validate.setHash("#FormsPlace:step2");
+		firstFocus();
+	}
 
-		// Focus
-		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-			@Override
-			public void execute() {
-				SignStep1ViewImpl.this.lastName.getTextBox().setFocus(true);
-			}
-		});
+	public void firstFocus() {
+		if (person == null) {
+			// Focus
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+				@Override
+				public void execute() {
+					lastName.getTextBox().setFocus(true);
+				}
+			});
+		} else {
+			// Focus
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+				@Override
+				public void execute() {
+					lastName.getTextBox().setFocus(true);
+				}
+			});
+		}
 	}
 
 	public PersonProxy getUpdatedPerson(PersonProxy p) {
@@ -112,31 +125,15 @@ public class SignStep1ViewImpl extends Composite {
 		this.person = person;
 	}
 
-	@UiHandler("validate1")
+	@UiHandler("validate")
 	void onValidateClick(ClickEvent event) {
-		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(this.person);
-		if (!violations.isEmpty()) {
-			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				switch (constraintViolation.getPropertyPath().toString()) {
-				case "department":
-					this.psaEntity.getValidation().setVisible(true);
-					this.psaEntity.getValidation().setText(constraintViolation.getMessage());
-					break;
-				case "lastName":
-					this.lastName.getValidation().setVisible(true);
-					this.lastName.getValidation().setText(constraintViolation.getMessage());
-					break;
-				case "firstName":
-					this.firstName.getValidation().setVisible(true);
-					this.firstName.getValidation().setText(constraintViolation.getMessage());
-					break;
-				case "email":
-					this.mail.getValidation().setVisible(true);
-					this.mail.getValidation().setText(constraintViolation.getMessage());
-					break;
-				}
+		if (updateValidate(true)) {
+			if (disabledValidate != null) {
+				this.disabledValidate.removeHandler();
+				disabledValidate = null;
 			}
+		} else {
+			focus();
 		}
 	}
 
@@ -144,14 +141,11 @@ public class SignStep1ViewImpl extends Composite {
 		return this.content;
 	}
 
-	public Button getValidate() {
-		return this.validate;
-	}
-
 	public void setOpen() {
 		this.modify.setVisible(false);
 		this.content.setVisible(true);
 		this.validate.setVisible(true);
+		firstFocus();
 	}
 
 	public void setClose() {
@@ -165,11 +159,6 @@ public class SignStep1ViewImpl extends Composite {
 		this.firstName.getTextBox().setValue(null);
 		this.mail.getTextBox().setValue(null);
 		this.psaEntity.getTextBox().setValue(null);
-	}
-
-	@UiHandler("modify")
-	void onModifyClick(ClickEvent event) {
-		ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ModifySignStep1Event());
 	}
 
 	public TextBox getNameValue() {
@@ -202,7 +191,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(lastName).schedule(100);
-			if (updateValidate()) {
+			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
@@ -225,7 +214,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(mail).schedule(100);
-			if (updateValidate()) {
+			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
@@ -248,7 +237,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(firstName).schedule(100);
-			if (updateValidate()) {
+			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
@@ -271,7 +260,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(psaEntity).schedule(100);
-			if (updateValidate()) {
+			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
@@ -280,18 +269,77 @@ public class SignStep1ViewImpl extends Composite {
 		}
 	}
 
-	public boolean updateValidate() {
+	public boolean updateValidate(boolean showError) {
 		boolean validate = false;
-		getUpdatedPerson(person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
-		if (violations.isEmpty()) {
-			validate = true;
+		if (person != null) {
+			getUpdatedPerson(person);
+			Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
+			if (violations.isEmpty()) {
+				validate = true;
+			} else {
+				for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+					switch (constraintViolation.getPropertyPath().toString()) {
+					case "department":
+						if (showError) {
+							this.psaEntity.getValidation().setVisible(true);
+							this.psaEntity.getValidation().setText(constraintViolation.getMessage());
+						}
+						if (!lastNameFocus & !firstNameFocus & !emailFocus) {
+							departmentFocus = true;
+						}
+						break;
+					case "lastName":
+						if (showError) {
+							this.lastName.getValidation().setVisible(true);
+							this.lastName.getValidation().setText(constraintViolation.getMessage());
+						}
+						lastNameFocus = true;
+						firstNameFocus = false;
+						emailFocus = false;
+						departmentFocus = false;
+						break;
+					case "firstName":
+						if (showError) {
+							this.firstName.getValidation().setVisible(true);
+							this.firstName.getValidation().setText(constraintViolation.getMessage());
+						}
+						if (!lastNameFocus) {
+							firstNameFocus = true;
+							emailFocus = false;
+							departmentFocus = false;
+						}
+						break;
+					case "email":
+						if (showError) {
+							this.mail.getValidation().setVisible(true);
+							this.mail.getValidation().setText(constraintViolation.getMessage());
+						}
+						if (!lastNameFocus & !firstNameFocus) {
+							emailFocus = true;
+							departmentFocus = false;
+						}
+						break;
+					}
+				}
+			}
 		}
 		return validate;
 	}
 
+	private void focus() {
+		if (lastNameFocus) {
+			this.lastName.getTextBox().setFocus(true);
+		} else if (firstNameFocus) {
+			this.firstName.getTextBox().setFocus(true);
+		} else if (emailFocus) {
+			this.mail.getTextBox().setFocus(true);
+		} else if (departmentFocus) {
+			this.psaEntity.getTextBox().setFocus(true);
+		}
+	}
+
 	private HandlerRegistration DisableValidateHandler() {
-		return validate1.addClickHandler(new ClickHandler() {
+		return validate.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				event.preventDefault();

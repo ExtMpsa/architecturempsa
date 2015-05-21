@@ -7,7 +7,7 @@
 	<g:HTMLPanel styleName="gwt-SignStep">
 	<g:HTMLPanel styleName="gwt-SignStep-Title">
 		<h3 ui:field="step">Step 1</h3>
-		<g:Button text="Modify" ui:field="modify"/>
+		<p1:Anchor text="Modify" ui:field="modify" styleName="gwt-Button" hash="#FormsPlace:step1"/>
 	</g:HTMLPanel>
 	<g:Grid styleName="gwt-Grid" ui:field="content">
 		<g:row>
@@ -28,10 +28,7 @@
 		</g:row>
 		<g:row>
 			<g:customCell>
-				<g:Button text="Validate" ui:field="validate">Valider</g:Button>
-			</g:customCell>
-			<g:customCell>
-				<p1:Anchor ui:field="validate1" text="Validate" styleName="gwt-Button"/>
+				<p1:Anchor ui:field="validate" text="Validate" styleName="gwt-Button" hash="#FormsPlace:step2"/>
 			</g:customCell>
 		</g:row>
 	</g:Grid>

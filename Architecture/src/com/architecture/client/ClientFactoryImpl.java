@@ -101,20 +101,6 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		bind();
 		// initGoogleTagManager();
-
-		// Création des vues
-		// if (!(Window.Location.getHash().equalsIgnoreCase("") || Window.Location.getHash().startsWith("#HomePlace:"))) {
-		// getHomeView();
-		// }
-		// if (!(Window.Location.getHash().startsWith("#FormsPlace:"))) {
-		// getFormsView();
-		// }
-		// if (!(Window.Location.getHash().startsWith("#TracingPaperPlace:"))) {
-		// getTracingPaperView();
-		// }
-		// if (!(Window.Location.getHash().startsWith("#SignInPlace:"))) {
-		// getSignInView();
-		// }
 	}
 
 	/** Holder */
