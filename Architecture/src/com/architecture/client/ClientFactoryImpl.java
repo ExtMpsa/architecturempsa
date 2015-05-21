@@ -211,6 +211,16 @@ public class ClientFactoryImpl implements ClientFactory {
 		}
 	}-*/;
 
+	public static native void pushTimeRTD() /*-{
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					time : Math.random() * 100,
+					tools : "RTD",
+					description : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)"
+				});
+	}-*/;
+
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
 	public static native void resetStartTime() /*-{
 		$wnd["startTime"] = new Date().getTime();
@@ -305,6 +315,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onPlaceChange(PlaceChangeEvent event) {
+				pushTimeRTD();
 				pushUpdateVirtualPath();
 			}
 		});

@@ -27,6 +27,14 @@ public class AppActivityMapper implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		// Première instruction lors d'un chargement ajax suite à une modification d'url.
 		getActivityStartTime();
+		double random = Math.random();
+		if (random < 0.3) {
+			pushRealTimeKrux(random);
+		} else if (random < 0.6) {
+			pushNonRealTimeKrux(random);
+		} else {
+			pushWithoutKrux(random);
+		}
 
 		Activity activity = null;
 
@@ -48,4 +56,35 @@ public class AppActivityMapper implements ActivityMapper {
 	public static native void getActivityStartTime() /*-{
 		$wnd["getActivityStartTime"] = new Date().getTime();
 	}-*/;
+
+	public static native void pushRealTimeKrux(double time) /*-{
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					time : time,
+					tools : "real time cross domain segment",
+					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+				});
+	}-*/;
+
+	public static native void pushNonRealTimeKrux(double time) /*-{
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					time : time,
+					tools : "non time cross domain segment",
+					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+				});
+	}-*/;
+
+	public static native void pushWithoutKrux(double time) /*-{
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					time : time,
+					tools : "no segment",
+					description : "Temps entre la mise à disposition des segments Cross Domain de Krux et le début du traitement de la page par le navigateur."
+				});
+	}-*/;
+
 }
