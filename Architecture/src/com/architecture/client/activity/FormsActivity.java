@@ -7,6 +7,7 @@ import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class FormsActivity extends AbstractActivity implements Activity {
@@ -28,6 +29,15 @@ public class FormsActivity extends AbstractActivity implements Activity {
 		this.formsView.setActivity(this);
 		this.formsView.setStep(this.step);
 		containerWidget.setWidget(this.formsView.asWidget());
+	}
+
+	public String getUrl(String s) {
+		String url = Window.Location.getHref();
+		String pathWithParameterWithoutHash = url.substring(url.indexOf(Window.Location.getPath()));
+		if (!Window.Location.getHash().equalsIgnoreCase("")) {
+			pathWithParameterWithoutHash = url.substring(url.indexOf(Window.Location.getPath()), url.indexOf(Window.Location.getHash()));
+		}
+		return pathWithParameterWithoutHash + s;
 	}
 
 	@Override

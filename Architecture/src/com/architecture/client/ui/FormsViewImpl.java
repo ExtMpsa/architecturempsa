@@ -207,4 +207,9 @@ public class FormsViewImpl extends Composite implements FormsView {
 	public TextBox getPsaEntityValue() {
 		return step1.getPsaEntityValue();
 	}
+
+	@Override
+	public boolean validate(String step) {
+		return step1.updateValidate(true);
+	}
 }

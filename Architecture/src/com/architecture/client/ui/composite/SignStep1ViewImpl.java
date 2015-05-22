@@ -196,6 +196,10 @@ public class SignStep1ViewImpl extends Composite {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
+			} else {
+				if (disabledValidate == null) {
+					disabledValidate = DisableValidateHandler();
+				}
 			}
 		}
 	}
@@ -218,6 +222,10 @@ public class SignStep1ViewImpl extends Composite {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
+				}
+			} else {
+				if (disabledValidate == null) {
+					disabledValidate = DisableValidateHandler();
 				}
 			}
 		}
@@ -242,6 +250,10 @@ public class SignStep1ViewImpl extends Composite {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
+			} else {
+				if (disabledValidate == null) {
+					disabledValidate = DisableValidateHandler();
+				}
 			}
 		}
 	}
@@ -264,6 +276,10 @@ public class SignStep1ViewImpl extends Composite {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
 					disabledValidate = null;
+				}
+			} else {
+				if (disabledValidate == null) {
+					disabledValidate = DisableValidateHandler();
 				}
 			}
 		}

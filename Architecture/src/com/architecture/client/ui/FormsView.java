@@ -20,7 +20,9 @@ public interface FormsView extends IsWidget {
 
 	public PersonProxy getUpdatedPerson(PersonProxy p);
 
-	void setPerson(PersonProxy person);
+	public void setPerson(PersonProxy person);
+
+	public boolean validate(String step);
 
 	PersonProxy getPerson();
 }
