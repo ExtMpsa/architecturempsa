@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
 import com.architecture.shared.proxy.PersonProxy;
@@ -20,6 +21,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
@@ -44,6 +46,8 @@ public class SignStep1ViewImpl extends Composite {
 	FieldComposite psaEntity;
 	@UiField
 	Grid content;
+	@UiField
+	Button validateButton;
 	PersonProxy person;
 	HandlerRegistration disabledValidate = null;
 	boolean lastNameFocus = false;
@@ -57,7 +61,7 @@ public class SignStep1ViewImpl extends Composite {
 	public SignStep1ViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
-		setOpen();
+		setOpen(false);
 	}
 
 	private void init() {
@@ -82,8 +86,9 @@ public class SignStep1ViewImpl extends Composite {
 		this.psaEntity.setValidationVisible(false);
 
 		this.validate.setText(signText.validate());
-		this.validate.setText(signText.validate());
 		this.validate.setHash("#FormsPlace:step2");
+
+		this.validateButton.setText(signText.validate());
 		firstFocus();
 	}
 
@@ -141,11 +146,18 @@ public class SignStep1ViewImpl extends Composite {
 		return this.content;
 	}
 
-	public void setOpen() {
+	public void setOpen(boolean singlePage) {
 		this.modify.setVisible(false);
 		this.content.setVisible(true);
-		this.validate.setVisible(true);
+		if (singlePage) {
+			this.validateButton.setVisible(true);
+			this.validate.setVisible(false);
+		} else {
+			this.validateButton.setVisible(false);
+			this.validate.setVisible(true);
+		}
 		firstFocus();
+
 	}
 
 	public void setClose() {
@@ -375,5 +387,10 @@ public class SignStep1ViewImpl extends Composite {
 				field.getValidation().setVisible(false);
 			}
 		};
+	}
+
+	@UiHandler("validateButton")
+	void onValidateButtonClick(ClickEvent event) {
+		ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep1Event());
 	}
 }

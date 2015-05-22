@@ -210,18 +210,18 @@ public class ClientFactoryImpl implements ClientFactory {
 			});
 		}
 	}-*/;
-	
-	public static void pushTimeRTD(){
-		double random = Math.random()*100;
-		if (random <50){
-			if(AppActivityMapper.getRandom()< 30){
+
+	public static void pushTimeRTD() {
+		double random = Math.random() * 100;
+		if (random < 80) {
+			if (AppActivityMapper.getRandom() < 30) {
 				pushRealTimeRTD(random);
 			} else if (random < 60) {
 				pushNonRealTimeRTD(random);
 			} else {
 				pushOnlyRTD(random);
 			}
-		}else{
+		} else {
 			pushWithoutRTD(random);
 		}
 	}
@@ -238,45 +238,45 @@ public class ClientFactoryImpl implements ClientFactory {
 					dateDDM : $wnd["dateDDM"]
 				});
 	}-*/;
-	
+
 	public static native void pushNonRealTimeRTD(double time) /*-{
-	$wnd.dataLayer
-			.push({
-				event : "time",
-				timeUser : time,
-				categoryTimeUser : "DDM",
-				variableTimeUser : "Moteur de Personnalisation",
-				useCase : "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.",
-				labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-				dateDDM : $wnd["dateDDM"]
-			});
-}-*/;
-	
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Moteur de Personnalisation",
+					useCase : "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.",
+					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
+					dateDDM : $wnd["dateDDM"]
+				});
+	}-*/;
+
 	public static native void pushOnlyRTD(double time) /*-{
-	$wnd.dataLayer
-			.push({
-				event : "time",
-				timeUser : time,
-				categoryTimeUser : "DDM",
-				variableTimeUser : "Moteur de Personnalisation",
-				useCase : "Utilisation du Moteur de Perso sans les segments de la DMP.",
-				labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-				dateDDM : $wnd["dateDDM"]
-			});
-}-*/;
-	
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Moteur de Personnalisation",
+					useCase : "Utilisation du Moteur de Perso sans les segments de la DMP.",
+					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
+					dateDDM : $wnd["dateDDM"]
+				});
+	}-*/;
+
 	public static native void pushWithoutRTD(double time) /*-{
-	$wnd.dataLayer
-			.push({
-				event : "time",
-				timeUser : time,
-				categoryTimeUser : "DDM",
-				variableTimeUser : "Moteur de Personnalisation",
-				useCase : "Pas de personnalisation",
-				labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-				dateDDM : $wnd["dateDDM"]
-			});
-}-*/;
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : time,
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Moteur de Personnalisation",
+					useCase : "Pas de personnalisation",
+					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
+					dateDDM : $wnd["dateDDM"]
+				});
+	}-*/;
 
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
 	public static native void resetStartTime() /*-{
@@ -383,7 +383,7 @@ public class ClientFactoryImpl implements ClientFactory {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
-						// ClientFactoryImpl.getInstance().getFormsView().setStep("step2");
+						ClientFactoryImpl.getInstance().getFormsView().setStep("step2");
 					} else {
 						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step2"));
 					}

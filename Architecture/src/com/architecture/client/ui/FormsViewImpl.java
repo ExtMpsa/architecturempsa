@@ -52,7 +52,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 
 	private void init(String step) {
 		if (step.equals("step1")) {
-			setStep1();
+			setStep1(false);
 		} else if (step.equals("step2")) {
 			setStep2();
 		} else if (step.equals("summary")) {
@@ -60,16 +60,16 @@ public class FormsViewImpl extends Composite implements FormsView {
 		} else if (step.equals("signSuccess")) {
 			setSuccess();
 		} else {
-			setStep1();
+			setStep1(true);
 		}
 	}
 
-	private void setStep1() {
+	private void setStep1(boolean singlePage) {
 		if (step1 == null) {
 			createStep1();
 		}
 		step1.setVisible(true);
-		step1.setOpen();
+		step1.setOpen(singlePage);
 		if (step2 != null) {
 			step2.setVisible(false);
 		}
