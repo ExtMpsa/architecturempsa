@@ -191,9 +191,10 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(lastName).schedule(100);
+			lastNameFocus = false;
 			if (updateValidate(false)) {
 				if (disabledValidate != null) {
-					this.disabledValidate.removeHandler();
+					disabledValidate.removeHandler();
 					disabledValidate = null;
 				}
 			} else {
@@ -218,6 +219,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(mail).schedule(100);
+			emailFocus = false;
 			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
@@ -245,6 +247,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(firstName).schedule(100);
+			firstNameFocus = false;
 			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
@@ -272,6 +275,7 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			SetVisibleTimer(psaEntity).schedule(100);
+			departmentFocus = false;
 			if (updateValidate(false)) {
 				if (disabledValidate != null) {
 					this.disabledValidate.removeHandler();
