@@ -30,9 +30,6 @@
 			<g:customCell>
 				<p1:Anchor ui:field="validate" text="Validate" styleName="gwt-Button" hash="#FormsPlace:step2"/>
 			</g:customCell>
-			<g:customCell>
-				<g:Button ui:field="validateButton" text="validate"/>
-			</g:customCell>
 		</g:row>
 	</g:Grid>
 	</g:HTMLPanel>

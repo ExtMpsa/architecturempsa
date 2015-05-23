@@ -50,17 +50,17 @@ public class FormsViewImpl extends Composite implements FormsView {
 		inscription.setInnerText(signText.title());
 	}
 
-	private void init(String step) {
+	private void init(String step,boolean singlePage) {
 		if (step.equals("step1")) {
-			setStep1(false);
+			setStep1(singlePage);
 		} else if (step.equals("step2")) {
-			setStep2();
+			setStep2(singlePage);
 		} else if (step.equals("summary")) {
-			setRecap();
+			setRecap(singlePage);
 		} else if (step.equals("signSuccess")) {
-			setSuccess();
-		} else {
-			setStep1(true);
+			setSuccess(singlePage);
+		}else{
+			setStep1(singlePage);
 		}
 	}
 
@@ -81,15 +81,15 @@ public class FormsViewImpl extends Composite implements FormsView {
 		}
 	}
 
-	private void setStep2() {
+	private void setStep2(boolean singlePage) {
 		if (step1 == null) {
 			createStep1();
-			step1.setClose();
+			step1.setClose(singlePage);
 		}
 		if (step2 == null) {
 			createStep2();
 		}
-		step1.setClose();
+		step1.setClose(singlePage);
 		step2.setVisible(true);
 		step2.setOpen();
 		if (summary != null) {
@@ -100,7 +100,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 		}
 	}
 
-	private void setRecap() {
+	private void setRecap(boolean singlePage) {
 		if (step1 == null) {
 			createStep1();
 		}
@@ -118,7 +118,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 		}
 	}
 
-	private void setSuccess() {
+	private void setSuccess(boolean singlePage) {
 		if (step1 != null) {
 			step1.setVisible(false);
 		}
@@ -184,8 +184,8 @@ public class FormsViewImpl extends Composite implements FormsView {
 	}
 
 	@Override
-	public void setStep(String step) {
-		init(step);
+	public void setStep(String step, boolean singlePage) {
+		init(step, singlePage);
 	}
 
 	@Override

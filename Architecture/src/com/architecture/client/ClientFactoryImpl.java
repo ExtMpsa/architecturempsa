@@ -383,7 +383,7 @@ public class ClientFactoryImpl implements ClientFactory {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
-						ClientFactoryImpl.getInstance().getFormsView().setStep("step2");
+						ClientFactoryImpl.getInstance().getFormsView().setStep("step2", true);
 					} else {
 						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step2"));
 					}
@@ -397,7 +397,7 @@ public class ClientFactoryImpl implements ClientFactory {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
-						// ClientFactoryImpl.getInstance().getFormsView().setStep("step1");
+						 ClientFactoryImpl.getInstance().getFormsView().setStep("step1", true);
 					} else {
 						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step1"));
 					}

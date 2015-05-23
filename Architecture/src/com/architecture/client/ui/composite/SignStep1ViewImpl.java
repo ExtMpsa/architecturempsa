@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
@@ -21,7 +22,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.TextBox;
@@ -46,10 +46,10 @@ public class SignStep1ViewImpl extends Composite {
 	FieldComposite psaEntity;
 	@UiField
 	Grid content;
-	@UiField
-	Button validateButton;
 	PersonProxy person;
 	HandlerRegistration disabledValidate = null;
+	HandlerRegistration validateSingleUrl = null;
+	HandlerRegistration modifySingleUrl = null;
 	boolean lastNameFocus = false;
 	boolean firstNameFocus = false;
 	boolean emailFocus = false;
@@ -87,8 +87,6 @@ public class SignStep1ViewImpl extends Composite {
 
 		this.validate.setText(signText.validate());
 		this.validate.setHash("#FormsPlace:step2");
-
-		this.validateButton.setText(signText.validate());
 		firstFocus();
 	}
 
@@ -149,21 +147,51 @@ public class SignStep1ViewImpl extends Composite {
 	public void setOpen(boolean singlePage) {
 		this.modify.setVisible(false);
 		this.content.setVisible(true);
+		this.validate.setVisible(true);
 		if (singlePage) {
-			this.validateButton.setVisible(true);
-			this.validate.setVisible(false);
+			validate.getElement().removeAttribute("href");
+			if(validateSingleUrl == null){
+				validateSingleUrl = validate.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						if (updateValidate(true)){
+							ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep1Event());
+						}
+					}
+				});
+			}
 		} else {
-			this.validateButton.setVisible(false);
-			this.validate.setVisible(true);
+			if (validateSingleUrl != null){
+				validateSingleUrl.removeHandler();
+				validateSingleUrl=null;
+			}
 		}
 		firstFocus();
 
 	}
 
-	public void setClose() {
+	public void setClose(boolean singlePage) {
 		this.modify.setVisible(true);
 		this.content.setVisible(false);
 		this.validate.setVisible(false);
+		if (singlePage) {
+			modify.getElement().removeAttribute("href");
+			if(modifySingleUrl == null){
+				modifySingleUrl = modify.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						if (updateValidate(true)){
+							ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ModifySignStep1Event());
+						}
+					}
+				});
+			}
+		} else {
+			if (modifySingleUrl != null){
+				modifySingleUrl.removeHandler();
+				modifySingleUrl=null;
+			}
+		}
 	}
 
 	public void reset() {
@@ -387,10 +415,5 @@ public class SignStep1ViewImpl extends Composite {
 				field.getValidation().setVisible(false);
 			}
 		};
-	}
-
-	@UiHandler("validateButton")
-	void onValidateButtonClick(ClickEvent event) {
-		ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep1Event());
 	}
 }

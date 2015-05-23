@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.TextBox;
 public interface FormsView extends IsWidget {
 	void setActivity(FormsActivity activity);
 
-	void setStep(String step);
+	void setStep(String step, boolean singlePage);
 
 	public TextBox getNameValue();
 
