@@ -161,6 +161,7 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
+			validate.setHash("#FormsPlace:step2");
 			if (validateSingleUrl != null){
 				validateSingleUrl.removeHandler();
 				validateSingleUrl=null;
