@@ -2,16 +2,16 @@ package com.architecture.client.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 
-public class SignInEvent extends GwtEvent<SignInEventHandler> {
-	public static Type<SignInEventHandler> TYPE = new Type<SignInEventHandler>();
+public class SignInEvent extends GwtEvent<SignInHandler> {
+	public static Type<SignInHandler> TYPE = new Type<SignInHandler>();
 
 	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<SignInEventHandler> getAssociatedType() {
+	public com.google.gwt.event.shared.GwtEvent.Type<SignInHandler> getAssociatedType() {
 		return TYPE;
 	}
 
 	@Override
-	protected void dispatch(SignInEventHandler handler) {
+	protected void dispatch(SignInHandler handler) {
 		handler.onSignIn(this);
 	}
 

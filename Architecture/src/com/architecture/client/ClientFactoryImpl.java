@@ -4,11 +4,11 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import com.architecture.client.event.ModifySignStep1Event;
-import com.architecture.client.event.ModifySignStep1EventHandler;
+import com.architecture.client.event.ModifySignStep1Handler;
 import com.architecture.client.event.ValidateSignStep1Event;
-import com.architecture.client.event.ValidateSignStep1EventHandler;
+import com.architecture.client.event.ValidateSignStep1Handler;
 import com.architecture.client.event.ValidateSignStep2Event;
-import com.architecture.client.event.ValidateSignStep2EventHandler;
+import com.architecture.client.event.ValidateSignStep2Handler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.FormsPlace;
@@ -376,7 +376,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1EventHandler() {
+		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1Handler() {
 			@Override
 			public void onValidateStep1(ValidateSignStep1Event event) {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
@@ -390,7 +390,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventBus.addHandler(ModifySignStep1Event.TYPE, new ModifySignStep1EventHandler() {
+		eventBus.addHandler(ModifySignStep1Event.TYPE, new ModifySignStep1Handler() {
 			@Override
 			public void onModifyStep1(ModifySignStep1Event event) {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
@@ -404,7 +404,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
-		eventBus.addHandler(ValidateSignStep2Event.TYPE, new ValidateSignStep2EventHandler() {
+		eventBus.addHandler(ValidateSignStep2Event.TYPE, new ValidateSignStep2Handler() {
 			@Override
 			public void onValidateStep2(ValidateSignStep2Event event) {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();

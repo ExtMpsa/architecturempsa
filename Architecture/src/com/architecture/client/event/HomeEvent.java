@@ -2,16 +2,16 @@ package com.architecture.client.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 
-public class HomeEvent extends  GwtEvent<HomeEventHandler> {
-	public static Type<HomeEventHandler> TYPE = new Type<HomeEventHandler>();
+public class HomeEvent extends  GwtEvent<HomeHandler> {
+	public static Type<HomeHandler> TYPE = new Type<HomeHandler>();
 	
 	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<HomeEventHandler> getAssociatedType() {
+	public com.google.gwt.event.shared.GwtEvent.Type<HomeHandler> getAssociatedType() {
 		return TYPE;
 	}
 
 	@Override
-	protected void dispatch(HomeEventHandler handler) {
+	protected void dispatch(HomeHandler handler) {
 		handler.onHome(this);
 	}
 }
