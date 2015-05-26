@@ -1,15 +1,17 @@
 package com.architecture.client.ui.composite;
 
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.event.ModifySignStep2Event;
 import com.architecture.client.event.ValidateSignStep2Event;
 import com.architecture.client.resources.txt.SignText;
+import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -24,9 +26,9 @@ public class SignStep2ViewImpl extends Composite {
 	@UiField
 	HeadingElement step;
 	@UiField
-	Button modify;
+	Anchor modify;
 	@UiField
-	Button validate;
+	Anchor validate;
 	@UiField
 	Label passwordLabel;
 	@UiField
@@ -35,6 +37,9 @@ public class SignStep2ViewImpl extends Composite {
 	VerticalPanel content;
 	@UiField
 	PasswordTextBox passwordValue;
+	HandlerRegistration disabledValidate = null;
+	HandlerRegistration validateSingleUrl = null;
+	HandlerRegistration modifySingleUrl = null;
 
 	interface SignStep2ViewImplUiBinder extends UiBinder<Widget, SignStep2ViewImpl> {
 	}
@@ -51,7 +56,8 @@ public class SignStep2ViewImpl extends Composite {
 		modify.setText(signText.modify());
 		validate.setText(signText.validate());
 		passwordLabel.setText(signText.password());
-		this.passwordValue.getElement().setAttribute("placeholder", signText.password());
+		passwordValue.getElement().setAttribute("placeholder", signText.password());
+		passwordValue.setFocus(true);
 	}
 
 	@Override
@@ -59,18 +65,48 @@ public class SignStep2ViewImpl extends Composite {
 		signStep2.setVisible(v);
 	}
 
-	public void setOpen() {
+	public void setOpen(boolean singlePage) {
 		content.setVisible(true);
+		passwordValue.setFocus(true);
 		modify.setVisible(false);
+		if (singlePage) {
+			validate.getElement().removeAttribute("href");
+			if (validateSingleUrl == null) {
+				validateSingleUrl = validate.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep2Event());
+					}
+				});
+			}
+		} else {
+			validate.setHash("#FormsPlace:signSuccess");
+			if (validateSingleUrl != null) {
+				validateSingleUrl.removeHandler();
+				validateSingleUrl = null;
+			}
+		}
 	}
 
-	public void setClose() {
+	public void setClose(boolean singlePage) {
 		content.setVisible(false);
 		modify.setVisible(true);
-	}
-
-	@UiHandler("validate")
-	void onValidateClick(ClickEvent event) {
-		ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep2Event());
+		if (singlePage) {
+			modify.getElement().removeAttribute("href");
+			if (modifySingleUrl == null) {
+				modifySingleUrl = modify.addClickHandler(new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ModifySignStep2Event());
+					}
+				});
+			}
+		} else {
+			modify.setHash("#FormsPlace:step2");
+			if (modifySingleUrl != null) {
+				modifySingleUrl.removeHandler();
+				modifySingleUrl = null;
+			}
+		}
 	}
 }

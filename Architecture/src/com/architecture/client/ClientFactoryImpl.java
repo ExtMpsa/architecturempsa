@@ -43,7 +43,6 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
@@ -397,7 +396,7 @@ public class ClientFactoryImpl implements ClientFactory {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
 					if (((FormsPlace) current).getFormsName().equals("")) {
-						 ClientFactoryImpl.getInstance().getFormsView().setStep("step1", true);
+						ClientFactoryImpl.getInstance().getFormsView().setStep("step1", true);
 					} else {
 						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step1"));
 					}
@@ -410,17 +409,22 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onValidateStep2(ValidateSignStep2Event event) {
 				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
 				if (current instanceof FormsPlace) {
+					PersonRequest context = ClientFactoryImpl.getInstance().getArchitectureRequestFactory().getPersonRequest();
+					PersonProxy person = context.create(PersonProxy.class);
+
+					person.setDepartment(getFormsView().getPsaEntityValue().getValue());
+					person.setEmail(getFormsView().getMailValue().getValue());
+					person.setFirstName(getFormsView().getFirstNameValue().getValue());
+					person.setLastName(getFormsView().getNameValue().getValue());
 					if (((FormsPlace) current).getFormsName().equals("")) {
-						Window.alert("Afficher le récapitulatif");
+						context.saveAsync(person).fire(new Receiver<Void>() {
+
+							@Override
+							public void onSuccess(Void response) {
+								ClientFactoryImpl.getInstance().getFormsView().setStep("signSuccess", true);
+							}
+						});
 					} else {
-						PersonRequest context = ClientFactoryImpl.getInstance().getArchitectureRequestFactory().getPersonRequest();
-						PersonProxy person = context.create(PersonProxy.class);
-
-						person.setDepartment(getFormsView().getPsaEntityValue().getValue());
-						person.setEmail(getFormsView().getMailValue().getValue());
-						person.setFirstName(getFormsView().getFirstNameValue().getValue());
-						person.setLastName(getFormsView().getNameValue().getValue());
-
 						context.saveAsync(person).fire(new Receiver<Void>() {
 
 							@Override

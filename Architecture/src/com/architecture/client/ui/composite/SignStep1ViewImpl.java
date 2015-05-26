@@ -150,11 +150,11 @@ public class SignStep1ViewImpl extends Composite {
 		this.validate.setVisible(true);
 		if (singlePage) {
 			validate.getElement().removeAttribute("href");
-			if(validateSingleUrl == null){
+			if (validateSingleUrl == null) {
 				validateSingleUrl = validate.addClickHandler(new ClickHandler() {
 					@Override
 					public void onClick(ClickEvent event) {
-						if (updateValidate(true)){
+						if (updateValidate(true)) {
 							ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ValidateSignStep1Event());
 						}
 					}
@@ -162,9 +162,9 @@ public class SignStep1ViewImpl extends Composite {
 			}
 		} else {
 			validate.setHash("#FormsPlace:step2");
-			if (validateSingleUrl != null){
+			if (validateSingleUrl != null) {
 				validateSingleUrl.removeHandler();
-				validateSingleUrl=null;
+				validateSingleUrl = null;
 			}
 		}
 		firstFocus();
@@ -177,20 +177,21 @@ public class SignStep1ViewImpl extends Composite {
 		this.validate.setVisible(false);
 		if (singlePage) {
 			modify.getElement().removeAttribute("href");
-			if(modifySingleUrl == null){
+			if (modifySingleUrl == null) {
 				modifySingleUrl = modify.addClickHandler(new ClickHandler() {
 					@Override
 					public void onClick(ClickEvent event) {
-						if (updateValidate(true)){
+						if (updateValidate(true)) {
 							ClientFactoryImpl.getInstance().getEventBus().fireEvent(new ModifySignStep1Event());
 						}
 					}
 				});
 			}
 		} else {
-			if (modifySingleUrl != null){
+			modify.setHash("#FormsPlace:step1");
+			if (modifySingleUrl != null) {
 				modifySingleUrl.removeHandler();
-				modifySingleUrl=null;
+				modifySingleUrl = null;
 			}
 		}
 	}

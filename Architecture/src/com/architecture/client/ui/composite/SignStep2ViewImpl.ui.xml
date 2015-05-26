@@ -1,17 +1,17 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.architecture.client.ui.widget">
 	<ui:style>
 	
 	</ui:style>
 	<g:HTMLPanel ui:field="signStep2">
 	<g:HTMLPanel styleName="gwt-SignStep-Title">
 		<h3 ui:field="step">Step 2</h3>
-		<g:Button text="Modify" ui:field="modify"/>
+		<p1:Anchor text="Modify" ui:field="modify" styleName="gwt-Button" hash="#FormsPlace:step2"/>
 		<g:VerticalPanel ui:field="content">
 			<g:Label text="Password" ui:field="passwordLabel"/>
 			<g:PasswordTextBox ui:field="passwordValue"/>
-			<g:Button ui:field="validate">Validate</g:Button>
+			<p1:Anchor ui:field="validate" hash="#signSuccess" styleName="gwt-Button">Validate</p1:Anchor>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 	</g:HTMLPanel>

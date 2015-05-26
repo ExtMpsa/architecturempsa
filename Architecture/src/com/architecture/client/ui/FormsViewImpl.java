@@ -50,7 +50,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 		inscription.setInnerText(signText.title());
 	}
 
-	private void init(String step,boolean singlePage) {
+	private void init(String step, boolean singlePage) {
 		if (step.equals("step1")) {
 			setStep1(singlePage);
 		} else if (step.equals("step2")) {
@@ -59,7 +59,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 			setRecap(singlePage);
 		} else if (step.equals("signSuccess")) {
 			setSuccess(singlePage);
-		}else{
+		} else {
 			setStep1(singlePage);
 		}
 	}
@@ -91,7 +91,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 		}
 		step1.setClose(singlePage);
 		step2.setVisible(true);
-		step2.setOpen();
+		step2.setOpen(singlePage);
 		if (summary != null) {
 			summary.setVisible(false);
 		}
