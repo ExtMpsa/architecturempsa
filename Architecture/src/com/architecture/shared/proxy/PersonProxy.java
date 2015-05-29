@@ -7,7 +7,8 @@ import com.architecture.server.domain.Person;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
-@ProxyFor(value = Person.class, locator = PersonLocator.class)
+@ProxyFor(value = Person.class,
+		locator = PersonLocator.class)
 public interface PersonProxy extends EntityProxy {
 	@Size(min = 1)
 	public String getDepartment();

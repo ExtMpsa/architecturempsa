@@ -23,12 +23,18 @@ public class FormsActivity extends AbstractActivity implements Activity {
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		this.formsView = this.clientFactory.getFormsView();
 		if (this.formsView.getPerson() == null) {
-			this.formsView.setPerson(this.clientFactory.getArchitectureRequestFactory().getPersonRequest().create(PersonProxy.class));
+			PersonProxy p = this.clientFactory.getArchitectureRequestFactory().getPersonRequest().create(PersonProxy.class);
+			// Need for validator
+			p.setDepartment("");
+			p.setLastName("");
+			p.setFirstName("");
+			p.setEmail("");
+			this.formsView.setPerson(p);
 		}
 		this.formsView.setActivity(this);
-		if (step.equalsIgnoreCase("")){
+		if (step.equalsIgnoreCase("")) {
 			this.formsView.setStep(this.step, true);
-		}else{
+		} else {
 			this.formsView.setStep(this.step, false);
 		}
 		containerWidget.setWidget(this.formsView.asWidget());

@@ -46,17 +46,17 @@ public class AppActivityMapper implements ActivityMapper {
 		this.clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
 		return activity;
 	}
-	
-	public static double getRandom(){
+
+	public static double getRandom() {
 		return random;
 	}
 
 	public static native void getActivityStartTime() /*-{
 		$wnd["getActivityStartTime"] = new Date().getTime();
 	}-*/;
-	
-	public void pushKrux(){
-		random = Math.random()*100;
+
+	public void pushKrux() {
+		random = Math.random() * 100;
 		if (random < 30) {
 			pushRealTimeKrux(random);
 		} else if (random < 60) {
@@ -67,45 +67,21 @@ public class AppActivityMapper implements ActivityMapper {
 	}
 
 	public static native void pushRealTimeKrux(double time) /*-{
-		$wnd["dateDDM"]=new Date().getTime();
-		$wnd.dataLayer
-				.push({
-					event : "time",
-					timeUser : time,
-					categoryTimeUser : "DDM",
-					variableTimeUser : "Data Management Plateform",
-					useCase : "Utilisation par le Moteur de Perso des segments Cross-Domain temps réels fournis par la DMP",
-					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
-					dateDDM : $wnd["dateDDM"]
-				});
+		$wnd["dateDDM"] = new Date().getTime();
+		$wnd["useCase"] = "Utilisation par le Moteur de Perso des segments Cross-Domain temps réels fournis par la DMP";
+		$wnd["dmpTime"] = time;
 	}-*/;
 
 	public static native void pushNonRealTimeKrux(double time) /*-{
-		$wnd["dateDDM"]=new Date().getTime();
-		$wnd.dataLayer
-				.push({
-					event : "time",
-					timeUser : time,
-					categoryTimeUser : "DDM",
-					variableTimeUser : "Data Management Plateform",
-					useCase : "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.",
-					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
-					dateDDM : $wnd["dateDDM"]
-				});
+		$wnd["dateDDM"] = new Date().getTime();
+		$wnd["useCase"] = "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.";
+		$wnd["dmpTime"] = time;
 	}-*/;
 
 	public static native void pushWithoutKrux(double time) /*-{
-		$wnd["dateDDM"]=new Date().getTime();
-		$wnd.dataLayer
-				.push({
-					event : "time",
-					timeUser : time,
-					categoryTimeUser : "DDM",
-					variableTimeUser : "Data Management Plateform",
-					useCase : "Utilisation du Moteur de Perso sans les segments de la DMP.",
-					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
-					dateDDM : $wnd["dateDDM"]
-				});
+		$wnd["dateDDM"] = new Date().getTime();
+		$wnd["useCase"] = "Utilisation du Moteur de Perso sans les segments de la DMP.";
+		$wnd["dmpTime"] = time;
 	}-*/;
 
 }

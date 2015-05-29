@@ -3,9 +3,15 @@ package com.architecture.client.ui.composite;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.Validator;
 
+import com.architecture.client.event.NotValidatedEvent;
+import com.architecture.client.event.NotValidatedHandler;
+import com.architecture.client.event.ValidatedEvent;
+import com.architecture.client.event.ValidatedHandler;
 import com.architecture.client.ui.widget.TextBox;
+import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.BlurHandler;
@@ -27,8 +33,8 @@ public class FieldComposite extends Composite {
 	TextBox value;
 	@UiField
 	Label validation;
-	Validator validator = null;
-	EntityProxy entity = null;
+	Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	PersonProxy entity = null;
 	String property = null;
 
 	interface FieldViewUiBinder extends UiBinder<Widget, FieldComposite> {
@@ -38,26 +44,13 @@ public class FieldComposite extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 		setLabel("Name");
 		validation.setVisible(true);
-		value.addBlurHandler(new BlurHandler() {
-			@Override
-			public void onBlur(BlurEvent event) {
-				if (entity != null && validator != null && property != null) {
-					Set<ConstraintViolation<EntityProxy>> violations = validator.validateProperty(entity, property);
-					if (violations.isEmpty()) {
-						validation.setVisible(false);
-					} else {
-						validation.setVisible(true);
-					}
-				}
-			}
-		});
 	}
 
 	public EntityProxy getEntity() {
 		return entity;
 	}
 
-	public void setEntity(EntityProxy entity) {
+	public void setEntity(PersonProxy entity) {
 		this.entity = entity;
 	}
 
@@ -111,12 +104,56 @@ public class FieldComposite extends Composite {
 		this.validation = validation;
 	}
 
+	public void setProperty(String property) {
+		this.property = property;
+	}
+
 	public HandlerRegistration addBlurHandler(BlurHandler handler) {
 		return addDomHandler(handler, BlurEvent.getType());
 	}
 
+	public HandlerRegistration addValidateHandler(ValidatedHandler handler) {
+		return addHandler(handler, ValidatedEvent.TYPE);
+	}
+
+	public HandlerRegistration addNotValidateHandler(NotValidatedHandler handler) {
+		return addHandler(handler, NotValidatedEvent.TYPE);
+	}
+
 	@UiHandler("value")
 	void onValueBlur(BlurEvent event) {
+		if (validate()) {
+			this.fireEvent(new ValidatedEvent());
+		} else {
+			this.fireEvent(new NotValidatedEvent());
+		}
 		this.fireEvent(event);
+	}
+
+	public boolean validate() {
+		boolean validate = false;
+		if (validator != null && entity != null && property != null) {
+			if (property.equals("lastName")) {
+				entity.setLastName(value.getValue());
+			} else if (property.equals("firstName")) {
+				entity.setFirstName(value.getValue());
+			} else if (property.equals("department")) {
+				entity.setDepartment(value.getValue());
+			} else if (property.equals("email")) {
+				entity.setEmail(value.getValue());
+			}
+			Set<ConstraintViolation<PersonProxy>> violations = validator.validateProperty(this.entity, property);
+			if (violations.isEmpty()) {
+				validation.setVisible(false);
+				validate = true;
+			} else {
+				for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+					validation.setVisible(false);
+					validation.setText(constraintViolation.getMessage());
+				}
+				validation.setVisible(true);
+			}
+		}
+		return validate;
 	}
 }

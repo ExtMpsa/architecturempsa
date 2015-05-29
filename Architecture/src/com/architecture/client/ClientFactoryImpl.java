@@ -226,54 +226,115 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	public static native void pushRealTimeRTD(double time) /*-{
+		$wnd["rtdTime"] = time;
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					timeUser : time,
+					timeUser : $wnd["dmpTime"],
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : $wnd["useCase"],
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
+				});
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : $wnd["rtdTime"],
 					categoryTimeUser : "DDM",
 					variableTimeUser : "Moteur de Personnalisation",
-					useCase : "Utilisation par le Moteur de Perso des segments Cross-Domain temps réels fournis par la DMP",
+					useCase : $wnd["useCase"],
 					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-					dateDDM : $wnd["dateDDM"]
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
 				});
 	}-*/;
 
 	public static native void pushNonRealTimeRTD(double time) /*-{
+		$wnd["rtdTime"] = time;
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					timeUser : time,
+					timeUser : $wnd["dmpTime"],
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : $wnd["useCase"],
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
+				});
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : $wnd["rtdTime"],
 					categoryTimeUser : "DDM",
 					variableTimeUser : "Moteur de Personnalisation",
-					useCase : "Utilisation par le Moteur de Perso des segments temps réel du même domaine et des segments Cross-Domain fournis (par la DMP) sur la page précédente.",
+					useCase : $wnd["useCase"],
 					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-					dateDDM : $wnd["dateDDM"]
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
 				});
 	}-*/;
 
 	public static native void pushOnlyRTD(double time) /*-{
+		$wnd["rtdTime"] = time;
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					timeUser : time,
+					timeUser : $wnd["dmpTime"],
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : $wnd["useCase"],
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
+				});
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : $wnd["rtdTime"],
 					categoryTimeUser : "DDM",
 					variableTimeUser : "Moteur de Personnalisation",
-					useCase : "Utilisation du Moteur de Perso sans les segments de la DMP.",
+					useCase : $wnd["useCase"],
 					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-					dateDDM : $wnd["dateDDM"]
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
 				});
 	}-*/;
 
 	public static native void pushWithoutRTD(double time) /*-{
+		$wnd["rtdTime"] = time;
+		$wnd["useCase"] = "Non personnalisé car pas de réponse du Moteur de Personnalisation";
 		$wnd.dataLayer
 				.push({
 					event : "time",
-					timeUser : time,
+					timeUser : $wnd["dmpTime"],
+					categoryTimeUser : "DDM",
+					variableTimeUser : "Data Management Plateform",
+					useCase : $wnd["useCase"],
+					labelTimeUser : "Temps mis par la DMP pour mettre à disposition les segments cross domain temps réel au moteur de personnalisation.",
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
+				});
+		$wnd.dataLayer
+				.push({
+					event : "time",
+					timeUser : $wnd["rtdTime"],
 					categoryTimeUser : "DDM",
 					variableTimeUser : "Moteur de Personnalisation",
-					useCase : "Pas de personnalisation",
+					useCase : $wnd["useCase"],
 					labelTimeUser : "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)",
-					dateDDM : $wnd["dateDDM"]
+					dateDDM : $wnd["dateDDM"],
+					dmpTime : $wnd["dmpTime"],
+					rtdTime : $wnd["rtdTime"]
 				});
 	}-*/;
 

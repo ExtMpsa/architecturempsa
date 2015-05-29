@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.ModifySignStep1Event;
+import com.architecture.client.event.ValidatedEvent;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
@@ -126,6 +127,16 @@ public class SignStep1ViewImpl extends Composite {
 
 	public void setPerson(PersonProxy person) {
 		this.person = person;
+		if (person != null) {
+			lastName.setEntity(person);
+			lastName.setProperty("lastName");
+			firstName.setEntity(person);
+			firstName.setProperty("firstName");
+			mail.setEntity(person);
+			mail.setProperty("email");
+			psaEntity.setEntity(person);
+			psaEntity.setProperty("department");
+		}
 	}
 
 	@UiHandler("validate")
@@ -417,5 +428,9 @@ public class SignStep1ViewImpl extends Composite {
 				field.getValidation().setVisible(false);
 			}
 		};
+	}
+
+	@UiHandler("lastName")
+	void onLastNameValidate(ValidatedEvent event) {
 	}
 }

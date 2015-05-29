@@ -38,5 +38,4 @@ public class PersonLocator extends Locator<Person, String> {
 	public Object getVersion(Person domainObject) {
 		return domainObject.getVersion();
 	}
-
 }
