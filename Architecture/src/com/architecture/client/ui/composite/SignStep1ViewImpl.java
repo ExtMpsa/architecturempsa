@@ -6,7 +6,6 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.ModifySignStep1Event;
-import com.architecture.client.event.ValidatedEvent;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.widget.Anchor;
@@ -70,6 +69,7 @@ public class SignStep1ViewImpl extends Composite {
 		this.step.setTitle(signText.step1());
 		this.step.setInnerHTML(signText.step1());
 		this.modify.setText(signText.modify());
+
 		this.lastName.setLabel(signText.name());
 		this.lastName.setPlaceHolder(signText.eg() + " : Dupont");
 		this.lastName.setValidationVisible(false);
@@ -232,118 +232,38 @@ public class SignStep1ViewImpl extends Composite {
 
 	@UiHandler("lastName")
 	void onLastNameBlur(BlurEvent event) {
-		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "lastName");
-		if (!violations.isEmpty()) {
-			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				this.lastName.getValidation().setVisible(true);
-				this.lastName.getValidation().setText(constraintViolation.getMessage());
-			}
-			if (this.disabledValidate == null) {
-				disabledValidate = DisableValidateHandler();
-			}
-		} else {
-			SetVisibleTimer(lastName).schedule(100);
-			lastNameFocus = false;
-			if (updateValidate(false)) {
-				if (disabledValidate != null) {
-					disabledValidate.removeHandler();
-					disabledValidate = null;
-				}
-			} else {
-				if (disabledValidate == null) {
-					disabledValidate = DisableValidateHandler();
-				}
-			}
-		}
+		getUpdatedPerson(person);
+		lastName.setEntity(person);
+		updateValidateHandler(lastName, lastNameFocus);
 	}
 
 	@UiHandler("mail")
 	void onMailBlur(BlurEvent event) {
-		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "email");
-		if (!violations.isEmpty()) {
-			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				this.mail.getValidation().setVisible(true);
-				this.mail.getValidation().setText(constraintViolation.getMessage());
-			}
-			if (this.disabledValidate == null) {
-				disabledValidate = DisableValidateHandler();
-			}
-		} else {
-			SetVisibleTimer(mail).schedule(100);
-			emailFocus = false;
-			if (updateValidate(false)) {
-				if (disabledValidate != null) {
-					this.disabledValidate.removeHandler();
-					disabledValidate = null;
-				}
-			} else {
-				if (disabledValidate == null) {
-					disabledValidate = DisableValidateHandler();
-				}
-			}
-		}
+		getUpdatedPerson(person);
+		mail.setEntity(person);
+		updateValidateHandler(mail, emailFocus);
 	}
 
 	@UiHandler("firstName")
 	void onFirstNameBlur(BlurEvent event) {
 		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "firstName");
-		if (!violations.isEmpty()) {
-			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				this.firstName.getValidation().setVisible(true);
-				this.firstName.getValidation().setText(constraintViolation.getMessage());
-			}
-			if (this.disabledValidate == null) {
-				disabledValidate = DisableValidateHandler();
-			}
-		} else {
-			SetVisibleTimer(firstName).schedule(100);
-			firstNameFocus = false;
-			if (updateValidate(false)) {
-				if (disabledValidate != null) {
-					this.disabledValidate.removeHandler();
-					disabledValidate = null;
-				}
-			} else {
-				if (disabledValidate == null) {
-					disabledValidate = DisableValidateHandler();
-				}
-			}
-		}
+		firstName.setEntity(person);
+		updateValidateHandler(firstName, firstNameFocus);
 	}
 
 	@UiHandler("psaEntity")
 	void onPsaEntityBlur(BlurEvent event) {
 		getUpdatedPerson(this.person);
-		Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validateProperty(this.person, "department");
-		if (!violations.isEmpty()) {
-			for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
-				psaEntity.getValidation().setVisible(true);
-				psaEntity.getValidation().setText(constraintViolation.getMessage());
-			}
-			if (disabledValidate == null) {
-				disabledValidate = DisableValidateHandler();
-			}
-		} else {
-			SetVisibleTimer(psaEntity).schedule(100);
-			departmentFocus = false;
-			if (updateValidate(false)) {
-				if (disabledValidate != null) {
-					this.disabledValidate.removeHandler();
-					disabledValidate = null;
-				}
-			} else {
-				if (disabledValidate == null) {
-					disabledValidate = DisableValidateHandler();
-				}
-			}
-		}
+		psaEntity.setEntity(person);
+		updateValidateHandler(psaEntity, departmentFocus);
 	}
 
 	public boolean updateValidate(boolean showError) {
 		boolean validate = false;
+		lastNameFocus = false;
+		firstNameFocus = false;
+		emailFocus = false;
+		departmentFocus = false;
 		if (person != null) {
 			getUpdatedPerson(person);
 			Set<ConstraintViolation<PersonProxy>> violations = ClientFactoryImpl.getInstance().getValidator().validate(person);
@@ -354,8 +274,7 @@ public class SignStep1ViewImpl extends Composite {
 					switch (constraintViolation.getPropertyPath().toString()) {
 					case "department":
 						if (showError) {
-							this.psaEntity.getValidation().setVisible(true);
-							this.psaEntity.getValidation().setText(constraintViolation.getMessage());
+							this.psaEntity.validate();
 						}
 						if (!lastNameFocus & !firstNameFocus & !emailFocus) {
 							departmentFocus = true;
@@ -363,8 +282,7 @@ public class SignStep1ViewImpl extends Composite {
 						break;
 					case "lastName":
 						if (showError) {
-							this.lastName.getValidation().setVisible(true);
-							this.lastName.getValidation().setText(constraintViolation.getMessage());
+							this.lastName.validate();
 						}
 						lastNameFocus = true;
 						firstNameFocus = false;
@@ -373,8 +291,7 @@ public class SignStep1ViewImpl extends Composite {
 						break;
 					case "firstName":
 						if (showError) {
-							this.firstName.getValidation().setVisible(true);
-							this.firstName.getValidation().setText(constraintViolation.getMessage());
+							this.firstName.validate();
 						}
 						if (!lastNameFocus) {
 							firstNameFocus = true;
@@ -384,8 +301,7 @@ public class SignStep1ViewImpl extends Composite {
 						break;
 					case "email":
 						if (showError) {
-							this.mail.getValidation().setVisible(true);
-							this.mail.getValidation().setText(constraintViolation.getMessage());
+							this.mail.validate();
 						}
 						if (!lastNameFocus & !firstNameFocus) {
 							emailFocus = true;
@@ -421,6 +337,7 @@ public class SignStep1ViewImpl extends Composite {
 	}
 
 	// Timer for keep the click event when the blur event change the render of the document.
+	@SuppressWarnings("unused")
 	private Timer SetVisibleTimer(final FieldComposite field) {
 		return new Timer() {
 			@Override
@@ -430,7 +347,23 @@ public class SignStep1ViewImpl extends Composite {
 		};
 	}
 
-	@UiHandler("lastName")
-	void onLastNameValidate(ValidatedEvent event) {
+	private void updateValidateHandler(FieldComposite f, boolean b) {
+		if (f.validate()) {
+			b = false;
+			if (updateValidate(false)) {
+				if (disabledValidate != null) {
+					disabledValidate.removeHandler();
+					disabledValidate = null;
+				}
+			} else {
+				if (disabledValidate == null) {
+					disabledValidate = DisableValidateHandler();
+				}
+			}
+		} else {
+			if (disabledValidate == null) {
+				disabledValidate = DisableValidateHandler();
+			}
+		}
 	}
 }

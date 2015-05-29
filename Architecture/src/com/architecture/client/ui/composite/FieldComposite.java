@@ -34,7 +34,7 @@ public class FieldComposite extends Composite {
 	@UiField
 	Label validation;
 	Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-	PersonProxy entity = null;
+	EntityProxy entity = null;
 	String property = null;
 
 	interface FieldViewUiBinder extends UiBinder<Widget, FieldComposite> {
@@ -122,37 +122,37 @@ public class FieldComposite extends Composite {
 
 	@UiHandler("value")
 	void onValueBlur(BlurEvent event) {
-		if (validate()) {
-			this.fireEvent(new ValidatedEvent());
-		} else {
-			this.fireEvent(new NotValidatedEvent());
-		}
 		this.fireEvent(event);
 	}
 
 	public boolean validate() {
 		boolean validate = false;
 		if (validator != null && entity != null && property != null) {
-			if (property.equals("lastName")) {
-				entity.setLastName(value.getValue());
-			} else if (property.equals("firstName")) {
-				entity.setFirstName(value.getValue());
-			} else if (property.equals("department")) {
-				entity.setDepartment(value.getValue());
-			} else if (property.equals("email")) {
-				entity.setEmail(value.getValue());
-			}
-			Set<ConstraintViolation<PersonProxy>> violations = validator.validateProperty(this.entity, property);
+			// if (property.equals("lastName")) {
+			// entity.setLastName(value.getValue());
+			// } else if (property.equals("firstName")) {
+			// entity.setFirstName(value.getValue());
+			// } else if (property.equals("department")) {
+			// entity.setDepartment(value.getValue());
+			// } else if (property.equals("email")) {
+			// entity.setEmail(value.getValue());
+			// }
+			Set<ConstraintViolation<EntityProxy>> violations = validator.validateProperty(this.entity, property);
 			if (violations.isEmpty()) {
 				validation.setVisible(false);
 				validate = true;
 			} else {
-				for (ConstraintViolation<PersonProxy> constraintViolation : violations) {
+				for (ConstraintViolation<EntityProxy> constraintViolation : violations) {
 					validation.setVisible(false);
 					validation.setText(constraintViolation.getMessage());
 				}
 				validation.setVisible(true);
 			}
+		}
+		if (validate) {
+			this.fireEvent(new ValidatedEvent());
+		} else {
+			this.fireEvent(new NotValidatedEvent());
 		}
 		return validate;
 	}

@@ -15,12 +15,12 @@
 				<p2:FieldComposite ui:field="lastName"/>
 			</g:customCell>
 			<g:customCell>
-				<p2:FieldComposite ui:field="mail"/>
+				<p2:FieldComposite ui:field="firstName"/>
 			</g:customCell>
 		</g:row>
 		<g:row>
 			<g:customCell>
-				<p2:FieldComposite ui:field="firstName"/>
+				<p2:FieldComposite ui:field="mail"/>
 			</g:customCell>
 			<g:customCell>
 				<p2:FieldComposite ui:field="psaEntity"/>
