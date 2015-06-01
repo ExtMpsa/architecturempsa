@@ -2,6 +2,7 @@ package com.architecture.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.place.shared.Prefix;
 
 public class SignInPlace extends Place {
 	private String signIn;
@@ -18,6 +19,7 @@ public class SignInPlace extends Place {
 		return signIn;
 	}
 
+	@Prefix(value = "!SignInPlace")
 	public static class Tokenizer implements PlaceTokenizer<SignInPlace> {
 		@Override
 		public String getToken(SignInPlace place) {

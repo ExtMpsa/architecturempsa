@@ -7,11 +7,11 @@
 	<g:HTMLPanel ui:field="signStep2">
 	<g:HTMLPanel styleName="gwt-SignStep-Title">
 		<h3 ui:field="step">Step 2</h3>
-		<p1:Anchor text="Modify" ui:field="modify" styleName="gwt-Button" hash="#FormsPlace:step2"/>
+		<p1:Anchor text="Modify" ui:field="modify" styleName="gwt-Button" hash="#!FormsPlace:step2"/>
 		<g:VerticalPanel ui:field="content">
 			<g:Label text="Password" ui:field="passwordLabel"/>
 			<g:PasswordTextBox ui:field="passwordValue"/>
-			<p1:Anchor ui:field="validate" hash="#signSuccess" styleName="gwt-Button">Validate</p1:Anchor>
+			<p1:Anchor ui:field="validate" hash="#!signSuccess" styleName="gwt-Button">Validate</p1:Anchor>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 	</g:HTMLPanel>

@@ -2,6 +2,7 @@ package com.architecture.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.place.shared.Prefix;
 
 public class HomePlace extends Place {
 	private String homeName;
@@ -13,6 +14,7 @@ public class HomePlace extends Place {
 		return this.homeName;
 	}
 
+	@Prefix(value = "!HomePlace")
 	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
 		@Override
 		public String getToken(HomePlace place) {

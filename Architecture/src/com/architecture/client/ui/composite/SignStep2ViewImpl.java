@@ -80,7 +80,7 @@ public class SignStep2ViewImpl extends Composite {
 				});
 			}
 		} else {
-			validate.setHash("#FormsPlace:signSuccess");
+			validate.setHash("#!FormsPlace:signSuccess");
 			if (validateSingleUrl != null) {
 				validateSingleUrl.removeHandler();
 				validateSingleUrl = null;
@@ -102,7 +102,7 @@ public class SignStep2ViewImpl extends Composite {
 				});
 			}
 		} else {
-			modify.setHash("#FormsPlace:step2");
+			modify.setHash("#!FormsPlace:step2");
 			if (modifySingleUrl != null) {
 				modifySingleUrl.removeHandler();
 				modifySingleUrl = null;

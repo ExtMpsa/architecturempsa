@@ -87,7 +87,7 @@ public class SignStep1ViewImpl extends Composite {
 		this.psaEntity.setValidationVisible(false);
 
 		this.validate.setText(signText.validate());
-		this.validate.setHash("#FormsPlace:step2");
+		this.validate.setHash("#!FormsPlace:step2");
 		firstFocus();
 	}
 
@@ -172,7 +172,7 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			validate.setHash("#FormsPlace:step2");
+			validate.setHash("#!FormsPlace:step2");
 			if (validateSingleUrl != null) {
 				validateSingleUrl.removeHandler();
 				validateSingleUrl = null;
@@ -199,7 +199,7 @@ public class SignStep1ViewImpl extends Composite {
 				});
 			}
 		} else {
-			modify.setHash("#FormsPlace:step1");
+			modify.setHash("#!FormsPlace:step1");
 			if (modifySingleUrl != null) {
 				modifySingleUrl.removeHandler();
 				modifySingleUrl = null;
