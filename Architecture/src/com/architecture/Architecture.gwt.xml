@@ -35,6 +35,7 @@
   
   <!-- Use Gwt ValidatorFactory by default -->
   <inherits name="org.hibernate.validator.HibernateValidator" />
+  <inherits name="com.google.gwt.junit.JUnit"/>
   <replace-with class="com.architecture.client.ArchitectureValidatorFactory">
     <when-type-is class="javax.validation.ValidatorFactory" />
   </replace-with>

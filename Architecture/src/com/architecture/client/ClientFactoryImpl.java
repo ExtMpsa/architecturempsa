@@ -212,13 +212,44 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	public static void pushTimeRTD() {
 		double random = Math.random() * 100;
+		double random2 = Math.random() * 100;
 		if (random < 80) {
 			if (AppActivityMapper.getRandom() < 30) {
 				pushRealTimeRTD(random);
+				if (random2 < 30) {
+					pushCustomisedZone1();
+					pushCustomisedPage();
+				} else if (random2 < 60) {
+					pushCustomisedZone1();
+					pushCustomisedZone2();
+					pushCustomisedPage();
+				} else {
+					// Pas de personnalisation
+				}
 			} else if (random < 60) {
 				pushNonRealTimeRTD(random);
+				if (random2 < 30) {
+					pushCustomisedZone1();
+					pushCustomisedPage();
+				} else if (random2 < 60) {
+					pushCustomisedZone1();
+					pushCustomisedZone2();
+					pushCustomisedPage();
+				} else {
+					// Pas de personnalisation
+				}
 			} else {
 				pushOnlyRTD(random);
+				if (random2 < 30) {
+					pushCustomisedZone1();
+					pushCustomisedPage();
+				} else if (random2 < 60) {
+					pushCustomisedZone1();
+					pushCustomisedZone2();
+					pushCustomisedPage();
+				} else {
+					// Pas de personnalisation
+				}
 			}
 		} else {
 			pushWithoutRTD(random);
@@ -336,6 +367,36 @@ public class ClientFactoryImpl implements ClientFactory {
 					dmpTime : $wnd["dmpTime"],
 					rtdTime : $wnd["rtdTime"]
 				});
+	}-*/;
+
+	// Personnalisation d'une zone 1
+	public static native void pushCustomisedZone1() /*-{
+		$wnd.dataLayer.push({
+			event : "nievent",
+			eventCategory : "DDM",
+			eventAction : "Customised Zone",
+			eventLabel : "Personnalisation de la zone 1",
+		});
+	}-*/;
+
+	// Personnalisation d'une zone 2
+	public static native void pushCustomisedZone2() /*-{
+		$wnd.dataLayer.push({
+			event : "nievent",
+			eventCategory : "DDM",
+			eventAction : "Customised Zone",
+			eventLabel : "Personnalisation de la zone 2",
+		});
+	}-*/;
+
+	// Personnalisation d'une page
+	public static native void pushCustomisedPage() /*-{
+		$wnd.dataLayer.push({
+			event : "nievent",
+			eventCategory : "DDM",
+			eventAction : "Customised Page",
+			eventLabel : "Page personnalisée",
+		});
 	}-*/;
 
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
