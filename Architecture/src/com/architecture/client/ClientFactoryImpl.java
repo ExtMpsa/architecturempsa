@@ -224,7 +224,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					pushCustomisedZone2();
 					pushCustomisedPage();
 				} else {
-					// Pas de personnalisation
+					pushNoCustomisedPage();
 				}
 			} else if (random < 60) {
 				pushNonRealTimeRTD(random);
@@ -236,7 +236,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					pushCustomisedZone2();
 					pushCustomisedPage();
 				} else {
-					// Pas de personnalisation
+					pushNoCustomisedPage();
 				}
 			} else {
 				pushOnlyRTD(random);
@@ -248,11 +248,12 @@ public class ClientFactoryImpl implements ClientFactory {
 					pushCustomisedZone2();
 					pushCustomisedPage();
 				} else {
-					// Pas de personnalisation
+					pushNoCustomisedPage();
 				}
 			}
 		} else {
 			pushWithoutRTD(random);
+			pushNoCustomisedPageError();
 		}
 	}
 
@@ -394,9 +395,30 @@ public class ClientFactoryImpl implements ClientFactory {
 		$wnd.dataLayer.push({
 			event : "nievent",
 			eventCategory : "DDM",
-			eventAction : "Customised Page",
+			eventAction : "Customised Page Called",
 			eventLabel : "Page personnalisée",
 		});
+	}-*/;
+
+	// Pas de personnalisation de la page
+	public static native void pushNoCustomisedPage() /*-{
+		$wnd.dataLayer.push({
+			event : "nievent",
+			eventCategory : "DDM",
+			eventAction : "Customised Page Called",
+			eventLabel : "Page non personnalisée (pas d'offre elligible)",
+		});
+	}-*/;
+
+	// Pas de personnalisation de la page
+	public static native void pushNoCustomisedPageError() /*-{
+		$wnd.dataLayer
+				.push({
+					event : "nievent",
+					eventCategory : "DDM",
+					eventAction : "Customised Page Called",
+					eventLabel : "Page non personnalisée (erreur Moteur de Personnalisation)",
+				});
 	}-*/;
 
 	// Initialisation du compteur pour calculer le temps d'affichage d'une page Ajax.
