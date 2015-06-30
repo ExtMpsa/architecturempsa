@@ -15,7 +15,7 @@
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>
     
-	<include path="**.html" expiration="0s">
+	<include path="**.html" expiration="60s">
     	<http-header name="Content-Type" value="text/html; charset=UTF-8" />
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>

@@ -2,7 +2,7 @@ package com.architecture.client.ui;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.resources.Resources;
-import com.architecture.client.ui.composite.BannerFlagViewImpl;
+import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
 import com.google.gwt.core.client.GWT;
@@ -23,7 +23,7 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	@UiField
 	HTMLPanel main;
 	@UiField
-	BannerFlagViewImpl bannerFlag;
+	BannerLanguageViewImpl bannerLanguage;
 	@UiField
 	HTMLPanel content;
 	Widget widget;
@@ -58,8 +58,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	@Override
-	public BannerFlagViewImpl getBannerFlag() {
-		return bannerFlag;
+	public BannerLanguageViewImpl getBannerFlag() {
+		return bannerLanguage;
 	}
 
 	@Override

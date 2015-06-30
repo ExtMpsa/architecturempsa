@@ -6,11 +6,6 @@
 	
 	</ui:style>
 	<g:HTMLPanel styleName="gwt-FlagView">
-		<a ui:field="frLink">
-			<g:Image styleName="{res.css.flagFrSprite}" resource="{res.flagFr}" ui:field="frFlag"/>
-		</a>
-		<a ui:field="enLink">
-			<g:Image styleName="{res.css.flagEnSprite}" resource="{res.flagEn}" ui:field="enFlag"/>
-		</a>
+		<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
 	</g:HTMLPanel>
 </ui:UiBinder> 

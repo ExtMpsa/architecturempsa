@@ -26,7 +26,7 @@ import com.architecture.client.ui.SignInView;
 import com.architecture.client.ui.SignInViewImpl;
 import com.architecture.client.ui.TracingPaperView;
 import com.architecture.client.ui.TracingPaperViewImpl;
-import com.architecture.client.ui.composite.BannerFlagViewImpl;
+import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
 import com.architecture.shared.proxy.PersonProxy;
@@ -81,6 +81,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
+		initGoogleTagManager();
 		// Set up for Requestfactory
 		// For use RequestFactory in activities and place we have to initialise it before.
 		requestFactory.initialize(eventBus, transport);
@@ -93,13 +94,13 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
 		this.historyHandler.register(placeController, eventBus, this.defaultPlace);
+		Document.get().getElementById("loader").removeFromParent();
 		RootPanel.get().add(this.appWidget);
 
 		// Goes to the place represented on URL else default place
 		this.historyHandler.handleCurrentHistory();
 
 		bind();
-		// initGoogleTagManager();
 	}
 
 	/** Holder */
@@ -465,7 +466,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public BannerFlagViewImpl getBannerFlagView() {
+	public BannerLanguageViewImpl getBannerFlagView() {
 		return this.appWidget.getBannerFlag();
 	}
 
