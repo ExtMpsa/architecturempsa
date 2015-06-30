@@ -2,6 +2,7 @@ package com.architecture.client.ui.composite;
 
 import com.architecture.client.resources.Resources;
 import com.architecture.client.resources.txt.LanguageChooserText;
+import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.i18n.client.LocaleInfo;
@@ -19,6 +20,8 @@ public class BannerLanguageViewImpl extends Composite {
 	private static BannerFlagViewImplUiBinder uiBinder = GWT.create(BannerFlagViewImplUiBinder.class);
 	@UiField
 	ListBox langChooser;
+	@UiField
+	Anchor logo;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}
@@ -43,19 +46,25 @@ public class BannerLanguageViewImpl extends Composite {
 
 	private void init() {
 		LanguageChooserText languageChooserText = GWT.create(LanguageChooserText.class);
-		langChooser.addItem(languageChooserText.fr());
-		langChooser.addItem(languageChooserText.en());
+
+		this.logo.setHash("");
+		this.logo.getElement().setId("logo");
+
+		this.langChooser.setStyleName("langChooser");
+		this.langChooser.addItem(languageChooserText.fr());
+		this.langChooser.addItem(languageChooserText.en());
+
 		if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
-			langChooser.setSelectedIndex(1);
+			this.langChooser.setSelectedIndex(1);
 		}
 		if (LocaleInfo.getCurrentLocale().getLocaleName() != "en") {
-			langChooser.setSelectedIndex(2);
+			this.langChooser.setSelectedIndex(2);
 		}
 	}
 
 	@UiHandler("langChooser")
 	void onLangChooserChange(ChangeEvent event) {
-		switch (langChooser.getItemText(langChooser.getSelectedIndex())) {
+		switch (this.langChooser.getItemText(this.langChooser.getSelectedIndex())) {
 		case "Français (France)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
 				Window.Location.replace(Location.createUrlBuilder().setParameter("locale", "fr").buildString());

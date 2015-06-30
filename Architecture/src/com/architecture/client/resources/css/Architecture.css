@@ -24,9 +24,18 @@
 }
 
 .gwt-FlagView  {
-	text-align: right;
 	min-width: 980px;
+	height:24px;
 }
+
+.gwt-FlagView  .langChooser {
+	float: right;
+}
+
+.gwt-FlagView  .logo {
+	vertical-align: middle;
+}
+
 
 .gwt-HeaderView  {
 	text-align: center;
@@ -59,6 +68,7 @@
 
 html{height:100%}
 body{height:100%;margin:0px}
+a{color:#777;}
 
 .gwt-Grid td{
 	vertical-align: top;
