@@ -4,12 +4,11 @@ import com.architecture.client.ClientFactory;
 import com.architecture.client.place.FormsPlace;
 import com.architecture.client.ui.FormsView;
 import com.architecture.shared.proxy.PersonProxy;
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class FormsActivity extends AbstractActivity implements Activity {
+public class FormsActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
 	private FormsView formsView;
 	private String step;
@@ -38,6 +37,7 @@ public class FormsActivity extends AbstractActivity implements Activity {
 			this.formsView.setStep(this.step, false);
 		}
 		containerWidget.setWidget(this.formsView.asWidget());
+		removeLoader();
 	}
 
 	@Override

@@ -13,6 +13,8 @@ import com.architecture.client.place.SignInPlace;
 import com.architecture.client.place.TracingPaperPlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.place.shared.Place;
 
 public class AppActivityMapper implements ActivityMapper {
@@ -31,7 +33,6 @@ public class AppActivityMapper implements ActivityMapper {
 		pushKrux();
 
 		Activity activity = null;
-
 		if (place instanceof HomePlace) {
 			activity = new HomeActivity((HomePlace) place, this.clientFactory);
 		} else if (place instanceof FormsPlace) {
@@ -42,9 +43,18 @@ public class AppActivityMapper implements ActivityMapper {
 			activity = new EPrivacyActivity((EPrivacyPlace) place, this.clientFactory);
 		} else if (place instanceof SignInPlace) {
 			activity = new SignInActivity((SignInPlace) place, this.clientFactory);
+		} else {
+			removeLoader();
 		}
 		this.clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
 		return activity;
+	}
+	
+	public void removeLoader(){
+		Element loader = Document.get().getElementById("loader");
+		if (loader != null){
+			loader.removeFromParent();
+		}
 	}
 
 	public static double getRandom() {

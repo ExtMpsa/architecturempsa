@@ -3,12 +3,11 @@ package com.architecture.client.activity;
 import com.architecture.client.ClientFactory;
 import com.architecture.client.place.EPrivacyPlace;
 import com.architecture.client.ui.composite.EPrivacyViewImpl;
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class EPrivacyActivity extends AbstractActivity implements Activity {
+public class EPrivacyActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
 	private String token;
 
@@ -22,6 +21,7 @@ public class EPrivacyActivity extends AbstractActivity implements Activity {
 		EPrivacyViewImpl ePrivacyView = new EPrivacyViewImpl();
 		ePrivacyView.setToken(this.token);
 		containerWidget.setWidget(ePrivacyView.asWidget());
+		removeLoader();
 	}
 
 	@Override

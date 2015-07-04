@@ -1,11 +1,21 @@
 package com.architecture.client.ui.composite;
 
+import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.place.FormsPlace;
+import com.architecture.client.place.HomePlace;
+import com.architecture.client.place.SignInPlace;
+import com.architecture.client.place.TracingPaperPlace;
 import com.architecture.client.resources.txt.MenuText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MenuViewImpl extends Composite {
@@ -73,5 +83,51 @@ public class MenuViewImpl extends Composite {
 		connexion.setText(menuText.connexion());
 		connexion.setHash("#!SignInPlace:");
 		connexion.getElement().setId("connexion");
+	}
+	@UiHandler("home")
+	void onHomeClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if(!loaderExist() && !(current instanceof HomePlace)){
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+	@UiHandler("formMultipleUrl")
+	void onFormMultipleUrlClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if(!loaderExist() && !(current instanceof FormsPlace)){
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+	
+	@UiHandler("formSingleUrl")
+	void onFormSingleUrlClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if(!loaderExist() && !(current instanceof FormsPlace)){
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+	@UiHandler("tracingPaper")
+	void onTracingPaperClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if(!loaderExist() && !(current instanceof TracingPaperPlace)){
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+	@UiHandler("connexion")
+	void onConnexionClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if(!loaderExist() && !(current instanceof SignInPlace)){
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+
+	private boolean loaderExist(){
+		boolean check = true;
+		if (Document.get().getElementById("loader") != null){
+			check = true;
+		}else{
+			check = false;
+		}
+		return check;
 	}
 }

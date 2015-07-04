@@ -3,12 +3,11 @@ package com.architecture.client.activity;
 import com.architecture.client.ClientFactory;
 import com.architecture.client.place.TracingPaperPlace;
 import com.architecture.client.ui.TracingPaperView;
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class TracingPaperActivity extends AbstractActivity implements Activity {
+public class TracingPaperActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
 
 	public TracingPaperActivity(TracingPaperPlace place, ClientFactory clientFactory) {
@@ -20,6 +19,7 @@ public class TracingPaperActivity extends AbstractActivity implements Activity {
 		TracingPaperView tracingPaperView = this.clientFactory.getTracingPaperView();
 		tracingPaperView.setActivity(this);
 		containerWidget.setWidget(tracingPaperView.asWidget());
+		removeLoader();
 	}
 
 	@Override
