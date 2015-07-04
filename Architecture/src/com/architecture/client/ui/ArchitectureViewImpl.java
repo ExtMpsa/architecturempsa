@@ -40,6 +40,10 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	private void init() {
+//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 	}
 
 	@Override
