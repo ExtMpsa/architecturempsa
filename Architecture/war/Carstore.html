@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]> <html class="no-js lt-ie9" lang="fr"> <![endif]-->
+<!--[if IE 9]> <html class="no-js ie9" lang="fr"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="fr">
+<!--<![endif]-->
+
+<head>
+<!-- BEGIN Krux Control Tag for "PSA POC Stage Sites" -->
+<!-- Source: /snippet/controltag?confid=Jd977EwZ&site=PSA%20POC%20Stage%20Sites&edit=1 -->
+<script class="kxct" data-id="Jd977EwZ" data-timing="async" data-version="1.9" type="text/javascript">
+  window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+  (function(){
+    var k=document.createElement('script');k.type='text/javascript';k.async=true;
+    var m,src=(m=location.href.match(/\bkxsrc=([^&]+)/))&&decodeURIComponent(m[1]);
+    k.src = /^https?:\/\/([a-z0-9_\-\.]+\.)?krxd\.net(:\d{1,5})?\//i.test(src) ? src : src === "disable" ? "" :
+      (location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=Jd977EwZ"
+  ;
+    var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+  }());
+  
+</script>
+<!-- END Krux Controltag -->
+<!-- Begin RTD Get Content Tag -->
+<script type="text/javascript">
+
+			// *********************************************************************************************
+			// Variable de stockage du resultat de la requete RTD
+			// *********************************************************************************************
+			var RTDData = '';
+			
+			
+			// *********************************************************************************************
+			// fonction utilitaire : attente valorisation date krux
+			// *********************************************************************************************
+			function waitKrux(onComplete,timeout) {			  
+			  window["kruxTimeout"]=setTimeout(function () {
+				  window["ddmUseCase"] = "RTD call with old Krux segments";
+				  onComplete();
+			  },timeout);
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : verification navigateur
+			// *********************************************************************************************
+			function isIE () {
+			  var myNav = navigator.userAgent.toLowerCase();
+			  return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : 
+			// *********************************************************************************************
+			function getTime (time, elapsedTime){
+				window[time] = window[time]||new Date().getTime();
+				window[elapsedTime] = (window[time] -  window["startHidden"]);
+				return;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : 
+			// *********************************************************************************************
+			function logTime(tagStatus, bodyStatus){
+				window["startHidden"] = window["startHidden"] || new Date().getTime();
+				window["elapsedTime"] = new Date().getTime() - window.startHidden;
+				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | kruxLastUpdate : " + window["kruxLastUpdate"]);
+				return;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire pour user timing: 
+			// *********************************************************************************************
+			function dataLayerUserTiming(timingCategory , timingVar, timingValue, timingLabel){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					event : "ddm.time",
+					timingCategory : timingCategory,
+					timingVar: timingVar,
+					timingValue: timingValue,
+					timingLabel: timingLabel,
+					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
+					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"]||"",
+					ddmUseCase: window["ddmUseCase"],
+					ddmTechnicalUseCase: window["ddmTechnicalUseCase"],
+					startDdmDate : window["startPersonalizationHidden"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire pour page view: 
+			// *********************************************************************************************
+			function updateDataLayerDDM(){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
+					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"],
+					ddmUseCase: window["ddmUseCase"],
+					ddmTechnicalUseCase: window["ddmTechnicalUseCase"]||"Google Analytics Collect happend before RTD finish",
+					startDdmDate : window["startPersonalizationHidden"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : recuperation donnees RTD inseree dans la page
+			// *********************************************************************************************
+			function getRTDData() {
+				return RTDData;
+			}			
+
+			// *********************************************************************************************
+			// fonction utilitaire : replaceContent
+			// injection du contenu dans la page HTML depuis la variable RTDData
+			// *********************************************************************************************
+			function replaceContent() {
+				var jsonObject = getRTDData();
+				if (jsonObject != '' && jsonObject != 'undefined') {
+					var contentList = jsonObject.rtdResponse.responseItems;
+					for(var i = 0; i < contentList.length; i++) {
+						var content = contentList[i];
+						var javascript = content.attributes.javascript;
+						eval(javascript);
+					}
+				}
+				else {
+					// No content to replace
+					window["ddmUseCase"]=window["ddmUseCase"] + " (no content to replace)";
+				}
+				
+				// Replace Content Finished
+			}
+
+			// *********************************************************************************************
+			// fonction utilitaire : replaceContentAjax
+			// injection du contenu requete Ajax depuis la variable RTDData
+			// *********************************************************************************************
+			function replaceContentAjax() {
+				window["rtdReplaceContentAjaxStartTime"] = new Date().getTime();
+				
+				var jsonObject = getRTDData();
+				
+				if (jsonObject != '' && jsonObject != 'undefined') {
+					var contentList = jsonObject.rtdResponse.responseItems;
+					for(var i = 0; i < contentList.length; i++) {
+						var content = contentList[i];
+						var javascript = content.attributes.javascript;
+						eval(javascript);
+					}
+				}
+				else {
+					// No content to replace
+					window["ddmUseCase"]=window["ddmUseCase"] + " (no content to replace)";
+				}
+				
+				// Replace Ajax Content Finished
+			}
+
+			
+			// *********************************************************************************************
+			// fonction utilitaire : recuperation contenu RTD
+			// *********************************************************************************************
+			function getRTDContent() {
+				window.removeEventListener("KruxEvent",ddmListener,false);
+				window.removeEventListener("krux-update-user",ddmListener,false);
+
+				// krux local storage read
+				window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);
+				(function(){
+					function retrieve(n){
+					  var m, k='kx'+n;
+					  if (window.localStorage) {
+						  return window.localStorage[k] || "";
+					  } else if (navigator.cookieEnabled) {
+						  m = document.cookie.match(k+'=([^;]*)');
+						  return (m && unescape(m[1])) || "";
+					  } else {
+						  return '';
+					  }
+					}
+					Krux.user = retrieve('user');
+					Krux.segments = retrieve('allsegs') ? retrieve('allsegs').split(',') : [];
+				})();
+				// local storage read end
+				
+				var rtduser = (typeof Krux != "undefined" && typeof Krux.user != "undefined" && Krux.user != "") ? Krux.user : "DEF";
+				var rtdsegments = (typeof Krux != "undefined" && typeof Krux.segments != "undefined" && Krux.segments != "") ? Krux.segments : "{0}";
+				var rtdattributes = (typeof Krux != "undefined" && typeof Krux.k_attributes != "undefined" && Krux.k_attributes != "") ? Krux.k_attributes : "{0|0}";
+				var br='{"user":"'+rtduser+'","segments":"'+rtdsegments+'","attributes":"'+rtdattributes+'"}';
+				
+				var xmlDoc;
+				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
+					xmlDoc = new XMLHttpRequest();
+					if('withCredentials' in xmlDoc) { // IE10+ Chrome FF Opera
+						try{
+							xmlDoc.open('POST', 'http://193.35.56.73/RestGateway/RTDcontent/getCreative/post', true);
+							xmlDoc.setRequestHeader("Content-type", "application/json; charset=utf-8");
+							xmlDoc.onreadystatechange = function() {
+							  if (xmlDoc.readyState === 4) {
+								  if(xmlDoc.status === 200){
+									
+									// valorisation variable RTDData
+									RTDData = JSON.parse(xmlDoc.responseText);
+									
+									window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+								  } else {
+									  //document.body.style.visibility = "visible";
+									  window["ddmUseCase"] = "No customisation (RTD error)";
+									  window["rtdErrorType"] = "RTD script xmlDoc status";
+									  var v = document.getElementById("vp_BgH");
+									  v.setAttribute("src", "http://architecturempsa.appspot.com/architecture/2623FDF52A815FFE60809F54600774E4.cache.png");
+								  }
+							  } 
+							}
+							xmlDoc.send(JSON.stringify(br));
+						} catch(e){
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD script xmlDoc exception";
+						}
+					} else if (window.XDomainRequest) {
+						// IE8 et IE9
+						logTime("getRTDContent : IE8 et IE9", "Body hidden");
+						if (isIE () == 8) {
+							logTime("rtdTag detect IE8", "Body Hidden");
+							var timeIE8 = 2000;
+							setTimeout(function () {
+								if (document.readyState == "complete"){
+									// document.body.style.visibility = "visible";
+									clearTimeout(timeIE8);
+									
+									logTime("rtdTag IE8 timeout known bug", "Body visible");
+								}else{
+									logTime("rtdTag IE8 timeout known bug", "Body still hidden");
+								}
+							}, timeIE8);
+						}
+
+						logTime("rtdTag launch request (XDRStart)", "Body still hidden");
+
+						xmlDoc = new XDomainRequest();
+						xmlDoc.open('POST', 'http://193.35.56.73/RestGateway/RTDcontent/getCreative/postOS');
+						xmlDoc.onload = function () {
+
+							logTime("rtdTagStart_XDR (onload request)", "Body still hidden");
+							var dom  = new ActiveXObject('Microsoft.XMLDOM');
+							var response = JSON.parse(xmlDoc.responseText);
+							dom.async = false;
+
+							// valorisation variable RTDData
+							RTDData = JSON.parse(xmlDoc.responseText);
+
+							window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+						};
+						xmlDoc.onerror = function() {
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request error";
+						};
+						xmlDoc.ontimeout = function() {
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request timeout";
+						};
+						xmlDoc.onprogress = function() {
+							logTime("rtdTagOnProgress_XDR : response onprogress", "Body still Hidden");
+						};
+						// setTimeout corrige le problème aléatoire du onload sur IE8
+						setTimeout(function () {
+							try{
+								xmlDoc.send(JSON.stringify(br));
+								logTime("rtdTag setTimeout due to onload bug IE8", "Body still Hidden");
+							} catch(e){
+								// IE5, IE6 et IE7 ne gère pas l'objet JSON
+								//document.body.style.visibility = "visible";
+								window["ddmUseCase"] = "No customisation (RTD error)";
+								window["rtdErrorType"] = "RTD script xmlDoc exception)";
+							}
+						}, 0);
+					} else { //IE7
+						//document.body.style.visibility = "visible";
+						window["ddmUseCase"] = "No customisation (RTD script error)";
+						window["rtdErrorType"] = "RTD script error due to XDomainRequest)";
+					}
+				} else { // IE5 et IE6
+					//document.body.style.visibility = "visible";
+					window["ddmUseCase"] = "No customisation (RTD script error)";
+					window["rtdErrorType"] = "RTD script error due to XMLHttpRequest)";
+				}
+			}
+
+	
+			// *********************************************************************************************
+			// Traitement requetes AJAX post chargement de la page
+			// fonction utilitaire : surcharge prototype XHR pour interception requetes ajax
+			// *********************************************************************************************
+			(function(xhr) {
+				(function(open){
+					XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+						
+						// appel remplacement contenu RTD
+						replaceContentAjax();
+
+						// appel a la requete originale
+						open.call(this, method, url, async, user, password);
+					}
+				})(XMLHttpRequest.prototype.open);
+
+				(function(send) {
+					XMLHttpRequest.prototype.send = function (data) {
+						var that = this; // Keep the reference on object in sub-objects
+	
+						// send original
+						send.call(this, data);
+					}
+				})(XMLHttpRequest.prototype.send);
+
+			})(XMLHttpRequest);
+	
+	
+			// *********************************************************************************************
+			// fonction utilitaire : rtdPersonalization
+			// A executer au debut du body
+			// *********************************************************************************************
+			function rtdPersonalization() {
+				document.body.style.visibility = "hidden";
+				window["startPersonalizationHidden"] = new Date().getTime();
+				
+				replaceContent();
+				
+				document.body.style.visibility = "visible";
+				window["timeBetweenRtdAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				if (document.readyState == "interactive"){
+					window["ddmTechnicalUseCase"] = "DDM display between domInteractive and load event";
+				}else if (document.readyState == "complete"){
+					window["ddmTechnicalUseCase"] = "DDM display after load event";
+				} else {
+					window["ddmTechnicalUseCase"] = "DDM display before domInteractive";
+				}
+				updateDataLayerDDM();
+				// Push RTD user timing even though Krux didn t finish
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenRtdAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)");
+				if (window["needPushKruxTiming"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+				}
+			}
+
+
+			// *********************************************************************************************
+			// Bloc de code principal
+			// attente evenement Krux pour lire les donnees krux et declencher l'appel RTD
+			// *********************************************************************************************
+			var ddmListener = function (e) {
+				clearTimeout(window["kruxTimeout"]);
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["ddmUseCase"] = "RTD call with updated Krux segments";
+				updateDataLayerDDM();
+				window["needPushKruxTiming"]=true;
+				getRTDContent();
+			};
+			
+			var kruxListener = function (e) {
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				updateDataLayerDDM();
+				if(window["timeBetweenRtdAndDomInteractive"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+					window["needPushKruxTiming"]=false;
+				}else{
+					// Push Krux user timing when RTD will finish
+					window["needPushKruxTiming"]=true;
+				}
+			};
+			
+			window.addEventListener("KruxEvent", ddmListener, false);
+			window.addEventListener("krux-update-user", ddmListener, false);
+			window.addEventListener("KruxEvent", kruxListener, false);
+			window.addEventListener("krux-update-user", kruxListener, false);
+			waitKrux(getRTDContent, 1000);
+
+</script>
+<!-- End RTD GetContent Tag -->
+    <title>Automobili vendita, compro auto - offerte & promozione - Citroën Carstore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Description" content="Acquista una nuova auto Citroën ed approfitta delle promozioni. Scopri le offerte speciali delle auto Citroën dal concessionario più vicino." />
+    <!--[if lt IE 9]><link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/components/tools/html5shiv.min.js"/><![endif]-->
+<link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/classic.common.min.css"/>
+<link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/classic.home.min.css"/>
+    <!-- DataLayer-->
+<script type="text/javascript">
+    dataLayer = [{ 
+        'brand': 'citroen',
+        'virtualPageURL': '/Home',
+        'pageName': document.title,
+        'language': 'it',
+        'country': 'it',
+        'siteTypeLevel1': 'CarStore',
+        'siteTypeLevel2': 'Car Store',
+        'vehicleVersionId': '',
+        'vehicleModelBodystyle': '',
+        'vehicleModelBodystyleLabel': '',
+        'vehicleFinition': '',
+        'vehicleFinitionLabel': '',
+        'vehicleMotor': '',
+        'vehicleMotorLabel': '',
+        'vehicleGearbox': '',
+        'vehicleGearboxLabel': '',
+        'vehicleConceptionBase': '',
+        'vehicleConceptionBaseLabel': '',
+        'vehicleConceptionClient': '',
+        'vehicleConceptionClientLabel': '',
+        'vehicleMajDevIndex': '',
+        'vehicleMajDevIndexLabel': '',
+        'vehicleMinDevIndex': '',
+        'vehicleMinDevIndexLabel': '',
+        'vehicleExtCladding': '',
+        'vehicleExtCladdingLabel': '',
+        'vehicleBodyColor': '',
+        'vehicleBodyColorLabel': '',
+        'vehicleIntCladding': '',
+        'vehicleIntCladdingLabel': '',
+        'vehicleColorFilling': '',
+        'vehicleColorFillingLabel': '',
+        'vehiclePriceCatalogue': '',
+        'vehiclePriceCatalogueCurrency': '€',
+        'vehiclePriceFinal': ('' == '0') ? '' : '',
+        'vehiclePriceFinalCurrency': '€',
+        'vehicleRegistration': '',
+        'vehicleKm': '',
+        'vehicleKmRent': '',
+		'vehicleCO2':'',
+		'vehicleFuel':'',
+		'kmFormat': '',
+        'vehicleAccessoriesSelected': '',
+        'scoringVisit': '',
+        'edealerName': '',
+        'edealerSiteGeo': '',
+        'edealerID': '',
+        'edealerCity': '',
+        'edealerIDLocal': '',
+        'edealerAddress': ' ',
+        'edealerPostalCode': '',
+        'edealerRegion': '',
+        'edealerPDV': '',
+        'edealerCountry': 'it',
+        'uiGender': '',
+        'uiPostalCode': '',
+        'uiCity': '',
+        'uiCountry': '',
+        'uiLogged': '',
+        'uiState': '',
+        'uiBirthday': '',
+        'uiExpectedPurchase': '',
+        'formsLeadID': '',
+        'formsLeadType': '',
+        'formsKind': '',
+        'formsName': '',
+        'formsPostalCode': '',
+        'newsletterOptin': '',
+        'partnerOptin': '',
+        'callbackTimeSlot': '',
+        'internalSearchKeyword': '',
+        'internalSearchType': '',
+        'accessoryQuantity': '',
+        'accessoryTax': '',
+        'accessoryTotalOrderValue': '',
+        'accessoryTransactionID': '',
+        'accessoryShippingCost': '',
+        'accessoryShippingType': '',
+        'accessoryCurrencyCode': '',
+        'accessorySKU': '',
+        'accessoryDesignation': '',
+        'accessoryCompDesignation': '',
+        'accessoryBusinessName': '',
+        'accessoryproductCategoryLevel': '',
+        'accessoryProductCategorySLevel': '',
+        'accessoryProductPrice': '',
+        'mainStepName': '',
+        'mainStepIndicator': '',
+        'customDimension1': '',
+        'customDimension2': '',
+        'customDimension3': '',
+        'customDimension4': '',
+        'customDimension5': '',
+        'customDimension6': '',
+        'customDimension7': '',
+        'customDimension8': '',
+        'customDimension9': '',
+        'customDimension10': '',
+        'customDimension22': '',    //
+        'customMetric1': '',
+        'customMetric2': '',
+        'customMetric3': '',
+        'customMetric4': '',
+        'customMetric5': '',
+        'customMetric6': '',
+        'customMetric7': '',
+        'customMetric8': '',
+        'customMetric9': '',
+        'customMetric10': '',
+        'siteOwner': 'central',
+        'siteTarget': 'B2C',
+        'siteFamily': 'new cars'
+}];
+
+//Récupération des informations contact dans la session navigateur
+if (!!window.sessionStorage) {
+    var storageItem = sessionStorage.getItem('CSPRO_formFields');
+    if(!!storageItem){
+        var CarstoreProFormFields = JSON.parse(storageItem);
+        if (!!CarstoreProFormFields) {
+            dataLayer.push({
+               'uiGender': CarstoreProFormFields.ddlCivility.split(';')[1],
+               'uiPostalCode': CarstoreProFormFields.tbContactPostalCode,
+               'uiCity': CarstoreProFormFields.tbContactCity,
+               'uiExpectedPurchase': CarstoreProFormFields.ddlRenouv.split(';')[1],
+               'formsLeadID': CarstoreProFormFields.TRACKING_ID
+             });
+
+             sessionStorage.removeItem('CSPRO_formFields');
+        }
+    }
+}
+</script>
+<!-- End DataLayer-->
+<!-- Google Tag Manager NBA_GTM_V1 -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJ7D96"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ7D96');</script>
+<!-- End Google Tag Manager -->
+
+    
+       
+    <link rel="shortcut icon" href="/Images/ACIT/classic/favicon.ico" /> 
+</head>
+ 
+<body class="home specACIT">
+<!-- Begin RTD Injection Tag -->
+<script type="text/javascript">
+	rtdPersonalization();
+</script>
+<!-- End RTD Injection Tag -->
+    
+    
+<header class="header-flat new">
+    <div class="wrapper-main-header">
+        <div class="main-header">
+            <a href="/Home" class="logo">
+                <div class="img-logo">
+                    <img src="/Images/ACIT/classic/logo-citroen.jpg"">                                              
+                </div>
+            </a>
+            <a href="/Home" class="title">
+                <h1 class="site-title">Citroën Car Store</h1>
+                <h2 class="site-slogan">Le tue nuove Citroën e DS disponibili vicino a casa e al miglior prezzo</h2>
+            </a>
+            <div class="top-link">
+                
+                <div class="link-ext hidden-phone">
+                    <a id="ctl00_ucHeader_hlCountrySite" class="link" href="http://www.citroen.it/" target="_blank">www.citroen.it</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrapper-sub-header hidden-phone">
+        <div class="sub-header">
+            <nav>
+                <ul>                       
+                    <li class="range-car active">
+                        <span class="number">1</span> 
+                        <div class="content">
+                            <span class="big">Cerca</span>
+                            <span class="small">Le tue nuove Citroën e DS con le migliori offerte</span>
+                        </div>
+                    </li>
+                    <li class="range-car ">
+                        <span class="number">2</span> 
+                        <div class="content">
+                            <span class="big">Seleziona</span>
+                            <span class="small">il veicolo scelto</span>
+                        </div>
+                    </li>
+                    <li class="range-car ">
+                        <span class="number">3</span> 
+                        <div class="content">
+                            <span class="big">Prendi appuntamento</span>
+                            <span class="small">con il tuo concessionario</span>
+                        </div>
+                    </li>                                                                 
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+</header>
+    
+    
+
+<div class="divBackGround">
+    
+    <img id="vp_BgH" style="" alt="bannière" src="/Images/it/skins/imgskin_it-it_vp_bgh.png"/>
+    	
+</div>
+<div class="container">
+    
+
+
+
+
+<div class="bloc-search-box all">
+	<div class="bloc-search">
+                <ul class="tab-swicher">
+<li class=""><a href="#form-retailers">Ricerca per concessionario</a></li>
+<li class="active"><a  href="#form-models">Ricerca per modello</a></li>
+</ul>
+
+		<p class="uppercase"><span id="car-number" class="car-availability">4424</span><span class="vehicules">veicoli disponibili</span></p>
+		<form id="form-retailers" class="form-car-selector cs-tab retailers form-flags" method="post" action="#"  data-uri="/Ricerca">
+			<div id="ctl00_cphPage_ctl00_ctl00_loaderAjax" class="loadfiltera"><img id="ctl00_cphPage_ctl00_ctl00_imgloader" src="/Images/ACIT/classic/bx_loader.gif" style="border-width:0px;" /></div>
+			<div class="input-box">
+			    
+
+<div class="geolocation-box control-group">
+    <input id="city-lat" type="hidden" data-name="lat" value="" />
+    <input id="city-lng" type="hidden" data-name="lng" value="" />
+    <span class="left"></span><span class="left"></span>
+    <input class="placeholder input-form geolocation" autocomplete="off" required type="text" id="postalcode" data-name="cit" placeholder="Città, Codice Postale, Provincia" data-Region="IT" data-ParamUrlLat="lat" data-ParamUrlLng="lng" data-ParamUrlCity="cit" data-baseUriVersion="/Recherche-par-criteres" data-launchOnGeolocated="true"/>
+</div>
+
+    <div id="retailers-list" class="control-group dropdown-list">
+        <input class="retailer-selected" required type="hidden" value=""/>
+        <a id="select-place-holder" href="#retailers-list" data-target="#" data-toggle="dropdown"
+            class="dropdown-toggle">Il tuo concessionario</a>
+        <ul id="retailers-list-item" class="dropdown-menu select-box" role="menu">
+        </ul>
+    </div>
+
+		        <a class="map"  href="#my-modal-map" role="button" data-local="#map" data-toggle="modal">Vedi sulla carta</a>
+			</div>
+			
+
+<ul class="car-choices"></ul>
+<div class="car-list dropdown-list control-group">
+    <input class="car-selected-list" required type="hidden" value="" data-name="mbd" >
+    <a id="select-place-holder" href="#car-list" data-target="#" data-toggle="dropdown"
+        class="dropdown-toggle">Scegli un modello</a>
+    <ul class="car-list-item dropdown-menu select-box" role="menu"></ul>
+</div>
+		    
+    <div class="controls control-group budget-box">
+        <div class="resumed">
+            <p class="budget">
+            Il tuo budget <span class="optionel">(optional)</span></p>
+            <p class="counter">
+            <span class="nbModel"><strong>0</strong>/<span class="model-choice-max"></span></span>modello(i) selezionato(i)</p>                
+        </div>
+        <div class="noUiSlider" id="price" data-culture="it-IT" data-slider-min="9875" data-slider-max="42665"
+            data-slider-step="5" data-slider-value="[9875,42665]" data-target-min="#price-min"
+            data-target-max="#price-max" data-minPriceUri="mnp" data-maxPriceUri="mxp">
+        </div>
+        <input type="hidden" id="price-min" value="9875" data-name="mnp" />
+        <input type="hidden" id="price-max" value="42665" data-name="mxp" />
+        <div class="recap">
+            <p class="recap-min"><span class="slider-legend slider-legend-min">9875</span>&nbsp;<span class="slider-legend">€</span></p>
+            <p class="recap-max"><span class="slider-legend slider-legend-max">42665</span>&nbsp;<span class="slider-legend">€</span></p>
+        </div>
+    </div>
+
+            <div class="form-action">
+                <div class="link-carselector hidden-tablet hidden-phone">
+                    <a class="see-gamut left" href="#my-modal-carselector" role="button" data-local="#carSelector"
+                    data-toggle="modal">La nostra gamma<i class="icon-chevron-right"></i></a>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary btn-double btn-full"><span>Scopri le offerte</span><i class="icon-chevron-right-white"></i></button>
+                <div class="link-carselector  hidden-desktop">
+                    <a class="see-gamut left" href="#my-modal-carselector" role="button" data-local="#carSelector"
+                    data-toggle="modal">La nostra gamma<i class="icon-chevron-right"></i></a>
+                    
+                </div>
+            </div>
+		</form>
+		<form id="form-models" class="form-car-selector cs-tab active models  form-flags " method="post" action="#" data-uri="/Ricerca">
+            
+
+<ul class="car-choices"></ul>
+<div class="car-list dropdown-list control-group">
+    <input class="car-selected-list" required type="hidden" value="" data-name="mbd" >
+    <a id="select-place-holder" href="#car-list" data-target="#" data-toggle="dropdown"
+        class="dropdown-toggle">Scegli un modello</a>
+    <ul class="car-list-item dropdown-menu select-box" role="menu"></ul>
+</div>
+            
+
+<div class="input-box control-group">
+    <input id="city-lat" type="hidden" data-name="lat" value="" />
+    <input id="city-lng" type="hidden" data-name="lng" value="" />
+    <span class="left"></span><span class="left"></span>
+    <input class="placeholder input-form geolocation" autocomplete="off" required type="text" id="postalcode" data-name="cit" placeholder="Città, Codice Postale, Provincia" data-Region="IT" data-ParamUrlLat="lat" data-ParamUrlLng="lng" data-ParamUrlCity="cit" data-baseUriVersion="/Recherche-par-criteres" data-launchOnGeolocated="true"/>
+</div>
+                                    
+            
+    <div class="controls control-group budget-box">
+        <div class="resumed">
+            <p class="budget">
+            Il tuo budget <span class="optionel">(optional)</span></p>
+            <p class="counter">
+            <span class="nbModel"><strong>0</strong>/<span class="model-choice-max"></span></span>modello(i) selezionato(i)</p>                
+        </div>
+        <div class="noUiSlider" id="price" data-culture="it-IT" data-slider-min="9875" data-slider-max="42665"
+            data-slider-step="5" data-slider-value="[9875,42665]" data-target-min="#price-min"
+            data-target-max="#price-max" data-minPriceUri="mnp" data-maxPriceUri="mxp">
+        </div>
+        <input type="hidden" id="price-min" value="9875" data-name="mnp" />
+        <input type="hidden" id="price-max" value="42665" data-name="mxp" />
+        <div class="recap">
+            <p class="recap-min"><span class="slider-legend slider-legend-min">9875</span>&nbsp;<span class="slider-legend">€</span></p>
+            <p class="recap-max"><span class="slider-legend slider-legend-max">42665</span>&nbsp;<span class="slider-legend">€</span></p>
+        </div>
+    </div>
+
+            <div class="form-action">
+                <div class="link-carselector hidden-tablet hidden-phone">
+                    <a class="see-gamut left" href="#my-modal-carselector" role="button" data-local="#carSelector"
+                    data-toggle="modal">La nostra gamma<i class="icon-chevron-right"></i></a>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary btn-double btn-full"><span>Scopri le offerte</span><i class="icon-chevron-right-white"></i></button>
+                <div class="link-carselector  hidden-desktop">
+                    <a class="see-gamut left" href="#my-modal-carselector" role="button" data-local="#carSelector"
+                    data-toggle="modal">La nostra gamma<i class="icon-chevron-right"></i></a>
+                    
+                </div>
+            </div>
+        </form>
+	</div>
+</div>
+<input type="hidden" id="addressForChange" />	
+    
+	
+
+<div class="hidden hidden-phone">        
+    <div id="carSelector" class="style-citroen-c layer">
+        
+        <ul class="tab-swicher">
+            <li class="active"><a class="style-citroen-c" href="#tabs-1">Citroën</a></li><li class="style-ds"><a class="style-ds" href="#tabs-2">DS</a></li>
+        </ul>
+        
+        
+        
+        <div id="tabs-1" class="cs-tab active">
+            <div class="hgroup-lightbox">
+                <div class="inline-block">
+                    <p class="citroen-light citroen-title-h3 uppercase">
+                        Scegli “Il mio veicolo”</p>
+                    <p class="citroen-light subtitle">
+                        Puoi selezionare al massimo 3 modelli</p>
+                    <p class="citroen-light counter">
+                        <span class="nbModel"><strong>0</strong>/3</span>&nbsp;modello(i) selezionato(i)</p>
+                </div>
+                <a class="btn btn-primary btn-double citroen-validate-button" type="button" data-dismiss="modal" href="#">
+                    <span>Validare</span><i class="icon-chevron-right-white"></i></a>
+            </div>
+            <div class="scrollable">
+                <ul class="long-car-list">
+                     
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CB1A3/1CB1A3_1_T3.png" class="img-bloc" alt="Nuova C1"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        Nuova C1
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">513</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CB100000001</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CB1A3"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CB1A3"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CB100000001">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CB1B3/1CB1B3_1_T3.png" class="img-bloc" alt="Nuova C1 Airscape"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        Nuova C1 Airscape
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">30</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CB100000006</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CB1B3"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CB1B3"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CB100000006">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CXAA5/1CXAA5_1_T3.png" class="img-bloc" alt="C3"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C3
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">1771</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CXA00000001</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CXAA5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CXAA5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CXA00000001">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CWAAF/1CWAAF_1_T3.png" class="img-bloc" alt="C3 Picasso"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C3 Picasso
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">461</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CWA00000009</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CWAAF"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CWAAF"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CWA00000009">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CE3A5/1CE3A5_1_T3.png" class="img-bloc" alt="C4 Cactus"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C4 Cactus
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">495</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CE300000003</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CE3A5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CE3A5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CE300000003">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CH5AF/1CH5AF_1_T3.png" class="img-bloc" alt="C4 Picasso"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C4 Picasso
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">246</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CH500000009</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CH5AF"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CH5AF"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CH500000009">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CH5CL/1CH5CL_1_T3.png" class="img-bloc" alt="Grand C4 Picasso"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        Grand C4 Picasso
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">150</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CH500000010</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CH5CL"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CH5CL"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CH500000010">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CMJSU/1CMJSU_1_T3.png" class="img-bloc" alt="C4 Aircross"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C4 Aircross
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">140</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CMJ00000011</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CMJSU"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CMJSU"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CMJ00000011">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CX7A4/1CX7A4_1_T3.png" class="img-bloc" alt="C5 Berlina"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C5 Berlina
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">5</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CX700000003</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CX7A4"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CX7A4"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CX700000003">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CX7C5/1CX7C5_1_T3.png" class="img-bloc" alt="C5 Tourer "/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C5 Tourer 
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">23</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CX700000005</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CX7C5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CX7C5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CX700000005">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CX7C5/1CX7C5_1_T3.png" class="img-bloc" alt="C5 CrossTourer"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        C5 CrossTourer
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">12</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CX700000007</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CX7C5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CX7C5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CX700000007">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CYAB3/1CYAB3_1_T3.png" class="img-bloc" alt="DS3 CABRIO"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        DS3 CABRIO
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">2</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1VVV00000002</span><input type="hidden" real="hdModel_BodyStyleVal" value="1VVVB3"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CYAB3"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CYA00000002">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CB9AF/1CB9AF_1_T3.png" class="img-bloc" alt="Berlingo Multispace"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        Berlingo Multispace
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">135</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CB900000009</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CB9AF"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CB9AF"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CB900000009">
+                                </div>
+                            </li>
+                        
+                </ul>
+            </div>
+            <div class="form-actions">
+                <p class="citroen-light counter"><span class="nbModel"><strong>0</strong>/3</span>&nbsp;modello(i) selezionato(i)</p>
+                <a class="btn btn-primary btn-double citroen-validate-button" type="button" data-dismiss="modal" href="#">
+                    <span>Validare</span><i class="icon-chevron-right-white"></i></a>
+                <div class="ui-helper-clearfix">
+                </div>
+            </div>
+        </div>
+        
+		
+        <div id="tabs-2" class="cs-tab">
+            <div class="hgroup-lightbox">
+                <div class="inline-block">
+                    <p class="citroen-light citroen-title-h3 uppercase">
+                        Scegli “Il mio veicolo”</p>
+                    <p class="citroen-light subtitle">
+                        Puoi selezionare al massimo 3 modelli</p>
+                    <p class="citroen-light counter">
+                        <span class="nbModel"><strong>0</strong>/3</span>&nbsp;modello(i) selezionato(i)</p>
+                </div>
+                <a class="btn btn-primary btn-double citroen-validate-button" type="button" data-dismiss="modal" href="#">
+                    <span>Validare</span><i class="icon-chevron-right-white"></i></a>
+            </div>
+            <div class="scrollable">
+                <ul class="long-car-list">
+                     
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CYAA3/1CYAA3_1_T3.png" class="img-bloc" alt="DS 3"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        DS 3
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">255</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CYA00000001</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CYAA3"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CYAA3"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CYA00000001">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CB7D5/1CB7D5_1_T3.png" class="img-bloc" alt="DS4"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        DS4
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">103</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1ZZZ00000004</span><input type="hidden" real="hdModel_BodyStyleVal" value="1ZZZD5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CB7D5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CB700000004">
+                                </div>
+                            </li>
+                         
+                            <li class="relative item">
+                                <img src="/SrcCarSelector/1CB8A5/1CB8A5_1_T3.png" class="img-bloc" alt="DS 5"/>
+                                <div class="cars-infos">
+                                    <p class="figcaption citroen uppercase">
+                                        DS 5
+                                    </p>
+                                    <p class="number-cars-available-box inline-block">
+                                        <span class="number-cars-available">83</span>&nbsp;veicolo/i
+                                    </p>
+                                    <div class="css-label"></div>
+                                    <span class="hidden">1CB800000003</span><input type="hidden" real="hdModel_BodyStyleVal" value="1CB8A5"><input type="hidden" real="hdTransModel_BodyStyleVal" value="1CB8A5"><input type="hidden" real="hdTransModel_RegBodyStyleVal" value="1CB800000003">
+                                </div>
+                            </li>
+                        
+                </ul>
+            </div>
+            <div class="form-actions">
+                <p class="citroen-light counter"><span class="nbModel"><strong>0</strong>/3</span>&nbsp;modello(i) selezionato(i)</p>
+                <a class="btn btn-primary btn-double citroen-validate-button" type="button" data-dismiss="modal" href="#">
+                    <span>Validare</span><i class="icon-chevron-right-white"></i></a>
+                <div class="ui-helper-clearfix">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <input id="hdModelBodyStyle" type="hidden" name="hdModelBodyCodeSelected">
+    <input id="hdModel_BodyStyleVal" type="hidden" name="hdModel_BodyStyleVal">
+    <input id="hdTransModel_BodyStyleVal" type="hidden" name="hdTransModel_BodyStyleVal">
+    <input id="hdTransModel_RegBodyStyleVal" type="hidden" name="hdTransModel_RegBodyStyleVal">
+</div>
+
+	
+
+<div class="hidden hidden-phone">
+    <div id="map" class="block-map no-result" data-location="/Home?AjaxRequest=DealerInfos_SearchDealersOnMap">
+        <form action="javascript:void(0);" class="form-inline recap">
+            
+            <p class="title">
+                Ricerca per concessionario
+            </p>
+            <div class="map-search">
+                <p>Trova un concessionario Citroën vicino a te</p>
+                <div class="control-group">
+                    <div>
+                        <input type="search" class="geolocation" name="map-search-keyword" id="Search1" data-provide="typeahead" autocomplete="off" placeholder='Città, Codice Postale, Provincia' data-Region="IT"/>
+                    </div>
+                    <div class="w48">
+                        <button class="btn btn-validate geo" name="geo" value="-1">
+                            OK
+                        </button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <button class="btn btn-geo geo currentGeo" name="geo" value="-1"><i class="icon-geolocation"></i> <span>Cerca un concessionario</span></button>
+                </div>
+            </div>
+            
+            <div class="map-result">
+                <div class="result-counter map-loader">
+                    
+                    <p><span id="map-search-counter">0</span>&nbsp;concessionario più vicino&nbsp;"<span id="map-search-keyword-alias"></span>"</p>                
+                    
+                </div>
+                <div class="map-view">
+                    <div id="map-canvas" class="map">
+                    </div>
+                    <div class="open-map">
+                    </div>
+                </div>
+                <div class="result-list">
+                    <ul id="map-list" class="list scrollable"></ul>
+                </div>
+            </div>
+             
+            <div class="form-actions error">
+                <p>
+                    <button class="btn error btn-primary btn-double btn-full" data-dismiss="modal" >
+                        <span>Validare</span> <i class="icon-chevron-right-white"></i>
+                    </button>
+                </p>
+            </div>
+            
+        </form>  
+    </div>
+</div>
+</div>
+
+
+<footer class="footer-model style-ds">
+    <article class="container">                      
+            <h2 class="title">DS</h2>
+            <p class="desc">Design e tecnologia, la marca DS propone una gamma di vetture raffinate e dinamiche</p>
+            <div class="carrousel-vehicle">
+                <div class="vehicle"><a href="veicolo-nuovo/ds-3/citycar-compatte"><div class="image"><img src="/SrcCarSelector/1CYAA3/1CYAA3_1_T3.png"/></div><div class="name"><h3>DS 3</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/ds4/ds-4"><div class="image"><img src="/SrcCarSelector/1CB7D5/1CB7D5_1_T3.png"/></div><div class="name"><h3>DS 4</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/ds-5/berlina"><div class="image"><img src="/SrcCarSelector/1CB8A5/1CB8A5_1_T3.png"/></div><div class="name"><h3>DS 5</h3></div></a></div>
+            </div>              
+    </article>
+</footer>
+
+
+<footer class="footer-model ">
+    <article class="container">                      
+            <h2 class="title">Citroën</h2>
+            <p class="desc">Citycar oppure station wagon, compatta oppure SUV? Trova la tua Citroën !</p>
+            <div class="carrousel-vehicle">
+                <div class="vehicle"><a href="veicolo-nuovo/c1/citycar-compatte"><div class="image"><img src="/SrcCarSelector/1CB1A3/1CB1A3_1_T3.png"/></div><div class="name"><h3>Nuova C1</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c1/c1-airscape"><div class="image"><img src="/SrcCarSelector/1CB1B3/1CB1B3_1_T3.png"/></div><div class="name"><h3>Nuova C1 Airscape</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c3/citycar-compatte"><div class="image"><img src="/SrcCarSelector/1CXAA5/1CXAA5_1_T3.png"/></div><div class="name"><h3>C3</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c3-picasso/monovolume"><div class="image"><img src="/SrcCarSelector/1CWAAF/1CWAAF_1_T3.png"/></div><div class="name"><h3>C3 Picasso</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c4-cactus/berlina"><div class="image"><img src="/SrcCarSelector/1CE3A5/1CE3A5_1_T3.png"/></div><div class="name"><h3>Nuova C4 Cactus</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c4-picasso/monovolume"><div class="image"><img src="/SrcCarSelector/1CH5AF/1CH5AF_1_T3.png"/></div><div class="name"><h3>C4 Picasso</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c4-picasso/grande-monovolume"><div class="image"><img src="/SrcCarSelector/1CH5CL/1CH5CL_1_T3.png"/></div><div class="name"><h3>Grand C4 Picasso</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c4-aircross/suv-2-4wd"><div class="image"><img src="/SrcCarSelector/1CMJSU/1CMJSU_1_T3.png"/></div><div class="name"><h3>C4 Aircross</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c5/berlina"><div class="image"><img src="/SrcCarSelector/1CX7A4/1CX7A4_1_T3.png"/></div><div class="name"><h3>C5 Berlina</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c5/tourer"><div class="image"><img src="/SrcCarSelector/1CX7C5/1CX7C5_1_T3.png"/></div><div class="name"><h3>C5 Tourer </h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/c5/crosstourer"><div class="image"><img src="/SrcCarSelector/1CX7C5/1CX7C5_1_T3.png"/></div><div class="name"><h3>C5 CrossTourer</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/ds3-cabrio/cabrio"><div class="image"><img src="/SrcCarSelector/1CYAB3/1CYAB3_1_T3.png"/></div><div class="name"><h3>DS 3 Cabrio</h3></div></a></div><div class="vehicle"><a href="veicolo-nuovo/berlingo-multispace/monovolume"><div class="image"><img src="/SrcCarSelector/1CB9AF/1CB9AF_1_T3.png"/></div><div class="name"><h3>Berlingo Multispace</h3></div></a></div>
+            </div>              
+    </article>
+</footer>
+
+
+<footer class="footer-reasons">
+    <article class="container">                      
+        <p class="title">Perché scegliere Citroën Car Store</p>
+        <section class="reason"><img src="/Images/ACIT/classic/icons/reason1.png" /><span class="text">Accedi ai veicoli nuovi dei concessionari Citroën con consegna entro 10 giorni</span></section>
+        <section class="reason"><img src="/Images/ACIT/classic/icons/reason2.png" /><span class="text">Usufruisci della garanzia del Costruttore per il tuo nuovo veicolo</span></section>
+        <section class="reason"><img src="/Images/ACIT/classic/icons/reason3.png" /><span class="text">Ti proponiamo offerte di servizi e finanziamenti</span></section>
+        <section class="reason"><img src="/Images/ACIT/classic/icons/reason4.png" /><span class="text">Un consulente commerciale si metterà in contatto con te a breve.</span></section>
+    </article>
+</footer>
+   
+     
+    
+ <footer class="footer-mentions new">
+    <div class="wrapper-footer">
+        
+        
+        <div class="wrapper-direct-links hidden-print">
+            <ul class="footer-direct-links">
+                <li><a id="ctl00_ucFooter_hlLegalNotice" onclick="javascript:var f1= window.open(this.href, 'CSLegalNotice', 'width=500, height=600, menubar=0, resizable=0, scrollbars=1'); f1.focus(); return false;" href="/Informazioni-legali">Informazioni legali</a></li>
+                
+                    <li><a id="ctl00_ucFooter_hlDealers" href="/List-Concessionari">Concessionarie CITROËN</a></li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</footer>
+    
+
+<div id="my-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+	    <div class="modal-close">
+		    <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">Chiudi<i class="icon-remove"></i></button>
+		</div>
+		<p class="modal-title"></p>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<div id="my-modal-fullscreen" class="modal hide fade modal-fullscreen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body"></div>
+</div>
+<div id="my-modal-large" class="modal hide fade modal-large" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+	    <div class="modal-close">
+		    <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">Chiudi<i class="icon-remove"></i></button>
+		</div>
+		<p class="modal-title"></p>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<div id="my-modal-small" class="modal hide fade modal-small" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+	    <div class="modal-close">
+		    <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">Chiudi<i class="icon-remove"></i></button>
+		</div>
+		<p class="modal-title"></p>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<div id="my-modal-searchdealerphone" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">Chiudi<i class="icon-remove"></i></button>
+		<p class="modal-title"></p>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<div id="my-modal-webcallback" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">Chiudi<i class="icon-remove"></i></button>
+		<p class="modal-title"></p>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<div id="my-modal-panel" class="modal hide in modal-panel first" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+    <div class="modal-header  visible-phone">
+        <div class="modal-close">
+            <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">
+                Chiudi<i class="icon-remove"></i></button>
+        </div>
+        <p class="modal-title"></p>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+<div id="my-modal-carselector" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <div class="modal-close">
+            <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">
+            Chiudi<i class="icon-remove"></i></button>
+        </div>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+<div id="my-modal-white" class="modal hide white" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <div class="modal-close">
+            <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">
+                Chiudi<i class="icon-remove"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+<div id="my-modal-map" class="modal hide white" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <div class="modal-close">
+            <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">
+            Chiudi<i class="icon-remove"></i></button>
+        </div>
+    </div>
+    <div class="modal-body"></div>
+</div>
+
+
+
+
+    <div id="divUrl" data-url="http://it.store.citroen.inetpsa.com" data-urlExt="http://www.carstore.citroen.it"></div>
+    <script type="text/javascript" src="http://as00.estara.com/as/InitiateCall2.php?accountid=200106303744"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it&libraries=map,geocoder,places&region=IT"></script>
+<script type="text/javascript" src="/Scripts/AC/classic.full.js"></script>
+    
+    
+    <!--Taggage Events - Tous les pays - Tous les pages-->
+
+<!--Lien vers CPP-->
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function() {
+	    $('.main-header .link-ext a[id*="hlCountrySite"]').on('click', function() {
+			dataLayer.push({
+				'event': 'uaevent',
+				'eventCategory': 'Link',
+				'eventAction': 'Redirection',
+				'eventLabel': $(this).attr('href')
+			});
+		});
+	});
+})(jQuery)
+</script>
+
+<!--CHA: Datalayer 2.1 / 23.03.2015-->
+<!--Ouverture popInWebCallback-->
+<script> 
+(function($) {
+    $(document).ready(function() {
+        //Ouverture popInWebCallback
+        $(document).on('click', '[data-local="#call-form"]', function(){
+            dataLayer.push({
+                'event': 'updatevirtualpath', 
+                'virtualPageURL': '/popin-webcallback',
+                'formsName': 'webcallback'
+            });
+        });
+        //Ouverture popIn Contact
+        $(document).on('click', '[data-local="#generic-form"]', function() {
+            dataLayer.push({
+                'event': 'updatevirtualpath',
+                'virtualPageURL': '/contact-request',
+                'formsName': 'contact request'
+            });
+        });
+        //UA event : Footer
+        $(document).on('click', '.footer-direct-links li a', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Footer',
+                'eventAction': 'Redirection::Internal',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+        //CHA: Datalayer 2.1 / 23.03.2015
+        //clic ouverture popInWebCallback
+        $(document).on('click', '[data-local="#call-form"]', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Rightsidebar',
+                'eventAction': 'Webcallback',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+        //clic bouton de validation du formulaire WebCallback
+        $(document).on('mousedown touchdown', '#call-form #lnkBtnValidate', function() {
+            var $form = $(this).parents("form:first");
+            if ($form.h5Validate("allValid") === true && $.checkAllCustomValidity($form)) {
+                dataLayer.push({
+                    'event': 'uaevent',
+                    'eventCategory': 'Webcallback',
+                    'eventAction': 'Validate::Webcallback',
+                    'eventLabel': $(this).text().trim()
+                });
+                dataLayer.push({
+                    'event': 'updatevirtualpath',
+                    'virtualPageURL': '/popin-webcallback/confirmation',
+                    'formsName': 'webcallback'
+                });
+            }
+        });
+
+        //clic ouverture  popIn Contact
+        $(document).on('click', '[data-local="#generic-form"]', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Rightsidebar',
+                'eventAction': 'Forms::ContactRequest',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+        //clic bouton de validation du formulaire de contact
+        $(document).on('mousedown touchdown', '#generic-form #lnkBtnValidate', function() {
+            var $form = $(this).parents("form:first");
+            if ($form.h5Validate("allValid") === true && $.checkAllCustomValidity($form)) {
+                dataLayer.push({
+                    'event': 'uaevent',
+                    'eventCategory': 'ContactRequest',
+                    'eventAction': 'Validate::ContactRequest',
+                    'eventLabel': $(this).text().trim()
+                });
+            }
+        });
+    }); 
+})(jQuery)
+</script>
+<!--Taggage Events - Tous les pays - Tous les pages - Contexte non promotions-->
+<!--Taggage Events - Tous les pays - Page Home-->
+
+<!--Nombre de clic sur un model/une silhouette"-->
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function() {
+        //Formulaire
+        $(document).on('click', '.car-list-item li', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Button',
+                'eventAction': 'Click',
+                'eventLabel': $(this).text()
+            });
+        });
+        //Car Selector
+        $(document).on('click', '#carSelector .long-car-list li', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Button',
+                'eventAction': 'Click',
+                'eventLabel': $(this).find('.cars-infos h4').text().trim()
+            });
+        });
+        //Liens page SEO
+        $(document).on('click', '.carrousel-vehicle .vehicle a', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Button',
+                'eventAction': 'Click',
+                'eventLabel': $(this).find('.name').text().trim()
+            });
+        });
+        
+        //CHA: Datalayer 2.1 / 23.03.2015
+        //UA event : PriceSlider
+        $(document).on('change', '#price', function() {
+            var v = $(this).val();
+            var min, max;
+            if (!v || v.length == 0) return;
+            if (typeof (v) == "string") min = v;
+            else if (v.length == 2) {
+                min = v[0];
+                max = v[1];
+            }
+            var changeMin = false;
+            var changeMax = false;
+            if(!!$.sliderValue)
+            {
+                changeMin = (min && min != $.sliderValue.min);
+                changeMax = (max && max != $.sliderValue.max);
+            }
+            else
+            {
+                changeMin = (min && min != $(this).attr("data-slider-min"));
+                changeMax = (max && max != $(this).attr("data-slider-max"));
+            }
+            if (changeMax) {
+                dataLayer.push({
+                    'event': 'uaevent',
+                    'eventCategory': 'Home::VehicleSearch',
+                    'eventAction': 'Filter::PriceMax',
+                    'eventLabel': max
+                });
+            }
+            if (changeMin) {
+                dataLayer.push({
+                    'event': 'uaevent',
+                    'eventCategory': 'Home::VehicleSearch',
+                    'eventAction': 'Filter::PriceMin',
+                    'eventLabel': min
+                });
+            }
+            $.sliderValue = {
+                min : min,
+                max : max
+            };
+            
+        });
+        //UA event : ModelCars
+        $(document).on('click', '.see-gamut[href="#my-modal-carselector"]', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Home::VehicleSearch',
+                'eventAction': 'ModelCars::Display',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+        //UA event : ModelCars
+        $(document).on('click', '.see-gamut[href!="#my-modal-carselector"]', function() {
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Home::VehicleSearch',
+                'eventAction': 'Redirection::External',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+        //UA event : Button
+        $(document).on('click', '.bloc-search-box .bloc-search .form-car-selector .form-action button', function() {
+        var $form = $(this).parents("form:first");
+            dataLayer.push({
+                'event': 'uaevent',
+                'eventCategory': 'Home::VehicleSearch',
+                'eventAction': 'Redirection::Internal',
+                'eventLabel': $(this).text().trim()
+            });
+        });
+    });
+})(jQuery)
+</script>
+
+    
+
+</body>
+</html>

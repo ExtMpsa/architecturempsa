@@ -1,0 +1,203 @@
+.clearfix{*zoom:1}
+.clearfix:before,.clearfix:after{display:table;content:"";line-height:0}
+.clearfix:after{clear:both}
+.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}
+.input-block-level{display:block;width:100%;min-height:26px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.block-shadow{border-top:1px solid #d11e2a;margin-top:20px;padding-top:10px}
+.block-shadow.title{padding-top:15px}
+.block-shadow>.title{margin-top:0}
+@media(min-width:481px) and (max-width:979px){body.home>.container{width:100%}
+}
+body>.divBackGround{position:absolute;width:100%;height:389px;z-index:-1;overflow:hidden}
+body>.divBackGround img{width:100%;bottom:0}
+@media(max-width:1280px){body>.divBackGround img{height:100%;max-width:none;width:auto}
+}
+@media(max-width:979px){body>.divBackGround{position:relative;height:auto}
+body>.divBackGround img{height:auto;width:100%}
+}
+@media(max-width:480px){body>.divBackGround{display:none}
+}
+body>.container>.bloc-search-box{height:389px;margin:0 0 20px;position:relative;width:100%}
+body>.container>.bloc-search-box .bloc-search{max-width:45%;background-color:white;bottom:0;padding:20px 35px 0;position:absolute;right:0;font-family:"citroen-light";height:85%}
+body>.container>.bloc-search-box .bloc-search .tab-swicher{list-style:none;margin:0;position:absolute;right:0;top:-30px}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li{background-color:#f7f7f7;-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px;display:inline-block;padding:8px 20px 6px}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li a{color:#868686}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li.active{background-color:white}
+body>.container>.bloc-search-box .bloc-search .uppercase{text-transform:uppercase;margin:0 0 20px;float:right}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-number{display:none}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string{display:inline-block;margin-right:15px;vertical-align:middle}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number-box{background:transparent url("../../Images/ACIT/classic/background/bg-number.png") no-repeat scroll top left;background-size:100% 100%;display:inline-block;margin:0 2px;height:40px;width:27px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number{color:white;display:table;font-size:18px;font-weight:bold;margin:10px auto}
+body>.container>.bloc-search-box .bloc-search .uppercase .vehicules{display:inline-block;font-size:18px;line-height:25px;vertical-align:middle;color:#d11e2a}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter{display:none;float:right;text-transform:none;color:#858585;font-weight:normal}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter .nbModel{font-size:15px}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter .nbModel strong{color:#d11e2a}
+body>.container>.bloc-search-box .bloc-search .form-car-selector{margin:10px 0 0}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form{display:inline-block;width:97%;width:-webkit-calc(100% - 10px);width:-moz-calc(100% - 10px);width:calc(100% - 10px);background-color:white;border:1px solid #cecece;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;-o-appearance:none;appearance:none;border-radius:0;height:30px;padding:3px 0 3px 10px;font-size:12px;text-transform:none;margin:0;font-family:"citroen-light"}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form::-webkit-input-placeholder{opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form:-moz-placeholder{opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form::-moz-placeholder{opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form:-ms-input-placeholder{opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-form.placeholder{opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action{width:100%;padding:15px 0 0;display:table}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action>*{display:table-cell;vertical-align:middle}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector{padding-right:8px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector a{color:#7b7b7b;display:block}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector a .icon-chevron-right{background-position:1px 0;display:inline-block;margin-left:7px;vertical-align:middle;opacity:.7;filter:alpha(opacity=70)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action button{width:auto;float:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed{margin:0 0 20px;display:inline-block;width:100%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p{color:#858585;font-size:12px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.budget{display:inline-block}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.budget .optionel{color:#d5d5d5}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter,body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter-top{float:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter .nbModel,body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter-top .nbModel{font-size:15px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter .nbModel strong,body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter-top .nbModel strong{color:#d11e2a}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .noUi-connect{background-color:#d11e2a}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .noUi-handle{width:29px;height:27px;top:-10px;left:-15px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .noUi-handle-lower{background:url("../../Images/ACIT/classic/icons/chevron-budget-right.png") no-repeat scroll center center}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .noUi-handle-upper{background:url("../../Images/ACIT/classic/icons/chevron-budget-left.png") no-repeat scroll center center}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .recap{margin-top:10px;color:#d11e2a;font-family:"citroen-light"}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .recap .recap-min{float:left}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .recap .recap-max{float:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .recap .slider-legend{font-family:"citroen-light";font-size:13.999200000000002px;font-weight:300;width:auto;float:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group.budget-box .recap sup{top:-0.8em}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices{list-style:none outside none;margin:0 0 10px 0;clear:both}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car{color:#545454;font-size:11px;font-family:"citroen-bold";vertical-align:top;padding:5px 15px 5px 5px;display:inline-block;background-color:#f0f0f0;width:29.7%;width:-webkit-calc(33% - 26px);width:-moz-calc(33% - 26px);width:calc(33% - 26px);position:relative;word-wrap:break-word;margin-right:10px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car .selected-car-text{display:inline-block;word-wrap:break-word}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car .red-cross{height:100%;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background:transparent url(../../Images/ACIT/classic/icons/red-cross.png) 0 6px no-repeat;cursor:pointer;border:0;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;-o-appearance:none;appearance:none;position:absolute;right:0;top:0;width:12px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car .red-cross:hover{background-position:-16px 6px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car:last-child{margin-right:0}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices{margin:0}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-choices .selected-car{margin-bottom:10px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list{border:1px solid #cecece;cursor:pointer;font-size:12px;margin-bottom:0;padding:0;position:relative;width:100%;display:inline-block}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list.error #select-place-holder{color:#d11e2a;background:url("../../Images/ACIT/classic/icons/chevron-bottom-active.png") no-repeat scroll 96% center #fff}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list.error.open #select-place-holder{background:url("../../Images/ACIT/classic/icons/chevron-top-active.png") no-repeat scroll 96% center #fff}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #select-place-holder{padding:10px 32px 10px 10px;color:#868686;background:url("../../Images/ACIT/classic/icons/chevron-bottom.png") no-repeat scroll 96% center #fff;display:block;text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #select-place-holder:hover{text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list.open #select-place-holder{background:url("../../Images/ACIT/classic/icons/chevron-top.png") no-repeat scroll 96% center #fff;text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list.open #select-place-holder:hover{text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #retailers-list-item{position:absolute;top:30px;background-color:white;background-image:none;z-index:2;border:1px solid #cecece;border-top:0;width:100%;box-shadow:none;left:-1px;max-height:250px;overflow:auto}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #retailers-list-item li{display:block;padding:10px 0 10px 10px;color:#d3d3d3;cursor:not-allowed}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #retailers-list-item li.unselected{color:#868686;cursor:pointer}
+body>.container>.bloc-search-box .bloc-search .form-car-selector #retailers-list #retailers-list-item li.unselected:hover{background:#f7f7f7;color:#d11e2a;opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list{border:1px solid #cecece;cursor:pointer;font-size:12px;margin-bottom:10px;padding:0;position:relative;width:100%;display:inline-block}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list.error #select-place-holder{color:#d11e2a;background:url("../../Images/ACIT/classic/icons/chevron-bottom-active.png") no-repeat scroll 96% center #fff}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list.error.open #select-place-holder{background:url("../../Images/ACIT/classic/icons/chevron-top-active.png") no-repeat scroll 96% center #fff}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list #select-place-holder{padding:10px 32px 10px 10px;color:#868686;background:url("../../Images/ACIT/classic/icons/chevron-bottom.png") no-repeat scroll 96% center #fff;display:block;text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list #select-place-holder:hover{text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list.open #select-place-holder{background:url("../../Images/ACIT/classic/icons/chevron-top.png") no-repeat scroll 96% center #fff;text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list.open #select-place-holder:hover{text-decoration:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list .car-list-item{position:absolute;top:30px;background-color:white;background-image:none;z-index:2;border:1px solid #cecece;border-top:0;width:100%;box-shadow:none;left:-1px;max-height:250px;overflow:auto}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list .car-list-item li{display:block;padding:10px 0 10px 10px;color:#d3d3d3;cursor:not-allowed}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list .car-list-item li.unselected{color:#868686;cursor:pointer}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list .car-list-item li.unselected:hover{background:#f7f7f7;color:#d11e2a;opacity:1;filter:alpha(opacity=100)}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box{margin-bottom:0}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box .geolocation-box{clear:none;float:left;width:47.5%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box #retailers-list{clear:none;float:right;width:47.5%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box a.map{clear:both;float:right;margin-bottom:5px;background:url("../../Images/ACIT/classic/icons/localisation.png") no-repeat scroll right 5px;padding-right:12px;font-size:10.0008px;cursor:pointer}
+body>.container>.bloc-search-box .bloc-search .loadfiltera{background-color:#1b1b25;filter:alpha(opacity=40);opacity:.4;position:absolute;top:0;left:0;z-index:1020;display:none;height:100%;width:100%;text-align:center}
+body>.container>.bloc-search-box .bloc-search .loadfiltera img{padding-top:100px}
+@media(min-width:980px){body>.container>.bloc-search-box .bloc-search .form-car-selector.models .budget-box{margin-top:15px}
+}
+@media(min-width:768px) and (max-width:979px){body>.container>.bloc-search-box{height:auto;margin:0}
+body>.container>.bloc-search-box .bloc-search{background-color:#f7f7f7;position:relative;right:0;padding:20px 2.5% 20px;height:auto;display:inline-block;width:95%;max-width:95%}
+body>.container>.bloc-search-box .bloc-search.selectedCarsMax .form-car-selector .input-box{width:100%}
+body>.container>.bloc-search-box .bloc-search #form-retailers .input-box{width:100%;margin-right:0;clear:both}
+body>.container>.bloc-search-box .bloc-search #form-retailers .form-action{width:100%}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li{background-color:#e0e0e0}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li.active{background-color:#f7f7f7}
+body>.container>.bloc-search-box .bloc-search .uppercase{display:table;float:none;width:100%}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter{display:table-cell;vertical-align:middle;margin:0;text-align:right;float:none}
+body>.container>.bloc-search-box .bloc-search #form-retailers .form-action{float:right;padding:0;width:47.5%;margin-top:20px}
+body>.container>.bloc-search-box .bloc-search #form-retailers .form-action button{width:50%}
+body>.container>.bloc-search-box .bloc-search #form-retailers .form-action a.see-gamut{float:right;clear:both}
+body>.container>.bloc-search-box .bloc-search .form-car-selector.retailers .car-list,body>.container>.bloc-search-box .bloc-search .form-car-selector.version .car-list{width:100%;margin-right:0;clear:both}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .car-list{width:47.5%;margin-right:4%;clear:both}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .control-group{clear:none;float:left;width:47.5%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action{float:right;padding:0;width:47.5%;margin-top:20px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action>*{float:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action button{width:50%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector{padding:10px 0 10px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector a{text-align:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed{margin:0 0 5px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .resumed p.counter{display:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .budget-box{clear:both}
+}
+@media(max-width:767px){body>.container>.bloc-search-box{background-color:white;border-bottom:1px solid #e6e6e6;height:auto;margin:0}
+body>.container>.bloc-search-box .bloc-search{background-color:white;position:relative;right:0;padding:20px 2.5% 20px;height:auto;max-width:95%}
+body>.container>.bloc-search-box .bloc-search .uppercase .vehicules{font-size:18px;float:right;margin-top:8px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string{margin-right:15px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number-box{width:25px;height:40px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number{margin:10px auto;font-size:18px}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter{display:inline-block;clear:both}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter .nbModel{font-size:10px}
+body>.container>.bloc-search-box .bloc-search .resumed{margin:0 0 5px}
+body>.container>.bloc-search-box .bloc-search .resumed p.counter{display:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box .geolocation-box{margin-bottom:10px;width:100%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box #retailers-list{margin-bottom:10px;width:100%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box .map{display:none}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .input-box>.input-form{margin-bottom:10px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action>*{float:right}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action button{width:100%}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector{padding:10px 0 10px}
+body>.container>.bloc-search-box .bloc-search .form-car-selector .form-action .link-carselector a{text-align:right}
+}
+@media(max-width:480px){body>.container>.bloc-search-box .bloc-search .tab-swicher{margin:-20px 0 10px -2.5%;position:relative;width:105%;display:table;top:0}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li{background-color:#f7f7f7;-webkit-border-top-left-radius:0;-moz-border-radius-topleft:0;border-top-left-radius:0;-webkit-border-top-right-radius:0;-moz-border-radius-topright:0;border-top-right-radius:0;display:table-cell;padding:8px 6px 6px;text-align:center}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li a{color:#868686}
+body>.container>.bloc-search-box .bloc-search .tab-swicher li.active{background-color:white}
+body>.container>.bloc-search-box .bloc-search .uppercase .vehicules{font-size:14px;margin-top:2px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string{margin-right:10px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number-box{width:20px;height:30px}
+body>.container>.bloc-search-box .bloc-search .uppercase #car-string .alone-number{margin:7px auto;font-size:14px}
+body>.container>.bloc-search-box .bloc-search .uppercase p.counter .nbModel{font-size:10px}
+}
+.promotions{margin:30px 0 30px}
+.promotions .title{color:#d11e2a;font-family:"citroen-light";font-size:17.052px;font-style:normal;text-transform:uppercase}
+.promotions .slick-list{padding:0 13px}
+.promotions .slick-list .slick-slide{opacity:0;filter:alpha(opacity=0);-webkit-transition:opacity .25s ease 0s;-moz-transition:opacity .25s ease 0s;-o-transition:opacity .25s ease 0s;transition:opacity .25s ease 0s}
+.promotions .slick-list .slick-slide.slick-active{opacity:1;filter:alpha(opacity=100)}
+.promotions .slick-list .slick-slide:only-child{opacity:1;filter:alpha(opacity=100)}
+.promotions .promotion,.promotions .promotion a{display:block;text-align:center}
+.promotions .promotion img{display:inline}
+.promotions .bx-wrapper .bx-controls-direction .bx-prev,.promotions .bx-wrapper .bx-controls-direction .bx-next{top:45%}
+@media(max-width:979px){.promotions .title{width:90%;width:-webkit-calc(100% - 40px);width:-moz-calc(100% - 40px);width:calc(100% - 40px);display:table;margin:8px auto}
+}
+@media(max-width:767px){.promotions .title{font-size:12.600000000000001px;width:95%}
+}
+@media(max-width:480px){.promotions{margin-top:20px}
+}
+body>footer.footer-model{width:100%;padding:50px 0;overflow:hidden}
+body>footer.footer-model>.container .title{color:#d11e2a;margin:15px 0;font-family:"citroen-light";font-size:17.052px;font-style:normal;text-transform:uppercase}
+body>footer.footer-model>.container .desc{color:#868686;font-size:14px;font-weight:400}
+body>footer.footer-model>.container .carrousel-vehicle{overflow:visible;margin:0 auto}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle{float:left;margin:0;width:25%;padding:15px 0;position:relative;height:150px;opacity:.1;filter:alpha(opacity=10)}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a:hover{text-decoration:none}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a .image{display:table-cell;vertical-align:middle;height:130px;margin:0 auto;width:85%}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a .image img{max-height:120px;margin:10px auto}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a .name{position:absolute;top:150px;width:100%;text-align:center}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a .name h3,body>footer.footer-model>.container .carrousel-vehicle .vehicle a .name span{display:table;margin:0 auto;color:#c3c3c3;font-size:14px;text-transform:uppercase;font-weight:normal}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle a .name h3 a,body>footer.footer-model>.container .carrousel-vehicle .vehicle a .name span a{color:#c3c3c3;font-size:14px;text-transform:uppercase;font-weight:normal}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle.slick-active{opacity:1;filter:alpha(opacity=100)}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle.slick-active:before{background:none repeat scroll 0 0 #f3f3f6;content:"";display:block;opacity:0;filter:alpha(opacity=0);position:absolute;width:100%;height:100%;-webkit-transition:opacity .25s ease 0s;-moz-transition:opacity .25s ease 0s;-o-transition:opacity .25s ease 0s;transition:opacity .25s ease 0s;z-index:-1}
+body>footer.footer-model>.container .carrousel-vehicle .vehicle.slick-active:hover:before{opacity:1;filter:alpha(opacity=100)}
+body>footer.footer-model>.container .carrousel-vehicle .slick-list{overflow:visible;padding:0 13px}
+body>footer.footer-model>.container .carrousel-vehicle .slick-prev{left:0}
+body>footer.footer-model>.container .carrousel-vehicle .slick-next{right:0}
+body>footer.footer-model.style-ds{background-color:#0d0b0c}
+body>footer.footer-model.style-ds>.container .carrousel-vehicle .vehicle h3,body>footer.footer-model.style-ds>.container .carrousel-vehicle .vehicle span{color:##c4b7a6}
+body>footer.footer-model.style-ds>.container .carrousel-vehicle .vehicle h3 a,body>footer.footer-model.style-ds>.container .carrousel-vehicle .vehicle span a{color:##c4b7a6}
+body>footer.footer-model.style-ds>.container .carrousel-vehicle .vehicle.slick-active:before{background:none repeat scroll 0 0 #1d1a18}
+@media(max-width:767px){body>footer.footer-model>.container .title{padding:0 2.5%;font-size:12.600000000000001px}
+body>footer.footer-model>.container .desc{padding:0 2.5%;font-size:12.600000000000001px}
+}
+@media(max-width:767px){body>footer.footer-model>.container .title{padding:0 2.5%}
+body>footer.footer-model>.container .desc{padding:0 2.5%}
+}
+body.home .slick-prev,body.home .slick-next{margin-top:-45px;height:48px;width:24px;border:1px solid #d1d1d3;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;border-radius:3px}
+body.home .slick-prev:before,body.home .slick-next:before{display:none}
+body.home .slick-prev{left:0;background:url("../../Images/ACIT/classic/icons/chevron-left.png") no-repeat scroll center center #fff}
+body.home .slick-next{right:0;background:url("../../Images/ACIT/classic/icons/chevron-right.png") no-repeat scroll center center #fff}
+@media(max-width:480px){body.home .slick-prev{left:0}
+body.home .slick-next{right:0}
+}
