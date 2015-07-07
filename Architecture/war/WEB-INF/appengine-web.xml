@@ -19,13 +19,17 @@
     	<http-header name="Content-Type" value="text/html; charset=UTF-8" />
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>
+    <include path="/**.ico" expiration="365d"/>
+    <include path="/**.woff" expiration="1d" >
+    	<http-header name="Vary" value="Accept-Encoding" />
+    	<http-header name="Content-Type" value="application/x-woff" />
+    </include>
 
     <!-- The following line requires App Engine 1.3.2 SDK -->
     <include path="/**.nocache.*" expiration="0s" />
     <include path="/**.cache.*" expiration="365d">
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>
-    <include path="/**.ico" expiration="365d"/>
     
     <include path="/**.nocache.js" expiration="0s" >
     	<http-header name="Vary" value="Accept-Encoding" />
