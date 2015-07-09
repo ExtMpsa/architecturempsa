@@ -12,6 +12,7 @@
 					<g:TextBox ui:field="login"/>
 					<g:PasswordTextBox ui:field="password"/>
 					<g:CheckBox text="Register" ui:field="register"/>
+					<g:Button ui:field="signIn" text="Sign In"/>
 				</g:HTMLPanel>
 			</form>
 		</section>
