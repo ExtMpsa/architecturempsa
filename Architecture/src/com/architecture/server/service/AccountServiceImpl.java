@@ -1,5 +1,9 @@
 package com.architecture.server.service;
 
+import java.util.Date;
+
+import javax.validation.ConstraintViolationException;
+
 import org.slim3.datastore.Datastore;
 
 import com.architecture.client.service.AccountService;
@@ -11,8 +15,14 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void create(String mail, String password) {
-		Account account = new Account(mail, password);
-		Datastore.put(account);
+		Account account = Datastore.query(Account.class).asSingle();
+		if (account != null) {
+			throw new ConstraintViolationException(null);
+		} else {
+			account = new Account(mail, password);
+			account.setCreatedDate(new Date());
+			Datastore.put(account);
+		}
 	}
 
 	@Override
@@ -20,6 +30,7 @@ public class AccountServiceImpl implements AccountService {
 		boolean result = false;
 		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
 		if (account != null) {
+			account.setLastConnexion(new Date());
 			result = true;
 		}
 		return result;

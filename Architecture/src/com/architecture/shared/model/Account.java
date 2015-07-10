@@ -3,6 +3,8 @@ package com.architecture.shared.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
@@ -21,6 +23,7 @@ public class Account implements Serializable {
 
 	private Date createdDate;
 	private Date lastConnexion;
+	@Size(min = 1)
 	private String mail;
 	private String password;
 
