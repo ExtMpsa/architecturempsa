@@ -67,12 +67,12 @@ public class BannerLanguageViewImpl extends Composite {
 		switch (this.langChooser.getItemText(this.langChooser.getSelectedIndex())) {
 		case "Français (France)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
-				Window.Location.replace(Location.createUrlBuilder().setParameter("locale", "fr").buildString());
+				Window.Location.assign(Location.createUrlBuilder().setParameter("locale", "fr").buildString());
 			}
 			break;
 		case "English (United States)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "en") {
-				Window.Location.replace(Location.createUrlBuilder().setParameter("locale", "en").buildString());
+				Window.Location.assign(Location.createUrlBuilder().setParameter("locale", "en").buildString());
 			}
 			break;
 		}

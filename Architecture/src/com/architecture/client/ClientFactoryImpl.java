@@ -39,6 +39,7 @@ import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.dom.client.ScriptElement;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
@@ -100,6 +101,15 @@ public class ClientFactoryImpl implements ClientFactory {
 		// Goes to the place represented on URL else default place
 		this.historyHandler.handleCurrentHistory();
 
+		// SEO
+		String locale = LocaleInfo.getCurrentLocale().getLocaleName();
+		if (locale.equals("default")) {
+			RootPanel.getBodyElement().getParentElement().setLang("en");
+		} else {
+			RootPanel.getBodyElement().getParentElement().setLang(locale);
+		}
+
+		// Event
 		bind();
 	}
 
