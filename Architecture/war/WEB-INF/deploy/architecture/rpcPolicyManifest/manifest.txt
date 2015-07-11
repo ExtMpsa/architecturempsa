@@ -1,3 +1,3 @@
 # Module architecture
 # RPC service class, partial path of RPC policy file
-com.architecture.client.service.AccountService, D0EAFB5471D869FD6DF33637A3F7F364.gwt.rpc
+com.architecture.client.service.AccountService, C2EF0FF5CB8A258295815F2A5F6E627E.gwt.rpc
