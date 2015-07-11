@@ -15,8 +15,10 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void create(String mail, String password) {
-		Account account = Datastore.query(Account.class).asSingle();
+		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
 		if (account != null) {
+			throw new ConstraintViolationException("Email déjà enregistré", null);
+		} else if(!mail.matches("..*@.*\\..*")){
 			throw new ConstraintViolationException(null);
 		} else {
 			account = new Account(mail, password);

@@ -63,10 +63,22 @@ public class AccountServiceImplTest extends ServletTestCase {
 		service.create(emptyMail, pwd);
 	}
 	
-	private String wrongMail = "mail";
+	private String wrongMail1 = "gmail.com";
 	@Test(expected = ConstraintViolationException.class)
-	public void createWithFormatConstraintMailViolation() throws Exception {
-		service.create(wrongMail, pwd);
+	public void createWithFormatConstraintMailViolation1() throws Exception {
+		service.create(wrongMail1, pwd);
+	}
+	
+	private String wrongMail2 = "@gmail.com";
+	@Test(expected = ConstraintViolationException.class)
+	public void createWithFormatConstraintMailViolation2() throws Exception {
+		service.create(wrongMail2, pwd);
+	}
+	
+	private String wrongMail3 = "mail@gmail";
+	@Test(expected = ConstraintViolationException.class)
+	public void createWithFormatConstraintMailViolation3() throws Exception {
+		service.create(wrongMail3, pwd);
 	}
 
 	@Test

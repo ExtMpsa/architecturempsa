@@ -14,7 +14,6 @@ import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.FormsPlace;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
-import com.architecture.client.requestfactory.ArchitectureRequestTransport;
 import com.architecture.client.requestfactory.PersonRequest;
 import com.architecture.client.ui.ArchitectureView;
 import com.architecture.client.ui.ArchitectureViewImpl;
@@ -37,7 +36,10 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.dom.client.ScriptElement;
+import com.google.gwt.event.dom.client.MouseMoveEvent;
+import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.place.shared.Place;
@@ -78,11 +80,14 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Etat du chargement de l'application
 	private static boolean loaded = false;
+	
+	// Handler d'ajout de GTM
+	HandlerRegistration handler;
 
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
-		initGoogleTagManager();
+		//initGoogleTagManager();
 		// Set up for Requestfactory
 		// For use RequestFactory in activities and place we have to initialise it before.
 		requestFactory.initialize(eventBus, transport);
@@ -521,6 +526,14 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	private void bind() {
+		handler = RootPanel.get().addDomHandler(new MouseMoveHandler() {
+			@Override
+			public void onMouseMove(MouseMoveEvent event) {
+				// TODO Auto-generated method stub
+				initGoogleTagManager();
+				handler.removeHandler();
+			}
+		}, MouseMoveEvent.getType());
 
 		eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
 

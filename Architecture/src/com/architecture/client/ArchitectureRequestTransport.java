@@ -1,4 +1,4 @@
-package com.architecture.client.requestfactory;
+package com.architecture.client;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style.Cursor;

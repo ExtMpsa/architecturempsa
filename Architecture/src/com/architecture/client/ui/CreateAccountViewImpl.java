@@ -64,7 +64,8 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				@Override
 				public void onFailure(Throwable caught) {
 					removeLoader();
-					Window.alert(caught.getMessage());
+					String details = caught.getMessage();
+				    Window.alert(details);
 				}
 			});
 		} else {
@@ -83,6 +84,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	public boolean validateClient() {
 		boolean validate = false;
 		account.setMail(login.getText());
+		account.setPassword("pwd");
 		Set<ConstraintViolation<Account>> violations = ClientFactoryImpl.getInstance().getValidator().validate(account);
 		if (violations.isEmpty()) {
 			validate = true;

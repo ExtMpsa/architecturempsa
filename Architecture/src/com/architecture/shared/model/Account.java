@@ -3,6 +3,8 @@ package com.architecture.shared.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.slim3.datastore.Attribute;
@@ -23,8 +25,11 @@ public class Account implements Serializable {
 
 	private Date createdDate;
 	private Date lastConnexion;
-	@Size(min = 1)
+	@NotNull
+	@Pattern(regexp="..*@.*\\..*", message = "Mail must be a valid mail address.")
 	private String mail;
+	@NotNull
+	@Size(min = 2, message = "Password must be at least 2 characters long.")
 	private String password;
 
 	public Account() {
