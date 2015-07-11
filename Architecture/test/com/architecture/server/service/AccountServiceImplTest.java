@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.slim3.datastore.Datastore;
 import org.slim3.tester.ServletTestCase;
 
+import com.architecture.client.exception.AttackHackingException;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
 
@@ -58,25 +59,25 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 	
 	private String emptyMail = "";
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = AttackHackingException.class)
 	public void createWithLengthConstraintMailViolation() throws Exception {
 		service.create(emptyMail, pwd);
 	}
 	
 	private String wrongMail1 = "gmail.com";
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = AttackHackingException.class)
 	public void createWithFormatConstraintMailViolation1() throws Exception {
 		service.create(wrongMail1, pwd);
 	}
 	
 	private String wrongMail2 = "@gmail.com";
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = AttackHackingException.class)
 	public void createWithFormatConstraintMailViolation2() throws Exception {
 		service.create(wrongMail2, pwd);
 	}
 	
 	private String wrongMail3 = "mail@gmail";
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = AttackHackingException.class)
 	public void createWithFormatConstraintMailViolation3() throws Exception {
 		service.create(wrongMail3, pwd);
 	}

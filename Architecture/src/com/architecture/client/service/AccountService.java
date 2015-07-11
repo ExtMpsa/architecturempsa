@@ -1,11 +1,12 @@
 package com.architecture.client.service;
 
+import com.architecture.client.exception.AttackHackingException;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("service.s3gwt")
 public interface AccountService extends RemoteService {
-	void create(String mail, String password);
+	void create(String mail, String password) throws AttackHackingException;
 
 	boolean signIn(String mail, String password);
 }

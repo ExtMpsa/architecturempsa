@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.slim3.datastore.Datastore;
 
+import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.service.AccountService;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
@@ -14,12 +15,12 @@ public class AccountServiceImpl implements AccountService {
 	private AccountMeta a = new AccountMeta();
 
 	@Override
-	public void create(String mail, String password) {
+	public void create(String mail, String password) throws AttackHackingException {
 		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
 		if (account != null) {
 			throw new ConstraintViolationException("Email déjà enregistré", null);
 		} else if(!mail.matches("..*@.*\\..*")){
-			throw new ConstraintViolationException(null);
+			throw new AttackHackingException("Attaque du serveur par le client avec un mail invalide.");
 		} else {
 			account = new Account(mail, password);
 			account.setCreatedDate(new Date());

@@ -6,6 +6,9 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.CreateAccountActivity;
+import com.architecture.client.exception.AttackHackingException;
+import com.architecture.client.exception.MailAlreadyUsedException;
+import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
@@ -57,15 +60,22 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 				@Override
 				public void onSuccess(Void result) {
-					// Window.Location.replace(Window.Location.getHref().replaceAll("#.*", "#!SignInPlace:"));
 					History.newItem("!SignInPlace:");
 				}
 
 				@Override
 				public void onFailure(Throwable caught) {
+					ExceptionText exceptionText = GWT.create(ExceptionText.class);
 					removeLoader();
-					String details = caught.getMessage();
-				    Window.alert(details);
+					String details;
+					if (caught instanceof AttackHackingException) {
+				      details = exceptionText.attackHackingGeneric();
+				    }else if (caught instanceof MailAlreadyUsedException){
+				    	details = exceptionText.mailAlreadyUsed();
+				    }else{
+				    	details = caught.getMessage();
+				    }
+					Window.alert(details);
 				}
 			});
 		} else {

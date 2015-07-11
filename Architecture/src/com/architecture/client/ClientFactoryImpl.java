@@ -529,7 +529,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		handler = RootPanel.get().addDomHandler(new MouseMoveHandler() {
 			@Override
 			public void onMouseMove(MouseMoveEvent event) {
-				// TODO Auto-generated method stub
 				initGoogleTagManager();
 				handler.removeHandler();
 			}
