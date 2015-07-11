@@ -73,7 +73,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				    }else if (caught instanceof MailAlreadyUsedException){
 				    	details = exceptionText.mailAlreadyUsed();
 				    }else{
-				    	details = caught.getMessage();
+				    	details = exceptionText.internalServerError();
 				    }
 					Window.alert(details);
 				}
