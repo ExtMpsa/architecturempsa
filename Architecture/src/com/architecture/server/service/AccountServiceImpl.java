@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
 	@Override
-	public void create(String mail, String password) throws AttackHackingException,MailAlreadyUsedException {
+	public void create(String mail, String password) throws MailAlreadyUsedException,AttackHackingException {
 		Account account = Datastore.query(a).filter(a.mail.equal(mail)).asSingle();
 		if (account != null) {
 			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un email déjà utilisé.");
