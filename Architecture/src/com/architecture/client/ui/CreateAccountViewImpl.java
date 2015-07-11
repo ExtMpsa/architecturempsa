@@ -8,6 +8,7 @@ import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
+import com.architecture.client.resources.txt.CreateAccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -16,6 +17,7 @@ import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -25,6 +27,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -35,9 +38,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
 	private static Account account = GWT.create(Account.class);
 	@UiField
+	HeadingElement createAccount;
+	@UiField
 	TextBox login;
 	@UiField
 	Button create;
+	@UiField Label loginError;
 	CreateAccountActivity activity;
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
@@ -45,6 +51,10 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	public CreateAccountViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
+		createAccount.setInnerText(createAccountText.title());
+		loginError.setVisible(false);
+		create.setText(createAccountText.create());
 	}
 
 	@Override
@@ -80,7 +90,6 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			});
 		} else {
 			removeLoader();
-			Window.alert("Violation des contraintes de création de compte côté Client.");
 		}
 	}
 
@@ -98,8 +107,19 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		Set<ConstraintViolation<Account>> violations = ClientFactoryImpl.getInstance().getValidator().validate(account);
 		if (violations.isEmpty()) {
 			validate = true;
+			loginError.setVisible(false);
 		} else {
 			validate = false;
+			for (ConstraintViolation<Account> constraintViolation : violations){
+				switch (constraintViolation.getPropertyPath().toString()) {
+				case "mail":
+					loginError.setVisible(true);
+					loginError.setText(constraintViolation.getMessage());
+					break;
+				case "password":
+					break;
+				}
+			}
 		}
 		return validate;
 	}

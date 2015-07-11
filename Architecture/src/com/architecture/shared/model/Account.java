@@ -16,6 +16,9 @@ import com.google.appengine.api.datastore.Key;
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static final String EMAIL_PATTERN = 
+			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	@Attribute(primaryKey = true)
 	private Key key;
@@ -26,7 +29,7 @@ public class Account implements Serializable {
 	private Date createdDate;
 	private Date lastConnexion;
 	@NotNull
-	@Pattern(regexp="..*@.*\\..*", message = "Mail must be a valid mail address.")
+	@Pattern(regexp=EMAIL_PATTERN, message = "The address email used isn't valid.")
 	private String mail;
 	@NotNull
 	@Size(min = 2, message = "Password must be at least 2 characters long.")

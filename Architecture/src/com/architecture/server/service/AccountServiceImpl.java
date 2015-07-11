@@ -12,13 +12,16 @@ import com.architecture.shared.model.Account;
 
 public class AccountServiceImpl implements AccountService {
 	private AccountMeta a = new AccountMeta();
-
+	private static final String EMAIL_PATTERN = 
+			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
 	@Override
 	public void create(String mail, String password) throws AttackHackingException,MailAlreadyUsedException {
-		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
+		Account account = Datastore.query(a).filter(a.mail.equal(mail)).asSingle();
 		if (account != null) {
 			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un email déjà utilisé.");
-		} else if(!mail.matches("..*@.*\\..*")){
+		} else if(!mail.matches(EMAIL_PATTERN)){
 			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un email qui ne respecte pas les contraintes de validation.");
 		} else {
 			account = new Account(mail, password);

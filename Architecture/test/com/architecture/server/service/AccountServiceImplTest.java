@@ -3,6 +3,9 @@ package com.architecture.server.service;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 import org.slim3.datastore.Datastore;
 import org.slim3.tester.ServletTestCase;
@@ -57,28 +60,54 @@ public class AccountServiceImplTest extends ServletTestCase {
 		service.create(mail, pwd);
 	}
 	
-	private String emptyMail = "";
-	@Test(expected = AttackHackingException.class)
-	public void createWithLengthConstraintMailViolation() throws Exception {
-		service.create(emptyMail, pwd);
+	private Set<String> validMails = new HashSet<String>() ;
+	@Test
+	public void createWithValidMails() throws Exception {
+		validMails.add("digitalPerformanceTraining@yahoo.com");
+		validMails.add("digitalPerformanceTraining-100@yahoo.com");
+		validMails.add("digitalPerformanceTraining.100@yahoo.com");
+		validMails.add("digitalPerformanceTraining111@digitalPerformanceTraining.com");
+		validMails.add("digitalPerformanceTraining-100@digitalPerformanceTraining.net");
+		validMails.add("digitalPerformanceTraining.100@digital.Performance.Training");
+		validMails.add("digitalPerformanceTraining@1.com");
+		validMails.add("digitalPerformanceTraining@gmail.com.com");
+		validMails.add("digitalPerformanceTraining+100@gmail.com");
+		validMails.add("digitalPerformanceTraining-100@yahoo-test.com");
+		for (String mail :validMails){
+			service.create(mail, pwd);
+		}
 	}
 	
-	private String wrongMail1 = "gmail.com";
+	private Set<String> invalidMails = new HashSet<String>() ;
 	@Test(expected = AttackHackingException.class)
-	public void createWithFormatConstraintMailViolation1() throws Exception {
-		service.create(wrongMail1, pwd);
-	}
-	
-	private String wrongMail2 = "@gmail.com";
-	@Test(expected = AttackHackingException.class)
-	public void createWithFormatConstraintMailViolation2() throws Exception {
-		service.create(wrongMail2, pwd);
-	}
-	
-	private String wrongMail3 = "mail@gmail";
-	@Test(expected = AttackHackingException.class)
-	public void createWithFormatConstraintMailViolation3() throws Exception {
-		service.create(wrongMail3, pwd);
+	public void createWithInvalidMails() throws Exception {
+		invalidMails.add("digitalPerformanceTraining");
+		invalidMails.add("digitalPerformanceTraining@.com.my");
+		invalidMails.add("digitalPerformanceTraining123@gmail.a");
+		invalidMails.add("digitalPerformanceTraining123@.com");
+		invalidMails.add("digitalPerformanceTraining123@.com.com");
+		invalidMails.add(".digitalPerformanceTraining@digitalPerformanceTraining.com");
+		invalidMails.add("digitalPerformanceTraining()*@gmail.com");
+		invalidMails.add("digitalPerformanceTraining@%*.com");
+		invalidMails.add("digitalPerformanceTraining..2015@gmail.com");
+		invalidMails.add("digitalPerformanceTraining.@gmail.com");
+		invalidMails.add("digitalPerformance@Training@gmail.com");
+		invalidMails.add("digitalPerformance@gmail.com.1a");
+		Exception exception=null;
+		for (String mail :invalidMails){
+			try{
+				service.create(mail, pwd);
+				throw new Exception();
+			}catch(Exception e){
+				if (e instanceof AttackHackingException){
+					exception = e;
+				}else{
+					exception = e;
+					throw e;
+				}
+			}
+		}
+		throw exception;
 	}
 
 	@Test

@@ -7,6 +7,7 @@
 	<g:HTMLPanel>
 		<h2 ui:field="createAccount">Create Account</h2>
 		<g:TextBox ui:field="login"/>
+		<g:Label text="Texte d&apos;erreur" ui:field="loginError" styleName="gwt-Label-Error"/>
 		<g:Button ui:field="create" text="Create Account"/>
 	</g:HTMLPanel>
 </ui:UiBinder> 
