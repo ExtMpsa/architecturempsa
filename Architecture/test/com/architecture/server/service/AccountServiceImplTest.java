@@ -3,13 +3,12 @@ package com.architecture.server.service;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import javax.validation.ConstraintViolationException;
-
 import org.junit.Test;
 import org.slim3.datastore.Datastore;
 import org.slim3.tester.ServletTestCase;
 
 import com.architecture.client.exception.AttackHackingException;
+import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
 
@@ -48,7 +47,7 @@ public class AccountServiceImplTest extends ServletTestCase {
 		assertThat(account.getMail(), is(mail2));
 	}
 
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = MailAlreadyUsedException.class)
 	public void createWithMailUsed() throws Exception {
 		service.create(mail, pwd);
 		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
