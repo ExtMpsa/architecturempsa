@@ -1,6 +1,8 @@
 package com.architecture.server.service;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.slim3.datastore.Datastore;
 
@@ -12,28 +14,34 @@ import com.architecture.shared.model.Account;
 
 public class AccountServiceImpl implements AccountService {
 	private AccountMeta a = new AccountMeta();
-	private static final String EMAIL_PATTERN = 
-			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
 	@Override
-	public void create(String mail, String password) throws MailAlreadyUsedException,AttackHackingException {
-		Account account = Datastore.query(a).filter(a.mail.equal(mail)).asSingle();
+	public Set<String> create(String mail, String password) throws MailAlreadyUsedException, AttackHackingException {
+		HashSet<String> alreadyExistViolation = new HashSet<>();
+		Account account = Datastore.query(this.a).filter(this.a.mail.equal(mail)).asSingle();
 		if (account != null) {
-			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un email déjà utilisé.");
-		} else if(!mail.matches(EMAIL_PATTERN)){
+			alreadyExistViolation.add("mailAlreadyUsed");
+
+			// TODO : Régler ce problème d'exception avec Google App Engine
+			// Problème de lever d'exception non reconnue par Google App Engine
+			// Contournement par une réponse 200 avec un Haset non vide.
+			// throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un email déjà utilisé.");
+		} else if (!mail.matches(EMAIL_PATTERN)) {
 			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un email qui ne respecte pas les contraintes de validation.");
 		} else {
 			account = new Account(mail, password);
 			account.setCreatedDate(new Date());
 			Datastore.put(account);
 		}
+		return alreadyExistViolation;
+
 	}
 
 	@Override
 	public boolean signIn(String mail, String password) {
 		boolean result = false;
-		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		Account account = Datastore.query(Account.class).filter(this.a.mail.equal(mail)).asSingle();
 		if (account != null) {
 			account.setLastConnexion(new Date());
 			result = true;

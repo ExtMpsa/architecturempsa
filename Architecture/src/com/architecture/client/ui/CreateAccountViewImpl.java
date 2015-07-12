@@ -43,7 +43,8 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	TextBox login;
 	@UiField
 	Button create;
-	@UiField Label loginError;
+	@UiField
+	Label loginError;
 	CreateAccountActivity activity;
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
@@ -52,9 +53,9 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	public CreateAccountViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
-		createAccount.setInnerText(createAccountText.title());
-		loginError.setVisible(false);
-		create.setText(createAccountText.create());
+		this.createAccount.setInnerText(createAccountText.title());
+		this.loginError.setVisible(false);
+		this.create.setText(createAccountText.create());
 	}
 
 	@Override
@@ -66,11 +67,18 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	void onCreateClick(ClickEvent event) {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (validateClient()) {
-			service.create(login.getText(), "pwd", new AsyncCallback<Void>() {
+			service.create(this.login.getText(), "pwd", new AsyncCallback<Set<String>>() {
 
 				@Override
-				public void onSuccess(Void result) {
-					History.newItem("!SignInPlace:");
+				public void onSuccess(Set<String> result) {
+					if (result.isEmpty()) {
+						History.newItem("!SignInPlace:");
+					} else {
+						removeLoader();
+						ExceptionText exceptionText = GWT.create(ExceptionText.class);
+						Window.alert(exceptionText.mailAlreadyUsed());
+					}
+
 				}
 
 				@Override
@@ -79,12 +87,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 					removeLoader();
 					String details;
 					if (caught instanceof AttackHackingException) {
-				      details = exceptionText.attackHackingGeneric();
-				    }else if (caught instanceof MailAlreadyUsedException){
-				    	details = exceptionText.mailAlreadyUsed();
-				    }else{
-				    	details = exceptionText.internalServerError() + caught.getClass().toString();
-				    }
+						details = exceptionText.attackHackingGeneric();
+					} else if (caught instanceof MailAlreadyUsedException) {
+						details = exceptionText.mailAlreadyUsed();
+					} else {
+						details = exceptionText.internalServerError() + caught.getClass().toString();
+					}
 					Window.alert(details);
 				}
 			});
@@ -102,19 +110,19 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	public boolean validateClient() {
 		boolean validate = false;
-		account.setMail(login.getText());
+		account.setMail(this.login.getText());
 		account.setPassword("pwd");
 		Set<ConstraintViolation<Account>> violations = ClientFactoryImpl.getInstance().getValidator().validate(account);
 		if (violations.isEmpty()) {
 			validate = true;
-			loginError.setVisible(false);
+			this.loginError.setVisible(false);
 		} else {
 			validate = false;
-			for (ConstraintViolation<Account> constraintViolation : violations){
+			for (ConstraintViolation<Account> constraintViolation : violations) {
 				switch (constraintViolation.getPropertyPath().toString()) {
 				case "mail":
-					loginError.setVisible(true);
-					loginError.setText(constraintViolation.getMessage());
+					this.loginError.setVisible(true);
+					this.loginError.setText(constraintViolation.getMessage());
 					break;
 				case "password":
 					break;
