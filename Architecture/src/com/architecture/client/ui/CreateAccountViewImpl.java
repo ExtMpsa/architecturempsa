@@ -74,14 +74,14 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	@UiHandler("create")
 	void onCreateClick(ClickEvent event) {
 		create();
-		pushEvent("event", "Create Account Mail Next", "Click", "Click on Next");
+		pushEvent("event", "Create Account Mail Next", "Click", this.login.getText());
 	}
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
 		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
 			create();
-			pushEvent("event", "Create Account Mail Next", "Key press Enter", "Keyboard pressed enter");
+			pushEvent("event", "Create Account Mail Next", "Key press Enter", this.login.getText());
 		}
 	}
 
