@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.createAccountMail{
+	text-align: center;
+}
+
+.createAccountMail input{
+	height: 30px;
+	font-size: 20px;
+	width: 300px;
+	margin: 5px auto;
+}
+
+.createAccountMail button {
+	display: block;
+	height: 30px;
+	width: 304px;
+	margin: 5px auto;
+}

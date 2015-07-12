@@ -10,14 +10,21 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class CreateAccountActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
+	String step;
 
 	public CreateAccountActivity(CreateAccountPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
+		step = place.getCreateAccountStep();
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		CreateAccountView createAccountView = new CreateAccountViewImpl();
+		CreateAccountView createAccountView;
+		if (step.equalsIgnoreCase("password")){
+			createAccountView= new CreateAccountViewImpl();
+		}else{
+			createAccountView= new CreateAccountViewImpl();
+		}
 		createAccountView.setActivity(this);
 		containerWidget.setWidget(createAccountView.asWidget());
 		removeLoader();

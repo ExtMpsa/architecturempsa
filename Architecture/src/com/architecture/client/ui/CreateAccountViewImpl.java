@@ -5,15 +5,16 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
+import com.architecture.client.resources.ResourcesCreateAccount;
 import com.architecture.client.resources.txt.CreateAccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
 import com.architecture.shared.model.Account;
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -45,12 +46,13 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	Button create;
 	@UiField
 	Label loginError;
-	CreateAccountActivity activity;
+	Activity activity;
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
 	}
 
 	public CreateAccountViewImpl() {
+		ResourcesCreateAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 		this.createAccount.setInnerText(createAccountText.title());
@@ -59,7 +61,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	}
 
 	@Override
-	public void setActivity(CreateAccountActivity activity) {
+	public void setActivity(Activity activity) {
 		this.activity = activity;
 	}
 
