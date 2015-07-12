@@ -5,9 +5,10 @@
 
 .createAccountMail input{
 	height: 30px;
-	font-size: 20px;
-	width: 300px;
+	font-size: 15px;
+	width: 284px;
 	margin: 5px auto;
+	padding: 0 8px;
 }
 
 .createAccountMail button {

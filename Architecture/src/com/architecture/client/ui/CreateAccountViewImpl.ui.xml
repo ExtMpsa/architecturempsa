@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="createAccountMail">
+	<g:HTMLPanel styleName="createAccountMail" ui:field="panel">
 		<h2 ui:field="createAccount">Create Account</h2>
 		<g:TextBox ui:field="login"/>
 		<g:Label text="Texte d&apos;erreur" ui:field="loginError" styleName="gwt-Label-Error"/>

@@ -30,6 +30,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -48,6 +49,8 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	Button create;
 	@UiField
 	Label loginError;
+	@UiField
+	HTMLPanel panel;
 	Activity activity;
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
@@ -58,6 +61,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		initWidget(uiBinder.createAndBindUi(this));
 		CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 		this.createAccount.setInnerText(createAccountText.title());
+		this.login.getElement().setAttribute("placeholder", createAccountText.placeholder());
 		this.loginError.setVisible(false);
 		this.create.setText(createAccountText.create());
 	}
@@ -75,13 +79,13 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
-		if(event.getCharCode()== KeyCodes.KEY_ENTER){
+		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
 			create();
 			pushEvent("event", "Create Account Mail Next", "Key press Enter", "Keyboard pressed enter");
 		}
 	}
-	
-	private void create(){
+
+	private void create() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (validateClient()) {
 			service.create(this.login.getText(), "pwd", new AsyncCallback<Void>() {
@@ -110,7 +114,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			removeLoader();
 		}
 	}
-	
+
 	public void removeLoader() {
 		Element loader = Document.get().getElementById("loader");
 		if (loader != null) {
@@ -141,21 +145,14 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		}
 		return validate;
 	}
-	
+
 	private native void pushEvent(String event, String category, String action, String label) /*-{
-	try {
 		$wnd["dataLayer"] = $wnd["dataLayer"] || [];
 		$wnd.dataLayer.push({
 			event : event,
 			eventCategory : category,
 			eventAction : action,
-			eventLabel : label,
-			ni: ni
+			eventLabel : label
 		});
-	} catch (e) {
-		$wnd.dataLayer.push({
-			event : launcher,
-		});
-	}
-}-*/;
+	}-*/;
 }
