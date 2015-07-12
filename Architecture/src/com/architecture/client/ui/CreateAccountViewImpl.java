@@ -67,18 +67,11 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	void onCreateClick(ClickEvent event) {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (validateClient()) {
-			service.create(this.login.getText(), "pwd", new AsyncCallback<Set<String>>() {
+			service.create(this.login.getText(), "pwd", new AsyncCallback<Void>() {
 
 				@Override
-				public void onSuccess(Set<String> result) {
-					if (result.isEmpty()) {
-						History.newItem("!SignInPlace:");
-					} else {
-						removeLoader();
-						ExceptionText exceptionText = GWT.create(ExceptionText.class);
-						Window.alert(exceptionText.mailAlreadyUsed());
-					}
-
+				public void onSuccess(Void result) {
+					History.newItem("!SignInPlace:");
 				}
 
 				@Override

@@ -11,6 +11,7 @@ import org.slim3.datastore.Datastore;
 import org.slim3.tester.ServletTestCase;
 
 import com.architecture.client.exception.AttackHackingException;
+import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
 
@@ -50,28 +51,15 @@ public class AccountServiceImplTest extends ServletTestCase {
 		assertThat(account.getMail(), is(this.mail2));
 	}
 
-	@Test
+	@Test(expected = MailAlreadyUsedException.class)
 	public void createWithMailUsed() throws Exception {
 		this.service.create(this.mail, this.pwd);
 		Account account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail)).asSingle();
 		assertThat(account, is(notNullValue()));
 		assertThat(account.getMail(), is(this.mail));
 
-		Set<String> result = this.service.create(this.mail, this.pwd);
-		assertThat(result.isEmpty(), is(false));
+		this.service.create(this.mail, this.pwd);
 	}
-
-	// Problème de lever d'exception non reconnue par Google App Engine
-	// Contournement par une réponse 200 avec un Haset non vide.
-	// @Test(expected = MailAlreadyUsedException.class)
-	// public void createWithMailUsed() throws Exception {
-	// service.create(mail, pwd);
-	// Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
-	// assertThat(account, is(notNullValue()));
-	// assertThat(account.getMail(), is(mail));
-	//
-	// service.create(mail, pwd);
-	// }
 
 	private Set<String> validMails = new HashSet<String>();
 
