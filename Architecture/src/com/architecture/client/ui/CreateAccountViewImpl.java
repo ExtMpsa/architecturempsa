@@ -20,6 +20,8 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -67,6 +69,19 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	@UiHandler("create")
 	void onCreateClick(ClickEvent event) {
+		create();
+		pushEvent("event", "Create Account Mail Next", "Click", "Click on Next");
+	}
+
+	@UiHandler("login")
+	void onLoginKeyPress(KeyPressEvent event) {
+		if(event.getCharCode()== KeyCodes.KEY_ENTER){
+			create();
+			pushEvent("event", "Create Account Mail Next", "Key press Enter", "Keyboard pressed enter");
+		}
+	}
+	
+	private void create(){
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (validateClient()) {
 			service.create(this.login.getText(), "pwd", new AsyncCallback<Void>() {
@@ -95,7 +110,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			removeLoader();
 		}
 	}
-
+	
 	public void removeLoader() {
 		Element loader = Document.get().getElementById("loader");
 		if (loader != null) {
@@ -126,4 +141,21 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		}
 		return validate;
 	}
+	
+	private native void pushEvent(String event, String category, String action, String label) /*-{
+	try {
+		$wnd["dataLayer"] = $wnd["dataLayer"] || [];
+		$wnd.dataLayer.push({
+			event : event,
+			eventCategory : category,
+			eventAction : action,
+			eventLabel : label,
+			ni: ni
+		});
+	} catch (e) {
+		$wnd.dataLayer.push({
+			event : launcher,
+		});
+	}
+}-*/;
 }
