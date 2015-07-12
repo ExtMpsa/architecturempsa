@@ -52,6 +52,9 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	@UiField
 	HTMLPanel panel;
 	Activity activity;
+	String category = "Create Account Mail";
+	String action;
+	String label;
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
 	}
@@ -73,15 +76,17 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	@UiHandler("create")
 	void onCreateClick(ClickEvent event) {
+		this.action = "Click";
 		create();
-		pushEvent("event", "Create Account Mail Next", "Click", this.login.getText());
+		pushEvent("event", this.category, this.action, this.login.getText());
 	}
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
 		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+			this.action = "Key press Enter";
 			create();
-			pushEvent("event", "Create Account Mail Next", "Key press Enter", this.login.getText());
+			pushEvent("event", this.category, this.action, this.login.getText());
 		}
 	}
 
@@ -92,6 +97,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 				@Override
 				public void onSuccess(Void result) {
+					CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Success";
 					History.newItem("!SignInPlace:");
 				}
 
@@ -102,15 +108,19 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 					String details;
 					if (caught instanceof AttackHackingException) {
 						details = exceptionText.attackHackingGeneric();
+						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Server Constraints Mail Not Valid";
 					} else if (caught instanceof MailAlreadyUsedException) {
+						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Mail Already Registered";
 						details = exceptionText.mailAlreadyUsed();
 					} else {
+						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Internal Server Error";
 						details = exceptionText.internalServerError() + caught.getClass().toString();
 					}
 					Window.alert(details);
 				}
 			});
 		} else {
+			this.action = this.action + " Failed Client Constraint Mail Not Valid";
 			removeLoader();
 		}
 	}
