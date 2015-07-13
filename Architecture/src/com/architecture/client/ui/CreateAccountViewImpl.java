@@ -26,7 +26,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -76,17 +75,15 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	@UiHandler("create")
 	void onCreateClick(ClickEvent event) {
-		this.action = "Click";
+		action = "Click";
 		create();
-		pushEvent("event", this.category, this.action, this.login.getText());
 	}
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
 		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
-			this.action = "Key press Enter";
+			action = "Key Press Enter";
 			create();
-			pushEvent("event", this.category, this.action, this.login.getText());
 		}
 	}
 
@@ -97,7 +94,8 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 				@Override
 				public void onSuccess(Void result) {
-					CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Success";
+					action = action + " Success";
+					pushEvent("event", category, action, login.getText());
 					History.newItem("!SignInPlace:");
 				}
 
@@ -108,19 +106,23 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 					String details;
 					if (caught instanceof AttackHackingException) {
 						details = exceptionText.attackHackingGeneric();
-						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Server Constraints Mail Not Valid";
+						action = action + " Failed Server Constraints Mail Not Valid";
 					} else if (caught instanceof MailAlreadyUsedException) {
-						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Mail Already Registered";
+						action = action + " Failed Mail Already Registered";
 						details = exceptionText.mailAlreadyUsed();
 					} else {
-						CreateAccountViewImpl.this.action = CreateAccountViewImpl.this.action + " Failed Internal Server Error";
+						action = action + " Failed Internal Server Error";
 						details = exceptionText.internalServerError() + caught.getClass().toString();
 					}
-					Window.alert(details);
+					pushEvent("event", category, action, login.getText());
+					loginError.setVisible(true);
+					loginError.setText(details);
+					login.addStyleName("input-Error");
 				}
 			});
 		} else {
-			this.action = this.action + " Failed Client Constraint Mail Not Valid";
+			action = action + " Failed Client Constraint Mail Not Valid";
+			pushEvent("event", category, action, login.getText());
 			removeLoader();
 		}
 	}
@@ -139,14 +141,16 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		Set<ConstraintViolation<Account>> violations = ClientFactoryImpl.getInstance().getValidator().validate(account);
 		if (violations.isEmpty()) {
 			validate = true;
-			this.loginError.setVisible(false);
+			loginError.setVisible(false);
+			login.removeStyleName("input-Error");
 		} else {
 			validate = false;
 			for (ConstraintViolation<Account> constraintViolation : violations) {
 				switch (constraintViolation.getPropertyPath().toString()) {
 				case "mail":
-					this.loginError.setVisible(true);
-					this.loginError.setText(constraintViolation.getMessage());
+					loginError.setVisible(true);
+					loginError.setText(constraintViolation.getMessage());
+					login.addStyleName("input-Error");
 					break;
 				case "password":
 					break;

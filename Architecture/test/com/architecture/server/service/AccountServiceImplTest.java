@@ -26,6 +26,8 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 
 	private final String mail = "mail@gmail.com";
+	private final String mailLowerCase = "mailtolowercase@gmail.com";
+	private final String mailWithUpperCase = "MailToLowerCase@Gmail.Com";
 	private final String pwd = "password";
 
 	@Test
@@ -34,6 +36,14 @@ public class AccountServiceImplTest extends ServletTestCase {
 		Account account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail)).asSingle();
 		assertThat(account, is(notNullValue()));
 		assertThat(account.getMail(), is(this.mail));
+	}
+
+	@Test
+	public void createToLowerCase() throws Exception {
+		service.create(mailWithUpperCase, pwd);
+		Account account = Datastore.query(a).filter(a.mail.equal(mailLowerCase)).asSingle();
+		assertThat(account, is(notNullValue()));
+		assertThat(account.getMail(), is(mailLowerCase));
 	}
 
 	private final String mail2 = "mail2@gmail.com";
