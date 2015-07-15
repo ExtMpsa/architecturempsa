@@ -46,7 +46,7 @@ public class CreateAccountActivity extends ArchitectureActivity {
 
 	@Override
 	public void goTo(Place place) {
-		this.clientFactory.getPlaceController().goTo(place);
+		clientFactory.getPlaceController().goTo(place);
 	}
 
 	public void setStep(String step) {

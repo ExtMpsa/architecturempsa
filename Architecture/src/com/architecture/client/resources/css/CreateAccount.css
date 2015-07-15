@@ -25,6 +25,7 @@
 .input-Error {
 	border-color: red;
 	border-style: double;
+	outline: initial;
 }
 
 .gwt-Label-Error{

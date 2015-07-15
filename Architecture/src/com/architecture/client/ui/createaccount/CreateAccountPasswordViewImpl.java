@@ -7,6 +7,7 @@ import javax.validation.ConstraintViolation;
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.resources.ResourcesCreateAccount;
 import com.architecture.client.resources.txt.CreateAccountText;
+import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
@@ -18,6 +19,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -62,6 +65,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	String label;
 	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 	CreateAccountActivity activity;
+	ExceptionText exceptionText = GWT.create(ExceptionText.class);
 
 	interface CreateAccountPasswordViewImplUiBinder extends UiBinder<Widget, CreateAccountPasswordViewImpl> {
 	}
@@ -88,6 +92,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 		passwordVerify.getElement().setAttribute("placeholder", createAccountText.placeholderPasswordVerify());
 		passwordVerifyError.setText(createAccountText.passwordVerifyError());
+
 		create.setText(createAccountText.create());
 		String token = History.getToken();
 		if (token.equalsIgnoreCase("!CreateAccountPlace:password")) {
@@ -186,4 +191,49 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 			activity.removeLoader();
 		}
 	}
+
+	@UiHandler("create")
+	void onCreateClick(ClickEvent event) {
+		RootPanel.get().insert(new LoaderViewImpl(), 0);
+		String pwd = password.getText();
+		String pwdVerify = passwordVerify.getText();
+		activity.getAccount().setPassword(pwd);
+		if (pwd.equals(pwdVerify)) {
+			passwordVerifyError.setVisible(false);
+			if (activity.validateAccountClient()) {
+				service.create(activity.getAccount().getMail(), activity.getAccount().getPassword(), new AsyncCallback<Void>() {
+					@Override
+					public void onSuccess(Void result) {
+						action = action + " Success";
+						pushEvent("event", category, action, activity.getAccount().getMail());
+						History.newItem("!SignInPlace:");
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						activity.removeLoader();
+
+					}
+				});
+
+			} else {
+				Window.alert(exceptionText.attackHackingGeneric());
+				activity.removeLoader();
+			}
+		} else {
+			passwordVerifyError.setVisible(true);
+			activity.removeLoader();
+		}
+	}
+
+	private native void pushEvent(String event, String category, String action, String label) /*-{
+		$wnd["dataLayer"] = $wnd["dataLayer"] || [];
+		$wnd.dataLayer.push({
+			event : event,
+			eventCategory : category,
+			eventAction : action,
+			eventLabel : label
+		});
+	}-*/;
 }
