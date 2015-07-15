@@ -4102,3 +4102,2120 @@ Rebinding com.architecture.client.ui.CreateAccountViewImpl_CreateAccountViewUiBi
       Compiling...
          Compilation completed in 0,02 seconds
       Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2737 units from cache.
+Compiling...
+   10% complete (ETR: 25 seconds)
+   10% complete (ETR: 25 seconds)
+   20% complete (ETR: 22 seconds)
+   30% complete (ETR: 15 seconds)
+   40% complete (ETR: 11 seconds)
+   50% complete (ETR: 8 seconds)
+   60% complete (ETR: 6 seconds)
+   70% complete (ETR: 5 seconds)
+   80% complete (ETR: 3 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 17,58 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3108 units from cache.
+Compiling...
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   70% complete (ETR: 2 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 11,18 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809500821.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809500821.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809500821_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809501544.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809501544.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809501544_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809665170.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809665170.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436809665170_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3107 units from cache.
+Compiling...
+   50% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   60% complete (ETR: 4 seconds)
+   70% complete (ETR: 3 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 13,23 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125192.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125192.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125192_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125785.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125785.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810125785_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810184626.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810184626.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810184626_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810229274.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810229274.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810229274_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810234158.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810234158.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810234158_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810244652.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810244652.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810244652_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810246562.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810246562.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810246562_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810253253.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810253253.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810253253_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810268926.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810268926.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810268926_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810272869.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810272869.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810272869_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810277530.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810277530.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810277530_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810292202.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810292202.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810292202_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810299932.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810299932.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810299932_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810314682.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810314682.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810314682_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810324455.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810324455.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436810324455_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811622423.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811622423.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811622423_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl.CreateAccountViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811708583.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811708583.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountViewImpl_CreateAccountViewUiBinderImpl_designTime1436811708583_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3109 units from cache.
+Compiling...
+   40% complete (ETR: 6 seconds)
+   40% complete (ETR: 6 seconds)
+   40% complete (ETR: 6 seconds)
+   40% complete (ETR: 6 seconds)
+   40% complete (ETR: 6 seconds)
+   50% complete (ETR: 6 seconds)
+   60% complete (ETR: 4 seconds)
+   70% complete (ETR: 3 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 16,06 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+      Line 34: Syntax error, insert ";" to complete FieldDeclaration
+      Line 53: ResourcesCreateAccount cannot be resolved
+      Line 58: next cannot be resolved
+      Line 79: KeyCodes cannot be resolved to a variable
+      Line 86: RootPanel cannot be resolved
+      Line 86: LoaderViewImpl cannot be resolved to a type
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+[ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+   [ERROR] Line 34: Syntax error, insert ";" to complete FieldDeclaration
+   [ERROR] Line 53: ResourcesCreateAccount cannot be resolved
+   [ERROR] Line 58: next cannot be resolved
+   [ERROR] Line 79: KeyCodes cannot be resolved to a variable
+   [ERROR] Line 86: RootPanel cannot be resolved
+   [ERROR] Line 86: LoaderViewImpl cannot be resolved to a type
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+      [ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+         [ERROR] Line 34: Syntax error, insert ";" to complete FieldDeclaration
+         [ERROR] Line 53: ResourcesCreateAccount cannot be resolved
+         [ERROR] Line 58: next cannot be resolved
+         [ERROR] Line 79: KeyCodes cannot be resolved to a variable
+         [ERROR] Line 86: RootPanel cannot be resolved
+         [ERROR] Line 86: LoaderViewImpl cannot be resolved to a type
+      [ERROR] Unable to find type 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'
+         [ERROR] Hint: Previous compiler errors may have made this type unavailable
+         [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Deferred binding failed for 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'; expect subsequent failures
+Public resources found in...
+Translatable source found in...
+Found 3108 cached/archived units.  Used 3108 / 3109 units from cache.
+Compiling...
+   Compilation completed in 0,02 seconds
+Invalid Unit: com.architecture.client.activity.CreateAccountActivity
+Invalid units found: 1
+Compiling...
+   Compilation completed in 0,01 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+      Line 58: next cannot be resolved
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+[ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+   [ERROR] Line 58: next cannot be resolved
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+      [ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+         [ERROR] Line 58: next cannot be resolved
+      [ERROR] Unable to find type 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'
+         [ERROR] Hint: Previous compiler errors may have made this type unavailable
+         [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Deferred binding failed for 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'; expect subsequent failures
+Public resources found in...
+Translatable source found in...
+Found 3108 cached/archived units.  Used 3108 / 3109 units from cache.
+Compiling...
+   Compilation completed in 0,01 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+      Line 58: next cannot be resolved
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+[ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+   [ERROR] Line 58: next cannot be resolved
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+      [ERROR] Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/src/com/architecture/client/ui/createaccount/CreateAccountPasswordViewImpl.java'
+         [ERROR] Line 58: next cannot be resolved
+      [ERROR] Unable to find type 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'
+         [ERROR] Hint: Previous compiler errors may have made this type unavailable
+         [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Deferred binding failed for 'com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder'; expect subsequent failures
+Public resources found in...
+Translatable source found in...
+Found 3108 cached/archived units.  Used 3108 / 3109 units from cache.
+Compiling...
+   Compilation completed in 0,01 seconds
+Invalid Unit: com.architecture.client.activity.CreateAccountActivity
+Invalid units found: 1
+Compiling...
+   Compilation completed in 0,01 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953476599.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953476599.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953476599_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953477258.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953477258.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436953477258_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2737 units from cache.
+Compiling...
+   0% complete (ETR: 50 seconds)
+   10% complete (ETR: 46 seconds)
+   20% complete (ETR: 27 seconds)
+   30% complete (ETR: 19 seconds)
+   40% complete (ETR: 15 seconds)
+   50% complete (ETR: 12 seconds)
+   60% complete (ETR: 8 seconds)
+   70% complete (ETR: 6 seconds)
+   80% complete (ETR: 3 seconds)
+   90% complete (ETR: 2 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 20,09 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,01 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3109 units from cache.
+Compiling...
+   40% complete (ETR: 6 seconds)
+   40% complete (ETR: 5 seconds)
+   40% complete (ETR: 5 seconds)
+   40% complete (ETR: 5 seconds)
+   40% complete (ETR: 5 seconds)
+   50% complete (ETR: 5 seconds)
+   60% complete (ETR: 4 seconds)
+   70% complete (ETR: 3 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 10,20 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,70 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963393156.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963393156.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963393156_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963395136.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963395136.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963395136_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,05 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963403789.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963403789.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963403789_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,07 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963409654.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963409654.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963409654_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963419399.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963419399.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963419399_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963425711.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963425711.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963425711_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963432784.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963432784.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963432784_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963438546.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963438546.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963438546_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963444012.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963444012.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963444012_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963451066.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963451066.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963451066_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963456477.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963456477.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963456477_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963460263.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963460263.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963460263_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963463746.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963463746.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963463746_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963470308.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963470308.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963470308_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963474611.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963474611.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963474611_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963479273.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963479273.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436963479273_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668146.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668146.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668146_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668228.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668228.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436964668228_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 3105 cached/archived units.  Used 3105 / 3109 units from cache.
+Compiling...
+   Compilation completed in 0,04 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965758955.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965758955.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965758955_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965759433.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965759433.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965759433_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965773250.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965773250.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436965773250_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966847083.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966847083.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966847083_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966857857.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966857857.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436966857857_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2737 units from cache.
+Compiling...
+   20% complete (ETR: 15 seconds)
+   20% complete (ETR: 15 seconds)
+   20% complete (ETR: 15 seconds)
+   30% complete (ETR: 15 seconds)
+   40% complete (ETR: 11 seconds)
+   50% complete (ETR: 8 seconds)
+   60% complete (ETR: 6 seconds)
+   70% complete (ETR: 4 seconds)
+   80% complete (ETR: 3 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 17,34 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 2737 cached/archived units.  Used 2737 / 2737 units from cache.
+Compiling...
+   Compilation completed in 0,00 seconds
+Removing invalidated units
+Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 3109 units from cache.
+Compiling...
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   60% complete (ETR: 3 seconds)
+   70% complete (ETR: 2 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 11,16 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,04 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973677301.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973677301.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973677301_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973678415.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973678415.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973678415_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973807035.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973807035.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973807035_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 3108 cached/archived units.  Used 3108 / 3109 units from cache.
+Compiling...
+   Compilation completed in 0,03 seconds
+Invalid Unit: com.architecture.client.activity.CreateAccountActivity
+Invalid units found: 1
+Compiling...
+   Compilation completed in 0,02 seconds
+Validating units:
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/AccountTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/e452547/git/architecturempsa/Architecture/test/com/architecture/shared/model/PersonTest.java'
+      Line 8: No source code is available for type org.slim3.tester.AppEngineTestCase; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.junit.Assert; did you forget to inherit a required module?
+      Line 14: No source code is available for type org.hamcrest.CoreMatchers; did you forget to inherit a required module?
+   Errors in 'jar:file:/C:/Users/e452547/git/architecturempsa/Architecture/war/WEB-INF/lib/objectify-gwt-1.2.1.jar!/com/googlecode/objectify/super/com/googlecode/objectify/Key.java'
+      Line 109: The method compareTo(Key) is undefined for the type Key
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973828397.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973828397.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973828397_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973829091.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973829091.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973829091_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973854647.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973854647.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436973854647_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974285753.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974285753.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974285753_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974291287.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974291287.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974291287_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974292697.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974292697.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974292697_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974293874.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974293874.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974293874_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974301197.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974301197.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974301197_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974305216.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974305216.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974305216_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974306800.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974306800.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974306800_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974312726.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974312726.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974312726_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974322472.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974322472.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974322472_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974327766.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974327766.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974327766_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974328854.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974328854.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974328854_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342338.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342338.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342338_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342531.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342531.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974342531_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974343592.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974343592.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974343592_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974350459.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974350459.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974350459_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974358606.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974358606.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974358606_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974359963.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974359963.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974359963_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974365771.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974365771.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974365771_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974389782.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974389782.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974389782_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974407951.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974407951.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974407951_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974415701.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974415701.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974415701_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974419415.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974419415.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974419415_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974422270.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974422270.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974422270_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974425321.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974425321.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974425321_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974440562.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974440562.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974440562_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974449006.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974449006.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974449006_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974457105.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974457105.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974457105_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974466070.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974466070.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974466070_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974482141.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974482141.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974482141_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl.CreateAccountPasswordViewImplUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974567348.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974567348.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl_CreateAccountPasswordViewImplUiBinderImpl_designTime1436974567348_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units

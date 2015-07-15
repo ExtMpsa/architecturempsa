@@ -1,10 +1,6 @@
-package com.architecture.client.ui;
+package com.architecture.client.ui.createaccount;
 
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-
-import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesCreateAccount;
@@ -14,7 +10,6 @@ import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
 import com.architecture.shared.model.Account;
-import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -39,21 +34,22 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	private static CreateAccountViewUiBinder uiBinder = GWT.create(CreateAccountViewUiBinder.class);
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
-	private static Account account = GWT.create(Account.class);
+
 	@UiField
 	HeadingElement createAccount;
 	@UiField
 	TextBox login;
 	@UiField
-	Button create;
+	Button next;
 	@UiField
 	Label loginError;
 	@UiField
 	HTMLPanel panel;
-	Activity activity;
-	String category = "Create Account Mail";
+	CreateAccountActivity activity;
+	String category;
 	String action;
 	String label;
+	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
 	}
@@ -61,42 +57,52 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	public CreateAccountViewImpl() {
 		ResourcesCreateAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
-		this.createAccount.setInnerText(createAccountText.title());
-		this.login.getElement().setAttribute("placeholder", createAccountText.placeholder());
-		this.loginError.setVisible(false);
-		this.create.setText(createAccountText.create());
+		createAccount.setInnerText(createAccountText.title());
+		login.getElement().setAttribute("placeholder", createAccountText.placeholderMail());
+		loginError.setVisible(false);
+		next.setText(createAccountText.next());
 	}
 
 	@Override
-	public void setActivity(Activity activity) {
+	public void setAccount(Account account) {
+		login.setText(account.getMail());
+	}
+
+	@Override
+	public void setActivity(CreateAccountActivity activity) {
 		this.activity = activity;
 	}
 
-	@UiHandler("create")
-	void onCreateClick(ClickEvent event) {
+	@UiHandler("next")
+	void onNextClick(ClickEvent event) {
+		category = "Check Mail for Create Account";
 		action = "Click";
-		create();
+		goToPassword();
 	}
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
 		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+			category = "Check Mail for Create Account";
 			action = "Key Press Enter";
-			create();
+			goToPassword();
 		}
 	}
 
-	private void create() {
+	private void goToPassword() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
-		if (validateClient()) {
-			service.create(this.login.getText(), "pwd", new AsyncCallback<Void>() {
+		String mail = login.getText();
+		if (activity.validateMailClient(mail)) {
+			loginError.setVisible(false);
+			login.removeStyleName("input-Error");
+			service.checkMail(mail, new AsyncCallback<Void>() {
 
 				@Override
 				public void onSuccess(Void result) {
 					action = action + " Success";
 					pushEvent("event", category, action, login.getText());
-					History.newItem("!SignInPlace:");
+					activity.getAccount().setMail(login.getText());
+					History.newItem("!CreateAccountPlace:password");
 				}
 
 				@Override
@@ -119,8 +125,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 					loginError.setText(details);
 					login.addStyleName("input-Error");
 				}
+
 			});
 		} else {
+			loginError.setVisible(true);
+			loginError.setText(createAccountText.invalidMail());
+			login.addStyleName("input-Error");
 			action = action + " Failed Client Constraint Mail Not Valid";
 			pushEvent("event", category, action, login.getText());
 			removeLoader();
@@ -132,32 +142,6 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		if (loader != null) {
 			loader.removeFromParent();
 		}
-	}
-
-	public boolean validateClient() {
-		boolean validate = false;
-		account.setMail(this.login.getText());
-		account.setPassword("pwd");
-		Set<ConstraintViolation<Account>> violations = ClientFactoryImpl.getInstance().getValidator().validate(account);
-		if (violations.isEmpty()) {
-			validate = true;
-			loginError.setVisible(false);
-			login.removeStyleName("input-Error");
-		} else {
-			validate = false;
-			for (ConstraintViolation<Account> constraintViolation : violations) {
-				switch (constraintViolation.getPropertyPath().toString()) {
-				case "mail":
-					loginError.setVisible(true);
-					loginError.setText(constraintViolation.getMessage());
-					login.addStyleName("input-Error");
-					break;
-				case "password":
-					break;
-				}
-			}
-		}
-		return validate;
 	}
 
 	private native void pushEvent(String event, String category, String action, String label) /*-{

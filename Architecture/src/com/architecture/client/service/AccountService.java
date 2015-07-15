@@ -9,5 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface AccountService extends RemoteService {
 	void create(String mail, String password) throws MailAlreadyUsedException, AttackHackingException;
 
+	void checkMail(String mail) throws MailAlreadyUsedException, AttackHackingException;
+
 	boolean signIn(String mail, String password);
 }

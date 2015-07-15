@@ -15,19 +15,29 @@ public class AccountServiceImpl implements AccountService {
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	@Override
+	public void checkMail(String mail) throws MailAlreadyUsedException, AttackHackingException {
+		String mailLowerCase = mail.toLowerCase();
+		Account account = Datastore.query(a).filter(a.mail.equal(mailLowerCase)).asSingle();
+		if (account != null) {
+			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un e-mail déjà utilisé.");
+		} else if (!mail.matches(EMAIL_PATTERN)) {
+			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
+		}
+	}
+
+	@Override
 	public void create(String mail, String password) throws MailAlreadyUsedException, AttackHackingException {
 		String mailLowerCase = mail.toLowerCase();
 		Account account = Datastore.query(a).filter(a.mail.equal(mailLowerCase)).asSingle();
 		if (account != null) {
-			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un email déjà utilisé.");
+			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un e-mail déjà utilisé.");
 		} else if (!mail.matches(EMAIL_PATTERN)) {
-			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un email qui ne respecte pas les contraintes de validation.");
+			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
 		} else {
 			account = new Account(mailLowerCase, password);
 			account.setCreatedDate(new Date());
 			Datastore.put(account);
 		}
-
 	}
 
 	@Override

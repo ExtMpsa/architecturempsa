@@ -7,8 +7,8 @@ import com.google.gwt.place.shared.Prefix;
 public class CreateAccountPlace extends Place {
 	private String createAccountStep;
 
-	public CreateAccountPlace(String ePrivacyName) {
-		this.createAccountStep = ePrivacyName;
+	public CreateAccountPlace(String step) {
+		this.createAccountStep = step;
 	}
 
 	public String getCreateAccountStep() {

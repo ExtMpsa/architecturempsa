@@ -3,7 +3,6 @@ package com.architecture.shared.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -26,13 +25,17 @@ public class Account implements Serializable {
 
 	private Date createdDate;
 	private Date lastConnexion;
-	@NotNull
 	@Pattern(regexp = EMAIL_PATTERN,
-			message = "The address email used isn't valid.")
+			message = "The mail used isn't valid.")
 	private String mail;
-	@NotNull
-	@Size(min = 2,
-			message = "Password must be at least 2 characters long.")
+	@Size.List({ @Size(min = 8,
+			message = "Size min"), @Size(max = 20,
+			message = "Size max") })
+	@Pattern.List({ @Pattern(regexp = "(?=.*[0-9])",
+			message = "Digit"), @Pattern(regexp = "(?=.*[a-z])",
+			message = "Lowercase"), @Pattern(regexp = "(?=.*[A-Z])",
+			message = "Uppercase"), @Pattern(regexp = "(?=.*[@#$%])",
+			message = "Special") })
 	private String password;
 
 	public Account() {

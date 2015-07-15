@@ -28,6 +28,7 @@ import com.architecture.client.ui.TracingPaperViewImpl;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
+import com.architecture.shared.model.Account;
 import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -71,6 +72,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Validator
 	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
+	// Model
+	private Account account;
+
 	// Views
 	private static ArchitectureView architectureView;
 	private static HomeView homeView;
@@ -80,14 +84,14 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Etat du chargement de l'application
 	private static boolean loaded = false;
-	
+
 	// Handler d'ajout de GTM
 	HandlerRegistration handler;
 
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
-		//initGoogleTagManager();
+		// initGoogleTagManager();
 		// Set up for Requestfactory
 		// For use RequestFactory in activities and place we have to initialise it before.
 		requestFactory.initialize(eventBus, transport);
@@ -462,6 +466,9 @@ public class ClientFactoryImpl implements ClientFactory {
 		return validator;
 	}
 
+	/*
+	 * Views
+	 */
 	@Override
 	public HomeView getHomeView() {
 		if (homeView == null) {
@@ -525,6 +532,16 @@ public class ClientFactoryImpl implements ClientFactory {
 		ClientFactoryImpl.loaded = loaded;
 	}
 
+	// Model
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	// Bind
 	private void bind() {
 		handler = RootPanel.get().addDomHandler(new MouseMoveHandler() {
 			@Override

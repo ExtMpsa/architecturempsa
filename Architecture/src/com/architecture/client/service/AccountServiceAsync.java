@@ -8,4 +8,6 @@ public interface AccountServiceAsync {
 
 	void signIn(String mail, String password, AsyncCallback<Boolean> callback);
 
+	void checkMail(String mail, AsyncCallback<Void> callback);
+
 }

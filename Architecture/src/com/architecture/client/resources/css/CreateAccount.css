@@ -1,9 +1,9 @@
 @CHARSET "UTF-8";
-.createAccountMail{
+.createAccount{
 	text-align: center;
 }
 
-.createAccountMail input{
+.createAccount input{
 	height: 30px;
 	font-size: 15px;
 	width: 284px;
@@ -11,7 +11,11 @@
 	padding: 0 8px;
 }
 
-.createAccountMail button {
+.createAccount input:disabled{
+	display:block;
+}
+
+.createAccount button {
 	display: block;
 	height: 30px;
 	width: 304px;
