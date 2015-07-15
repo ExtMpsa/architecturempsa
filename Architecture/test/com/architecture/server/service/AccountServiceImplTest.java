@@ -123,6 +123,17 @@ public class AccountServiceImplTest extends ServletTestCase {
 		throw exception;
 	}
 
+	private Set<String> validPasswords = new HashSet<String>();
+
+	@Test
+	public void createWithValidPassword() throws Exception {
+		this.validPasswords.add("digitalperformanceT1@");
+		this.validPasswords.add("digitalPerformance12$");
+		for (String pwd : this.validPasswords) {
+			this.service.create("digitalPerformanceTraining@yahoo.com", pwd);
+		}
+	}
+
 	@Test
 	public void signInTrue() throws Exception {
 		this.service.create("mail@gmail.com", "password");
