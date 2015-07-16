@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.activity.CreateAccountActivity;
+import com.architecture.client.exception.AttackHackingException;
+import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesCreateAccount;
 import com.architecture.client.resources.txt.CreateAccountText;
 import com.architecture.client.resources.txt.ExceptionText;
@@ -15,11 +17,11 @@ import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -60,6 +62,10 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	Label noUppercaseError;
 	@UiField
 	Label noSpecialError;
+	@UiField
+	Label whitespaceError;
+	@UiField
+	Label createError;
 	String category;
 	String action;
 	String label;
@@ -88,6 +94,9 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 		noUppercaseError.setVisible(false);
 		noSpecialError.setText(createAccountText.errorSpecialPassword());
 		noSpecialError.setVisible(false);
+		whitespaceError.setText(createAccountText.errorWhiteSpace());
+		whitespaceError.setVisible(false);
+		createError.setVisible(false);
 		verify.setText(createAccountText.passwordVerify());
 
 		passwordVerify.getElement().setAttribute("placeholder", createAccountText.placeholderPasswordVerify());
@@ -127,6 +136,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 		verify.setVisible(false);
 		passwordVerify.setVisible(true);
 		passwordVerifyError.setVisible(false);
+		whitespaceError.setVisible(false);
 		create.setVisible(true);
 	}
 
@@ -134,6 +144,13 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	void onVerifyClick(ClickEvent event) {
 		category = "Check Constraints Password for Create Account";
 		action = "Click";
+		goToPasswordVerify();
+	}
+
+	@UiHandler("password")
+	void onPasswordKeyPress(KeyPressEvent event) {
+		category = "Check Constraints Password for Create Account";
+		action = "Key Press Enter";
 		goToPasswordVerify();
 	}
 
@@ -155,6 +172,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 			boolean noLowercase = false;
 			boolean noUppercase = false;
 			boolean noSpecial = false;
+			boolean whitespace = false;
 			for (ConstraintViolation<Account> constraintViolation : violations) {
 				switch (constraintViolation.getMessage()) {
 				case "Size min":
@@ -175,6 +193,9 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 				case "Special":
 					noSpecial = true;
 					break;
+				case "Whitespace":
+					whitespace = true;
+					break;
 				}
 			}
 
@@ -184,6 +205,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 			noLowercaseError.setVisible(noLowercase);
 			noUppercaseError.setVisible(noUppercase);
 			noSpecialError.setVisible(noSpecial);
+			whitespaceError.setVisible(whitespace);
 
 			password.addStyleName("input-Error");
 			action = action + " Failed Client Constraint Password Not Valid";
@@ -194,6 +216,19 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	@UiHandler("create")
 	void onCreateClick(ClickEvent event) {
+		category = "Check same Password for Create Account";
+		action = "Click";
+		create();
+	}
+
+	@UiHandler("passwordVerify")
+	void onPasswordVerifyKeyPress(KeyPressEvent event) {
+		category = "Check same Password for Create Account";
+		action = "Key Press Enter";
+		create();
+	}
+
+	public void create() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		String pwd = password.getText();
 		String pwdVerify = passwordVerify.getText();
@@ -201,7 +236,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 		if (pwd.equals(pwdVerify)) {
 			passwordVerifyError.setVisible(false);
 			if (activity.validateAccountClient()) {
-				service.create(activity.getAccount().getMail(), activity.getAccount().getPassword(), new AsyncCallback<Void>() {
+				service.create(activity.getAccount().getMail(), pwd, new AsyncCallback<Void>() {
 					@Override
 					public void onSuccess(Void result) {
 						action = action + " Success";
@@ -211,17 +246,40 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
+						ExceptionText exceptionText = GWT.create(ExceptionText.class);
 						activity.removeLoader();
+						String details;
+						if (caught instanceof AttackHackingException) {
+							details = exceptionText.attackHackingGeneric();
+							action = action + " Failed Server Constraints Mail Not Valid";
+							// TODO :
+							// rediriger vers un CreateAccountPlace:login avec erreur.
+						} else if (caught instanceof MailAlreadyUsedException) {
+							action = action + " Failed Mail Already Registered";
+							details = exceptionText.mailAlreadyUsed();
+							// TODO :
+							// rediriger vers un CreateAccountPlace:login avec erreur.
+						} else {
+							action = action + " Failed Internal Server Error";
+							details = exceptionText.internalServerError() + caught.getClass().toString();
+						}
+						pushEvent("event", category, action, activity.getAccount().getMail());
+						createError.setVisible(true);
+						createError.setText(details);
+						passwordVerify.setText("");
 
 					}
 				});
 
 			} else {
-				Window.alert(exceptionText.attackHackingGeneric());
+				action = action + " Failed Client Constraint Account";
+				activity.pushEvent("event", category, action, "********");
+				createError.setText(exceptionText.accountClientNotValidated());
 				activity.removeLoader();
 			}
 		} else {
+			action = action + " Failed Client Password Not the same";
+			activity.pushEvent("event", category, action, "********");
 			passwordVerifyError.setVisible(true);
 			activity.removeLoader();
 		}

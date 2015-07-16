@@ -1,6 +1,7 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
+import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.SignInPlace;
 import com.architecture.client.ui.SignInView;
 import com.google.gwt.event.shared.EventBus;
@@ -20,6 +21,7 @@ public class SignInActivity extends ArchitectureActivity {
 		signInView.setActivity(this);
 		containerWidget.setWidget(signInView.asWidget());
 		removeLoader();
+		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override

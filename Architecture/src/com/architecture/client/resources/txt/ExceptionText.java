@@ -8,4 +8,6 @@ public interface ExceptionText extends Constants {
 	String attackHackingGeneric();
 
 	String mailAlreadyUsed();
+
+	String accountClientNotValidated();
 }

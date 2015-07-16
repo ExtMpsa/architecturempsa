@@ -1,6 +1,7 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
+import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.FormsPlace;
 import com.architecture.client.ui.FormsView;
 import com.architecture.shared.proxy.PersonProxy;
@@ -38,6 +39,7 @@ public class FormsActivity extends ArchitectureActivity {
 		}
 		containerWidget.setWidget(this.formsView.asWidget());
 		removeLoader();
+		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override

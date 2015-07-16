@@ -5,6 +5,8 @@ import javax.validation.Validator;
 
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1Handler;
+import com.architecture.client.event.PageViewEvent;
+import com.architecture.client.event.PageViewHandler;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.event.ValidateSignStep1Handler;
 import com.architecture.client.event.ValidateSignStep2Event;
@@ -533,10 +535,12 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	// Model
+	@Override
 	public Account getAccount() {
 		return account;
 	}
 
+	@Override
 	public void setAccount(Account account) {
 		this.account = account;
 	}
@@ -551,10 +555,18 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		}, MouseMoveEvent.getType());
 
+		// Logique lorsque l'url change
 		eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
 
 			@Override
 			public void onPlaceChange(PlaceChangeEvent event) {
+			}
+		});
+
+		eventBus.addHandler(PageViewEvent.TYPE, new PageViewHandler() {
+
+			@Override
+			public void onPageView(PageViewEvent event) {
 				pushTimeRTD();
 				pushUpdateVirtualPath();
 			}

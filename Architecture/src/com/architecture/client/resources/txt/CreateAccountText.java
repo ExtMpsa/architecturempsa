@@ -34,4 +34,6 @@ public interface CreateAccountText extends Constants {
 	String errorUppercasePassword();
 
 	String errorSpecialPassword();
+
+	String errorWhiteSpace();
 }

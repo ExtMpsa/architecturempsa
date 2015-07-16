@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.CreateAccountPlace;
 import com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl;
 import com.architecture.client.ui.createaccount.CreateAccountView;
@@ -35,13 +36,14 @@ public class CreateAccountActivity extends ArchitectureActivity {
 			account = new Account();
 			clientFactory.setAccount(account);
 		}
-
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		this.containerWidget = containerWidget;
 		setStep(step);
+		removeLoader();
+		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override
@@ -51,10 +53,11 @@ public class CreateAccountActivity extends ArchitectureActivity {
 
 	public void setStep(String step) {
 		CreateAccountView createAccountView;
-		if (step.equalsIgnoreCase("password")) {
+		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccount().getMail())) {
 			Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
 			createAccountView = new CreateAccountPasswordViewImpl();
-		} else if (step.equalsIgnoreCase("passwordVerify")) {
+		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail())
+				&& validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
 			Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
 			createAccountView = new CreateAccountPasswordViewImpl();
 		} else {
@@ -63,7 +66,6 @@ public class CreateAccountActivity extends ArchitectureActivity {
 		}
 		createAccountView.setAccount(account);
 		createAccountView.setActivity(this);
-		removeLoader();
 		containerWidget.setWidget(createAccountView.asWidget());
 	}
 
