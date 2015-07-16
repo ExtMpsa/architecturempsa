@@ -60,9 +60,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	private ArchitectureView appWidget = new ArchitectureViewImpl();
 	private Place defaultPlace = new HomePlace();
 	private ActivityMapper activityMapper = new AppActivityMapper(this);
-	private ActivityManager activityManager = new ActivityManager(this.activityMapper, eventBus);
+	private ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
 	private AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
-	private PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(this.historyMapper);
+	private PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
 
 	// RequestFactory
 	// Transport for intercept request and implement cursor wait
@@ -84,13 +84,13 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Etat du chargement de l'application
 	private static boolean loaded = false;
-	public static boolean pageView = true;
 
 	// Handler d'ajout de GTM
 	HandlerRegistration onMouseMoveHandlerForGtm;
 
 	// Boolean pour la gestion des push lors des redirects
 	public static boolean redirect = false;
+	public static boolean redirectFirstLoad = false;
 
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
@@ -101,18 +101,18 @@ public class ClientFactoryImpl implements ClientFactory {
 		requestFactory.initialize(eventBus, transport);
 
 		// Set up for Activities and Place
-		this.activityManager.setDisplay(this.appWidget);
+		activityManager.setDisplay(appWidget);
 
 		// tell the historyMapper there are tokenizers (below) to use in here.
-		this.historyMapper.setFactory(this);
+		historyMapper.setFactory(this);
 
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
-		this.historyHandler.register(placeController, eventBus, this.defaultPlace);
+		historyHandler.register(placeController, eventBus, defaultPlace);
 		Document.get().getElementById("loader").removeFromParent();
-		RootPanel.get().add(this.appWidget);
+		RootPanel.get().add(appWidget);
 
 		// Goes to the place represented on URL else default place
-		this.historyHandler.handleCurrentHistory();
+		historyHandler.handleCurrentHistory();
 
 		// SEO
 		String locale = LocaleInfo.getCurrentLocale().getLocaleName();
@@ -168,7 +168,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public void eventGtm(String description, String launcher) {
-		if (ClientFactoryImpl.isLoaded()) {
+		if (ClientFactoryImpl.isLoaded() && !redirectFirstLoad) {
 			pushTimeAjax(description, launcher);
 		} else {
 			pushTimeStatic(description, launcher);
@@ -483,17 +483,17 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public MenuViewImpl getMenuView() {
-		return this.appWidget.getMenu();
+		return appWidget.getMenu();
 	}
 
 	@Override
 	public BannerViewImpl getBannerView() {
-		return this.appWidget.getBanner();
+		return appWidget.getBanner();
 	}
 
 	@Override
 	public BannerLanguageViewImpl getBannerFlagView() {
-		return this.appWidget.getBannerFlag();
+		return appWidget.getBannerFlag();
 	}
 
 	@Override

@@ -57,17 +57,22 @@ public class CreateAccountActivity extends ArchitectureActivity {
 				// Used SDK 2.7.0 to use replaceItem
 				// History.replaceItem("!CreateAccountPlace:password", false);
 				ClientFactoryImpl.redirect = true;
+				if (!ClientFactoryImpl.isLoaded()) {
+					ClientFactoryImpl.redirectFirstLoad = true;
+				}
 				historyReplaceState("!CreateAccountPlace:password");
 			}
 			createAccountView = new CreateAccountPasswordViewImpl();
-		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail())
-				&& validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
+		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail()) && validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
 			if (!step.equals("passwordVerify")) {
 				// TODO :
 				// Used SDK 2.7.0 to use replaceItem
 				// History.replaceItem("!CreateAccountPlace:passwordVerify", false);
 				ClientFactoryImpl.redirect = true;
+				if (!ClientFactoryImpl.isLoaded()) {
+					ClientFactoryImpl.redirectFirstLoad = true;
+				}
 				historyReplaceState("!CreateAccountPlace:passwordVerify");
 			}
 			createAccountView = new CreateAccountPasswordViewImpl();
@@ -78,6 +83,9 @@ public class CreateAccountActivity extends ArchitectureActivity {
 				// Used SDK 2.7.0 to use replaceItem
 				// History.replaceItem("!CreateAccountPlace:login", false);
 				ClientFactoryImpl.redirect = true;
+				if (!ClientFactoryImpl.isLoaded()) {
+					ClientFactoryImpl.redirectFirstLoad = true;
+				}
 				historyReplaceState("!CreateAccountPlace:login");
 			}
 			createAccountView = new CreateAccountViewImpl();

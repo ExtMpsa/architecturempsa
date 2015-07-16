@@ -1,6 +1,7 @@
 package com.architecture.client.mvp;
 
 import com.architecture.client.ClientFactory;
+import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.activity.EPrivacyActivity;
 import com.architecture.client.activity.FormsActivity;
@@ -31,26 +32,29 @@ public class AppActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 		// Première instruction lors d'un chargement ajax suite à une modification d'url.
-		getActivityStartTime();
+		if (!ClientFactoryImpl.redirect) {
+			getActivityStartTime();
+		}
 		pushKrux();
 
 		Activity activity = null;
 		if (place instanceof HomePlace) {
-			activity = new HomeActivity((HomePlace) place, this.clientFactory);
+			activity = new HomeActivity((HomePlace) place, clientFactory);
 		} else if (place instanceof FormsPlace) {
-			activity = new FormsActivity((FormsPlace) place, this.clientFactory);
+			activity = new FormsActivity((FormsPlace) place, clientFactory);
 		} else if (place instanceof TracingPaperPlace) {
-			activity = new TracingPaperActivity((TracingPaperPlace) place, this.clientFactory);
+			activity = new TracingPaperActivity((TracingPaperPlace) place, clientFactory);
 		} else if (place instanceof EPrivacyPlace) {
-			activity = new EPrivacyActivity((EPrivacyPlace) place, this.clientFactory);
+			activity = new EPrivacyActivity((EPrivacyPlace) place, clientFactory);
 		} else if (place instanceof SignInPlace) {
-			activity = new SignInActivity((SignInPlace) place, this.clientFactory);
+			activity = new SignInActivity((SignInPlace) place, clientFactory);
 		} else if (place instanceof CreateAccountPlace) {
-			activity = new CreateAccountActivity((CreateAccountPlace) place, this.clientFactory);
+			activity = new CreateAccountActivity((CreateAccountPlace) place, clientFactory);
 		} else {
 			removeLoader();
 		}
-		this.clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
+		clientFactory.eventGtm("Récupération de la vue", this.getClass().toString());
+		ClientFactoryImpl.redirectFirstLoad = false;
 		return activity;
 	}
 
