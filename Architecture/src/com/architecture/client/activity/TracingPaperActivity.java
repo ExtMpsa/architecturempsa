@@ -1,7 +1,6 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
-import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.TracingPaperPlace;
 import com.architecture.client.ui.TracingPaperView;
 import com.google.gwt.event.shared.EventBus;
@@ -21,7 +20,6 @@ public class TracingPaperActivity extends ArchitectureActivity {
 		tracingPaperView.setActivity(this);
 		containerWidget.setWidget(tracingPaperView.asWidget());
 		removeLoader();
-		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override

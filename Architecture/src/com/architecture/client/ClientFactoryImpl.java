@@ -5,8 +5,6 @@ import javax.validation.Validator;
 
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1Handler;
-import com.architecture.client.event.PageViewEvent;
-import com.architecture.client.event.PageViewHandler;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.event.ValidateSignStep1Handler;
 import com.architecture.client.event.ValidateSignStep2Event;
@@ -86,9 +84,13 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Etat du chargement de l'application
 	private static boolean loaded = false;
+	public static boolean pageView = true;
 
 	// Handler d'ajout de GTM
-	HandlerRegistration handler;
+	HandlerRegistration onMouseMoveHandlerForGtm;
+
+	// Boolean pour la gestion des push lors des redirects
+	public static boolean redirect = false;
 
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
@@ -547,11 +549,11 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Bind
 	private void bind() {
-		handler = RootPanel.get().addDomHandler(new MouseMoveHandler() {
+		onMouseMoveHandlerForGtm = RootPanel.get().addDomHandler(new MouseMoveHandler() {
 			@Override
 			public void onMouseMove(MouseMoveEvent event) {
 				initGoogleTagManager();
-				handler.removeHandler();
+				onMouseMoveHandlerForGtm.removeHandler();
 			}
 		}, MouseMoveEvent.getType());
 
@@ -560,15 +562,11 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onPlaceChange(PlaceChangeEvent event) {
-			}
-		});
-
-		eventBus.addHandler(PageViewEvent.TYPE, new PageViewHandler() {
-
-			@Override
-			public void onPageView(PageViewEvent event) {
-				pushTimeRTD();
-				pushUpdateVirtualPath();
+				if (!redirect) {
+					pushTimeRTD();
+					pushUpdateVirtualPath();
+				}
+				redirect = false;
 			}
 		});
 

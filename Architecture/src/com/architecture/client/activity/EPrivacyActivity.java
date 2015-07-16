@@ -1,7 +1,6 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
-import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.EPrivacyPlace;
 import com.architecture.client.ui.composite.EPrivacyViewImpl;
 import com.google.gwt.event.shared.EventBus;
@@ -23,7 +22,6 @@ public class EPrivacyActivity extends ArchitectureActivity {
 		ePrivacyView.setToken(this.token);
 		containerWidget.setWidget(ePrivacyView.asWidget());
 		removeLoader();
-		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.PageViewEvent;
 import com.architecture.client.place.CreateAccountPlace;
 import com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl;
 import com.architecture.client.ui.createaccount.CreateAccountView;
@@ -17,8 +16,6 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class CreateAccountActivity extends ArchitectureActivity {
@@ -40,10 +37,10 @@ public class CreateAccountActivity extends ArchitectureActivity {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+		// clientFactory.addPlaceChangeHandler();
 		this.containerWidget = containerWidget;
 		setStep(step);
 		removeLoader();
-		clientFactory.getEventBus().fireEvent(new PageViewEvent());
 	}
 
 	@Override
@@ -54,14 +51,35 @@ public class CreateAccountActivity extends ArchitectureActivity {
 	public void setStep(String step) {
 		CreateAccountView createAccountView;
 		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccount().getMail())) {
-			Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
+			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
+			if (!step.equals("password")) {
+				// TODO :
+				// Used SDK 2.7.0 to use replaceItem
+				// History.replaceItem("!CreateAccountPlace:password", false);
+				ClientFactoryImpl.redirect = true;
+				historyReplaceState("!CreateAccountPlace:password");
+			}
 			createAccountView = new CreateAccountPasswordViewImpl();
 		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail())
 				&& validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
-			Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
+			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
+			if (!step.equals("passwordVerify")) {
+				// TODO :
+				// Used SDK 2.7.0 to use replaceItem
+				// History.replaceItem("!CreateAccountPlace:passwordVerify", false);
+				ClientFactoryImpl.redirect = true;
+				historyReplaceState("!CreateAccountPlace:passwordVerify");
+			}
 			createAccountView = new CreateAccountPasswordViewImpl();
 		} else {
-			Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:login"));
+			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:login"));
+			if (!step.equals("login")) {
+				// TODO :
+				// Used SDK 2.7.0 to use replaceItem
+				// History.replaceItem("!CreateAccountPlace:login", false);
+				ClientFactoryImpl.redirect = true;
+				historyReplaceState("!CreateAccountPlace:login");
+			}
 			createAccountView = new CreateAccountViewImpl();
 		}
 		createAccountView.setAccount(account);
@@ -131,5 +149,9 @@ public class CreateAccountActivity extends ArchitectureActivity {
 			eventAction : action,
 			eventLabel : label
 		});
+	}-*/;
+
+	public native void historyReplaceState(String token) /*-{
+		$wnd.history.replaceState("", "", "#" + token);
 	}-*/;
 }
