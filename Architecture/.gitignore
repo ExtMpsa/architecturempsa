@@ -2,3 +2,5 @@
 /www-test/
 /.apt_generated/
 /.gwt/
+/test-classes/
+/extras/
