@@ -1,0 +1,238 @@
+<!-- Begin RTD Tag -->
+<script type="text/javascript">
+			// fonction utilitaire : attente valorisation date krux
+			function waitKrux(onComplete,timeout) {			  
+			  window["kruxTimeout"]=setTimeout(function () {
+				  getTime("kruxTimeoutTime","kruxTimeoutElapsedTime");
+				  logTime("Timeout of waiting Krux event, rtd start works", "Body hidden");
+				  onComplete();
+			  },timeout);
+			}
+			
+			function isIE () {
+			  var myNav = navigator.userAgent.toLowerCase();
+			  return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+			}
+			
+			function getTime (time, elapsedTime){
+				window[time] = window[time]||new Date().getTime();
+				window[elapsedTime] = (window[time] -  window["startHidden"]);
+				return;
+			}
+			
+			function logTime(tagStatus, bodyStatus){
+				window["startHidden"] = window["startHidden"] || new Date().getTime();
+				window["elapsedTime"] = new Date().getTime() - window.startHidden;
+				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | kruxLastUpdate : " + window["kruxLastUpdate"]);
+				return;
+			}
+			
+			document.onreadystatechange = function () {
+			  if (document.readyState == "interactive") {
+				  getTime("domInteractiveTime","domInteractiveElapsedTime");
+				  logTime("Document Interactive", "Navigator can show document");
+			  }
+			}
+			
+			function logDataLayerTime(){
+				window["dataLayer"] = window["dataLayer"] || [];
+				if(window["kruxEventFinishTime"]){
+					window["kruxStatus"] = "OK";
+				} else{
+					window["kruxStatus"] = "KO";
+				}
+				if(window["rtdGetContentFinishTime"]){
+					window["rtdStatus"] = "OK";
+				} else{
+					window["rtdStatus"] = "KO";
+				}
+				dataLayer.push({
+					event : "ddm.time",
+					documentState : document.readyState,
+					domInteractiveTime : window.performance.timing.domInteractive,
+					domInteractiveElapsedTime : window.performance.timing.domInteractive - window["startHidden"],
+					kruxStatus : window["kruxStatus"],
+					rtdStatus : window["rtdStatus"],
+					startHidden : window["startHidden"],
+					kruxEventFinishTime : window["kruxEventFinishTime"]|| "Krux n'a pas répondu à temps, voir kruxTimeoutTime",
+					kruxEventFinishElapsedTime : window["kruxEventFinishElapsedTime"]|| "Krux n'a pas répondu à temps, voir kruxTimeoutElapsedTime",
+					kruxTimeoutTime : window["kruxTimeoutTime"]|| "Krux a répondu à temps, voir kruxEventFinishTime",
+					kruxTimeoutElapsedTime : window["kruxTimeoutElapsedTime"]|| "Krux a répondu à temps, voir kruxEventFinishElapsedTime",
+					kruxLastUpdate : window["kruxLastUpdate"]|| "Krux n'a pas répondu ou Krux a répondu après la fin du traitement de RTD",
+					kruxLastUpdateElapsed : window["kruxLastUpdateElapsed"]|| "Krux n'a pas répondu ou Krux a répondu après la fin du traitement de RTD",
+					rtdGetContentStartTime : window["rtdGetContentStartTime"],
+					rtdGetContentStartElapsedTime : window["rtdGetContentStartElapsedTime"],
+					rtdGetContentFinishTime : window["rtdGetContentFinishTime"]||"Erreur RTD lors de la récupération du contenu, voir rtdGetContentFailedTime",
+					rtdGetContentFinishElapsedTime : window["rtdGetContentFinishElapsedTime"]||"Erreur RTD lors de la récupération du contenu, voir rtdGetContentFailedElapsedTime",
+					rtdGetContentFailedTime : window["rtdGetContentFailedTime"]||"RTD a réussi à récupérer le contenu personnalisé, voir rtdGetContentFinishTime",
+					rtdGetContentFailedElapsedTime : window["rtdGetContentFailedElapsedTime"]||"RTD a réussi à récupérer le contenu personnalisé, voir rtdGetContentFinishElapsedTime",
+					finishVisible : window["rtdGetContentFinishTime"]||window["rtdGetContentFailedTime"],
+					finishElapsedVisible : window["rtdGetContentFinishElapsedTime"]||window["rtdGetContentFailedElapsedTime"],
+					ddmTimeUp : (window["rtdGetContentFinishTime"]||window["rtdGetContentFailedTime"]) - window.performance.timing.domInteractive
+				});
+			}
+			
+			// fonction utilitaire : recuperation contenu RTD
+			function getRTDContent(kruxEventData) {
+				getTime("rtdGetContentStartTime","rtdGetContentStartElapsedTime");
+				logTime("getRTDContent start", "Body hidden");
+				window.removeEventListener("KruxEvent",ddmListener,false);
+				window.removeEventListener("krux-update-user",ddmListener,false);
+
+				var rtduser = (typeof kruxEventData != "undefined" && typeof kruxEventData.user != "undefined" && kruxEventData.user != "") ? kruxEventData.user : "DEF";
+				var rtdsegments = (typeof kruxEventData != "undefined" && typeof kruxEventData.segments != "undefined" && kruxEventData.segments != "") ? kruxEventData.segments : "{0}";
+				var rtdattributes = (typeof kruxEventData != "undefined" && typeof kruxEventData.k_attributes != "undefined" && kruxEventData.k_attributes != "") ? kruxEventData.k_attributes : "{0|0}";
+				var br='{"user":"'+rtduser+'","segments":"'+rtdsegments+'","attributes":"'+rtdattributes+'"}';
+				
+				logTime("getRTDContent => get Krux data : ", "Body hidden");
+				logTime("getRTDContent => get Krux data rtduser : "+rtduser+" / Krux.user : "+Krux.user, "Body hidden");
+				logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments+" / Krux.segments : "+Krux.segments, "Body hidden");
+				logTime("getRTDContent => get Krux data br : "+br, "Body hidden");
+
+				var xmlDoc;
+				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
+					logTime("getRTDContent : IE7+ Chrome FF Opera", "Body hidden");
+					xmlDoc = new XMLHttpRequest();
+					if('withCredentials' in xmlDoc) { // IE10+ Chrome FF Opera
+						logTime("getRTDContent : IE10+ Chrome FF Opera", "Body hidden");
+						try{
+							xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/RestGateway/RTDcontent/getCreative/post', true);
+							xmlDoc.setRequestHeader("Content-type", "application/json; charset=utf-8");
+							xmlDoc.onreadystatechange = function() {
+							  if (xmlDoc.readyState === 4) {
+								  if(xmlDoc.status === 200){
+									var response = JSON.parse(xmlDoc.responseText);
+									for(var i = 0; i < response.length; i++) {
+										var content = response[i];
+									    var def = document.getElementById(content.contentId);
+									    if (def != null){
+										  def.outerHTML = content.script;
+										}
+
+
+									}
+									document.body.style.visibility = "visible";
+									getTime("rtdGetContentFinishTime","rtdGetContentFinishElapsedTime");
+									logDataLayerTime();
+									logTime("rtdTag Complete", "Body visible");
+								  } else {
+									  document.body.style.visibility = "visible";
+									  getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+									  logDataLayerTime();
+									  logTime("rtdTag response failed", "Body visible");
+								  }
+							  } 
+							}
+							xmlDoc.send(JSON.stringify(br));
+						} catch(e){
+							document.body.style.visibility = "visible";
+							getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+							logDataLayerTime();
+							logTime("rtdTag exception due to xmlDoc..." + e.message, "Body visible");
+						}
+					} else if (window.XDomainRequest) {
+						// IE8 et IE9
+						logTime("getRTDContent : IE8 et IE9", "Body hidden");
+						if (isIE () == 8) {
+							logTime("rtdTag detect IE8", "Body Hidden");
+							var timeIE8 = 2000;
+							setTimeout(function () {
+								if (document.readyState == "complete"){
+									document.body.style.visibility = "visible";
+									clearTimeout(timeIE8);
+									getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+									logDataLayerTime();
+									logTime("rtdTag IE8 timeout known bug", "Body visible");
+								}else{
+									logTime("rtdTag IE8 timeout known bug", "Body still hidden");
+								}
+							}, timeIE8);
+						}
+
+						logTime("rtdTag launch request (XDRStart)", "Body still hidden");
+
+						xmlDoc = new XDomainRequest();
+						xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/RestGateway/RTDcontent/getCreative/post');
+						xmlDoc.onload = function () {
+
+							logTime("rtdTagStart_XDR (onload request)", "Body still hidden");
+							var dom  = new ActiveXObject('Microsoft.XMLDOM');
+							var response = JSON.parse(xmlDoc.responseText);
+							dom.async = false;
+							var response = JSON.parse(xmlDoc.responseText);
+							for(var i = 0; i < response.length; i++) {
+								var content = response[i];
+								var def = document.getElementById(content.contentId);
+								if (def != null){
+								  def.outerHTML = content.script;
+								}
+							}	
+							document.body.style.visibility = "visible"; 
+							getTime("rtdGetContentFinishTime","rtdGetContentFinishElapsedTime");
+							logDataLayerTime();
+							logTime("rtdTagComplete_XDR", "Body visible");
+						};
+						xmlDoc.onerror = function() {
+							document.body.style.visibility = "visible";
+							getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+							logDataLayerTime();
+							logTime("rtdTagError_XDR : response failed", "Body visible");
+						};
+						xmlDoc.ontimeout = function() {
+							document.body.style.visibility = "visible";
+							getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+							logDataLayerTime();
+							logTime("rtdTagTimeout_XDR : response timeout", "Body visible");
+						};
+						xmlDoc.onprogress = function() {
+							logTime("rtdTagOnProgress_XDR : response onprogress", "Body still Hidden");
+						};
+						// setTimeout corrige le problème aléatoire du onload sur IE8
+						setTimeout(function () {
+							try{
+								xmlDoc.send(JSON.stringify(br));
+								logTime("rtdTag setTimeout due to onload bug IE8", "Body still Hidden");
+							} catch(e){
+								// IE5, IE6 et IE7 ne gère pas l'objet JSON
+								document.body.style.visibility = "visible";
+								getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+								logDataLayerTime();
+								logTime("rtdTag exception due to IE5, IE6, IE7 : " + e.message, "Body visible");
+							}
+						}, 0);
+					} else { //IE7
+						document.body.style.visibility = "visible";
+						logDataLayerTime();
+						logTime("rtdTagError (IE7): window.XDomainRequest doesn't exist", "Body visible");
+					}
+				} else { // IE5 et IE6
+					document.body.style.visibility = "visible";
+					getTime("rtdGetContentFailedTime","rtdGetContentFailedElapsedTime");
+					logDataLayerTime();
+					logTime("rtdTagError (IE5, IE6): window.XMLHttpRequest doesn't exist", "Body visible");
+				}
+			}
+			
+			document.body.style.visibility = "hidden";
+			window["startHidden"] = new Date().getTime();
+			logTime("rtdTagStart", "Body hidden");
+			var ddmListener = function (e) {
+				clearTimeout(window["kruxTimeout"]);
+				getTime("kruxEventFinishTime","kruxEventFinishElapsedTime");
+				logTime("Event Krux - type : " + e.type + " - Date : " + window["kruxEventFinishTime"] + " | kruxLastUpdate : " +  window["kruxLastUpdate"] , "Body hidden");
+				getRTDContent(e);
+			};
+			
+			var kruxListener = function (e) {
+				getTime("kruxLastUpdate","kruxLastUpdateElapsed");
+				logTime("Event Krux - type : " + e.type + " - Date : " + window["kruxEventFinishTime"] + " | kruxLastUpdate : " +  window["kruxLastUpdate"] , "Body hidden");
+			};
+			
+			window.addEventListener("KruxEvent", ddmListener, false);
+			window.addEventListener("krux-update-user", ddmListener, false);
+			window.addEventListener("KruxEvent", kruxListener, false);
+			window.addEventListener("krux-update-user", kruxListener, false);
+			waitKrux(getRTDContent, 1000);
+			
+		</script>
+<!-- End RTD Tag -->

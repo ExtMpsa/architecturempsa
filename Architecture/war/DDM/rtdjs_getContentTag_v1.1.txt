@@ -1,0 +1,356 @@
+<!-- Begin RTD Get Content Tag -->
+<script type="text/javascript">
+
+			// *********************************************************************************************
+			// Variable de stockage du resultat de la requete RTD
+			// *********************************************************************************************
+			var RTDData = '';
+			
+			
+			// *********************************************************************************************
+			// fonction utilitaire : attente valorisation date krux
+			// *********************************************************************************************
+			function waitKrux(onComplete,timeout) {			  
+			  window["kruxTimeout"]=setTimeout(function () {
+				  window["ddmUseCase"] = "RTD call with old Krux segments";
+				  onComplete();
+			  },timeout);
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : verification navigateur
+			// *********************************************************************************************
+			function isIE () {
+			  var myNav = navigator.userAgent.toLowerCase();
+			  return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : 
+			// *********************************************************************************************
+			function getTime (time, elapsedTime){
+				window[time] = window[time]||new Date().getTime();
+				window[elapsedTime] = (window[time] -  window["startHidden"]);
+				return;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : 
+			// *********************************************************************************************
+			function logTime(tagStatus, bodyStatus){
+				window["startHidden"] = window["startHidden"] || new Date().getTime();
+				window["elapsedTime"] = new Date().getTime() - window.startHidden;
+				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | kruxLastUpdate : " + window["kruxLastUpdate"]);
+				return;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire pour user timing: 
+			// *********************************************************************************************
+			function dataLayerUserTiming(timingCategory , timingVar, timingValue, timingLabel){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					event : "ddm.time",
+					timingCategory : timingCategory,
+					timingVar: timingVar,
+					timingValue: timingValue,
+					timingLabel: timingLabel,
+					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
+					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"]||"",
+					ddmUseCase: window["ddmUseCase"],
+					ddmTechnicalUseCase: window["ddmTechnicalUseCase"],
+					startDdmDate : window["startPersonalizationHidden"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire pour page view: 
+			// *********************************************************************************************
+			function updateDataLayerDDM(){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
+					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"],
+					ddmUseCase: window["ddmUseCase"],
+					ddmTechnicalUseCase: window["ddmTechnicalUseCase"]||"Google Analytics Collect happend before RTD finish",
+					startDdmDate : window["startPersonalizationHidden"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : recuperation donnees RTD inseree dans la page
+			// *********************************************************************************************
+			function getRTDData() {
+				return RTDData;
+			}			
+
+			// *********************************************************************************************
+			// fonction utilitaire : replaceContent
+			// injection du contenu dans la page HTML depuis la variable RTDData
+			// *********************************************************************************************
+			function replaceContent() {
+				var jsonObject = getRTDData();
+				if (jsonObject != '' && jsonObject != 'undefined') {
+					var contentList = jsonObject.rtdResponse.responseItems;
+					for(var i = 0; i < contentList.length; i++) {
+						var content = contentList[i];
+						var javascript = content.attributes.javascript;
+						eval(javascript);
+					}
+				}
+				else {
+					// No content to replace
+					window["ddmUseCase"]=window["ddmUseCase"] + " (no content to replace)";
+				}
+				
+				// Replace Content Finished
+			}
+
+			// *********************************************************************************************
+			// fonction utilitaire : replaceContentAjax
+			// injection du contenu requete Ajax depuis la variable RTDData
+			// *********************************************************************************************
+			function replaceContentAjax() {
+				window["rtdReplaceContentAjaxStartTime"] = new Date().getTime();
+				
+				var jsonObject = getRTDData();
+				
+				if (jsonObject != '' && jsonObject != 'undefined') {
+					var contentList = jsonObject.rtdResponse.responseItems;
+					for(var i = 0; i < contentList.length; i++) {
+						var content = contentList[i];
+						var javascript = content.attributes.javascript;
+						eval(javascript);
+					}
+				}
+				else {
+					// No content to replace
+					window["ddmUseCase"]=window["ddmUseCase"] + " (no content to replace)";
+				}
+				
+				// Replace Ajax Content Finished
+			}
+
+			
+			// *********************************************************************************************
+			// fonction utilitaire : recuperation contenu RTD
+			// *********************************************************************************************
+			function getRTDContent() {
+				window.removeEventListener("KruxEvent",ddmListener,false);
+				window.removeEventListener("krux-update-user",ddmListener,false);
+
+				// krux local storage read
+				window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);
+				(function(){
+					function retrieve(n){
+					  var m, k='kx'+n;
+					  if (window.localStorage) {
+						  return window.localStorage[k] || "";
+					  } else if (navigator.cookieEnabled) {
+						  m = document.cookie.match(k+'=([^;]*)');
+						  return (m && unescape(m[1])) || "";
+					  } else {
+						  return '';
+					  }
+					}
+					Krux.user = retrieve('user');
+					Krux.segments = retrieve('allsegs') ? retrieve('allsegs').split(',') : [];
+				})();
+				// local storage read end
+				
+				var rtduser = (typeof Krux != "undefined" && typeof Krux.user != "undefined" && Krux.user != "") ? Krux.user : "DEF";
+				var rtdsegments = (typeof Krux != "undefined" && typeof Krux.segments != "undefined" && Krux.segments != "") ? Krux.segments : "{0}";
+				var rtdattributes = (typeof Krux != "undefined" && typeof Krux.k_attributes != "undefined" && Krux.k_attributes != "") ? Krux.k_attributes : "{0|0}";
+				var br='{"user":"'+rtduser+'","segments":"'+rtdsegments+'","attributes":"'+rtdattributes+'"}';
+				
+				var xmlDoc;
+				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
+					xmlDoc = new XMLHttpRequest();
+					if('withCredentials' in xmlDoc) { // IE10+ Chrome FF Opera
+						try{
+							xmlDoc.open('POST', 'http://193.35.56.73/RestGateway/RTDcontent/getCreative/post', true);
+							xmlDoc.setRequestHeader("Content-type", "application/json; charset=utf-8");
+							xmlDoc.onreadystatechange = function() {
+							  if (xmlDoc.readyState === 4) {
+								  if(xmlDoc.status === 200){
+									
+									// valorisation variable RTDData
+									RTDData = JSON.parse(xmlDoc.responseText);
+									
+									window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+								  } else {
+									  //document.body.style.visibility = "visible";
+									  window["ddmUseCase"] = "No customisation (RTD error)";
+									  window["rtdErrorType"] = "RTD script xmlDoc status";
+								  }
+							  } 
+							}
+							xmlDoc.send(JSON.stringify(br));
+						} catch(e){
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD script xmlDoc exception";
+						}
+					} else if (window.XDomainRequest) {
+						// IE8 et IE9
+						logTime("getRTDContent : IE8 et IE9", "Body hidden");
+						if (isIE () == 8) {
+							logTime("rtdTag detect IE8", "Body Hidden");
+							var timeIE8 = 2000;
+							setTimeout(function () {
+								if (document.readyState == "complete"){
+									// document.body.style.visibility = "visible";
+									clearTimeout(timeIE8);
+									
+									logTime("rtdTag IE8 timeout known bug", "Body visible");
+								}else{
+									logTime("rtdTag IE8 timeout known bug", "Body still hidden");
+								}
+							}, timeIE8);
+						}
+
+						logTime("rtdTag launch request (XDRStart)", "Body still hidden");
+
+						xmlDoc = new XDomainRequest();
+						xmlDoc.open('POST', 'http://193.35.56.73/RestGateway/RTDcontent/getCreative/postOS');
+						xmlDoc.onload = function () {
+
+							logTime("rtdTagStart_XDR (onload request)", "Body still hidden");
+							var dom  = new ActiveXObject('Microsoft.XMLDOM');
+							var response = JSON.parse(xmlDoc.responseText);
+							dom.async = false;
+
+							// valorisation variable RTDData
+							RTDData = JSON.parse(xmlDoc.responseText);
+
+							window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+						};
+						xmlDoc.onerror = function() {
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request error";
+						};
+						xmlDoc.ontimeout = function() {
+							//document.body.style.visibility = "visible";
+							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request timeout";
+						};
+						xmlDoc.onprogress = function() {
+							logTime("rtdTagOnProgress_XDR : response onprogress", "Body still Hidden");
+						};
+						// setTimeout corrige le problème aléatoire du onload sur IE8
+						setTimeout(function () {
+							try{
+								xmlDoc.send(JSON.stringify(br));
+								logTime("rtdTag setTimeout due to onload bug IE8", "Body still Hidden");
+							} catch(e){
+								// IE5, IE6 et IE7 ne gère pas l'objet JSON
+								//document.body.style.visibility = "visible";
+								window["ddmUseCase"] = "No customisation (RTD error)";
+								window["rtdErrorType"] = "RTD script xmlDoc exception)";
+							}
+						}, 0);
+					} else { //IE7
+						//document.body.style.visibility = "visible";
+						window["ddmUseCase"] = "No customisation (RTD script error)";
+						window["rtdErrorType"] = "RTD script error due to XDomainRequest)";
+					}
+				} else { // IE5 et IE6
+					//document.body.style.visibility = "visible";
+					window["ddmUseCase"] = "No customisation (RTD script error)";
+					window["rtdErrorType"] = "RTD script error due to XMLHttpRequest)";
+				}
+			}
+
+	
+			// *********************************************************************************************
+			// Traitement requetes AJAX post chargement de la page
+			// fonction utilitaire : surcharge prototype XHR pour interception requetes ajax
+			// *********************************************************************************************
+			(function(xhr) {
+				(function(open){
+					XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+						
+						// appel remplacement contenu RTD
+						replaceContentAjax();
+
+						// appel a la requete originale
+						open.call(this, method, url, async, user, password);
+					}
+				})(XMLHttpRequest.prototype.open);
+
+				(function(send) {
+					XMLHttpRequest.prototype.send = function (data) {
+						var that = this; // Keep the reference on object in sub-objects
+	
+						// send original
+						send.call(this, data);
+					}
+				})(XMLHttpRequest.prototype.send);
+
+			})(XMLHttpRequest);
+	
+	
+			// *********************************************************************************************
+			// fonction utilitaire : rtdPersonalization
+			// A executer au debut du body
+			// *********************************************************************************************
+			function rtdPersonalization() {
+				document.body.style.visibility = "hidden";
+				window["startPersonalizationHidden"] = new Date().getTime();
+				
+				replaceContent();
+				
+				document.body.style.visibility = "visible";
+				window["timeBetweenRtdAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				if (document.readyState == "interactive"){
+					window["ddmTechnicalUseCase"] = "DDM display between domInteractive and load event";
+				}else if (document.readyState == "complete"){
+					window["ddmTechnicalUseCase"] = "DDM display after load event";
+				} else {
+					window["ddmTechnicalUseCase"] = "DDM display before domInteractive";
+				}
+				updateDataLayerDDM();
+				// Push RTD user timing even though Krux didn t finish
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenRtdAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)");
+				if (window["needPushKruxTiming"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+				}
+			}
+
+
+			// *********************************************************************************************
+			// Bloc de code principal
+			// attente evenement Krux pour lire les donnees krux et declencher l'appel RTD
+			// *********************************************************************************************
+			var ddmListener = function (e) {
+				clearTimeout(window["kruxTimeout"]);
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["ddmUseCase"] = "RTD call with updated Krux segments";
+				updateDataLayerDDM();
+				window["needPushKruxTiming"]=true;
+				getRTDContent();
+			};
+			
+			var kruxListener = function (e) {
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				updateDataLayerDDM();
+				if(window["timeBetweenRtdAndDomInteractive"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+					window["needPushKruxTiming"]=false;
+				}else{
+					// Push Krux user timing when RTD will finish
+					window["needPushKruxTiming"]=true;
+				}
+			};
+			
+			window.addEventListener("KruxEvent", ddmListener, false);
+			window.addEventListener("krux-update-user", ddmListener, false);
+			window.addEventListener("KruxEvent", kruxListener, false);
+			window.addEventListener("krux-update-user", kruxListener, false);
+			waitKrux(getRTDContent, 1000);
+
+</script>
+<!-- End RTD GetContent Tag -->
