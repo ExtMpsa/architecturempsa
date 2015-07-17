@@ -277,7 +277,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			// fonction utilitaire : recuperation contenu RTD
 			// *********************************************************************************************
 			function getRTDContent(kruxEventData) {
-				window.removeEventListener("KruxEvent",ddmListener,false);
 				window.removeEventListener("krux-update-user",ddmListener,false);
 
 				var rtduser = (typeof kruxEventData != "undefined" && typeof kruxEventData.user != "undefined" && kruxEventData.user != "") ? kruxEventData.user : "DEF";
@@ -422,9 +421,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				}
 			};
 			
-			window.addEventListener("KruxEvent", ddmListener, false);
 			window.addEventListener("krux-update-user", ddmListener, false);
-			window.addEventListener("KruxEvent", kruxListener, false);
 			window.addEventListener("krux-update-user", kruxListener, false);
 			waitKrux(getRTDContent, 1000);
 			
