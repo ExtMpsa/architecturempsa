@@ -73,7 +73,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	// Model
-	private Account account;
+	private Account accountToCreate;
 
 	// Views
 	private static ArchitectureView architectureView;
@@ -539,12 +539,12 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Model
 	@Override
 	public Account getAccount() {
-		return account;
+		return accountToCreate;
 	}
 
 	@Override
 	public void setAccount(Account account) {
-		this.account = account;
+		this.accountToCreate = account;
 	}
 
 	// Bind

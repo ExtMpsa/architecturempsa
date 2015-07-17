@@ -37,7 +37,7 @@ public class Account implements Serializable {
 	@Pattern.List({ @Pattern(regexp = "(?=.*[0-9]).+",
 			message = "Digit"), @Pattern(regexp = "(?=.*[a-z]).+",
 			message = "Lowercase"), @Pattern(regexp = "(?=.*[A-Z]).+",
-			message = "Uppercase"), @Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+",
+			message = "Uppercase"), @Pattern(regexp = "(?=.*[!@#$%^&*+=_()/\"\\.,<>~`;:?-]).+",
 			message = "Special"), @Pattern(regexp = "(?=\\S+$).+",
 			message = "Whitespace") })
 	private String password;
