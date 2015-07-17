@@ -17,6 +17,7 @@ import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -49,6 +50,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	String category;
 	String action;
 	String label;
+	boolean alreadyTryGoToPassword = false;
 	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
@@ -89,12 +91,17 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		}
 	}
 
+	@UiHandler("login")
+	void onLoginKeyUp(KeyUpEvent event) {
+		if (alreadyTryGoToPassword) {
+			validateShowError(login.getText());
+		}
+	}
+
 	private void goToPassword() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		String mail = login.getText();
-		if (activity.validateMailClient(mail)) {
-			loginError.setVisible(false);
-			login.removeStyleName("input-Error");
+		if (validateShowError(mail)) {
 			service.checkMail(mail, new AsyncCallback<Void>() {
 
 				@Override
@@ -125,16 +132,28 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 					loginError.setText(details);
 					login.addStyleName("input-Error");
 				}
-
 			});
 		} else {
-			loginError.setVisible(true);
-			loginError.setText(createAccountText.invalidMail());
-			login.addStyleName("input-Error");
 			action = action + " Failed Client Constraint Mail Not Valid";
 			pushEvent("event", category, action, login.getText());
 			removeLoader();
 		}
+		alreadyTryGoToPassword = true;
+	}
+
+	public boolean validateShowError(String mail) {
+		boolean validated = false;
+		if (activity.validateMailClient(mail)) {
+			loginError.setVisible(false);
+			login.removeStyleName("input-Error");
+			validated = true;
+		} else {
+			loginError.setVisible(true);
+			loginError.setText(createAccountText.invalidMail());
+			login.addStyleName("input-Error");
+			validated = false;
+		}
+		return validated;
 	}
 
 	public void removeLoader() {

@@ -53,9 +53,6 @@ public class CreateAccountActivity extends ArchitectureActivity {
 		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccount().getMail())) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
 			if (!step.equals("password")) {
-				// TODO :
-				// Used SDK 2.7.0 to use replaceItem
-				// History.replaceItem("!CreateAccountPlace:password", false);
 				ClientFactoryImpl.redirect = true;
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
@@ -63,12 +60,10 @@ public class CreateAccountActivity extends ArchitectureActivity {
 				historyReplaceState("!CreateAccountPlace:password");
 			}
 			createAccountView = new CreateAccountPasswordViewImpl();
-		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail()) && validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
+		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail())
+				&& validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
 			if (!step.equals("passwordVerify")) {
-				// TODO :
-				// Used SDK 2.7.0 to use replaceItem
-				// History.replaceItem("!CreateAccountPlace:passwordVerify", false);
 				ClientFactoryImpl.redirect = true;
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
@@ -79,9 +74,6 @@ public class CreateAccountActivity extends ArchitectureActivity {
 		} else {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:login"));
 			if (!step.equals("login")) {
-				// TODO :
-				// Used SDK 2.7.0 to use replaceItem
-				// History.replaceItem("!CreateAccountPlace:login", false);
 				ClientFactoryImpl.redirect = true;
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;

@@ -16,6 +16,9 @@ public class HomePlace extends Place {
 
 	@Prefix(value = "!HomePlace")
 	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
+
+		// TODO :
+		// Activity & Place add new Item. This item break the history. Have to fix it : look CreateAccountActivity.
 		@Override
 		public String getToken(HomePlace place) {
 			return "";

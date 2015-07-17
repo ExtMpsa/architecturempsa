@@ -17,7 +17,9 @@ import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -69,6 +71,8 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	String category;
 	String action;
 	String label;
+	boolean alreadyTryGoToPasswordVerify = false;
+	boolean alreadyTryCreate = false;
 	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
 	CreateAccountActivity activity;
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
@@ -149,22 +153,42 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	@UiHandler("password")
 	void onPasswordKeyPress(KeyPressEvent event) {
-		category = "Check Constraints Password for Create Account";
-		action = "Key Press Enter";
-		goToPasswordVerify();
+		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+			category = "Check Constraints Password for Create Account";
+			action = "Key Press Enter";
+			goToPasswordVerify();
+		}
+	}
+
+	@UiHandler("password")
+	void onPasswordKeyUp(KeyUpEvent event) {
+		if (alreadyTryGoToPasswordVerify) {
+			verifyShowError(password.getText());
+		}
 	}
 
 	public void goToPasswordVerify() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		String pwd = password.getText();
-		Set<ConstraintViolation<Account>> violations = activity.validatePasswordClient(pwd);
+		Set<ConstraintViolation<Account>> violations = verifyShowError(pwd);
 		if (violations.isEmpty()) {
-			sizeMinError.setVisible(false);
-			password.removeStyleName("input-Error");
 			action = action + " Success";
 			activity.pushEvent("event", category, action, password.getText());
 			activity.getAccount().setPassword(password.getText());
 			History.newItem("!CreateAccountPlace:passwordVerify");
+		} else {
+			action = action + " Failed Client Constraint Password Not Valid";
+			activity.pushEvent("event", category, action, "********");
+			activity.removeLoader();
+		}
+		alreadyTryGoToPasswordVerify = true;
+	}
+
+	public Set<ConstraintViolation<Account>> verifyShowError(String pwd) {
+		Set<ConstraintViolation<Account>> violations = activity.validatePasswordClient(pwd);
+		if (violations.isEmpty()) {
+			sizeMinError.setVisible(false);
+			password.removeStyleName("input-Error");
 		} else {
 			boolean sizeMin = false;
 			boolean sizeMax = false;
@@ -208,10 +232,8 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 			whitespaceError.setVisible(whitespace);
 
 			password.addStyleName("input-Error");
-			action = action + " Failed Client Constraint Password Not Valid";
-			activity.pushEvent("event", category, action, "********");
-			activity.removeLoader();
 		}
+		return violations;
 	}
 
 	@UiHandler("create")
@@ -223,19 +245,27 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	@UiHandler("passwordVerify")
 	void onPasswordVerifyKeyPress(KeyPressEvent event) {
-		category = "Check same Password for Create Account";
-		action = "Key Press Enter";
-		create();
+		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+			category = "Check same Password for Create Account";
+			action = "Key Press Enter";
+			create();
+		}
+	}
+
+	@UiHandler("passwordVerify")
+	void onPasswordVerifyKeyUp(KeyUpEvent event) {
+		if (alreadyTryCreate) {
+			samePasswordShowError();
+		}
 	}
 
 	public void create() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		String pwd = password.getText();
-		String pwdVerify = passwordVerify.getText();
 		activity.getAccount().setPassword(pwd);
-		if (pwd.equals(pwdVerify)) {
-			passwordVerifyError.setVisible(false);
-			if (activity.validateAccountClient()) {
+
+		if (samePasswordShowError()) {
+			if (createShowError()) {
 				service.create(activity.getAccount().getMail(), pwd, new AsyncCallback<Void>() {
 					@Override
 					public void onSuccess(Void result) {
@@ -267,22 +297,44 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 						createError.setVisible(true);
 						createError.setText(details);
 						passwordVerify.setText("");
-
 					}
 				});
-
 			} else {
 				action = action + " Failed Client Constraint Account";
 				activity.pushEvent("event", category, action, "********");
-				createError.setText(exceptionText.accountClientNotValidated());
 				activity.removeLoader();
 			}
 		} else {
 			action = action + " Failed Client Password Not the same";
 			activity.pushEvent("event", category, action, "********");
-			passwordVerifyError.setVisible(true);
 			activity.removeLoader();
 		}
+		alreadyTryCreate = true;
+	}
+
+	public boolean createShowError() {
+		boolean validateAccountClient = false;
+		if (activity.validateAccountClient()) {
+			validateAccountClient = true;
+		} else {
+			createError.setText(exceptionText.accountClientNotValidated());
+			validateAccountClient = false;
+		}
+		return validateAccountClient;
+	}
+
+	public boolean samePasswordShowError() {
+		boolean samePassword = false;
+		String pwd = password.getText();
+		String pwdVerify = passwordVerify.getText();
+		if (pwd.equals(pwdVerify)) {
+			passwordVerifyError.setVisible(false);
+			samePassword = true;
+		} else {
+			passwordVerifyError.setVisible(true);
+			samePassword = false;
+		}
+		return samePassword;
 	}
 
 	private native void pushEvent(String event, String category, String action, String label) /*-{
