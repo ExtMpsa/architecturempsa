@@ -1,4 +1,4 @@
-package com.architecture.client.ui.createaccount;
+package com.architecture.client.ui.account;
 
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
@@ -11,6 +11,8 @@ import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
@@ -63,8 +65,18 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		login.getElement().setAttribute("placeholder", createAccountText.placeholderMail());
 		loginError.setVisible(false);
 		next.setText(createAccountText.next());
+		firstFocus();
 	}
-
+	
+	public void firstFocus() {
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				login.setFocus(true);
+			}
+		});
+	}
+	
 	@Override
 	public void setAccount(Account account) {
 		login.setText(account.getMail());

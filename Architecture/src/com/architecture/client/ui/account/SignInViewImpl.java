@@ -1,10 +1,11 @@
-package com.architecture.client.ui;
+package com.architecture.client.ui.account;
 
 import com.architecture.client.activity.SignInActivity;
 import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
+import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -78,5 +79,10 @@ public class SignInViewImpl extends Composite implements SignInView {
 			}
 
 		});
+	}
+
+	@Override
+	public void setAccountToSignIn(Account account) {
+		login.setText(account.getMail());
 	}
 }

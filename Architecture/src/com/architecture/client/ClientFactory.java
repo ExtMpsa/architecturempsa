@@ -6,8 +6,8 @@ import com.architecture.client.requestfactory.ArchitectureRequestFactory;
 import com.architecture.client.ui.ArchitectureView;
 import com.architecture.client.ui.FormsView;
 import com.architecture.client.ui.HomeView;
-import com.architecture.client.ui.SignInView;
 import com.architecture.client.ui.TracingPaperView;
+import com.architecture.client.ui.account.SignInView;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
@@ -27,9 +27,13 @@ public interface ClientFactory {
 	/*
 	 * Models
 	 */
-	void setAccount(Account account);
+	void setAccountToCreate(Account account);
 
-	Account getAccount();
+	Account getAccountToCreate();
+	
+	void setAccountToSignIn(Account account);
+
+	Account getAccountToSignIn();
 
 	/*
 	 * Views

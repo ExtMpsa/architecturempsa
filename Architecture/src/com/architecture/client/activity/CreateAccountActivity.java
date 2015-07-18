@@ -7,9 +7,9 @@ import javax.validation.ConstraintViolation;
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.place.CreateAccountPlace;
-import com.architecture.client.ui.createaccount.CreateAccountPasswordViewImpl;
-import com.architecture.client.ui.createaccount.CreateAccountView;
-import com.architecture.client.ui.createaccount.CreateAccountViewImpl;
+import com.architecture.client.ui.account.CreateAccountPasswordViewImpl;
+import com.architecture.client.ui.account.CreateAccountView;
+import com.architecture.client.ui.account.CreateAccountViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
@@ -27,17 +27,16 @@ public class CreateAccountActivity extends ArchitectureActivity {
 	public CreateAccountActivity(CreateAccountPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 		step = place.getCreateAccountStep();
-		if (clientFactory.getAccount() != null) {
-			account = clientFactory.getAccount();
+		if (clientFactory.getAccountToCreate() != null) {
+			account = clientFactory.getAccountToCreate();
 		} else {
 			account = new Account();
-			clientFactory.setAccount(account);
+			clientFactory.setAccountToCreate(account);
 		}
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		// clientFactory.addPlaceChangeHandler();
 		this.containerWidget = containerWidget;
 		setStep(step);
 		removeLoader();
@@ -50,7 +49,7 @@ public class CreateAccountActivity extends ArchitectureActivity {
 
 	public void setStep(String step) {
 		CreateAccountView createAccountView;
-		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccount().getMail())) {
+		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccountToCreate().getMail())) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
 			if (!step.equals("password")) {
 				ClientFactoryImpl.redirect = true;
@@ -60,8 +59,8 @@ public class CreateAccountActivity extends ArchitectureActivity {
 				historyReplaceState("!CreateAccountPlace:password");
 			}
 			createAccountView = new CreateAccountPasswordViewImpl();
-		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccount().getMail())
-				&& validatePasswordClient(clientFactory.getAccount().getPassword()).isEmpty()) {
+		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccountToCreate().getMail())
+				&& validatePasswordClient(clientFactory.getAccountToCreate().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
 			if (!step.equals("passwordVerify")) {
 				ClientFactoryImpl.redirect = true;
@@ -93,7 +92,12 @@ public class CreateAccountActivity extends ArchitectureActivity {
 
 	public void setAccount(Account account) {
 		this.account = account;
-		clientFactory.setAccount(account);
+		clientFactory.setAccountToCreate(account);
+	}
+	
+	public void setAccountToSignIn(Account account) {
+		account.setPassword(null);
+		clientFactory.setAccountToSignIn(account);
 	}
 
 	@Override

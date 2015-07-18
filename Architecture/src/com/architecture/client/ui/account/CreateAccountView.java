@@ -1,4 +1,4 @@
-package com.architecture.client.ui.createaccount;
+package com.architecture.client.ui.account;
 
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.shared.model.Account;

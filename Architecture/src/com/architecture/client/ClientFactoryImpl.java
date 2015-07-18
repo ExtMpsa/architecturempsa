@@ -21,10 +21,10 @@ import com.architecture.client.ui.FormsView;
 import com.architecture.client.ui.FormsViewImpl;
 import com.architecture.client.ui.HomeView;
 import com.architecture.client.ui.HomeViewImpl;
-import com.architecture.client.ui.SignInView;
-import com.architecture.client.ui.SignInViewImpl;
 import com.architecture.client.ui.TracingPaperView;
 import com.architecture.client.ui.TracingPaperViewImpl;
+import com.architecture.client.ui.account.SignInView;
+import com.architecture.client.ui.account.SignInViewImpl;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
@@ -74,6 +74,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Model
 	private Account accountToCreate;
+	private Account accountToSignIn;
 
 	// Views
 	private static ArchitectureView architectureView;
@@ -538,13 +539,21 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Model
 	@Override
-	public Account getAccount() {
+	public Account getAccountToCreate() {
 		return accountToCreate;
 	}
 
 	@Override
-	public void setAccount(Account account) {
+	public void setAccountToCreate(Account account) {
 		this.accountToCreate = account;
+	}
+
+	public Account getAccountToSignIn() {
+		return accountToSignIn;
+	}
+
+	public void setAccountToSignIn(Account accountToSignIn) {
+		this.accountToSignIn = accountToSignIn;
 	}
 
 	// Bind

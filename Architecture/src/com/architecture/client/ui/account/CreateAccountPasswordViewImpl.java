@@ -1,4 +1,4 @@
-package com.architecture.client.ui.createaccount;
+package com.architecture.client.ui.account;
 
 import java.util.Set;
 
@@ -15,6 +15,8 @@ import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.composite.LoaderViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -127,11 +129,18 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	public void setPasswordStep() {
 		password.setEnabled(true);
+		password.setFocus(true);
 		sizeMinError.setVisible(false);
 		verify.setVisible(true);
 		passwordVerify.setVisible(false);
 		passwordVerifyError.setVisible(false);
 		create.setVisible(false);
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				password.setFocus(true);
+			}
+		});
 	}
 
 	public void setPasswordVerifyStep() {
@@ -139,9 +148,16 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 		sizeMinError.setVisible(false);
 		verify.setVisible(false);
 		passwordVerify.setVisible(true);
+		passwordVerify.setFocus(true);
 		passwordVerifyError.setVisible(false);
 		whitespaceError.setVisible(false);
 		create.setVisible(true);
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				passwordVerify.setFocus(true);
+			}
+		});
 	}
 
 	@UiHandler("verify")
@@ -267,6 +283,8 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 					public void onSuccess(Void result) {
 						action = action + " Success";
 						pushEvent("event", category, action, activity.getAccount().getMail());
+						activity.setAccountToSignIn(activity.getAccount());
+						activity.setAccount(null);
 						History.newItem("!SignInPlace:");
 					}
 
