@@ -6,13 +6,13 @@
 	</ui:style>
 	<g:HTMLPanel styleName="account" ui:field="panel">
 <!-- 		<section> -->
-<!-- 			<form> -->
+			<form>
 				<h2 ui:field="connexion">Sign In</h2>
 				<g:TextBox ui:field="login"/>
 				<g:PasswordTextBox ui:field="password"/>
 				<g:Button ui:field="signIn" text="Sign In"/>
 				<g:CheckBox text="Register" ui:field="register"/>
-<!-- 			</form> -->
+			</form>
 <!-- 		</section> -->
 	</g:HTMLPanel>
 </ui:UiBinder> 

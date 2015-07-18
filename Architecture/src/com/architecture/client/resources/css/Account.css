@@ -1,5 +1,10 @@
 @CHARSET "UTF-8";
-.account{
+.account form{
+	margin: 5px auto;
+	width: 300px;
+}
+
+.account h2{
 	text-align: center;
 }
 
