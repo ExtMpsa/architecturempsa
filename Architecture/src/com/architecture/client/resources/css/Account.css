@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 .account form{
 	margin: 5px auto;
-	width: 300px;
 }
 
 .account h2{
@@ -23,6 +22,12 @@
 	display: initial !important;
 }
 
+.account .gwt-CheckBox{
+	display: block;
+	margin: auto;
+	width: 300px;
+}
+
 .account input:disabled{
 	display:block;
 }
@@ -41,5 +46,6 @@
 }
 
 .gwt-Label-Error{
+	text-align: center;
 	color: red;
 }

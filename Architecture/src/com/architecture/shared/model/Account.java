@@ -32,8 +32,8 @@ public class Account implements Serializable {
 	private String mail;
 	@NotNull
 	@Size.List({ @Size(min = 8,
-			message = "Size min"), @Size(max = 20,
-			message = "Size max") })
+	message = "Size min"), @Size(max = 20,
+	message = "Size max") })
 	@Pattern.List({ @Pattern(regexp = "(?=.*[0-9]).+",
 			message = "Digit"), @Pattern(regexp = "(?=.*[a-z]).+",
 			message = "Lowercase"), @Pattern(regexp = "(?=.*[A-Z]).+",

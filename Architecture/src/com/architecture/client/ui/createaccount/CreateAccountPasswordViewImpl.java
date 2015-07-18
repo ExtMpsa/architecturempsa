@@ -185,18 +185,17 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	}
 
 	public Set<ConstraintViolation<Account>> verifyShowError(String pwd) {
+		boolean sizeMin = false;
+		boolean sizeMax = false;
+		boolean noDigit = false;
+		boolean noLowercase = false;
+		boolean noUppercase = false;
+		boolean noSpecial = false;
+		boolean whitespace = false;
 		Set<ConstraintViolation<Account>> violations = activity.validatePasswordClient(pwd);
 		if (violations.isEmpty()) {
-			sizeMinError.setVisible(false);
 			password.removeStyleName("input-Error");
 		} else {
-			boolean sizeMin = false;
-			boolean sizeMax = false;
-			boolean noDigit = false;
-			boolean noLowercase = false;
-			boolean noUppercase = false;
-			boolean noSpecial = false;
-			boolean whitespace = false;
 			for (ConstraintViolation<Account> constraintViolation : violations) {
 				switch (constraintViolation.getMessage()) {
 				case "Size min":
@@ -222,17 +221,14 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 					break;
 				}
 			}
-
-			sizeMinError.setVisible(sizeMin);
-			sizeMaxError.setVisible(sizeMax);
-			noDigitError.setVisible(noDigit);
-			noLowercaseError.setVisible(noLowercase);
-			noUppercaseError.setVisible(noUppercase);
-			noSpecialError.setVisible(noSpecial);
-			whitespaceError.setVisible(whitespace);
-
-			password.addStyleName("input-Error");
 		}
+		sizeMinError.setVisible(sizeMin);
+		sizeMaxError.setVisible(sizeMax);
+		noDigitError.setVisible(noDigit);
+		noLowercaseError.setVisible(noLowercase);
+		noUppercaseError.setVisible(noUppercase);
+		noSpecialError.setVisible(noSpecial);
+		whitespaceError.setVisible(whitespace);
 		return violations;
 	}
 
