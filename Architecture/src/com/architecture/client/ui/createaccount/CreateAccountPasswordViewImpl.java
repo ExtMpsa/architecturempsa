@@ -7,7 +7,7 @@ import javax.validation.ConstraintViolation;
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
-import com.architecture.client.resources.ResourcesCreateAccount;
+import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.CreateAccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
@@ -41,7 +41,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	@UiField
 	HTMLPanel panel;
 	@UiField
-	HeadingElement createAccount;
+	HeadingElement account;
 	@UiField
 	PasswordTextBox password;
 	@UiField
@@ -81,9 +81,9 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	}
 
 	public CreateAccountPasswordViewImpl() {
-		ResourcesCreateAccount.INSTANCE.css().ensureInjected();
+		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		createAccount.setInnerText(createAccountText.title());
+		account.setInnerText(createAccountText.title());
 
 		password.getElement().setAttribute("placeholder", createAccountText.placeholderPassword());
 		sizeMinError.setText(createAccountText.errorSizeMinPassword());

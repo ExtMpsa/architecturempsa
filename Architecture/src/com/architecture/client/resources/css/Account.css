@@ -1,21 +1,28 @@
 @CHARSET "UTF-8";
-.createAccount{
+.account{
 	text-align: center;
 }
 
-.createAccount input{
+.account input{
 	height: 30px;
 	font-size: 15px;
 	width: 284px;
 	margin: 5px auto;
 	padding: 0 8px;
-}
-
-.createAccount input:disabled{
 	display:block;
 }
 
-.createAccount button {
+[type="checkbox"]{
+	height: initial !important;
+	width: initial !important;
+	display: initial !important;
+}
+
+.account input:disabled{
+	display:block;
+}
+
+.account button {
 	display: block;
 	height: 30px;
 	width: 304px;

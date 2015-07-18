@@ -3,7 +3,7 @@ package com.architecture.client.ui.createaccount;
 import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
-import com.architecture.client.resources.ResourcesCreateAccount;
+import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.CreateAccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
@@ -57,7 +57,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	}
 
 	public CreateAccountViewImpl() {
-		ResourcesCreateAccount.INSTANCE.css().ensureInjected();
+		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		createAccount.setInnerText(createAccountText.title());
 		login.getElement().setAttribute("placeholder", createAccountText.placeholderMail());

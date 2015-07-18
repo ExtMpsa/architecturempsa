@@ -1,7 +1,7 @@
 package com.architecture.client.ui;
 
 import com.architecture.client.activity.SignInActivity;
-import com.architecture.client.resources.Resources;
+import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -40,7 +40,7 @@ public class SignInViewImpl extends Composite implements SignInView {
 	}
 
 	public SignInViewImpl() {
-		Resources.INSTANCE.css().ensureInjected();
+		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
 	}

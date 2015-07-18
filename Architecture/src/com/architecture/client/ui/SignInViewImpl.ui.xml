@@ -4,17 +4,15 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="main" styleName="gwt-Content">
-		<section>
-			<form>
-				<g:HTMLPanel ui:field="content">
-					<h2 ui:field="connexion">Sign In</h2>
-					<g:TextBox ui:field="login"/>
-					<g:PasswordTextBox ui:field="password"/>
-					<g:CheckBox text="Register" ui:field="register"/>
-					<g:Button ui:field="signIn" text="Sign In"/>
-				</g:HTMLPanel>
-			</form>
-		</section>
+	<g:HTMLPanel styleName="account" ui:field="panel">
+<!-- 		<section> -->
+<!-- 			<form> -->
+				<h2 ui:field="connexion">Sign In</h2>
+				<g:TextBox ui:field="login"/>
+				<g:PasswordTextBox ui:field="password"/>
+				<g:Button ui:field="signIn" text="Sign In"/>
+				<g:CheckBox text="Register" ui:field="register"/>
+<!-- 			</form> -->
+<!-- 		</section> -->
 	</g:HTMLPanel>
 </ui:UiBinder> 
