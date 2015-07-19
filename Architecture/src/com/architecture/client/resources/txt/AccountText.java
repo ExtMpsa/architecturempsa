@@ -2,7 +2,7 @@ package com.architecture.client.resources.txt;
 
 import com.google.gwt.i18n.client.Constants;
 
-public interface CreateAccountText extends Constants {
+public interface AccountText extends Constants {
 	String title();
 
 	String placeholderMail();

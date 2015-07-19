@@ -4,7 +4,7 @@ import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesAccount;
-import com.architecture.client.resources.txt.CreateAccountText;
+import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -45,15 +45,19 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	@UiField
 	Button next;
 	@UiField
-	Label loginError;
+	Label loginErrorClient;
 	@UiField
 	HTMLPanel panel;
+	@UiField
+	Label loginErrorServer;
 	CreateAccountActivity activity;
 	String category;
 	String action;
 	String label;
 	boolean alreadyTryGoToPassword = false;
-	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
+	String lastMailFailedServer = null;
+	boolean failByServer = false;
+	AccountText createAccountText = GWT.create(AccountText.class);
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
 	}
@@ -63,11 +67,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		initWidget(uiBinder.createAndBindUi(this));
 		createAccount.setInnerText(createAccountText.title());
 		login.getElement().setAttribute("placeholder", createAccountText.placeholderMail());
-		loginError.setVisible(false);
+		loginErrorClient.setVisible(false);
+		loginErrorServer.setVisible(false);
 		next.setText(createAccountText.next());
 		firstFocus();
 	}
-	
+
 	public void firstFocus() {
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			@Override
@@ -76,7 +81,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			}
 		});
 	}
-	
+
 	@Override
 	public void setAccount(Account account) {
 		login.setText(account.getMail());
@@ -140,9 +145,10 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 						details = exceptionText.internalServerError() + caught.getClass().toString();
 					}
 					pushEvent("event", category, action, login.getText());
-					loginError.setVisible(true);
-					loginError.setText(details);
+					loginErrorServer.setVisible(true);
+					loginErrorServer.setText(details);
 					login.addStyleName("input-Error");
+					lastMailFailedServer = login.getText();
 				}
 			});
 		} else {
@@ -154,18 +160,28 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	}
 
 	public boolean validateShowError(String mail) {
-		boolean validated = false;
+		boolean validatedClient = false;
 		if (activity.validateMailClient(mail)) {
-			loginError.setVisible(false);
+			loginErrorClient.setVisible(false);
 			login.removeStyleName("input-Error");
-			validated = true;
+			validatedClient = true;
 		} else {
-			loginError.setVisible(true);
-			loginError.setText(createAccountText.invalidMail());
+			loginErrorClient.setVisible(true);
+			loginErrorClient.setText(createAccountText.invalidMail());
 			login.addStyleName("input-Error");
-			validated = false;
+			validatedClient = false;
 		}
-		return validated;
+		if (lastMailFailedServer != null && mail.equalsIgnoreCase(lastMailFailedServer)) {
+			login.addStyleName("input-Error");
+			loginErrorServer.setVisible(true);
+			login.addStyleName("input-Error");
+		} else {
+			loginErrorServer.setVisible(false);
+			if (validatedClient) {
+				login.removeStyleName("input-Error");
+			}
+		}
+		return validatedClient;
 	}
 
 	public void removeLoader() {

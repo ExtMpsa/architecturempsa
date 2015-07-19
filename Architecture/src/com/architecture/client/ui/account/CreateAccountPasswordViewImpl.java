@@ -8,7 +8,7 @@ import com.architecture.client.activity.CreateAccountActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesAccount;
-import com.architecture.client.resources.txt.CreateAccountText;
+import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.resources.txt.ExceptionText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -75,7 +75,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	String label;
 	boolean alreadyTryGoToPasswordVerify = false;
 	boolean alreadyTryCreate = false;
-	CreateAccountText createAccountText = GWT.create(CreateAccountText.class);
+	AccountText createAccountText = GWT.create(AccountText.class);
 	CreateAccountActivity activity;
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
 
