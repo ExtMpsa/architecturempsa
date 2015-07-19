@@ -1,5 +1,9 @@
 package com.architecture.client.ui.account;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+
 import com.architecture.client.activity.SignInActivity;
 import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.AccountText;
@@ -63,7 +67,8 @@ public class SignInViewImpl extends Composite implements SignInView {
 	String category;
 	String action;
 	String label;
-	boolean alreadyTryToValidateMail;
+	boolean alreadyTryToValidateMail = false;
+	boolean alreadyCheckPassword = false;
 	AccountText accountText = GWT.create(AccountText.class);
 
 	interface SignInViewImplUiBinder extends UiBinder<Widget, SignInViewImpl> {
@@ -86,13 +91,19 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 		signIn.setText(signText.signIn());
 		signInError.setVisible(false);
+		sizeMinError.setText(accountText.errorSizeMinPassword());
 		sizeMinError.setVisible(false);
+		sizeMaxError.setText(accountText.errorSizeMaxPassword());
 		sizeMaxError.setVisible(false);
+		noDigitError.setText(accountText.errorDigitPassword());
 		noDigitError.setVisible(false);
+		noLowercaseError.setText(accountText.errorLowercasePassword());
 		noLowercaseError.setVisible(false);
+		noUppercaseError.setText(accountText.errorUppercasePassword());
 		noUppercaseError.setVisible(false);
-		noUppercaseError.setVisible(false);
+		noSpecialError.setText(accountText.errorSpecialPassword());
 		noSpecialError.setVisible(false);
+		whitespaceError.setText(accountText.errorWhiteSpace());
 		whitespaceError.setVisible(false);
 
 		register.setText(signText.register());
@@ -112,23 +123,23 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("signIn")
 	void onSignInClick(ClickEvent event) {
-		service.signIn(login.getText(), password.getText(), new AsyncCallback<Boolean>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
-			}
-
-			@Override
-			public void onSuccess(Boolean result) {
-				if (result) {
-					Window.alert("Connecté");
-				} else {
-					Window.alert("Echec");
+		if (createShowError()) {
+			service.signIn(login.getText(), password.getText(), new AsyncCallback<Boolean>() {
+				@Override
+				public void onSuccess(Boolean result) {
+					if (result) {
+						Window.alert("Connecté");
+					} else {
+						Window.alert("Echec");
+					}
 				}
-			}
 
-		});
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+				}
+			});
+		}
 	}
 
 	@Override
@@ -170,5 +181,77 @@ public class SignInViewImpl extends Composite implements SignInView {
 			mailValidated = false;
 		}
 		return mailValidated;
+	}
+
+	@UiHandler("password")
+	void onPasswordBlur(BlurEvent event) {
+		verifyShowError(password.getText());
+	}
+
+	@UiHandler("password")
+	void onPasswordKeyUp(KeyUpEvent event) {
+		if (alreadyCheckPassword) {
+			verifyShowError(password.getText());
+		}
+	}
+
+	public Set<ConstraintViolation<Account>> verifyShowError(String pwd) {
+		boolean sizeMin = false;
+		boolean sizeMax = false;
+		boolean noDigit = false;
+		boolean noLowercase = false;
+		boolean noUppercase = false;
+		boolean noSpecial = false;
+		boolean whitespace = false;
+		Set<ConstraintViolation<Account>> violations = activity.validatePasswordClient(pwd);
+		if (violations.isEmpty()) {
+			password.removeStyleName("input-Error");
+		} else {
+			password.addStyleName("input-Error");
+			for (ConstraintViolation<Account> constraintViolation : violations) {
+				switch (constraintViolation.getMessage()) {
+				case "Size min":
+					sizeMin = true;
+					break;
+				case "Size max":
+					sizeMax = true;
+					break;
+				case "Digit":
+					noDigit = true;
+					break;
+				case "Lowercase":
+					noLowercase = true;
+					break;
+				case "Uppercase":
+					noUppercase = true;
+					break;
+				case "Special":
+					noSpecial = true;
+					break;
+				case "Whitespace":
+					whitespace = true;
+					break;
+				}
+			}
+		}
+		sizeMinError.setVisible(sizeMin);
+		sizeMaxError.setVisible(sizeMax);
+		noDigitError.setVisible(noDigit);
+		noLowercaseError.setVisible(noLowercase);
+		noUppercaseError.setVisible(noUppercase);
+		noSpecialError.setVisible(noSpecial);
+		whitespaceError.setVisible(whitespace);
+		alreadyCheckPassword = true;
+		return violations;
+	}
+
+	public boolean createShowError() {
+		boolean validateAccountClient = false;
+		if (activity.validateAccountClient()) {
+			validateAccountClient = true;
+		} else {
+			validateAccountClient = false;
+		}
+		return validateAccountClient;
 	}
 }

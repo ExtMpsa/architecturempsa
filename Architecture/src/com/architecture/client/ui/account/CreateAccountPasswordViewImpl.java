@@ -75,7 +75,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	String label;
 	boolean alreadyTryGoToPasswordVerify = false;
 	boolean alreadyTryCreate = false;
-	AccountText createAccountText = GWT.create(AccountText.class);
+	AccountText accountText = GWT.create(AccountText.class);
 	CreateAccountActivity activity;
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
 
@@ -85,30 +85,30 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	public CreateAccountPasswordViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		account.setInnerText(createAccountText.title());
+		account.setInnerText(accountText.title());
 
-		password.getElement().setAttribute("placeholder", createAccountText.placeholderPassword());
-		sizeMinError.setText(createAccountText.errorSizeMinPassword());
+		password.getElement().setAttribute("placeholder", accountText.placeholderPassword());
+		sizeMinError.setText(accountText.errorSizeMinPassword());
 		sizeMinError.setVisible(false);
-		sizeMaxError.setText(createAccountText.errorSizeMaxPassword());
+		sizeMaxError.setText(accountText.errorSizeMaxPassword());
 		sizeMaxError.setVisible(false);
-		noDigitError.setText(createAccountText.errorDigitPassword());
+		noDigitError.setText(accountText.errorDigitPassword());
 		noDigitError.setVisible(false);
-		noLowercaseError.setText(createAccountText.errorLowercasePassword());
+		noLowercaseError.setText(accountText.errorLowercasePassword());
 		noLowercaseError.setVisible(false);
-		noUppercaseError.setText(createAccountText.errorUppercasePassword());
+		noUppercaseError.setText(accountText.errorUppercasePassword());
 		noUppercaseError.setVisible(false);
-		noSpecialError.setText(createAccountText.errorSpecialPassword());
+		noSpecialError.setText(accountText.errorSpecialPassword());
 		noSpecialError.setVisible(false);
-		whitespaceError.setText(createAccountText.errorWhiteSpace());
+		whitespaceError.setText(accountText.errorWhiteSpace());
 		whitespaceError.setVisible(false);
 		createError.setVisible(false);
-		verify.setText(createAccountText.passwordVerify());
+		verify.setText(accountText.passwordVerify());
 
-		passwordVerify.getElement().setAttribute("placeholder", createAccountText.placeholderPasswordVerify());
-		passwordVerifyError.setText(createAccountText.passwordVerifyError());
+		passwordVerify.getElement().setAttribute("placeholder", accountText.placeholderPasswordVerify());
+		passwordVerifyError.setText(accountText.passwordVerifyError());
 
-		create.setText(createAccountText.create());
+		create.setText(accountText.create());
 		String token = History.getToken();
 		if (token.equalsIgnoreCase("!CreateAccountPlace:password")) {
 			setPasswordStep();
