@@ -10,5 +10,19 @@
 		<g:Label text="erreur Client" ui:field="loginErrorClient" styleName="gwt-Label-Error"/>
 		<g:Label text="erreur Serveur" ui:field="loginErrorServer" styleName="gwt-Label-Error"/>
 		<g:Button ui:field="next" text="Next"/>
+		<g:DecoratedPopupPanel ui:field="asideNext" styleName="gwt-Popup-Aside" autoHideEnabled="true" autoHideOnHistoryEventsEnabled="true">
+			<g:HTMLPanel>
+				<code>
+					<pre ui:field="preNext">
+dataLayer.push({
+	event : event,
+	eventCategory : category,
+	eventAction : action,
+	eventLabel : label
+});
+					</pre>
+				</code>
+			</g:HTMLPanel>
+		</g:DecoratedPopupPanel >
 	</g:HTMLPanel>
 </ui:UiBinder> 

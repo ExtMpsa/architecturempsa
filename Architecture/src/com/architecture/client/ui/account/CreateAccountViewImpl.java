@@ -16,10 +16,13 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
+import com.google.gwt.dom.client.PreElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -27,6 +30,7 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -50,6 +54,10 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	HTMLPanel panel;
 	@UiField
 	Label loginErrorServer;
+	@UiField
+	DecoratedPopupPanel asideNext;
+	@UiField
+	PreElement preNext;
 	CreateAccountActivity activity;
 	String category;
 	String action;
@@ -70,6 +78,15 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		loginErrorClient.setVisible(false);
 		loginErrorServer.setVisible(false);
 		next.setText(createAccountText.next());
+
+		// TODO : Begin
+		// Contournement du bug de masquage de la popup
+		asideNext.show();
+		asideNext.hide();
+		asideNext.setAnimationEnabled(true);
+		// End
+		// Contournement du bug de masquage de la popup
+
 		firstFocus();
 	}
 
@@ -93,9 +110,42 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	}
 
 	@UiHandler("next")
+	void onNextMouseOver(MouseOverEvent event) {
+		Widget source = (Widget) event.getSource();
+		int left = source.getAbsoluteLeft() + source.getOffsetWidth() + 20;
+		int top = source.getAbsoluteTop() + source.getOffsetHeight() - 120;
+		asideNext.setPopupPosition(left, top);
+		/*@formatter:off*/
+		preNext.setInnerText("Au clic si l'action réussit :"
+				+ "\ndataLayer.push({"
+				+ "\n	event : \"event\","
+				+ "\n	eventCategory : \"Check Mail for Create Account\","
+				+ "\n	eventAction : \"Click\","
+				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n});"
+				+ "\n"
+				+ "\nSinon l'event category change en fonction de l'échec."
+				+ "\nExemple:"
+				+ "\ndataLayer.push({"
+				+ "\n	event : \"event\","
+				+ "\n	eventCategory : \"Check Mail for Create Account\","
+				+ "\n	eventAction : \"Click Failed Client Constraint Mail Not Valid\","
+				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n});");
+		/*@formatter:on*/
+		asideNext.show();
+	}
+
+	@UiHandler("next")
+	void onNextMouseOut(MouseOutEvent event) {
+		asideNext.hide();
+	}
+
+	@UiHandler("next")
 	void onNextClick(ClickEvent event) {
 		category = "Check Mail for Create Account";
 		action = "Click";
+		label = login.getText();
 		goToPassword();
 	}
 
@@ -104,6 +154,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
 			category = "Check Mail for Create Account";
 			action = "Key Press Enter";
+			label = login.getText();
 			goToPassword();
 		}
 	}
@@ -113,6 +164,39 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		if (alreadyTryGoToPassword) {
 			validateShowError(login.getText());
 		}
+	}
+
+	@UiHandler("login")
+	void onLoginMouseOver(MouseOverEvent event) {
+		Widget source = (Widget) event.getSource();
+		int left = source.getAbsoluteLeft() + source.getOffsetWidth() + 20;
+		int top = source.getAbsoluteTop() + source.getOffsetHeight() - 140;
+		asideNext.setPopupPosition(left, top);
+		/*@formatter:off*/
+		preNext.setInnerText("Si l'utilisateur appuye sur la touche entrée"
+				+ "\net si l'action réussit :"
+				+ "\ndataLayer.push({"
+				+ "\n	event : \"event\","
+				+ "\n	eventCategory : \"Check Mail for Create Account\","
+				+ "\n	eventAction : \"Key Press Enter\","
+				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n});"
+				+ "\n"
+				+ "\nSinon l'event category change en fonction de l'échec."
+				+ "\nExemple:"
+				+ "\ndataLayer.push({"
+				+ "\n	event : \"event\","
+				+ "\n	eventCategory : \"Check Mail for Create Account\","
+				+ "\n	eventAction : \"Key Press Enter Failed Client Constraint Mail Not Valid\","
+				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n});");
+		/*@formatter:on*/
+		asideNext.show();
+	}
+
+	@UiHandler("login")
+	void onLoginMouseOut(MouseOutEvent event) {
+		asideNext.hide();
 	}
 
 	private void goToPassword() {
@@ -144,7 +228,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 						action = action + " Failed Internal Server Error";
 						details = exceptionText.internalServerError() + caught.getClass().toString();
 					}
-					pushEvent("event", category, action, login.getText());
+					pushEvent("event", category, action, label);
 					loginErrorServer.setVisible(true);
 					loginErrorServer.setText(details);
 					login.addStyleName("input-Error");
@@ -153,7 +237,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			});
 		} else {
 			action = action + " Failed Client Constraint Mail Not Valid";
-			pushEvent("event", category, action, login.getText());
+			pushEvent("event", category, action, label);
 			removeLoader();
 		}
 		alreadyTryGoToPassword = true;

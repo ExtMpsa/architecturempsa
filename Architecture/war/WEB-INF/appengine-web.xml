@@ -49,7 +49,7 @@
 
   <!-- Configure java.util.logging -->
   <system-properties>
-    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    <property name="java.util.logging.config.file" value="WEB-INF/lib/logging.properties"/>
     <property name="slim3.hotReloading" value="true"/>
 	    <!--
         <property name="slim3.datastoreDeadline" value="8"/>

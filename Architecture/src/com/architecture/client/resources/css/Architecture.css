@@ -72,6 +72,13 @@
 .gwt-Grid td{
 	vertical-align: top;
 }
+.gwt-Popup-Aside{
+	background-color: buttonface;
+	border: 1px solid #bbb;
+	border-bottom: 1px solid #a0a0a0;
+	border-radius: 3px;
+}
+
 .gwt-Button{
 	color: buttontext;
 	font: -webkit-small-control;
