@@ -121,7 +121,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				+ "\n	event : \"event\","
 				+ "\n	eventCategory : \"Check Mail for Create Account\","
 				+ "\n	eventAction : \"Click\","
-				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n	eventLabel : \"" + login.getText() + "\""
 				+ "\n});"
 				+ "\n"
 				+ "\nSinon l'event category change en fonction de l'échec."
@@ -130,7 +130,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				+ "\n	event : \"event\","
 				+ "\n	eventCategory : \"Check Mail for Create Account\","
 				+ "\n	eventAction : \"Click Failed Client Constraint Mail Not Valid\","
-				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n	eventLabel : \"" + login.getText() + "\""
 				+ "\n});");
 		/*@formatter:on*/
 		asideNext.show();
@@ -179,7 +179,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				+ "\n	event : \"event\","
 				+ "\n	eventCategory : \"Check Mail for Create Account\","
 				+ "\n	eventAction : \"Key Press Enter\","
-				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n	eventLabel : \"" + login.getText() + "\""
 				+ "\n});"
 				+ "\n"
 				+ "\nSinon l'event category change en fonction de l'échec."
@@ -188,7 +188,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 				+ "\n	event : \"event\","
 				+ "\n	eventCategory : \"Check Mail for Create Account\","
 				+ "\n	eventAction : \"Key Press Enter Failed Client Constraint Mail Not Valid\","
-				+ "\n	eventLabel : \"" + label + "\""
+				+ "\n	eventLabel : \"" + login.getText() + "\""
 				+ "\n});");
 		/*@formatter:on*/
 		asideNext.show();
