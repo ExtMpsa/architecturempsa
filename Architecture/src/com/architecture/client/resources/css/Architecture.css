@@ -51,9 +51,13 @@
   display: inline;
 }
 
-.gwt-Content  {
+.gwt-Main  {
 	margin : auto;
 	max-width: 980px;
+}
+
+.gwt-Content{
+	min-width:980px;
 }
 
 .gwt-SignStep input{
