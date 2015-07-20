@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -58,6 +59,8 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	DecoratedPopupPanel asideNext;
 	@UiField
 	PreElement preNext;
+	@UiField
+	Button helpLogin;
 	CreateAccountActivity activity;
 	String category;
 	String action;
@@ -65,7 +68,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	boolean alreadyTryGoToPassword = false;
 	String lastMailFailedServer = null;
 	boolean failByServer = false;
-	AccountText createAccountText = GWT.create(AccountText.class);
+	AccountText accountText = GWT.create(AccountText.class);
 
 	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
 	}
@@ -73,11 +76,15 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	public CreateAccountViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		createAccount.setInnerText(createAccountText.title());
-		login.getElement().setAttribute("placeholder", createAccountText.placeholderMail());
+		createAccount.setInnerText(accountText.title());
+		login.getElement().setAttribute("placeholder", accountText.placeholderMail());
+		Image helpLoginLogo = new Image(ResourcesAccount.INSTANCE.helpLoginLogo());
+		helpLoginLogo.setWidth("20px");
+		helpLoginLogo.setHeight("20px");
+		helpLogin.getElement().appendChild(helpLoginLogo.getElement());
 		loginErrorClient.setVisible(false);
 		loginErrorServer.setVisible(false);
-		next.setText(createAccountText.next());
+		next.setText(accountText.next());
 
 		// TODO : Begin
 		// Contournement du bug de masquage de la popup
@@ -115,24 +122,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		int left = source.getAbsoluteLeft() + source.getOffsetWidth() + 20;
 		int top = source.getAbsoluteTop() + source.getOffsetHeight() - 120;
 		asideNext.setPopupPosition(left, top);
-		/*@formatter:off*/
-		preNext.setInnerText("Au clic si l'action réussit :"
-				+ "\ndataLayer.push({"
-				+ "\n	event : \"event\","
-				+ "\n	eventCategory : \"Check Mail for Create Account\","
-				+ "\n	eventAction : \"Click\","
-				+ "\n	eventLabel : \"" + login.getText() + "\""
-				+ "\n});"
-				+ "\n"
-				+ "\nSinon l'event category change en fonction de l'échec."
-				+ "\nExemple:"
-				+ "\ndataLayer.push({"
-				+ "\n	event : \"event\","
-				+ "\n	eventCategory : \"Check Mail for Create Account\","
-				+ "\n	eventAction : \"Click Failed Client Constraint Mail Not Valid\","
-				+ "\n	eventLabel : \"" + login.getText() + "\""
-				+ "\n});");
-		/*@formatter:on*/
+		/* @formatter:off */
+		preNext.setInnerText("Au clic si l'action réussit :" + "\ndataLayer.push({" + "\n	event : \"event\"," + "\n	eventCategory : \"Check Mail for Create Account\"," + "\n	eventAction : \"Click\","
+				+ "\n	eventLabel : \"" + login.getText() + "\"" + "\n});" + "\n" + "\nSinon l'event category change en fonction de l'échec." + "\nExemple:" + "\ndataLayer.push({"
+				+ "\n	event : \"event\"," + "\n	eventCategory : \"Check Mail for Create Account\"," + "\n	eventAction : \"Click Failed Client Constraint Mail Not Valid\"," + "\n	eventLabel : \""
+				+ login.getText() + "\"" + "\n});");
+		/* @formatter:on */
 		asideNext.show();
 	}
 
@@ -172,25 +167,12 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 		int left = source.getAbsoluteLeft() + source.getOffsetWidth() + 20;
 		int top = source.getAbsoluteTop() + source.getOffsetHeight() - 140;
 		asideNext.setPopupPosition(left, top);
-		/*@formatter:off*/
-		preNext.setInnerText("Si l'utilisateur appuye sur la touche entrée"
-				+ "\net si l'action réussit :"
-				+ "\ndataLayer.push({"
-				+ "\n	event : \"event\","
-				+ "\n	eventCategory : \"Check Mail for Create Account\","
-				+ "\n	eventAction : \"Key Press Enter\","
-				+ "\n	eventLabel : \"" + login.getText() + "\""
-				+ "\n});"
-				+ "\n"
-				+ "\nSinon l'event category change en fonction de l'échec."
-				+ "\nExemple:"
-				+ "\ndataLayer.push({"
-				+ "\n	event : \"event\","
-				+ "\n	eventCategory : \"Check Mail for Create Account\","
-				+ "\n	eventAction : \"Key Press Enter Failed Client Constraint Mail Not Valid\","
-				+ "\n	eventLabel : \"" + login.getText() + "\""
-				+ "\n});");
-		/*@formatter:on*/
+		/* @formatter:off */
+		preNext.setInnerText("Si l'utilisateur appuye sur la touche entrée" + "\net si l'action réussit :" + "\ndataLayer.push({" + "\n	event : \"event\","
+				+ "\n	eventCategory : \"Check Mail for Create Account\"," + "\n	eventAction : \"Key Press Enter\"," + "\n	eventLabel : \"" + login.getText() + "\"" + "\n});" + "\n"
+				+ "\nSinon l'event category change en fonction de l'échec." + "\nExemple:" + "\ndataLayer.push({" + "\n	event : \"event\"," + "\n	eventCategory : \"Check Mail for Create Account\","
+				+ "\n	eventAction : \"Key Press Enter Failed Client Constraint Mail Not Valid\"," + "\n	eventLabel : \"" + login.getText() + "\"" + "\n});");
+		/* @formatter:on */
 		asideNext.show();
 	}
 
@@ -251,7 +233,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 			validatedClient = true;
 		} else {
 			loginErrorClient.setVisible(true);
-			loginErrorClient.setText(createAccountText.invalidMail());
+			loginErrorClient.setText(accountText.invalidMail());
 			login.addStyleName("input-Error");
 			validatedClient = false;
 		}
