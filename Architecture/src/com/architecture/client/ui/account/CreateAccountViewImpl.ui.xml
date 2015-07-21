@@ -12,20 +12,26 @@
 		<g:TextBox ui:field="login"/>
 		<g:Label text="erreur Client" ui:field="loginErrorClient" styleName="gwt-Label-Error"/>
 		<g:Label text="erreur Serveur" ui:field="loginErrorServer" styleName="gwt-Label-Error"/>
+		<g:HTMLPanel styleName="panelHelp">
+			<g:Button styleName="gwt-Button help-DataLayer" ui:field="helpNext"/>
+		</g:HTMLPanel>
 		<g:Button ui:field="next" text="Next"/>
+		
 		<g:DecoratedPopupPanel ui:field="asideNext" styleName="gwt-Popup-Aside" autoHideEnabled="true" autoHideOnHistoryEventsEnabled="true">
-			<g:HTMLPanel>
-				<code>
-					<pre ui:field="preNext">
+			<g:FocusPanel ui:field="focusPanel">
+				<g:HTMLPanel>
+					<code>
+						<pre ui:field="preNext">
 dataLayer.push({
 	event : event,
 	eventCategory : category,
 	eventAction : action,
 	eventLabel : label
 });
-					</pre>
-				</code>
-			</g:HTMLPanel>
+						</pre>
+					</code>
+				</g:HTMLPanel>
+			</g:FocusPanel>
 		</g:DecoratedPopupPanel >
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -79,6 +79,10 @@
 	border-radius: 3px;
 }
 
+.gwt-Popup-Aside pre,code,div,td,tr,tbody,table{
+	outline: none;
+}
+
 .gwt-Button{
 	color: buttontext;
 	font: -webkit-small-control;
