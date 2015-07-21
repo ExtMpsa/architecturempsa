@@ -11,7 +11,8 @@
 	height: 30px;
 	font-size: 15px;
 	width: 284px;
-	margin: 5px auto;
+	margin: 5px;
+	margin-left: 330px;
 	padding: 0 8px;
 	display:block;
 }
@@ -36,7 +37,8 @@
 	display: block;
 	height: 30px;
 	width: 304px;
-	margin: 5px auto;
+	margin: 5px;
+	margin-left: 330px;
 }
 
 .input-Error {
@@ -56,17 +58,17 @@
 	padding: 0px;
 	border: 0px;
 	background: none;
+	margin-left: 0px!important;
 	
 }
 
 .panelHelp {
 	float: right;
-	margin-right: 330px;
+	margin-right: 310px;
 }
 
 .help-DataLayer{
 	outline: none;
-	position:fixed;
 }
 
 .help-DataLayer img{

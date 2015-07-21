@@ -41,6 +41,9 @@
     <when-type-is class="javax.validation.ValidatorFactory" />
   </replace-with>
   
+  <!-- Use CSS Ofuscation -->
+  <set-configuration-property name="CssResource.obfuscationPrefix" value="empty" />
+  
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
