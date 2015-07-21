@@ -149,16 +149,18 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("login")
 	void onLoginBlur(BlurEvent event) {
-		category = "Check Mail for Sign In";
-		action = "Blur";
-		String mail = login.getText();
-		if (mailValidatedShowError(mail)) {
+		if (!login.getText().equals("")) {
+			category = "Check Mail for Sign In";
+			action = "Blur";
+			String mail = login.getText();
+			if (mailValidatedShowError(mail)) {
 
-		} else {
-			action = action + " Failed Client Constraint Mail Not Valid";
-			activity.pushEvent("event", category, action, mail);
+			} else {
+				action = action + " Failed Client Constraint Mail Not Valid";
+				activity.pushEvent("event", category, action, mail);
+			}
+			alreadyTryToValidateMail = true;
 		}
-		alreadyTryToValidateMail = true;
 	}
 
 	@UiHandler("login")
@@ -185,7 +187,9 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("password")
 	void onPasswordBlur(BlurEvent event) {
-		verifyShowError(password.getText());
+		if (!password.getText().equals("")) {
+			verifyShowError(password.getText());
+		}
 	}
 
 	@UiHandler("password")

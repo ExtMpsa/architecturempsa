@@ -21,12 +21,13 @@
 	height: initial !important;
 	width: initial !important;
 	display: initial !important;
+	margin: 5px !important;
 }
 
 .account .gwt-CheckBox{
 	display: block;
-	margin: auto;
 	width: 300px;
+	margin-left: 330px;
 }
 
 .account input:disabled{
