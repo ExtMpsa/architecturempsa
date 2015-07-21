@@ -123,6 +123,12 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("signIn")
 	void onSignInClick(ClickEvent event) {
+		if (login.getText().equals("")) {
+			mailValidatedShowError("");
+		}
+		if (password.getText().equals("")) {
+			verifyShowError("");
+		}
 		if (createShowError()) {
 			service.signIn(login.getText(), password.getText(), new AsyncCallback<Boolean>() {
 				@Override
