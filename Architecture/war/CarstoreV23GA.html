@@ -407,6 +407,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			};
 			
 			var kruxListener = function (e) {
+				window.removeEventListener("krux-update-user",kruxListener,false);
 				window["kruxLastUpdateTime"] = new Date().getTime();
 				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
 				updateDataLayerDDM();
