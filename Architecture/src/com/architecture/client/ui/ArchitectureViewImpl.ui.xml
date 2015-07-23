@@ -5,9 +5,14 @@
 	
 	</ui:style>
 	<g:HTMLPanel ui:field="main" styleName="gwt-Main">
-		<p1:BannerLanguageViewImpl ui:field="bannerLanguage"/>
-		<p1:BannerViewImpl ui:field="banner"/>
-		<p1:MenuViewImpl ui:field="menu"/>
+		<header>
+			<p1:DisclamerViewImpl ui:field="disclaimer"/>
+			<p1:BannerLanguageViewImpl ui:field="bannerLanguage"/>
+			<p1:BannerViewImpl ui:field="banner"/>
+		</header>
+		<nav>
+			<p1:MenuViewImpl ui:field="menu"/>
+		</nav>
 		<g:HTMLPanel ui:field="content" styleName="gwt-Content">
 		</g:HTMLPanel>
 	</g:HTMLPanel>

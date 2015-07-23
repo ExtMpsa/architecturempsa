@@ -5,8 +5,10 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="gwt-FlagView">
-		<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
-		<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
+	<g:HTMLPanel styleName="flag-wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="flag-content">
+			<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
+			<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

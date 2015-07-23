@@ -23,26 +23,30 @@
 	cursor:pointer;
 }
 
-.gwt-FlagView  {
+.flag-content  {
 	min-width: 980px;
 	height:24px;
 }
 
-.gwt-FlagView  .langChooser {
+.flag-content  .langChooser {
 	float: right;
 }
 
-.gwt-FlagView  .logo {
+.flag-content  .logo {
 	vertical-align: middle;
 }
 
-
-.gwt-HeaderView  {
+.header-wrapper {
+	
+}
+.header-content  {
 	text-align: center;
 	min-width: 980px;
+	max-width: 980px;
+	margin: auto;
 }
 
-.gwt-HeaderView h1 {
+.header-content h1 {
   font-size: 4em;
   font-weight: bold;
   color: #777777;
@@ -52,12 +56,12 @@
 }
 
 .gwt-Main  {
-	margin : auto;
-	max-width: 980px;
 }
 
 .gwt-Content{
 	min-width:980px;
+	max-width: 980px;
+	margin: auto;
 }
 
 .gwt-SignStep input{
@@ -106,3 +110,26 @@
 html{height:100%}
 body{height:100%;margin:0px}
 a{text-decoration: none;color:#777;}
+
+.disclaimer-wrapper{
+	background: #4c88a1;
+}
+
+.disclaimer-content{
+	max-width: 980px;
+	height: 30px;
+	margin: auto;
+}
+
+.disclaimer-wrapper .gwt-Label{
+	display: inline;
+}
+
+.disclaimer-wrapper .gwt-Button{
+	float: right;
+}
+
+.flag-content {
+	max-width: 980px;
+	margin: auto;
+}

@@ -14,6 +14,7 @@ import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class BannerLanguageViewImpl extends Composite {
 
@@ -22,6 +23,8 @@ public class BannerLanguageViewImpl extends Composite {
 	ListBox langChooser;
 	@UiField
 	Anchor logo;
+	@UiField HTMLPanel wrapper;
+	@UiField HTMLPanel content;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}

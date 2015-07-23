@@ -10,6 +10,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -30,6 +31,10 @@ public class BannerViewImpl extends Composite {
 	AnchorElement peugeotLink;
 	@UiField
 	HeadingElement title;
+	@UiField
+	HTMLPanel content;
+	@UiField
+	HTMLPanel wrapper;
 
 	interface BannerViewImplUiBinder extends UiBinder<Widget, BannerViewImpl> {
 	}

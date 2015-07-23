@@ -4,16 +4,18 @@
 	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
 	<ui:style>
 	</ui:style>
-	<g:HTMLPanel styleName="gwt-HeaderView">
-		<a ui:field="citroenLink" target="_blank">
-			<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
-		</a>
-		<a ui:field="dsLink" target="_blank">
-			<g:Image resource="{res.logoDs}" ui:field="dsLogo"/>
-		</a>
-		<h1 ui:field="title">Formation Google Analytics PSA</h1>
-		<a ui:field="peugeotLink" target="_blank">
-			<g:Image resource="{res.logoPeugeot}" ui:field="peugeotLogo"/>
-		</a>
+	<g:HTMLPanel styleName="header-wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="header-content">
+			<a ui:field="citroenLink" target="_blank">
+				<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
+			</a>
+			<a ui:field="dsLink" target="_blank">
+				<g:Image resource="{res.logoDs}" ui:field="dsLogo"/>
+			</a>
+			<h1 ui:field="title">Formation Google Analytics PSA</h1>
+			<a ui:field="peugeotLink" target="_blank">
+				<g:Image resource="{res.logoPeugeot}" ui:field="peugeotLogo"/>
+			</a>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

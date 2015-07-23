@@ -4,6 +4,7 @@ import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.resources.Resources;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.DisclamerViewImpl;
 import com.architecture.client.ui.composite.MenuViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -26,6 +27,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	BannerLanguageViewImpl bannerLanguage;
 	@UiField
 	HTMLPanel content;
+	@UiField
+	DisclamerViewImpl disclaimer;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;
@@ -40,10 +43,10 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	private void init() {
-//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
-//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
-//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
-//		ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 	}
 
 	@Override

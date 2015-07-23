@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel styleName="disclaimer-wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="disclaimer-content">
+			<g:Label text="disclaimer" ui:field="text"/>
+			<g:Anchor text="En savoir plus" ui:field="moreInformation"/>
+			<g:Button text="OK" ui:field="ok"/>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
