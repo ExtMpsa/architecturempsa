@@ -189,7 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			// *********************************************************************************************
 			function waitKrux(onComplete,timeout) {			  
 			  window["kruxTimeout"]=setTimeout(function () {
-				  window["ddmUseCase"] = "RTD call with old Krux segments";
+				  window["personalizationUseCase"] = "RTD call with old Krux segments";
 				  onComplete();
 			  },timeout);
 			}
@@ -218,25 +218,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				return;
 			}
 			// *********************************************************************************************
-			// fonction utilitaire : Affichage du body masqué par DDM
+			// fonction utilitaire : Affichage du body masqu� par DDM
 			// *********************************************************************************************
 			function showBody(){
 				document.body.style.visibility = "visible";
 				
-				// Calcul et mise à jour des temps et use case DDM
-				window["timeBetweenRtdAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				// Calcul et mise � jour des temps et use case DDM
+				window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
 				if (document.readyState == "interactive"){
-					window["ddmTechnicalUseCase"] = "DDM display between domInteractive and load event";
+					window["personalizationTechnicalUseCase"] = "DDM display between domInteractive and load event";
 				}else if (document.readyState == "complete"){
-					window["ddmTechnicalUseCase"] = "DDM display after load event";
+					window["personalizationTechnicalUseCase"] = "DDM display after load event";
 				} else {
-					window["ddmTechnicalUseCase"] = "DDM display before domInteractive";
+					window["personalizationTechnicalUseCase"] = "DDM display before domInteractive";
 				}
 				updateDataLayerDDM();
 				// Push RTD user timing even though Krux didn t finish
-				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenRtdAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)");
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenPersonalizationEngineAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page li�e � la personnalisation (DDM)");
 				if (window["needPushKruxTiming"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
 				}
 				return;
 			}
@@ -246,16 +246,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			function dataLayerUserTiming(timingCategory , timingVar, timingValue, timingLabel){
 				window["dataLayer"] = window["dataLayer"] || [];
 				dataLayer.push({
-					event : "ddm.time",
+					event : "timingevent",
 					timingCategory : timingCategory,
 					timingVar: timingVar,
 					timingValue: timingValue,
 					timingLabel: timingLabel,
-					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
-					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"]||"",
-					ddmUseCase: window["ddmUseCase"],
-					ddmTechnicalUseCase: window["ddmTechnicalUseCase"],
-					startDdmDate : window["startPersonalizationHidden"]
+					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"]||"",
+					personalizationUseCase: window["personalizationUseCase"],
+					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"],
+					personalizationStartDate : window["personalizationStartDate"]
 				});
 			}
 			
@@ -265,11 +265,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			function updateDataLayerDDM(){
 				window["dataLayer"] = window["dataLayer"] || [];
 				dataLayer.push({
-					timeBetweenRtdAndDomInteractive : window["timeBetweenRtdAndDomInteractive"],
-					timeBetweenKruxAndDomLoading: window["timeBetweenKruxAndDomLoading"],
-					ddmUseCase: window["ddmUseCase"],
-					ddmTechnicalUseCase: window["ddmTechnicalUseCase"]||"Google Analytics Collect happened before RTD finish",
-					startDdmDate : window["startPersonalizationHidden"]
+					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"],
+					personalizationUseCase: window["personalizationUseCase"],
+					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"]||"Google Analytics Collect happened before RTD finish",
+					personalizationStartDate : window["personalizationStartDate"]
 				});
 			}
 			
@@ -303,14 +303,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									    if (def != null){
 										  def.outerHTML = content.script;
 										}
-
-
 									}
 									
-									window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+									window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
 									showBody();
 								  } else {
-									  window["ddmUseCase"] = "No customisation (RTD error)";
+									  window["personalizationUseCase"] = "No customisation (RTD error)";
 									  window["rtdErrorType"] = "RTD script xmlDoc status";
 									  showBody();
 								  }
@@ -318,7 +316,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							}
 							xmlDoc.send(JSON.stringify(br));
 						} catch(e){
-							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["personalizationUseCase"] = "No customisation (RTD error)";
 							window["rtdErrorType"] = "RTD script xmlDoc exception";
 							showBody();
 						}
@@ -355,30 +353,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								  def.outerHTML = content.script;
 								}
 							}
-							window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+							window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
 							showBody();
 						};
 						xmlDoc.onerror = function() {
-							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["personalizationUseCase"] = "No customisation (RTD error)";
 							window["rtdErrorType"] = "RTD request error";
 							showBody();
 						};
 						xmlDoc.ontimeout = function() {
-							window["ddmUseCase"] = "No customisation (RTD error)";
+							window["personalizationUseCase"] = "No customisation (RTD error)";
 							window["rtdErrorType"] = "RTD request timeout";
 							showBody();
 						};
 						xmlDoc.onprogress = function() {
 							logTime("rtdTagOnProgress_XDR : response onprogress", "Body still Hidden");
 						};
-						// setTimeout corrige le problème aléatoire du onload sur IE8
+						// setTimeout corrige le probl�me al�atoire du onload sur IE8
 						setTimeout(function () {
 							try{
 								xmlDoc.send(JSON.stringify(br));
 								logTime("rtdTag setTimeout due to onload bug IE8", "Body still Hidden");
 							} catch(e){
-								// IE5, IE6 et IE7 ne gère pas l'objet JSON
-								window["ddmUseCase"] = "No customisation (RTD error)";
+								// IE5, IE6 et IE7 ne g�re pas l'objet JSON
+								window["personalizationUseCase"] = "No customisation (RTD error)";
 								window["rtdErrorType"] = "RTD script xmlDoc exception)";
 								showBody();
 							}
@@ -389,20 +387,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						logTime("rtdTagError (IE7): window.XDomainRequest doesn't exist", "Body visible");
 					}
 				} else { // IE5 et IE6
-					window["ddmUseCase"] = "No customisation (RTD script error)";
+					window["personalizationUseCase"] = "No customisation (RTD script error)";
 					window["rtdErrorType"] = "RTD script error due to XDomainRequest)";
 					showBody();
 				}
 			}
 			
 			document.body.style.visibility = "hidden";
-			window["startPersonalizationHidden"] = new Date().getTime();
+			window["personalizationStartDate"] = new Date().getTime();
 			
 			var ddmListener = function (e) {
 				clearTimeout(window["kruxTimeout"]);
 				window["kruxLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
-				window["ddmUseCase"] = "RTD call with updated Krux segments";
+				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["personalizationUseCase"] = "RTD call with updated Krux segments";
 				updateDataLayerDDM();
 				window["needPushKruxTiming"]=true;
 				getRTDContent(e);
@@ -410,10 +408,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			
 			var kruxListener = function (e) {
 				window["kruxLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
 				updateDataLayerDDM();
-				if(window["timeBetweenRtdAndDomInteractive"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
 					window["needPushKruxTiming"]=false;
 				}else{
 					// Push Krux user timing when RTD will finish
