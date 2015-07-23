@@ -34,12 +34,12 @@
 				return;
 			}
 			// *********************************************************************************************
-			// fonction utilitaire : Affichage du body masqué par DDM
+			// fonction utilitaire : Affichage du body masquï¿½ par DDM
 			// *********************************************************************************************
 			function showBody(){
 				document.body.style.visibility = "visible";
 				
-				// Calcul et mise à jour des temps et use case DDM
+				// Calcul et mise Ã  jour des temps et use case DDM
 				window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
 				if (document.readyState == "interactive"){
 					window["personalizationTechnicalUseCase"] = "DDM display between domInteractive and load event";
@@ -50,9 +50,9 @@
 				}
 				updateDataLayerDDM();
 				// Push RTD user timing even though Krux didn t finish
-				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenPersonalizationEngineAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)");
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenPersonalizationEngineAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liÃ©e Ã  la personnalisation (DDM)");
 				if (window["needPushKruxTiming"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre Ã  jour les segments");
 				}
 				return;
 			}
@@ -185,13 +185,13 @@
 						xmlDoc.onprogress = function() {
 							logTime("rtdTagOnProgress_XDR : response onprogress", "Body still Hidden");
 						};
-						// setTimeout corrige le problème aléatoire du onload sur IE8
+						// setTimeout corrige le problÃ¨me alÃ©atoire du onload sur IE8
 						setTimeout(function () {
 							try{
 								xmlDoc.send(JSON.stringify(br));
 								logTime("rtdTag setTimeout due to onload bug IE8", "Body still Hidden");
 							} catch(e){
-								// IE5, IE6 et IE7 ne gère pas l'objet JSON
+								// IE5, IE6 et IE7 ne gÃ¨re pas l'objet JSON
 								window["personalizationUseCase"] = "No customisation (RTD error)";
 								window["rtdErrorType"] = "RTD script xmlDoc exception)";
 								showBody();
@@ -209,6 +209,10 @@
 				}
 			}
 			
+			
+			// *********************************************************************************************
+			// DÃ©but de l'exÃ©cution du script
+			// *********************************************************************************************
 			document.body.style.visibility = "hidden";
 			window["personalizationStartDate"] = new Date().getTime();
 			
@@ -227,7 +231,7 @@
 				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
 				updateDataLayerDDM();
 				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre Ã  jour les segments");
 					window["needPushKruxTiming"]=false;
 				}else{
 					// Push Krux user timing when RTD will finish
