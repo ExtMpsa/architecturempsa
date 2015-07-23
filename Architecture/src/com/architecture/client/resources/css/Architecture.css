@@ -113,6 +113,7 @@ a{text-decoration: none;color:#777;}
 
 .disclaimer-wrapper{
 	background: #4c88a1;
+	color: beige;
 }
 
 .disclaimer-content{
@@ -121,8 +122,13 @@ a{text-decoration: none;color:#777;}
 	margin: auto;
 }
 
-.disclaimer-wrapper .gwt-Label{
+.disclaimer-wrapper .gwt-Label, .gwt-Anchor{
 	display: inline;
+	vertical-align: sub;
+}
+
+.disclaimer-wrapper .gwt-Anchor{
+	color: silver;
 }
 
 .disclaimer-wrapper .gwt-Button{
