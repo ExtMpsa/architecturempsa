@@ -4,13 +4,15 @@
 	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
 	<ui:style>
 	</ui:style>
-	<g:HTMLPanel styleName="gwt-HeaderView">
-		<p1:Anchor ui:field="home" text="Home" styleName="gwt-Button"/>
-		<p1:Anchor ui:field="formMultipleUrl" text="formMultipleUrl" styleName="gwt-Button"/>
-		<p1:Anchor text="formSingleUrl" ui:field="formSingleUrl" styleName="gwt-Button"/>
-		<p1:Anchor text="eCommerce" ui:field="eCommerce" styleName="gwt-Button"/>
-		<p1:Anchor ui:field="iFrame" text="iFrame" styleName="gwt-Button"/>
-		<p1:Anchor ui:field="tracingPaper" text="tracingPaper" styleName="gwt-Button"/>
-		<p1:Anchor ui:field="connexion" text="connexion" styleName="gwt-Button"/>
+	<g:HTMLPanel styleName="nav-wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="nav-content">
+			<p1:Anchor ui:field="home" text="Home" styleName="gwt-Button"/>
+			<p1:Anchor ui:field="formMultipleUrl" text="formMultipleUrl" styleName="gwt-Button"/>
+			<p1:Anchor text="formSingleUrl" ui:field="formSingleUrl" styleName="gwt-Button"/>
+			<p1:Anchor text="eCommerce" ui:field="eCommerce" styleName="gwt-Button"/>
+			<p1:Anchor ui:field="iFrame" text="iFrame" styleName="gwt-Button"/>
+			<p1:Anchor ui:field="tracingPaper" text="tracingPaper" styleName="gwt-Button"/>
+			<p1:Anchor ui:field="connexion" text="connexion" styleName="gwt-Button"/>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

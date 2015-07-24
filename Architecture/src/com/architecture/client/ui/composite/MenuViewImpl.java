@@ -15,6 +15,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -35,6 +36,10 @@ public class MenuViewImpl extends Composite {
 	Anchor connexion;
 	@UiField
 	Anchor home;
+	@UiField
+	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel content;
 
 	interface MenuViewImplUiBinder extends UiBinder<Widget, MenuViewImpl> {
 	}
@@ -84,48 +89,52 @@ public class MenuViewImpl extends Composite {
 		connexion.setHash("#!SignInPlace:");
 		connexion.getElement().setId("connexion");
 	}
+
 	@UiHandler("home")
 	void onHomeClick(ClickEvent event) {
 		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if(!loaderExist() && !(current instanceof HomePlace)){
-			RootPanel.get().insert(new LoaderViewImpl(), 0);
-		}
-	}
-	@UiHandler("formMultipleUrl")
-	void onFormMultipleUrlClick(ClickEvent event) {
-		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if(!loaderExist() && !(current instanceof FormsPlace)){
-			RootPanel.get().insert(new LoaderViewImpl(), 0);
-		}
-	}
-	
-	@UiHandler("formSingleUrl")
-	void onFormSingleUrlClick(ClickEvent event) {
-		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if(!loaderExist() && !(current instanceof FormsPlace)){
-			RootPanel.get().insert(new LoaderViewImpl(), 0);
-		}
-	}
-	@UiHandler("tracingPaper")
-	void onTracingPaperClick(ClickEvent event) {
-		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if(!loaderExist() && !(current instanceof TracingPaperPlace)){
-			RootPanel.get().insert(new LoaderViewImpl(), 0);
-		}
-	}
-	@UiHandler("connexion")
-	void onConnexionClick(ClickEvent event) {
-		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if(!loaderExist() && !(current instanceof SignInPlace)){
+		if (!loaderExist() && !(current instanceof HomePlace)) {
 			RootPanel.get().insert(new LoaderViewImpl(), 0);
 		}
 	}
 
-	private boolean loaderExist(){
+	@UiHandler("formMultipleUrl")
+	void onFormMultipleUrlClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if (!loaderExist() && !(current instanceof FormsPlace)) {
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+
+	@UiHandler("formSingleUrl")
+	void onFormSingleUrlClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if (!loaderExist() && !(current instanceof FormsPlace)) {
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+
+	@UiHandler("tracingPaper")
+	void onTracingPaperClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if (!loaderExist() && !(current instanceof TracingPaperPlace)) {
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+
+	@UiHandler("connexion")
+	void onConnexionClick(ClickEvent event) {
+		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
+		if (!loaderExist() && !(current instanceof SignInPlace)) {
+			RootPanel.get().insert(new LoaderViewImpl(), 0);
+		}
+	}
+
+	private boolean loaderExist() {
 		boolean check = true;
-		if (Document.get().getElementById("loader") != null){
+		if (Document.get().getElementById("loader") != null) {
 			check = true;
-		}else{
+		} else {
 			check = false;
 		}
 		return check;
