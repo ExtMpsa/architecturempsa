@@ -40,10 +40,17 @@
 	
 }
 .header-content  {
+	display:table;
 	text-align: center;
 	min-width: 980px;
 	max-width: 980px;
 	margin: auto;
+}
+
+.header-content .cell{
+	display: table-cell;
+	margin-bottom: 12px;
+	margin-top: 12px;
 }
 
 .header-content h1 {
@@ -52,7 +59,7 @@
   color: #777777;
   margin: 40px 0px 70px;
   text-align: center;
-  display: inline;
+  display: table-cell;
 }
 
 .gwt-Main  {
@@ -138,6 +145,12 @@ a{text-decoration: none;color:#777;}
 .flag-content {
 	max-width: 980px;
 	margin: auto;
+}
+
+.nav-content{
+	margin: auto;
+	min-width: 980px;
+	max-width: 980px;
 }
 
 .nav-content .nav-right{
