@@ -139,3 +139,7 @@ a{text-decoration: none;color:#777;}
 	max-width: 980px;
 	margin: auto;
 }
+
+.nav-content .nav-right{
+	float: right;
+}

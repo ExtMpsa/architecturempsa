@@ -5,7 +5,7 @@ import com.architecture.client.resources.Resources;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.DisclamerViewImpl;
-import com.architecture.client.ui.composite.MenuViewImpl;
+import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -19,8 +19,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	private static ArchitectureViewImplUiBinder uiBinder = GWT.create(ArchitectureViewImplUiBinder.class);
 	@UiField
 	BannerViewImpl banner;
-	@UiField
-	MenuViewImpl menu;
+	// @UiField
+	// MenuViewImpl menu;
 	@UiField
 	HTMLPanel main;
 	@UiField
@@ -29,6 +29,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	HTMLPanel content;
 	@UiField
 	DisclamerViewImpl disclaimer;
+	@UiField
+	NavigationViewImpl nav;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;
@@ -57,11 +59,6 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	@Override
 	public BannerViewImpl getBanner() {
 		return banner;
-	}
-
-	@Override
-	public MenuViewImpl getMenu() {
-		return menu;
 	}
 
 	@Override

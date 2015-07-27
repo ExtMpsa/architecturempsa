@@ -1,9 +1,21 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.architecture.client.ui.widget">
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel ui:field="wrapper" styleName="nav-wrapper">
+		<g:HTMLPanel ui:field="content" styleName="nav-content">
+			<p1:Anchor ui:field="training" text="Training"/>
+			<p1:Anchor ui:field="webApp" text="Web App"/>
+			<p1:Anchor ui:field="performance" text="Performance"/>
+			<p1:Anchor ui:field="seo" text="SEO"/>
+			<p1:Anchor ui:field="webAnalytics" text="Web Analytics"/>
+			<p1:Anchor ui:field="userExperience" text="User Experience"/>
+			<g:HTMLPanel ui:field="navRight" styleName="nav-right">
+				<p1:Anchor ui:field="signUp" text="Sign Up"/>
+				<p1:Anchor ui:field="signIn" text="Sign In"/>
+			</g:HTMLPanel>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

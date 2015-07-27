@@ -27,7 +27,6 @@ import com.architecture.client.ui.account.SignInView;
 import com.architecture.client.ui.account.SignInViewImpl;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
-import com.architecture.client.ui.composite.MenuViewImpl;
 import com.architecture.shared.model.Account;
 import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -483,11 +482,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public MenuViewImpl getMenuView() {
-		return appWidget.getMenu();
-	}
-
-	@Override
 	public BannerViewImpl getBannerView() {
 		return appWidget.getBanner();
 	}
@@ -548,10 +542,12 @@ public class ClientFactoryImpl implements ClientFactory {
 		this.accountToCreate = account;
 	}
 
+	@Override
 	public Account getAccountToSignIn() {
 		return accountToSignIn;
 	}
 
+	@Override
 	public void setAccountToSignIn(Account accountToSignIn) {
 		this.accountToSignIn = accountToSignIn;
 	}
