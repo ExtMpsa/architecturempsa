@@ -36,4 +36,6 @@ public interface AccountText extends Constants {
 	String errorSpecialPassword();
 
 	String errorWhiteSpace();
+
+	String errorOffLine();
 }
