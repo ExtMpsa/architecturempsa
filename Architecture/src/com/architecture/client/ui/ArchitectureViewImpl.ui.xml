@@ -14,7 +14,9 @@
 <!-- 			<p1:MenuViewImpl ui:field="menu"/> -->
 			<p1:NavigationViewImpl ui:field="nav"/>
 		</nav>
+		
 		<g:HTMLPanel ui:field="content" styleName="gwt-Content">
+		
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

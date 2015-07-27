@@ -12,9 +12,9 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class BannerLanguageViewImpl extends Composite {
 
@@ -23,8 +23,10 @@ public class BannerLanguageViewImpl extends Composite {
 	ListBox langChooser;
 	@UiField
 	Anchor logo;
-	@UiField HTMLPanel wrapper;
-	@UiField HTMLPanel content;
+	@UiField
+	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel content;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}
@@ -50,24 +52,26 @@ public class BannerLanguageViewImpl extends Composite {
 	private void init() {
 		LanguageChooserText languageChooserText = GWT.create(LanguageChooserText.class);
 
-		this.logo.setHash("");
-		this.logo.getElement().setId("logo");
+		logo.setHash("#");
+		logo.getElement().setId("logo");
 
-		this.langChooser.setStyleName("langChooser");
-		this.langChooser.addItem(languageChooserText.fr());
-		this.langChooser.addItem(languageChooserText.en());
+		langChooser.setStyleName("langChooser");
+		langChooser.addItem(languageChooserText.fr());
+		langChooser.addItem(languageChooserText.en());
 
-		if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
-			this.langChooser.setSelectedIndex(1);
-		}
-		if (LocaleInfo.getCurrentLocale().getLocaleName() != "en") {
-			this.langChooser.setSelectedIndex(2);
+		switch (LocaleInfo.getCurrentLocale().getLocaleName()) {
+		case "fr":
+			langChooser.setSelectedIndex(0);
+			break;
+		case "en":
+			langChooser.setSelectedIndex(1);
+			break;
 		}
 	}
 
 	@UiHandler("langChooser")
 	void onLangChooserChange(ChangeEvent event) {
-		switch (this.langChooser.getItemText(this.langChooser.getSelectedIndex())) {
+		switch (langChooser.getItemText(langChooser.getSelectedIndex())) {
 		case "Français (France)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
 				Window.Location.assign(Location.createUrlBuilder().setParameter("locale", "fr").buildString());
