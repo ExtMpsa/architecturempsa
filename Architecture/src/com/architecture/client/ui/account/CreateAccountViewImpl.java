@@ -166,7 +166,16 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 
 	@UiHandler("login")
 	void onLoginKeyPress(KeyPressEvent event) {
-		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+		// TODO :
+		// Utiliser le deferredBinding pour firefox
+		// http://stackoverflow.com/questions/3064383/browser-version-detect-using-gwt
+		// http://www.gwtproject.org/doc/latest/DevGuideCodingBasicsDeferred.html#replacement
+		int keyCode = event.getUnicodeCharCode();
+		if (keyCode == 0) {
+			// Probably Firefox
+			keyCode = event.getNativeEvent().getKeyCode();
+		}
+		if (keyCode == KeyCodes.KEY_ENTER) {
 			category = "Check Mail for Create Account";
 			action = "Key Press Enter";
 			label = login.getText();

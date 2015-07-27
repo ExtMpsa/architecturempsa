@@ -169,7 +169,12 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	@UiHandler("password")
 	void onPasswordKeyPress(KeyPressEvent event) {
-		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+		int keyCode = event.getUnicodeCharCode();
+		if (keyCode == 0) {
+			// Probably Firefox
+			keyCode = event.getNativeEvent().getKeyCode();
+		}
+		if (keyCode == KeyCodes.KEY_ENTER) {
 			category = "Check Constraints Password for Create Account";
 			action = "Key Press Enter";
 			goToPasswordVerify();
@@ -257,7 +262,12 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 	@UiHandler("passwordVerify")
 	void onPasswordVerifyKeyPress(KeyPressEvent event) {
-		if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+		int keyCode = event.getUnicodeCharCode();
+		if (keyCode == 0) {
+			// Probably Firefox
+			keyCode = event.getNativeEvent().getKeyCode();
+		}
+		if (keyCode == KeyCodes.KEY_ENTER) {
 			category = "Check same Password for Create Account";
 			action = "Key Press Enter";
 			create();

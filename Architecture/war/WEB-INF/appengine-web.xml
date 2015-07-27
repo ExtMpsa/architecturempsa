@@ -44,12 +44,16 @@
     	<http-header name="Content-Type" value="application/x-javascript" />
     </include>
     
+    <mime-mapping>
+	    <extension>html</extension>
+	    <mime-type>text/cache-manifest</mime-type>
+    </mime-mapping>
     <exclude path="**.gwt.rpc" />
   </static-files>
 
   <!-- Configure java.util.logging -->
   <system-properties>
-    <property name="java.util.logging.config.file" value="WEB-INF/lib/logging.properties"/>
+    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     <property name="slim3.hotReloading" value="true"/>
 	    <!--
         <property name="slim3.datastoreDeadline" value="8"/>
