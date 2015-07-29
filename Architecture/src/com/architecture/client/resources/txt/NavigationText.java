@@ -13,6 +13,10 @@ public interface NavigationText extends Constants {
 
 	String webAnalytics();
 
+	String tools();
+
+	String methodology();
+
 	String userExperience();
 
 	String signUp();

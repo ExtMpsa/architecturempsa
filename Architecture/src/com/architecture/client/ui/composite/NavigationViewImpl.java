@@ -42,6 +42,10 @@ public class NavigationViewImpl extends Composite {
 	Anchor signIn;
 	@UiField
 	HTMLPanel navRight;
+	@UiField
+	Anchor methodology;
+	@UiField
+	Anchor tools;
 
 	interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
 	}
@@ -73,6 +77,14 @@ public class NavigationViewImpl extends Composite {
 		webAnalytics.setText(navigationText.webAnalytics().toUpperCase());
 		webAnalytics.setHash("#!WebAnalyticsPlace:");
 		webAnalytics.getElement().setId("webAnalytics");
+
+		tools.setText(navigationText.tools().toUpperCase());
+		tools.setHash("#!WebAnalyticsPlace:");
+		tools.getElement().setId("tools");
+
+		methodology.setText(navigationText.methodology().toUpperCase());
+		methodology.setHash("#!WebAnalyticsPlace:");
+		methodology.getElement().setId("methodology");
 
 		userExperience.setText(navigationText.userExperience().toUpperCase());
 		userExperience.setHash("#!UserExperiencePlace:");
@@ -126,6 +138,14 @@ public class NavigationViewImpl extends Composite {
 		// if (!loaderExist() && !(current instanceof SignInPlace)) {
 		// RootPanel.get().insert(new LoaderViewImpl(), 0);
 		// }
+	}
+
+	@UiHandler("tools")
+	void onToolsClick(ClickEvent event) {
+	}
+
+	@UiHandler("methodology")
+	void onMethodologyClick(ClickEvent event) {
 	}
 
 	@UiHandler("userExperience")

@@ -11,6 +11,8 @@
 			<p1:Anchor ui:field="performance" text="Performance"/>
 			<p1:Anchor ui:field="seo" text="SEO"/>
 			<p1:Anchor ui:field="webAnalytics" text="Web Analytics"/>
+			<p1:Anchor ui:field="tools" text="Tools"/>
+			<p1:Anchor ui:field="methodology" text="Methodology"/>
 			<p1:Anchor ui:field="userExperience" text="User Experience"/>
 			<g:HTMLPanel ui:field="navRight" styleName="nav-right">
 				<p1:Anchor ui:field="signUp" text="Sign Up"/>
