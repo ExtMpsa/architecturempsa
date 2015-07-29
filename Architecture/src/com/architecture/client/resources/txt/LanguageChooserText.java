@@ -6,4 +6,6 @@ public interface LanguageChooserText extends Constants {
 	String fr();
 
 	String en();
+
+	String search();
 }

@@ -9,6 +9,7 @@
 		<g:HTMLPanel ui:field="content" styleName="flag-content">
 			<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
 			<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
+			<g:SuggestBox animationEnabled="true" ui:field="search"/>
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

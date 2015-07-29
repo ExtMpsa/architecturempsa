@@ -25,10 +25,17 @@
 
 .flag-content  {
 	min-width: 980px;
-	height:24px;
+	height:26px;
 }
 
 .flag-content  .langChooser {
+	float: right;
+	height: 22px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.flag-content .gwt-SuggestBox{
 	float: right;
 }
 
@@ -63,6 +70,20 @@
 }
 
 .gwt-Main  {
+}
+
+.gwt-Main input{
+	outline:none;
+}
+
+.gwt-Main input:hover{
+	outline-color: bisque;
+	outline-style: auto;
+}
+
+.gwt-Main input:focus{
+	outline-color: dodgerblue;
+	outline-style: auto;
 }
 
 .gwt-Content{
@@ -155,4 +176,49 @@ a{text-decoration: none;color:#777;}
 
 .nav-content .nav-right{
 	float: right;
+}
+
+.nav-content a{
+	margin-right: 15px;
+}
+
+.nav-content #sign-in{
+	margin-right: 0px;
+}
+
+a:hover{
+	color: black;
+}
+
+/* Suggest Box */
+.gwt-SuggestBox{
+	margin: 2px;
+}
+.gwt-SuggestBoxPopup *{
+	padding: 0px;
+	border-spacing: 0px;
+}
+
+.gwt-SuggestBoxPopup .suggestPopupContent {
+  background: white;
+  width: 150px;
+  background-color: white;
+}
+
+.gwt-SuggestBoxPopup table{
+	outline-style: auto;
+	width: 153px;
+}
+
+input.gwt-SuggestBox {
+	width: 149px;
+}
+
+.gwt-SuggestBoxPopup .item{
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.gwt-SuggestBoxPopup .item-selected {
+  background: #D5E2FF;
 }

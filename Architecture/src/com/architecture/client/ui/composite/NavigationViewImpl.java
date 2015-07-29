@@ -54,35 +54,35 @@ public class NavigationViewImpl extends Composite {
 	private void init() {
 		NavigationText navigationText = GWT.create(NavigationText.class);
 
-		training.setText(navigationText.training());
+		training.setText(navigationText.training().toUpperCase());
 		training.setHash("#!TrainingPlace:");
 		training.getElement().setId("training");
 
-		webApp.setText(navigationText.webApp());
+		webApp.setText(navigationText.webApp().toUpperCase());
 		webApp.setHash("#!WebApplication:");
 		webApp.getElement().setId("webApp");
 
-		performance.setText(navigationText.performance());
+		performance.setText(navigationText.performance().toUpperCase());
 		performance.setHash("#!PerformancePlace:");
 		performance.getElement().setId("performance");
 
-		seo.setText(navigationText.seo());
+		seo.setText(navigationText.seo().toUpperCase());
 		seo.setHash("#!SEOPlace:");
 		seo.getElement().setId("seo");
 
-		webAnalytics.setText(navigationText.webAnalytics());
+		webAnalytics.setText(navigationText.webAnalytics().toUpperCase());
 		webAnalytics.setHash("#!WebAnalyticsPlace:");
 		webAnalytics.getElement().setId("webAnalytics");
 
-		userExperience.setText(navigationText.userExperience());
+		userExperience.setText(navigationText.userExperience().toUpperCase());
 		userExperience.setHash("#!UserExperiencePlace:");
 		userExperience.getElement().setId("userExperience");
 
-		signUp.setText(navigationText.signUp());
+		signUp.setText(navigationText.signUp().toUpperCase());
 		signUp.setHash("#!SignUpPlace:");
 		signUp.getElement().setId("signUp");
 
-		signIn.setText(navigationText.signIn());
+		signIn.setText(navigationText.signIn().toUpperCase());
 		signIn.setHash("#!SignInPlace:");
 		signIn.getElement().setId("signIn");
 

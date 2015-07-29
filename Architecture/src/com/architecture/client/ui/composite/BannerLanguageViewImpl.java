@@ -14,6 +14,8 @@ import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class BannerLanguageViewImpl extends Composite {
@@ -27,6 +29,8 @@ public class BannerLanguageViewImpl extends Composite {
 	HTMLPanel wrapper;
 	@UiField
 	HTMLPanel content;
+	@UiField
+	SuggestBox search;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}
@@ -67,6 +71,25 @@ public class BannerLanguageViewImpl extends Composite {
 			langChooser.setSelectedIndex(1);
 			break;
 		}
+
+		search.getElement().setAttribute("placeholder", languageChooserText.search());
+		MultiWordSuggestOracle oracle = (MultiWordSuggestOracle) search.getSuggestOracle();
+		oracle.add("seo");
+		oracle.add("web application");
+		oracle.add("web analytics");
+		oracle.add("user experience");
+		oracle.add("performance");
+		oracle.add("training");
+		oracle.add("unit testing");
+		oracle.add("integration test");
+		oracle.add("hudson");
+		oracle.add("jenkins");
+		oracle.add("gwt");
+		oracle.add("google web toolkit");
+		oracle.add("google web mastertools");
+		oracle.add("test automation");
+		oracle.add("agility methodology");
+		oracle.add("scrum");
 	}
 
 	@UiHandler("langChooser")
@@ -83,6 +106,5 @@ public class BannerLanguageViewImpl extends Composite {
 			}
 			break;
 		}
-
 	}
 }
