@@ -19,7 +19,7 @@ public class SignInPlace extends Place {
 		return signIn;
 	}
 
-	@Prefix(value = "!SignInPlace")
+	@Prefix(value = "!SignIn")
 	public static class Tokenizer implements PlaceTokenizer<SignInPlace> {
 		@Override
 		public String getToken(SignInPlace place) {

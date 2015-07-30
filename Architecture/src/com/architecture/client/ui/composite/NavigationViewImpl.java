@@ -1,8 +1,8 @@
 package com.architecture.client.ui.composite;
 
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.place.CreateAccountPlace;
 import com.architecture.client.place.SignInPlace;
+import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.resources.ResourcesNavigation;
 import com.architecture.client.resources.txt.NavigationText;
 import com.architecture.client.ui.widget.Anchor;
@@ -61,7 +61,7 @@ public class NavigationViewImpl extends Composite {
 		NavigationText navigationText = GWT.create(NavigationText.class);
 
 		training.setText(navigationText.training().toUpperCase());
-		training.setHash("#!TrainingPlace:");
+		training.setHash("#!Training:");
 		training.getElement().setId("training");
 
 		webApp.setText(navigationText.webApp().toUpperCase());
@@ -69,36 +69,36 @@ public class NavigationViewImpl extends Composite {
 		webApp.getElement().setId("webApp");
 
 		performance.setText(navigationText.performance().toUpperCase());
-		performance.setHash("#!PerformancePlace:");
+		performance.setHash("#!Performance:");
 		performance.getElement().setId("performance");
 
 		seo.setText(navigationText.seo().toUpperCase());
-		seo.setHash("#!SEOPlace:");
+		seo.setHash("#!SEO:");
 		seo.getElement().setId("seo");
 
 		webAnalytics.setText(navigationText.webAnalytics().toUpperCase());
-		webAnalytics.setHash("#!WebAnalyticsPlace:");
+		webAnalytics.setHash("#!WebAnalytics:");
 		webAnalytics.getElement().setId("webAnalytics");
 
 		tools.setText(navigationText.tools().toUpperCase());
-		tools.setHash("#!WebAnalyticsPlace:");
+		tools.setHash("#!WebAnalytics:");
 		tools.getElement().setId("tools");
 
 		methodology.setText(navigationText.methodology().toUpperCase());
-		methodology.setHash("#!WebAnalyticsPlace:");
+		methodology.setHash("#!WebAnalytics:");
 		methodology.getElement().setId("methodology");
 
 		userExperience.setText(navigationText.userExperience().toUpperCase());
-		userExperience.setHash("#!UserExperiencePlace:");
+		userExperience.setHash("#!UserExperience:");
 		userExperience.getElement().setId("userExperience");
 
 		signUp.setText(navigationText.signUp().toUpperCase());
-		signUp.setHash("#!SignUpPlace:");
+		signUp.setHash("#!SignUp:");
 		signUp.getElement().setId("signUp");
 		signUp.getElement().addClassName("signUp");
 
 		signIn.setText(navigationText.signIn().toUpperCase());
-		signIn.setHash("#!SignInPlace:");
+		signIn.setHash("#!SignIn:");
 		signIn.getElement().setId("signIn");
 
 	}
@@ -162,7 +162,7 @@ public class NavigationViewImpl extends Composite {
 	@UiHandler("signUp")
 	void onSignUpClick(ClickEvent event) {
 		Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-		if (!loaderExist() && !(current instanceof CreateAccountPlace)) {
+		if (!loaderExist() && !(current instanceof SignUpPlace)) {
 			RootPanel.get().insert(new LoaderViewImpl(), 0);
 		}
 	}

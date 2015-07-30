@@ -1,4 +1,8 @@
 @CHARSET "UTF-8";
+.nav-wrapper{
+	padding-bottom: 3px;
+}
+
 .nav-content{
 	margin: auto;
 	min-width: 980px;
@@ -10,34 +14,34 @@
 }
 
 .nav-content a{
-	margin-right: 15px;
+	margin-right: 10px;
 }
 
 .nav-content #sign-in{
 	margin-right: 0px;
 }
 
-.nav-content .signUp{
+.nav-content .nav-right a{
 	-moz-user-select: none;
 	background-color: #F5F5F5;
 	background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
 	border: 1px solid;
 	border-color: rgba(0, 0, 0, 0.1);
 	border-radius: 2px 2px 2px 2px;
-	color: #444444;
+	color: rgb(100, 100, 100);
 	padding: 0 8px;
 	text-align: center;
 }
 
-.nav-content .signUp:hover{
+.nav-content .nav-right a:hover{
 	background-color: #F8F8F8;
     background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
     border-color: #C6C6C6;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: #222222;
+    color: rgb(0, 0, 0);
 }
 
-.nav-content .signUp:focus{
+.nav-content .nav-right a:focus{
     border-color: #4D90FE;
     outline: medium none;
 }

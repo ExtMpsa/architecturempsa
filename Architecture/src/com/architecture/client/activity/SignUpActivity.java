@@ -6,10 +6,10 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.place.CreateAccountPlace;
-import com.architecture.client.ui.account.CreateAccountPasswordViewImpl;
-import com.architecture.client.ui.account.CreateAccountView;
-import com.architecture.client.ui.account.CreateAccountViewImpl;
+import com.architecture.client.place.SignUpPlace;
+import com.architecture.client.ui.account.SignUpPasswordViewImpl;
+import com.architecture.client.ui.account.SignUpView;
+import com.architecture.client.ui.account.SignUpViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
@@ -18,13 +18,13 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class CreateAccountActivity extends ArchitectureActivity {
+public class SignUpActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
 	String step;
 	private Account account = GWT.create(Account.class);
 	private AcceptsOneWidget containerWidget;
 
-	public CreateAccountActivity(CreateAccountPlace place, ClientFactory clientFactory) {
+	public SignUpActivity(SignUpPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 		step = place.getCreateAccountStep();
 		if (clientFactory.getAccountToCreate() != null) {
@@ -48,7 +48,7 @@ public class CreateAccountActivity extends ArchitectureActivity {
 	}
 
 	public void setStep(String step) {
-		CreateAccountView createAccountView;
+		SignUpView signUpView;
 		if (step.equalsIgnoreCase("password") && validateMailClient(clientFactory.getAccountToCreate().getMail())) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:password"));
 			if (!step.equals("password")) {
@@ -56,34 +56,34 @@ public class CreateAccountActivity extends ArchitectureActivity {
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!CreateAccountPlace:password");
+				historyReplaceState("!SignUp:password");
 			}
-			createAccountView = new CreateAccountPasswordViewImpl();
+			signUpView = new SignUpPasswordViewImpl();
 		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccountToCreate().getMail())
 				&& validatePasswordClient(clientFactory.getAccountToCreate().getPassword()).isEmpty()) {
-			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:passwordVerify"));
+			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:passwordVerify"));
 			if (!step.equals("passwordVerify")) {
 				ClientFactoryImpl.redirect = true;
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!CreateAccountPlace:passwordVerify");
+				historyReplaceState("!SignUp:passwordVerify");
 			}
-			createAccountView = new CreateAccountPasswordViewImpl();
+			signUpView = new SignUpPasswordViewImpl();
 		} else {
-			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!CreateAccountPlace:login"));
+			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:login"));
 			if (!step.equals("login")) {
 				ClientFactoryImpl.redirect = true;
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!CreateAccountPlace:login");
+				historyReplaceState("!SignUp:login");
 			}
-			createAccountView = new CreateAccountViewImpl();
+			signUpView = new SignUpViewImpl();
 		}
-		createAccountView.setAccount(account);
-		createAccountView.setActivity(this);
-		containerWidget.setWidget(createAccountView.asWidget());
+		signUpView.setAccount(account);
+		signUpView.setActivity(this);
+		containerWidget.setWidget(signUpView.asWidget());
 	}
 
 	public Account getAccount() {
@@ -94,7 +94,7 @@ public class CreateAccountActivity extends ArchitectureActivity {
 		this.account = account;
 		clientFactory.setAccountToCreate(account);
 	}
-	
+
 	public void setAccountToSignIn(Account account) {
 		account.setPassword(null);
 		clientFactory.setAccountToSignIn(account);

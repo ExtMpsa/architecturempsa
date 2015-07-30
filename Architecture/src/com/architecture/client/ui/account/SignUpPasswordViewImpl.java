@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import com.architecture.client.activity.CreateAccountActivity;
+import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesAccount;
@@ -35,9 +35,9 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CreateAccountPasswordViewImpl extends Composite implements CreateAccountView {
+public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 
-	private static CreateAccountPasswordViewImplUiBinder uiBinder = GWT.create(CreateAccountPasswordViewImplUiBinder.class);
+	private static SignUpPasswordViewImplUiBinder uiBinder = GWT.create(SignUpPasswordViewImplUiBinder.class);
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
 
 	@UiField
@@ -76,13 +76,13 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 	boolean alreadyTryGoToPasswordVerify = false;
 	boolean alreadyTryCreate = false;
 	AccountText accountText = GWT.create(AccountText.class);
-	CreateAccountActivity activity;
+	SignUpActivity activity;
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
 
-	interface CreateAccountPasswordViewImplUiBinder extends UiBinder<Widget, CreateAccountPasswordViewImpl> {
+	interface SignUpPasswordViewImplUiBinder extends UiBinder<Widget, SignUpPasswordViewImpl> {
 	}
 
-	public CreateAccountPasswordViewImpl() {
+	public SignUpPasswordViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		account.setInnerText(accountText.title());
@@ -110,15 +110,15 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 
 		create.setText(accountText.create());
 		String token = History.getToken();
-		if (token.equalsIgnoreCase("!CreateAccountPlace:password")) {
+		if (token.equalsIgnoreCase("!SignUp:password")) {
 			setPasswordStep();
-		} else if (token.equalsIgnoreCase("!CreateAccountPlace:passwordVerify")) {
+		} else if (token.equalsIgnoreCase("!SignUp:passwordVerify")) {
 			setPasswordVerifyStep();
 		}
 	}
 
 	@Override
-	public void setActivity(CreateAccountActivity activity) {
+	public void setActivity(SignUpActivity activity) {
 		this.activity = activity;
 	}
 
@@ -295,7 +295,7 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 						pushEvent("event", category, action, activity.getAccount().getMail());
 						activity.setAccountToSignIn(activity.getAccount());
 						activity.setAccount(null);
-						History.newItem("!SignInPlace:");
+						History.newItem("!SignIn:");
 					}
 
 					@Override
@@ -307,12 +307,12 @@ public class CreateAccountPasswordViewImpl extends Composite implements CreateAc
 							details = exceptionText.attackHackingGeneric();
 							action = action + " Failed Server Constraints Mail Not Valid";
 							// TODO :
-							// rediriger vers un CreateAccountPlace:login avec erreur.
+							// rediriger vers un SignUp:login avec erreur.
 						} else if (caught instanceof MailAlreadyUsedException) {
 							action = action + " Failed Mail Already Registered";
 							details = exceptionText.mailAlreadyUsed();
 							// TODO :
-							// rediriger vers un CreateAccountPlace:login avec erreur.
+							// rediriger vers un SignUp:login avec erreur.
 						} else {
 							action = action + " Failed Internal Server Error";
 							details = exceptionText.internalServerError() + caught.getClass().toString();

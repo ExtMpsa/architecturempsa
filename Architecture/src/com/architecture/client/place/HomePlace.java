@@ -14,7 +14,7 @@ public class HomePlace extends Place {
 		return this.homeName;
 	}
 
-	@Prefix(value = "!HomePlace")
+	@Prefix(value = "!Home")
 	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
 
 		// TODO :

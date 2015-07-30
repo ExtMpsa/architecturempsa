@@ -1,6 +1,6 @@
 package com.architecture.client.ui.account;
 
-import com.architecture.client.activity.CreateAccountActivity;
+import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.resources.ResourcesAccount;
@@ -37,9 +37,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CreateAccountViewImpl extends Composite implements CreateAccountView {
+public class SignUpViewImpl extends Composite implements SignUpView {
 
-	private static CreateAccountViewUiBinder uiBinder = GWT.create(CreateAccountViewUiBinder.class);
+	private static SignUpViewUiBinder uiBinder = GWT.create(SignUpViewUiBinder.class);
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
 
 	@UiField
@@ -64,7 +64,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	Button helpNext;
 	@UiField
 	FocusPanel focusPanel;
-	CreateAccountActivity activity;
+	SignUpActivity activity;
 	String category;
 	String action;
 	String label;
@@ -73,10 +73,10 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	boolean failByServer = false;
 	AccountText accountText = GWT.create(AccountText.class);
 
-	interface CreateAccountViewUiBinder extends UiBinder<Widget, CreateAccountViewImpl> {
+	interface SignUpViewUiBinder extends UiBinder<Widget, SignUpViewImpl> {
 	}
 
-	public CreateAccountViewImpl() {
+	public SignUpViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		createAccount.setInnerText(accountText.title());
@@ -119,7 +119,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 	}
 
 	@Override
-	public void setActivity(CreateAccountActivity activity) {
+	public void setActivity(SignUpActivity activity) {
 		this.activity = activity;
 	}
 
@@ -238,7 +238,7 @@ public class CreateAccountViewImpl extends Composite implements CreateAccountVie
 						action = action + " Success";
 						pushEvent("event", category, action, login.getText());
 						activity.getAccount().setMail(login.getText());
-						History.newItem("!CreateAccountPlace:password");
+						History.newItem("!SignUp:password");
 					}
 
 					@Override
