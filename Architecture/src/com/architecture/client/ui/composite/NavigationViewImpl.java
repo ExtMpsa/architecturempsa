@@ -3,6 +3,7 @@ package com.architecture.client.ui.composite;
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.place.CreateAccountPlace;
 import com.architecture.client.place.SignInPlace;
+import com.architecture.client.resources.ResourcesNavigation;
 import com.architecture.client.resources.txt.NavigationText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
@@ -51,6 +52,7 @@ public class NavigationViewImpl extends Composite {
 	}
 
 	public NavigationViewImpl() {
+		ResourcesNavigation.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
 	}
@@ -93,6 +95,7 @@ public class NavigationViewImpl extends Composite {
 		signUp.setText(navigationText.signUp().toUpperCase());
 		signUp.setHash("#!SignUpPlace:");
 		signUp.getElement().setId("signUp");
+		signUp.getElement().addClassName("signUp");
 
 		signIn.setText(navigationText.signIn().toUpperCase());
 		signIn.setHash("#!SignInPlace:");

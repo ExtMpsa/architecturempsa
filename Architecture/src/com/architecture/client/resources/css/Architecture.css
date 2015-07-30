@@ -168,24 +168,6 @@ a{text-decoration: none;color:#777;}
 	margin: auto;
 }
 
-.nav-content{
-	margin: auto;
-	min-width: 980px;
-	max-width: 980px;
-}
-
-.nav-content .nav-right{
-	float: right;
-}
-
-.nav-content a{
-	margin-right: 15px;
-}
-
-.nav-content #sign-in{
-	margin-right: 0px;
-}
-
 a:hover{
 	color: black;
 }
