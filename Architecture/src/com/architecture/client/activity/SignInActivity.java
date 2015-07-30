@@ -33,6 +33,12 @@ public class SignInActivity extends ArchitectureActivity {
 		SignInView signInView = clientFactory.getSignInView();
 		signInView.setAccountToSignIn(account);
 		signInView.setActivity(this);
+		if (account.getMail().equals("")) {
+			signInView.resetLoginError();
+		}
+		if (account.getPassword().equals("")) {
+			signInView.resetPasswordError();
+		}
 		containerWidget.setWidget(signInView.asWidget());
 		removeLoader();
 	}

@@ -316,6 +316,10 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 		asideNext.hide();
 	}
 
+	public void resetLoginError() {
+
+	}
+
 	private native boolean isOnLine()/*-{
 		return $wnd.navigator.onLine;
 	}-*/;

@@ -196,7 +196,7 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 			action = action + " Success";
 			activity.pushEvent("event", category, action, password.getText());
 			activity.getAccount().setPassword(password.getText());
-			History.newItem("!CreateAccountPlace:passwordVerify");
+			History.newItem("!SignUp:passwordVerify");
 		} else {
 			action = action + " Failed Client Constraint Password Not Valid";
 			activity.pushEvent("event", category, action, "********");

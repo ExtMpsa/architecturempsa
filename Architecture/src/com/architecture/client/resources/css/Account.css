@@ -48,9 +48,14 @@
 	outline: initial;
 }
 
+input.input-Error:focus {
+	outline: none;
+}
+
 .gwt-Label-Error{
 	text-align: center;
 	color: red;
+	margin-bottom: 3px;
 }
 
 .account .help-DataLayer{

@@ -264,4 +264,20 @@ public class SignInViewImpl extends Composite implements SignInView {
 		}
 		return validateAccountClient;
 	}
+
+	public void resetLoginError() {
+		login.removeStyleName("input-Error");
+		loginError.setVisible(false);
+	}
+
+	public void resetPasswordError() {
+		password.removeStyleName("input-Error");
+		sizeMinError.setVisible(false);
+		sizeMaxError.setVisible(false);
+		noDigitError.setVisible(false);
+		noLowercaseError.setVisible(false);
+		noUppercaseError.setVisible(false);
+		noSpecialError.setVisible(false);
+		whitespaceError.setVisible(false);
+	}
 }

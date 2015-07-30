@@ -6,5 +6,10 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface SignInView extends IsWidget {
 	void setActivity(SignInActivity activity);
+
 	void setAccountToSignIn(Account account);
+
+	void resetLoginError();
+
+	void resetPasswordError();
 }
