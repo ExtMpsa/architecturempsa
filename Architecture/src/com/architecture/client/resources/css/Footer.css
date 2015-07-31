@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.gwt-content{
+	padding-bottom: 30px;
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	background: beige;
+	width: 100%;
+}
+
+.footer-wrapper{
+	padding-bottom: 3px;
+}
+
+.footer-content{
+	margin: auto;
+	min-width: 980px;
+	max-width: 980px;
+}

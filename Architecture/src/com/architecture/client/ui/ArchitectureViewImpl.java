@@ -5,6 +5,7 @@ import com.architecture.client.resources.Resources;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.DisclamerViewImpl;
+import com.architecture.client.ui.composite.FooterViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,6 +32,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	DisclamerViewImpl disclaimer;
 	@UiField
 	NavigationViewImpl nav;
+	@UiField
+	FooterViewImpl footer;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;

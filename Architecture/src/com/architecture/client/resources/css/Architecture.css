@@ -142,7 +142,11 @@
 .gwt-Anchor{text-decoration: none;}
 html{height:100%}
 body{height:100%;margin:0px}
-a{text-decoration: none;color:#777;}
+a{
+	text-decoration: none;
+	color:#777;
+	margin-right: 10px;
+}
 
 button.gwt-Button{
 	-moz-user-select: none;
@@ -191,6 +195,10 @@ button.gwt-Button:focus{
 
 .disclaimer-wrapper .gwt-Button{
 	float: right;
+}
+
+.disclaimer-content button.gwt-Button{
+	padding: 5px 7px;
 }
 
 .flag-content {
