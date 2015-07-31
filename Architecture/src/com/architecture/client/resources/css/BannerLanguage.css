@@ -1,4 +1,9 @@
 @CHARSET "UTF-8";
+.flag-wrapper{
+	background: beige;
+	border-bottom: 1px solid rgba(230, 230, 230, 0.8);
+}
+
 .flag-content  {
 	min-width: 980px;
 	height:26px;
@@ -15,11 +20,11 @@
 
 .flag-content .gwt-SuggestBox{
 	float: right;
+	padding: 1px 4px;
 }
 
 .flag-content .gwt-SuggestBox:focus{
 	width: 600px;
-	padding: 1px 4px;
 }
 
 .flag-content .logo {
