@@ -116,6 +116,7 @@ a:hover{
 .gwt-SuggestBox{
 	margin: 2px;
 }
+
 .gwt-SuggestBoxPopup *{
 	padding: 0px;
 	border-spacing: 0px;
@@ -143,4 +144,8 @@ input.gwt-SuggestBox {
 
 .gwt-SuggestBoxPopup .item-selected {
   background: #D5E2FF;
+}
+
+.gwt-Popup-Aside *:focus{
+	outline: none;
 }
