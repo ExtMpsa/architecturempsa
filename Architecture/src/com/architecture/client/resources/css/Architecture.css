@@ -69,7 +69,6 @@
 .gwt-Button:hover{border-color:#939393;}
 .gwt-Button:focus{
 	border-color: dodgerblue;
-	border-width: 2px;
 	outline: medium none;
 }
 .gwt-Button[disabled]{cursor:default;color:#888;}
