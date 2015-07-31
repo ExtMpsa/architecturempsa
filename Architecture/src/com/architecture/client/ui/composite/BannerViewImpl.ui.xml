@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:with field='res' type='com.architecture.client.resources.Resources'/>
+	<ui:with field='res' type='com.architecture.client.resources.ResourcesBanner'/>
 	<ui:style>
 	</ui:style>
 	<g:HTMLPanel styleName="header-wrapper" ui:field="wrapper">

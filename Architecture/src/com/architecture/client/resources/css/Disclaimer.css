@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.disclaimer-wrapper{
+	background: #4c88a1;
+	color: beige;
+}
+
+.disclaimer-content{
+	max-width: 980px;
+	height: 30px;
+	margin: auto;
+}
+
+.disclaimer-wrapper .gwt-Label, .gwt-Anchor{
+	display: inline;
+	vertical-align: sub;
+}
+
+.disclaimer-wrapper .gwt-Anchor{
+	color: rgba(255,255,255,.8);
+}
+
+.disclaimer-wrapper .gwt-Anchor:hover{
+	color: black;
+}
+
+.disclaimer-wrapper .gwt-Button{
+	float: right;
+}
+
+.disclaimer-content button.gwt-Button{
+	padding: 5px 7px;
+}

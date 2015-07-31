@@ -1,6 +1,6 @@
 package com.architecture.client.ui.composite;
 
-import com.architecture.client.resources.Resources;
+import com.architecture.client.resources.ResourcesBannerLanguage;
 import com.architecture.client.resources.txt.LanguageChooserText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
@@ -37,7 +37,7 @@ public class BannerLanguageViewImpl extends Composite {
 
 	/** Constructeur privé */
 	private BannerLanguageViewImpl() {
-		Resources.INSTANCE.css().ensureInjected();
+		ResourcesBannerLanguage.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
 	}

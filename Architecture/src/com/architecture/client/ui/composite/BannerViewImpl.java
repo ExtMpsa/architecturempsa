@@ -1,6 +1,6 @@
 package com.architecture.client.ui.composite;
 
-import com.architecture.client.resources.Resources;
+import com.architecture.client.resources.ResourcesBanner;
 import com.architecture.client.resources.txt.BannerText;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.AnchorElement;
@@ -38,7 +38,7 @@ public class BannerViewImpl extends Composite {
 	}
 
 	private BannerViewImpl() {
-		Resources.INSTANCE.css().ensureInjected();
+		ResourcesBanner.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
 	}

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+@sprite .logoPeugeotSprite{
+	gwt-image: "logoPeugeot";
+}
+
+@sprite .logoCitroenSprite{
+	gwt-image: "logoCitroen";
+}
+
+@sprite .logoDsSprite{
+	gwt-image: "logoDs";
+}
+
+.header-wrapper {
+	
+}
+
+.header-content  {
+	display:table;
+	text-align: center;
+	min-width: 980px;
+	max-width: 980px;
+	margin: auto;
+}
+
+.header-content .cell{
+	display: table-cell;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.header-content h1 {
+  font-size: 4em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+  display: table-cell;
+}

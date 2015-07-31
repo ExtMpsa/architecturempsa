@@ -65,12 +65,16 @@ input.input-Error:focus {
 	border: 0px;
 	background: none;
 	margin-left: 0px!important;
-	
 }
 
 .panelHelp {
 	float: right;
 	margin-right: 310px;
+}
+
+.account button.help-DataLayer:hover{
+	background-color: transparent;
+	box-shadow: 0 0px 0px;
 }
 
 .help-DataLayer{

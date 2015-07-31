@@ -33,7 +33,7 @@ public class FooterViewImpl extends Composite {
 		FooterText footerText = GWT.create(FooterText.class);
 
 		dipet.setText(footerText.dipet());
-		dipet.setHash("#!");
+		dipet.setHash("#");
 
 		about.setText(footerText.about());
 		about.setHash("#!about:");

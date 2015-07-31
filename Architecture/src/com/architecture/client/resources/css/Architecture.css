@@ -1,87 +1,22 @@
 @CHARSET "UTF-8";
-@sprite .logoPeugeotSprite{
-	gwt-image: "logoPeugeot";
-}
-
-@sprite .logoCitroenSprite{
-	gwt-image: "logoCitroen";
-}
-
-@sprite .logoDsSprite{
-	gwt-image: "logoDs";
-}
-
-.flagFrSprite{
-	width: 50px;
-	height: 25px;
-	cursor:pointer;
-}
-
-.flagEnSprite{
-	width: 35px;
-	height: 25px;
-	cursor:pointer;
-}
-
-.flag-content  {
-	min-width: 980px;
-	height:26px;
-}
-
-.flag-content  .langChooser {
-	float: right;
-	height: 22px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-}
-
-.flag-content .gwt-SuggestBox{
-	float: right;
-}
-
-.flag-content  .logo {
-	vertical-align: middle;
-}
-
-.header-wrapper {
-	
-}
-.header-content  {
-	display:table;
-	text-align: center;
-	min-width: 980px;
-	max-width: 980px;
-	margin: auto;
-}
-
-.header-content .cell{
-	display: table-cell;
-	margin-bottom: 12px;
-	margin-top: 12px;
-}
-
-.header-content h1 {
-  font-size: 4em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
-  display: table-cell;
+*:focus{
+	outline-color: dodgerblue;
+	outline-style: auto;
 }
 
 .gwt-Main  {
 }
 
-.gwt-Main input{
+.gwt-Main input, select{
 	outline:none;
 }
 
-.gwt-Main input:hover{
-	outline-color: bisque;
+.gwt-Main input:hover, select:hover{
+	outline-color: rgba(200, 200, 200, 0.5);
 	outline-style: auto;
 }
 
-.gwt-Main input:focus{
+.gwt-Main input:focus, select:focus {
 	outline-color: dodgerblue;
 	outline-style: auto;
 }
@@ -171,39 +106,6 @@ button.gwt-Button:hover{
 button.gwt-Button:focus{
     border-color: #4D90FE;
     outline: medium none;
-}
-
-.disclaimer-wrapper{
-	background: #4c88a1;
-	color: beige;
-}
-
-.disclaimer-content{
-	max-width: 980px;
-	height: 30px;
-	margin: auto;
-}
-
-.disclaimer-wrapper .gwt-Label, .gwt-Anchor{
-	display: inline;
-	vertical-align: sub;
-}
-
-.disclaimer-wrapper .gwt-Anchor{
-	color: silver;
-}
-
-.disclaimer-wrapper .gwt-Button{
-	float: right;
-}
-
-.disclaimer-content button.gwt-Button{
-	padding: 5px 7px;
-}
-
-.flag-content {
-	max-width: 980px;
-	margin: auto;
 }
 
 a:hover{

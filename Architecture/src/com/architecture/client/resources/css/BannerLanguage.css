@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+.flag-content  {
+	min-width: 980px;
+	height:26px;
+	max-width: 980px;
+	margin: auto;
+}
+
+.flag-content .langChooser {
+	float: right;
+	height: 22px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.flag-content .gwt-SuggestBox{
+	float: right;
+}
+
+.flag-content .logo {
+	vertical-align: middle;
+}
