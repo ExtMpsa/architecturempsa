@@ -17,6 +17,11 @@
 	float: right;
 }
 
+.flag-content .gwt-SuggestBox:focus{
+	width: 600px;
+	padding: 1px 4px;
+}
+
 .flag-content .logo {
 	vertical-align: middle;
 }
