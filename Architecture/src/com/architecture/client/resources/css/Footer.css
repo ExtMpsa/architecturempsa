@@ -1,7 +1,13 @@
 @CHARSET "UTF-8";
-.gwt-content{
+.gwt-Main{
+	position: relative;
+	min-height: 100%;
+}
+
+.gwt-Content{
 	padding-bottom: 30px;
 }
+
 footer{
 	position: absolute;
 	bottom: 0;
