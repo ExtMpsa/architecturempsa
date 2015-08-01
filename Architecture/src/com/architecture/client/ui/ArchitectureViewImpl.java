@@ -8,6 +8,9 @@ import com.architecture.client.ui.composite.DisclamerViewImpl;
 import com.architecture.client.ui.composite.FooterViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.storage.client.Storage;
+import com.google.gwt.storage.client.StorageEvent;
+import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -20,8 +23,6 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	private static ArchitectureViewImplUiBinder uiBinder = GWT.create(ArchitectureViewImplUiBinder.class);
 	@UiField
 	BannerViewImpl banner;
-	// @UiField
-	// MenuViewImpl menu;
 	@UiField
 	HTMLPanel main;
 	@UiField
@@ -34,9 +35,12 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	NavigationViewImpl nav;
 	@UiField
 	FooterViewImpl footer;
+	@UiField
+	HTMLPanel header;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;
+	private Storage storage = null;
 
 	interface ArchitectureViewImplUiBinder extends UiBinder<Widget, ArchitectureViewImpl> {
 	}
@@ -48,6 +52,36 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	private void init() {
+		storage = Storage.getLocalStorageIfSupported();
+		final String privacyKey = "isPrivacyValidated";
+		String privacyValue = "";
+		if (storage != null) {
+			StorageMap stockMap = new StorageMap(storage);
+			if (stockMap.containsKey(privacyKey) == true) {
+				privacyValue = storage.getItem(privacyKey);
+				if (privacyValue.equals("true")) {
+					disclaimer.setVisible(false);
+				}
+			}
+			Storage.addStorageEventHandler(new StorageEvent.Handler() {
+
+				@Override
+				public void onStorageChange(StorageEvent event) {
+					switch (event.getKey()) {
+					case privacyKey:
+						if (!event.getOldValue().equals(event.getNewValue())) {
+							if (event.getNewValue().equals("true")) {
+								disclaimer.setVisible(false);
+							} else {
+								disclaimer.setVisible(true);
+							}
+						}
+						break;
+					}
+				}
+			});
+		}
+
 		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		// ScriptInjector.fromString(Resources.INSTANCE.gtmJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();

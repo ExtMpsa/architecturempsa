@@ -23,6 +23,12 @@
 	padding: 1px 4px;
 }
 
+@-moz-document url-prefix() {
+    .flag-content .gwt-SuggestBox{
+        padding: 2px 4px;
+    }
+}
+
 .flag-content .gwt-SuggestBox:focus{
 	width: 600px;
 }

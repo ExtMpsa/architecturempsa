@@ -24,13 +24,14 @@
 }
 
 .header-content .cell{
-	display: table-cell;
-	margin-bottom: 12px;
-	margin-top: 12px;
+/* 	display: table-cell; */
+/* 	margin-bottom: 12px; */
+/* 	margin-top: 12px; */
+	vertical-align: sub;
 }
 
 .header-content h1 {
-  font-size: 4em;
+  font-size: 3.5em;
   font-weight: bold;
   color: #777777;
   margin: 40px 0px 70px;

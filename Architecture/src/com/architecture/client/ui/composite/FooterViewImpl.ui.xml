@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="wrapper" styleName="footer-wrapper">
+	<g:HTMLPanel ui:field="wrapper" styleName="footer-wrapper" tag="footer">
 		<g:HTMLPanel ui:field="content" styleName="footer-content">
 			<p1:Anchor text="Digital Performance Training" ui:field="dipet"/>
 			<p1:Anchor text="A propos de DiPeT" ui:field="about"/>

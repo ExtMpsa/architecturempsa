@@ -16,8 +16,6 @@ public class HomeViewImpl extends Composite implements HomeView {
 
 	private static HomeViewImplUiBinder uiBinder = GWT.create(HomeViewImplUiBinder.class);
 	@UiField
-	HTMLPanel main;
-	@UiField
 	HTMLPanel content;
 	@UiField
 	HeadingElement presentation;

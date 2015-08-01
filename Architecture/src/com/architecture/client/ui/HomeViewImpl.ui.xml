@@ -4,14 +4,8 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="main">
-		<g:HTMLPanel ui:field="content">
-			<section>
-				<article>
-				<h2 ui:field="presentation"></h2>
-				<p ui:field="presentationContent"></p>
-				</article>
-			</section>
-		</g:HTMLPanel>
+	<g:HTMLPanel ui:field="content" tag="article">
+		<h2 ui:field="presentation"></h2>
+		<p ui:field="presentationContent"></p>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="wrapper" styleName="nav-wrapper">
+	<g:HTMLPanel ui:field="wrapper" styleName="nav-wrapper" tag="nav">
 		<g:HTMLPanel ui:field="content" styleName="nav-content">
 			<p1:Anchor ui:field="training" text="Training"/>
 			<p1:Anchor ui:field="webApp" text="Web App"/>
