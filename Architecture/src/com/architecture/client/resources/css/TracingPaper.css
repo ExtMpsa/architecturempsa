@@ -87,3 +87,7 @@
 .v3d{
 	position: absolute;
 }
+
+.dynamicImg{
+	height: 350px;
+}

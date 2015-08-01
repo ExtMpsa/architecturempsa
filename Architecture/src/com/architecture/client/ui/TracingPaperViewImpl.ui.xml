@@ -5,7 +5,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="main">
+	<g:HTMLPanel ui:field="main" styleName="content">
 		<g:VerticalPanel>
 			<g:HorizontalPanel>
 				<g:Button ui:field="background_none" text="background_none"/>
@@ -43,7 +43,7 @@
 				<g:Button text="v3d_c4" ui:field="v3d_c4"/>
 			</g:HorizontalPanel>
 		</g:VerticalPanel>
-		<g:HTMLPanel ui:field="content">
+		<g:HTMLPanel ui:field="content" styleName="dynamicImg">
 			<g:Image styleName="{res.css.c3_background_calque}" ui:field="background"/>
 			<g:Image styleName="{res.css.c3_text_calque}" ui:field="text"/>
 			<g:Image styleName="v3d" resource="{res.c3_car_calque}" ui:field="car"/>
