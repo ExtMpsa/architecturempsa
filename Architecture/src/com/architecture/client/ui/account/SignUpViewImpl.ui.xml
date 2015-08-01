@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="account" ui:field="panel">
+	<g:HTMLPanel styleName="content account" ui:field="panel" tag="form">
 		<h2 ui:field="createAccount">Create Account</h2>
 		<g:HTMLPanel styleName="panelHelp">
 			<g:Button ui:field="helpLogin" styleName="gwt-Button help-DataLayer"/>

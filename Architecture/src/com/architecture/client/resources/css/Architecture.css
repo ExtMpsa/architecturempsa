@@ -22,23 +22,25 @@
 }
 
 .gwt-Content{
-	min-width:980px;
+/* 	min-width:980px; */
+/* 	max-width: 980px; */
+/* 	margin: auto; */
+}
+
+.wrapper{
+	
+}
+
+.content{
+	min-width: 980px;
 	max-width: 980px;
 	margin: auto;
-}
-
-.gwt-SignStep input{
-	min-width: 200px;
-}
-
-.gwt-SignStep-Title h3{
-	display: inline;
-	margin-right: 300px;
 }
 
 .gwt-Grid td{
 	vertical-align: top;
 }
+
 .gwt-Popup-Aside{
 	background-color: buttonface;
 	border: 1px solid #bbb;
@@ -109,42 +111,4 @@ button.gwt-Button:focus{
 
 a:hover{
 	color: black;
-}
-
-/* Suggest Box */
-.gwt-SuggestBox{
-	margin: 2px;
-}
-
-.gwt-SuggestBoxPopup *{
-	padding: 0px;
-	border-spacing: 0px;
-}
-
-.gwt-SuggestBoxPopup .suggestPopupContent {
-  background: white;
-  width: 150px;
-  background-color: white;
-}
-
-.gwt-SuggestBoxPopup table{
-	outline-style: auto;
-	width: 153px;
-}
-
-input.gwt-SuggestBox {
-	width: 149px;
-}
-
-.gwt-SuggestBoxPopup .item{
-	padding-left: 2px;
-	padding-right: 2px;
-}
-
-.gwt-SuggestBoxPopup .item-selected {
-  background: #D5E2FF;
-}
-
-.gwt-Popup-Aside *:focus{
-	outline: none;
 }

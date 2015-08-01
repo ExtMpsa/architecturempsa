@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="account" ui:field="panel">
+	<g:HTMLPanel styleName="content account" ui:field="panel" tag="article">
 		<h2 ui:field="connexion">Sign In</h2>
 		<g:TextBox ui:field="login"/>
 		<g:Label text="erreur mailInvalid" ui:field="loginError" styleName="gwt-Label-Error"/>

@@ -18,6 +18,15 @@
 	margin-bottom: 2px;
 }
 
+.flag-content .logo {
+	vertical-align: middle;
+}
+
+/* Suggest Box */
+.gwt-SuggestBox{
+	margin: 2px;
+}
+
 .flag-content .gwt-SuggestBox{
 	float: right;
 	padding: 1px 4px;
@@ -32,7 +41,35 @@
 .flag-content .gwt-SuggestBox:focus{
 	width: 600px;
 }
+.gwt-SuggestBoxPopup *{
+	padding: 0px;
+	border-spacing: 0px;
+}
 
-.flag-content .logo {
-	vertical-align: middle;
+.gwt-SuggestBoxPopup .suggestPopupContent {
+  background: white;
+  width: 150px;
+  background-color: white;
+}
+
+.gwt-SuggestBoxPopup table{
+	outline-style: auto;
+	width: 153px;
+}
+
+input.gwt-SuggestBox {
+	width: 149px;
+}
+
+.gwt-SuggestBoxPopup .item{
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.gwt-SuggestBoxPopup .item-selected {
+  background: #D5E2FF;
+}
+
+.gwt-Popup-Aside *:focus{
+	outline: none;
 }

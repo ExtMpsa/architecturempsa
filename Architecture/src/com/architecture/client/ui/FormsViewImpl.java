@@ -2,7 +2,7 @@ package com.architecture.client.ui;
 
 import com.architecture.client.activity.FormsActivity;
 import com.architecture.client.requestfactory.PersonRequest;
-import com.architecture.client.resources.Resources;
+import com.architecture.client.resources.ResourcesForms;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.ui.composite.SignRecapViewImpl;
 import com.architecture.client.ui.composite.SignStep1ViewImpl;
@@ -39,7 +39,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 	}
 
 	public FormsViewImpl() {
-		Resources.INSTANCE.css().ensureInjected();
+		ResourcesForms.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		init();
 
