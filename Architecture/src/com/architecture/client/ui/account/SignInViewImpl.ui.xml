@@ -4,20 +4,23 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="content account" ui:field="panel" tag="article">
-		<h2 ui:field="connexion">Sign In</h2>
-		<g:TextBox ui:field="login"/>
-		<g:Label text="erreur mailInvalid" ui:field="loginError" styleName="gwt-Label-Error"/>
-		<g:PasswordTextBox ui:field="password"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur sizeMin" ui:field="sizeMinError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur sizeMax" ui:field="sizeMaxError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur no digit" ui:field="noDigitError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur no lowercase" ui:field="noLowercaseError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur no uppercase" ui:field="noUppercaseError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur no special" ui:field="noSpecialError"/>
-		<g:Label styleName="gwt-Label-Error" text="erreur no whitespace" ui:field="whitespaceError"/>
-		<g:Label text="erreur connexion" styleName="gwt-Label-Error" ui:field="signInError"/>
-		<g:Button ui:field="signIn" text="Sign In"/>
-		<g:CheckBox text="Register" ui:field="register"/>
+	<g:HTMLPanel styleName="account wrapper" ui:field="wrapper" tag="article">
+		<g:HTMLPanel ui:field="content" styleName="content">
+			<h2 ui:field="connexion">Sign In</h2>
+			<g:HTMLPanel ui:field="title" tag="h2"/>
+			<g:TextBox ui:field="login"/>
+			<g:Label text="erreur mailInvalid" ui:field="loginError" styleName="gwt-Label-Error"/>
+			<g:PasswordTextBox ui:field="password"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur sizeMin" ui:field="sizeMinError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur sizeMax" ui:field="sizeMaxError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur no digit" ui:field="noDigitError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur no lowercase" ui:field="noLowercaseError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur no uppercase" ui:field="noUppercaseError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur no special" ui:field="noSpecialError"/>
+			<g:Label styleName="gwt-Label-Error" text="erreur no whitespace" ui:field="whitespaceError"/>
+			<g:Label text="erreur connexion" styleName="gwt-Label-Error" ui:field="signInError"/>
+			<g:Button ui:field="signIn" text="Sign In"/>
+			<g:CheckBox text="Register" ui:field="register"/>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

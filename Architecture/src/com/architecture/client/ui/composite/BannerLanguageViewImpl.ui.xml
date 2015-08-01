@@ -5,8 +5,8 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="flag-wrapper" ui:field="wrapper">
-		<g:HTMLPanel ui:field="content" styleName="flag-content">
+	<g:HTMLPanel styleName="header wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="content">
 			<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
 			<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
 			<g:SuggestBox animationEnabled="true" ui:field="search"/>

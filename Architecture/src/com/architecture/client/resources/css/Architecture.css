@@ -4,27 +4,25 @@
 	outline-style: auto;
 }
 
-.gwt-Main  {
+.main  {
 }
 
-.gwt-Main input, select{
+.main input, select{
 	outline:none;
 }
 
-.gwt-Main input:hover, select:hover{
+.main input:hover, select:hover{
 	outline-color: rgba(200, 200, 200, 0.5);
 	outline-style: auto;
 }
 
-.gwt-Main input:focus, select:focus {
+.main input:focus, select:focus {
 	outline-color: dodgerblue;
 	outline-style: auto;
 }
 
-.gwt-Content{
-/* 	min-width:980px; */
-/* 	max-width: 980px; */
-/* 	margin: auto; */
+.container{
+
 }
 
 .wrapper{

@@ -4,8 +4,8 @@
 	<ui:with field='res' type='com.architecture.client.resources.ResourcesBanner'/>
 	<ui:style>
 	</ui:style>
-	<g:HTMLPanel styleName="header-wrapper" ui:field="wrapper">
-		<g:HTMLPanel ui:field="content" styleName="header-content">
+	<g:HTMLPanel styleName="banner wrapper" ui:field="wrapper">
+		<g:HTMLPanel ui:field="content" styleName="content">
 			<a ui:field="citroenLink" target="_blank" class="cell">
 				<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
 			</a>

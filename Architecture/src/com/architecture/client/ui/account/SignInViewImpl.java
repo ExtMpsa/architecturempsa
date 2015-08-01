@@ -26,6 +26,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -63,6 +64,12 @@ public class SignInViewImpl extends Composite implements SignInView {
 	Label noSpecialError;
 	@UiField
 	Label whitespaceError;
+	@UiField
+	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel content;
+	@UiField
+	HTMLPanel title;
 	SignInActivity activity;
 	String category;
 	String action;
@@ -83,6 +90,7 @@ public class SignInViewImpl extends Composite implements SignInView {
 	private void init() {
 		SignText signText = GWT.create(SignText.class);
 		connexion.setInnerText(signText.signIn());
+		title.getElement().setInnerText(signText.signIn());
 
 		login.getElement().setAttribute("placeholder", signText.mail());
 		loginError.setVisible(false);

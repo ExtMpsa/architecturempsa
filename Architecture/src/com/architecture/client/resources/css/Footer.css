@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
-.gwt-Main{
+.main{
 	position: relative;
 	min-height: 100%;
 }
 
-.gwt-Content{
+.container{
 	padding-bottom: 30px;
 }
 
@@ -16,11 +16,11 @@ footer{
 	border-top: 1px solid rgba(230, 230, 230, 0.8);
 }
 
-.footer-wrapper{
+.footer.wrapper{
 	padding-bottom: 3px;
 }
 
-.footer-content{
+.footer .content{
 	margin: auto;
 	min-width: 980px;
 	max-width: 980px;

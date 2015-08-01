@@ -1,24 +1,25 @@
 @CHARSET "UTF-8";
-.flag-wrapper{
+.header.wrapper{
 	background: beige;
 	border-bottom: 1px solid rgba(230, 230, 230, 0.8);
 }
 
-.flag-content  {
-	min-width: 980px;
+.header  {
 	height:26px;
-	max-width: 980px;
-	margin: auto;
 }
 
-.flag-content .langChooser {
+.header .content{
+	height: inherit;
+}
+
+.header .content .langChooser {
 	float: right;
 	height: 22px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
 
-.flag-content .logo {
+.header .content .logo {
 	vertical-align: middle;
 }
 
@@ -27,7 +28,7 @@
 	margin: 2px;
 }
 
-.flag-content .gwt-SuggestBox{
+.header .content .gwt-SuggestBox{
 	float: right;
 	padding: 1px 4px;
 }
@@ -38,7 +39,7 @@
     }
 }
 
-.flag-content .gwt-SuggestBox:focus{
+.header .content .gwt-SuggestBox:focus{
 	width: 600px;
 }
 .gwt-SuggestBoxPopup *{
