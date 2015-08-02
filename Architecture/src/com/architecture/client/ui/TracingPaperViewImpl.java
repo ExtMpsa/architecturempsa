@@ -18,9 +18,9 @@ public class TracingPaperViewImpl extends Composite implements TracingPaperView 
 
 	private static TracingPaperViewImplUiBinder uiBinder = GWT.create(TracingPaperViewImplUiBinder.class);
 	@UiField
-	HTMLPanel main;
+	HTMLPanel wrapper;
 	@UiField
-	HTMLPanel content;
+	HTMLPanel details;
 	@UiField
 	Image background;
 	@UiField
@@ -81,6 +81,8 @@ public class TracingPaperViewImpl extends Composite implements TracingPaperView 
 	Button v3d_c3p;
 	@UiField
 	Button v3d_c4;
+	@UiField
+	HTMLPanel content;
 	@SuppressWarnings("unused")
 	private TracingPaperActivity activity;
 

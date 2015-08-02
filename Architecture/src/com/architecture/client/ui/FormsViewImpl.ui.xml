@@ -4,13 +4,9 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="main" styleName="wrapper">
-		<section>
-			<form>
+	<g:HTMLPanel ui:field="main" styleName="wrapper" tag="article">
 				<g:HTMLPanel ui:field="content" styleName="content">
-					<h2 ui:field="inscription">Sign In</h2>
+					<g:HTMLPanel tag="h2" ui:field="inscription"></g:HTMLPanel>
 				</g:HTMLPanel>
-			</form>
-		</section>
 	</g:HTMLPanel>
 </ui:UiBinder> 

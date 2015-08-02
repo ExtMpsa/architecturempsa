@@ -4,16 +4,18 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel >
-		<g:Button ui:field="demo">Demo</g:Button>
-		<g:Button ui:field="inLineImplied">InlineImplied</g:Button>
-		<g:Button ui:field="hoverImpliedTop">HoverImpliedTop</g:Button>
-		<g:Button ui:field="hoverOnly">HoverOnly</g:Button>
-		<g:Button ui:field="apHover">TEST_PSA_AP_FR_FR__Hover</g:Button>
-		<g:Button ui:field="apInPage">TEST_PSA_AP_FR_FR__InPage</g:Button>
-		<g:Button ui:field="apExplicitPage">TEST_PSA_AP_FR_FR_Explicit_Hover</g:Button>
-		<g:Button ui:field="apImpliedHover">TEST_PSA_AP_FR_FR_Implied_Hover</g:Button>
-		<g:Button ui:field="apImpliedInline">TEST_PSA_AP_FR_FR_Implied_Inline</g:Button>
-		<p ui:field="content"></p>
+	<g:HTMLPanel styleName="wrapper" ui:field="wrapper">
+		<g:HTMLPanel styleName="content" ui:field="content">
+			<g:Button ui:field="demo">Demo</g:Button>
+			<g:Button ui:field="inLineImplied">InlineImplied</g:Button>
+			<g:Button ui:field="hoverImpliedTop">HoverImpliedTop</g:Button>
+			<g:Button ui:field="hoverOnly">HoverOnly</g:Button>
+			<g:Button ui:field="apHover">TEST_PSA_AP_FR_FR__Hover</g:Button>
+			<g:Button ui:field="apInPage">TEST_PSA_AP_FR_FR__InPage</g:Button>
+			<g:Button ui:field="apExplicitPage">TEST_PSA_AP_FR_FR_Explicit_Hover</g:Button>
+			<g:Button ui:field="apImpliedHover">TEST_PSA_AP_FR_FR_Implied_Hover</g:Button>
+			<g:Button ui:field="apImpliedInline">TEST_PSA_AP_FR_FR_Implied_Inline</g:Button>
+			<g:HTMLPanel tag="p" ui:field="details"></g:HTMLPanel>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

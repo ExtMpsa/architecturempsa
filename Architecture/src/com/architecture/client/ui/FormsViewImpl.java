@@ -10,7 +10,6 @@ import com.architecture.client.ui.composite.SignStep2ViewImpl;
 import com.architecture.client.ui.composite.SignSuccessViewImpl;
 import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -27,7 +26,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 	@UiField
 	HTMLPanel content;
 	@UiField
-	HeadingElement inscription;
+	HTMLPanel inscription;
 	private SignStep1ViewImpl step1;
 	private SignStep2ViewImpl step2;
 	private SignRecapViewImpl summary;
@@ -47,7 +46,7 @@ public class FormsViewImpl extends Composite implements FormsView {
 
 	private void init() {
 		SignText signText = GWT.create(SignText.class);
-		inscription.setInnerText(signText.title());
+		inscription.getElement().setInnerText(signText.title());
 	}
 
 	private void init(String step, boolean singlePage) {
