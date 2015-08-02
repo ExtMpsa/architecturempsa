@@ -14,7 +14,6 @@ import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -42,8 +41,6 @@ public class SignInViewImpl extends Composite implements SignInView {
 	PasswordTextBox password;
 	@UiField
 	CheckBox register;
-	@UiField
-	HeadingElement connexion;
 	@UiField
 	Button signIn;
 	@UiField
@@ -89,7 +86,6 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	private void init() {
 		SignText signText = GWT.create(SignText.class);
-		connexion.setInnerText(signText.signIn());
 		title.getElement().setInnerText(signText.signIn());
 
 		login.getElement().setAttribute("placeholder", signText.mail());

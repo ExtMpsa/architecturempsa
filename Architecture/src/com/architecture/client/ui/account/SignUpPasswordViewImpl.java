@@ -17,7 +17,6 @@ import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
@@ -41,9 +40,7 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
 
 	@UiField
-	HTMLPanel panel;
-	@UiField
-	HeadingElement account;
+	HTMLPanel wrapper;
 	@UiField
 	PasswordTextBox password;
 	@UiField
@@ -70,6 +67,10 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 	Label whitespaceError;
 	@UiField
 	Label createError;
+	@UiField
+	HTMLPanel title;
+	@UiField
+	HTMLPanel content;
 	String category;
 	String action;
 	String label;
@@ -85,7 +86,7 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 	public SignUpPasswordViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		account.setInnerText(accountText.title());
+		title.getElement().setInnerHTML(accountText.title());
 
 		password.getElement().setAttribute("placeholder", accountText.placeholderPassword());
 		sizeMinError.setText(accountText.errorSizeMinPassword());

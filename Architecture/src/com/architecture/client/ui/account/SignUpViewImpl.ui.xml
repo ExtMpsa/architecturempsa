@@ -4,34 +4,36 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="content account" ui:field="panel" tag="form">
-		<h2 ui:field="createAccount">Create Account</h2>
-		<g:HTMLPanel styleName="panelHelp">
-			<g:Button ui:field="helpLogin" styleName="gwt-Button help-DataLayer"/>
-		</g:HTMLPanel>
-		<g:TextBox ui:field="login"/>
-		<g:Label text="erreur Client" ui:field="loginErrorClient" styleName="gwt-Label-Error"/>
-		<g:Label text="erreur Serveur" ui:field="loginErrorServer" styleName="gwt-Label-Error"/>
-		<g:HTMLPanel styleName="panelHelp">
-			<g:Button styleName="gwt-Button help-DataLayer" ui:field="helpNext"/>
-		</g:HTMLPanel>
-		<g:Button ui:field="next" text="Next"/>
-		
-		<g:DecoratedPopupPanel ui:field="asideNext" styleName="gwt-Popup-Aside" autoHideEnabled="true" autoHideOnHistoryEventsEnabled="true">
-			<g:FocusPanel ui:field="focusPanel">
-				<g:HTMLPanel>
-					<code>
-						<pre ui:field="preNext">
+	<g:HTMLPanel styleName="account wrapper" ui:field="wrapper" tag="article">
+		<g:HTMLPanel ui:field="content" styleName="content">
+			<g:HTMLPanel ui:field="title" tag="h2">Sign Up</g:HTMLPanel>
+			<g:HTMLPanel styleName="panelHelp">
+				<g:Button ui:field="helpLogin" styleName="gwt-Button help-DataLayer"/>
+			</g:HTMLPanel>
+			<g:TextBox ui:field="login"/>
+			<g:Label text="erreur Client" ui:field="loginErrorClient" styleName="gwt-Label-Error"/>
+			<g:Label text="erreur Serveur" ui:field="loginErrorServer" styleName="gwt-Label-Error"/>
+			<g:HTMLPanel styleName="panelHelp">
+				<g:Button styleName="gwt-Button help-DataLayer" ui:field="helpNext"/>
+			</g:HTMLPanel>
+			<g:Button ui:field="next" text="Next"/>
+			
+			<g:DecoratedPopupPanel ui:field="asideNext" styleName="gwt-Popup-Aside" autoHideEnabled="true" autoHideOnHistoryEventsEnabled="true">
+				<g:FocusPanel ui:field="focusPanel">
+					<g:HTMLPanel>
+						<code>
+							<pre ui:field="preNext">
 dataLayer.push({
 	event : event,
 	eventCategory : category,
 	eventAction : action,
 	eventLabel : label
 });
-						</pre>
-					</code>
-				</g:HTMLPanel>
-			</g:FocusPanel>
-		</g:DecoratedPopupPanel >
+							</pre>
+						</code>
+					</g:HTMLPanel>
+				</g:FocusPanel>
+			</g:DecoratedPopupPanel >
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

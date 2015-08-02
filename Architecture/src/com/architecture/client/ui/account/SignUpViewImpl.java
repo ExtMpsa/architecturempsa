@@ -15,7 +15,6 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.PreElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -43,15 +42,13 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	private static AccountServiceAsync service = GWT.create(AccountService.class);
 
 	@UiField
-	HeadingElement createAccount;
-	@UiField
 	TextBox login;
 	@UiField
 	Button next;
 	@UiField
 	Label loginErrorClient;
 	@UiField
-	HTMLPanel panel;
+	HTMLPanel wrapper;
 	@UiField
 	Label loginErrorServer;
 	@UiField
@@ -64,6 +61,10 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	Button helpNext;
 	@UiField
 	FocusPanel focusPanel;
+	@UiField
+	HTMLPanel content;
+	@UiField
+	HTMLPanel title;
 	SignUpActivity activity;
 	String category;
 	String action;
@@ -79,7 +80,8 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	public SignUpViewImpl() {
 		ResourcesAccount.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		createAccount.setInnerText(accountText.title());
+		title.getElement().setInnerText(accountText.title());
+
 		login.getElement().setAttribute("placeholder", accountText.placeholderMail());
 		Image helpLoginLogo = new Image(ResourcesAccount.INSTANCE.helpLoginLogo());
 		helpLoginLogo.setWidth("20px");

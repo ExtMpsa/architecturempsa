@@ -6,8 +6,7 @@
 	</ui:style>
 	<g:HTMLPanel styleName="account wrapper" ui:field="wrapper" tag="article">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<h2 ui:field="connexion">Sign In</h2>
-			<g:HTMLPanel ui:field="title" tag="h2"/>
+			<g:HTMLPanel ui:field="title" tag="h2">Sign In</g:HTMLPanel>
 			<g:TextBox ui:field="login"/>
 			<g:Label text="erreur mailInvalid" ui:field="loginError" styleName="gwt-Label-Error"/>
 			<g:PasswordTextBox ui:field="password"/>
