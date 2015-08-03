@@ -4,14 +4,14 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="main" styleName="main">
+	<g:HTMLPanel ui:field="appContainer" styleName="appContainer">
 		<g:HTMLPanel ui:field="header" tag="header">
 			<p1:DisclamerViewImpl ui:field="disclaimer"/>
 			<p1:BannerLanguageViewImpl ui:field="bannerLanguage"/>
 			<p1:BannerViewImpl ui:field="banner"/>
 			<p1:NavigationViewImpl ui:field="nav"/>
 		</g:HTMLPanel>
-		<g:HTMLPanel ui:field="content" styleName="container" tag="section">
+		<g:HTMLPanel ui:field="main" styleName="main" tag="main">
 		</g:HTMLPanel>
 		<p1:FooterViewImpl ui:field="footer"/>
 	</g:HTMLPanel>

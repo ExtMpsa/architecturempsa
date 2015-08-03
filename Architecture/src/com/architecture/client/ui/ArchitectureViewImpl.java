@@ -24,11 +24,11 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	@UiField
 	BannerViewImpl banner;
 	@UiField
-	HTMLPanel main;
+	HTMLPanel appContainer;
 	@UiField
 	BannerLanguageViewImpl bannerLanguage;
 	@UiField
-	HTMLPanel content;
+	HTMLPanel main;
 	@UiField
 	DisclamerViewImpl disclaimer;
 	@UiField
@@ -116,8 +116,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	@Override
 	public void setWidget(Widget w) {
 		if (w != null) {
-			content.clear();
-			content.add(w);
+			main.clear();
+			main.add(w);
 			widget = w;
 		}
 	}

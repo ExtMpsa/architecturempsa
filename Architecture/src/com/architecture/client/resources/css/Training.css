@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.training .content{
+	display: table;
+}
+
+.training article, aside{
+	display: table-cell;
+	background: rgb(200, 200, 250);
+	padding: 5px;
+	border-radius: 5px 5px 5px 5px;
+	border: solid 1px;
+}
+
+.training article{
+	width: 8em;
+}
+
+.training aside{
+	width: 2em;
+}
+
+.training a{
+	vertical-align: inherit;
+	margin-right: 0px;
+}

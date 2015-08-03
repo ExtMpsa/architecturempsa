@@ -4,24 +4,24 @@
 	outline-style: auto;
 }
 
-.main  {
+.appContainer  {
 }
 
-.main input, select{
+.appContainer input, select{
 	outline:none;
 }
 
-.main input:hover, select:hover{
+.appContainer input:hover, select:hover{
 	outline-color: rgba(200, 200, 200, 0.5);
 	outline-style: auto;
 }
 
-.main input:focus, select:focus {
+.appContainer input:focus, select:focus {
 	outline-color: dodgerblue;
 	outline-style: auto;
 }
 
-.container{
+.main{
 
 }
 

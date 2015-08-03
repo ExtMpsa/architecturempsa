@@ -2,18 +2,20 @@ package com.architecture.client.mvp;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.activity.EPrivacyActivity;
 import com.architecture.client.activity.FormsActivity;
 import com.architecture.client.activity.HomeActivity;
 import com.architecture.client.activity.SignInActivity;
+import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.activity.TracingPaperActivity;
-import com.architecture.client.place.SignUpPlace;
+import com.architecture.client.activity.TrainingActivity;
 import com.architecture.client.place.EPrivacyPlace;
 import com.architecture.client.place.FormsPlace;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.place.SignInPlace;
+import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.place.TracingPaperPlace;
+import com.architecture.client.place.TrainingPlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.dom.client.Document;
@@ -50,6 +52,8 @@ public class AppActivityMapper implements ActivityMapper {
 			activity = new SignInActivity((SignInPlace) place, clientFactory);
 		} else if (place instanceof SignUpPlace) {
 			activity = new SignUpActivity((SignUpPlace) place, clientFactory);
+		} else if (place instanceof TrainingPlace) {
+			activity = new TrainingActivity((TrainingPlace) place, clientFactory);
 		} else {
 			removeLoader();
 		}
