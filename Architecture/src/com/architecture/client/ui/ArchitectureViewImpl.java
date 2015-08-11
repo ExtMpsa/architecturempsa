@@ -104,6 +104,11 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	@Override
+	public NavigationViewImpl getNavigationView() {
+		return nav;
+	}
+
+	@Override
 	public void setWidget(IsWidget w) {
 		setWidget(asWidgetOrNull(w));
 	}

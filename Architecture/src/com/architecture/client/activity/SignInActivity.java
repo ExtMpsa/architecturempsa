@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.event.HomeEvent;
 import com.architecture.client.place.SignInPlace;
 import com.architecture.client.ui.account.SignInView;
 import com.architecture.shared.model.Account;
@@ -40,6 +41,7 @@ public class SignInActivity extends ArchitectureActivity {
 			signInView.resetPasswordError();
 		}
 		containerWidget.setWidget(signInView.asWidget());
+		clientFactory.getEventBus().fireEvent(new HomeEvent());
 		removeLoader();
 	}
 

@@ -3,8 +3,12 @@ package com.architecture.client;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import com.architecture.client.event.HomeEvent;
+import com.architecture.client.event.HomeHandler;
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1Handler;
+import com.architecture.client.event.TrainingEvent;
+import com.architecture.client.event.TrainingHandler;
 import com.architecture.client.event.ValidateSignStep1Event;
 import com.architecture.client.event.ValidateSignStep1Handler;
 import com.architecture.client.event.ValidateSignStep2Event;
@@ -27,6 +31,7 @@ import com.architecture.client.ui.account.SignInView;
 import com.architecture.client.ui.account.SignInViewImpl;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.architecture.shared.model.Account;
 import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -111,6 +116,9 @@ public class ClientFactoryImpl implements ClientFactory {
 		Document.get().getElementById("loader").removeFromParent();
 		RootPanel.get().add(appWidget);
 
+		// Event
+		bindBeforeLoadingPlace();
+
 		// Goes to the place represented on URL else default place
 		historyHandler.handleCurrentHistory();
 
@@ -123,7 +131,7 @@ public class ClientFactoryImpl implements ClientFactory {
 		}
 
 		// Event
-		bind();
+		bindAfterLoadingPlace();
 	}
 
 	/** Holder */
@@ -474,14 +482,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	 * Views
 	 */
 	@Override
-	public HomeView getHomeView() {
-		if (homeView == null) {
-			homeView = new HomeViewImpl();
-		}
-		return homeView;
-	}
-
-	@Override
 	public BannerViewImpl getBannerView() {
 		return appWidget.getBanner();
 	}
@@ -489,6 +489,19 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public BannerLanguageViewImpl getBannerFlagView() {
 		return appWidget.getBannerFlag();
+	}
+
+	@Override
+	public NavigationViewImpl getNavigationView() {
+		return appWidget.getNavigationView();
+	}
+
+	@Override
+	public HomeView getHomeView() {
+		if (homeView == null) {
+			homeView = new HomeViewImpl();
+		}
+		return homeView;
 	}
 
 	@Override
@@ -553,7 +566,26 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	// Bind
-	private void bind() {
+	private void bindBeforeLoadingPlace() {
+		eventBus.addHandler(TrainingEvent.TYPE, new TrainingHandler() {
+
+			@Override
+			public void onTraining(TrainingEvent event) {
+				getNavigationView().selected("Training");
+			}
+		});
+
+		eventBus.addHandler(HomeEvent.TYPE, new HomeHandler() {
+
+			@Override
+			public void onHome(HomeEvent event) {
+				getNavigationView().selected("");
+			}
+		});
+	}
+
+	// Bind
+	private void bindAfterLoadingPlace() {
 		onMouseMoveHandlerForGtm = RootPanel.get().addDomHandler(new MouseMoveHandler() {
 			@Override
 			public void onMouseMove(MouseMoveEvent event) {

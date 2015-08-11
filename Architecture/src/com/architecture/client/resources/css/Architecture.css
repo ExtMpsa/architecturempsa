@@ -30,8 +30,8 @@
 }
 
 .content{
-	min-width: 980px;
-	max-width: 980px;
+	min-width: 1000px;
+	max-width: 1000px;
 	margin: auto;
 }
 
@@ -108,5 +108,5 @@ button.gwt-Button:focus{
 }
 
 a:hover{
-	color: black;
+	color: blue;
 }

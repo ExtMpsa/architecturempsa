@@ -1,6 +1,7 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
+import com.architecture.client.event.HomeEvent;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.ui.HomeView;
 import com.google.gwt.event.shared.EventBus;
@@ -19,6 +20,7 @@ public class HomeActivity extends ArchitectureActivity {
 		HomeView homeView = this.clientFactory.getHomeView();
 		homeView.setActivity(this);
 		containerWidget.setWidget(homeView.asWidget());
+		clientFactory.getEventBus().fireEvent(new HomeEvent());
 		removeLoader();
 	}
 

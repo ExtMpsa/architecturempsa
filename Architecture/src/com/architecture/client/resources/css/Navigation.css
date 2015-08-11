@@ -17,10 +17,21 @@
 
 .nav a{
 	margin-right: 10px;
+	padding-bottom: 9.5px;
 }
 
-.nav a.selected {
+.nav a:hover{
+	color: blue;
+}
+
+.nav .selected {
 	color: black;
+	border-bottom: 2px solid blue;
+	font-weight: bold;
+}
+
+.nav a.selected:hover{
+	color: blue;
 }
 
 .nav #sign-in{
@@ -44,7 +55,7 @@
     background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
     border-color: #C6C6C6;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: rgb(0, 0, 0);
+    color: blue;
 }
 
 .nav .nav-right a:focus{

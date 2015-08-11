@@ -103,6 +103,26 @@ public class NavigationViewImpl extends Composite {
 
 	}
 
+	public void selected(String s) {
+		removeClassSelected();
+		switch (s) {
+		case "Training":
+			training.getElement().addClassName("selected");
+			break;
+		}
+	}
+
+	private void removeClassSelected() {
+		training.getElement().removeClassName("selected");
+		webApp.getElement().removeClassName("selected");
+		performance.getElement().removeClassName("selected");
+		seo.getElement().removeClassName("selected");
+		webAnalytics.getElement().removeClassName("selected");
+		tools.getElement().removeClassName("selected");
+		methodology.getElement().removeClassName("selected");
+		userExperience.getElement().removeClassName("selected");
+	}
+
 	@UiHandler("training")
 	void onTrainingClick(ClickEvent event) {
 		// Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
