@@ -7,7 +7,8 @@ import com.google.gwt.place.shared.Prefix;
 public class TrainingPlace extends Place {
 	private String name;
 
-	public TrainingPlace() {
+	public TrainingPlace(String name) {
+		this.name = name.toLowerCase();
 	}
 
 	public String getName() {
@@ -21,12 +22,12 @@ public class TrainingPlace extends Place {
 		// Activity & Place add new Item. This item break the history. Have to fix it : look SignUpActivity.
 		@Override
 		public String getToken(TrainingPlace place) {
-			return "";
+			return place.getName();
 		}
 
 		@Override
 		public TrainingPlace getPlace(String token) {
-			return new TrainingPlace();
+			return new TrainingPlace(token);
 		}
 	}
 }

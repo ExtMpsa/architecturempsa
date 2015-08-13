@@ -1,6 +1,8 @@
 package com.architecture.client.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import com.architecture.client.activity.TrainingActivity;
 import com.architecture.client.resources.ResourcesTraining;
@@ -9,7 +11,6 @@ import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -36,82 +37,53 @@ public class TrainingViewImpl extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		TrainingText trainingText = GWT.create(TrainingText.class);
-		article.getElement().setInnerHTML("<p>" + trainingText.article() + "</p>");
+		article.getElement().setInnerHTML(trainingText.article());
 
 		aside.setVisible(false);
 		aside.getElement().setInnerHTML(null);
 
-		initAsideAllWidget("[^a-zA-Z_0-9]ut[^a-zA-Z_0-9]", "ut");
-		initAsideAllWidget("[^a-zA-Z_0-9]Ut[^a-zA-Z_0-9]", "Ut");
-		// initAsideAllWidget("[^a-zA-Z_0-9]Lorem[^a-zA-Z_0-9]", "Lorem");
-		// initAside("lorem");
-		// initAsideAllWidget("ipsum");
+		ArrayList<String> words = new ArrayList<String>();
+		words.add("Lorem");
+		words.add("ut");
+		words.add("Ut");
+		words.add("pariatur");
+
+		initAsideAllWidget(words);
 	}
 
 	public void setActivity(TrainingActivity activity) {
 		this.activity = activity;
 	}
 
-	@SuppressWarnings("deprecation")
-	private void initAsideAllWidget(String splitter, String word) {
-		if (article.getWidgetCount() == 0) {
-			String articleText = article.getElement().getInnerText();
-			String[] articleSplitted = articleText.split(splitter);
-			for (int j = 0; j < articleSplitted.length; j++) {
-				if (j == 0 && articleSplitted[j].equalsIgnoreCase("")) {
-					// Le premier élément commence par le splitter
-				} else if (j == 0 && !articleSplitted[j].equalsIgnoreCase("")) {
-					// article.getElement().getFirstChildElement().setInnerText("");
-					HTMLPanel span = new HTMLPanel("div", articleSplitted[j]);
-					article.addAndReplaceElement(span, article.getElement().getFirstChildElement());
-				} else {
-					// article.getElement().getFirstChildElement().setInnerText("");
-					Anchor a = new Anchor();
-					a.setText(word);
-					article.add(a);
-					HTMLPanel span = new HTMLPanel("div", articleSplitted[j]);
-					article.add(span);
-				}
-			}
-		} else {
-			int initialLength = article.getWidgetCount();
-			ArrayList<HTMLPanel> list = new ArrayList<HTMLPanel>();
-			for (int i = 0; i < initialLength; i++) {
-				if (article.getWidget(i).getElement().getTagName().equalsIgnoreCase("div")) {
-					HTMLPanel panel = initAsideOneWidget(splitter, word, article.getWidget(i));
-					list.add(panel);
-				} else {
-					list.add(new HTMLPanel(""));
-				}
-			}
-			Window.alert(String.valueOf(list.size()));
+	private void initAsideAllWidget(ArrayList<String> words) {
+		String articleText = " " + article.getElement().getInnerText();
+		String newArticleText = articleText;
 
-			for (int i = 0; i < initialLength; i++) {
-				if (article.getWidget(i).getElement().getTagName().equalsIgnoreCase("div")) {
-					article.addAndReplaceElement(list.get(i), article.getWidget(i).getElement());
-				}
-
-			}
+		Iterator<String> itWords = words.iterator();
+		while (itWords.hasNext()) {
+			String word = itWords.next();
+			newArticleText = newArticleText.replaceAll(" " + word + " ", " ;splitter;" + word + ";splitter; ");
+			newArticleText = newArticleText.replaceAll(" " + word + "\\.", " ;splitter;" + word + ";splitter;.");
 		}
-	}
 
-	private HTMLPanel initAsideOneWidget(String splitter, String word, Widget w) {
-		String widgetText = w.getElement().getInnerText();
-		String[] articleSplitted = widgetText.split(splitter);
-		HTMLPanel widget = new HTMLPanel("div", "");
-		for (int j = 0; j < articleSplitted.length; j++) {
-			if (j == 0 && articleSplitted[j].equalsIgnoreCase("")) {
-				// Le premier élément commence par le splitter
-			} else if (j == 0 && !articleSplitted[j].equalsIgnoreCase("")) {
-				widget.getElement().setInnerText(articleSplitted[j]);
-			} else {
+		String[] split = newArticleText.split(";splitter;");
+		ArrayList<String> articleTextSplitted = new ArrayList<String>(Arrays.asList(split));
+		HTMLPanel panel = new HTMLPanel("");
+		Iterator<String> it = articleTextSplitted.iterator();
+		while (it.hasNext()) {
+			String s = it.next();
+			if (words.contains(s)) {
 				Anchor a = new Anchor();
-				a.setText(word);
-				widget.add(a);
-				HTMLPanel span = new HTMLPanel("div", articleSplitted[j]);
-				widget.add(span);
+				a.setText(s);
+				panel.add(a);
+				a.setHash("#!Training:" + s.toLowerCase());
+			} else if (s.equals(" ")) {
+
+			} else {
+				panel.add(new HTMLPanel("span", s));
 			}
 		}
-		return widget;
+		article.getElement().removeAllChildren();
+		article.add(panel);
 	}
 }

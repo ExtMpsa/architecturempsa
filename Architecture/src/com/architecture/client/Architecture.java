@@ -9,7 +9,6 @@ public class Architecture implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 		ClientFactory clientFactory = ClientFactoryImpl.getInstance();
-		ClientFactoryImpl.pushTimeRTD();
 		clientFactory.eventGtm("Début d'affichage de la page.", this.getClass().toString());
 		ClientFactoryImpl.setLoaded(true);
 	}
