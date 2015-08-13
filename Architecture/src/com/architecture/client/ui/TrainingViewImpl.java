@@ -9,14 +9,11 @@ import com.architecture.client.resources.ResourcesTraining;
 import com.architecture.client.resources.txt.TrainingText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -34,6 +31,7 @@ public class TrainingViewImpl extends Composite {
 	HTMLPanel content;
 	@SuppressWarnings("unused")
 	private TrainingActivity activity;
+	TrainingText trainingText = GWT.create(TrainingText.class);
 
 	interface TemplateViewImplUiBinder extends UiBinder<Widget, TrainingViewImpl> {
 	}
@@ -42,7 +40,6 @@ public class TrainingViewImpl extends Composite {
 		ResourcesTraining.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 
-		TrainingText trainingText = GWT.create(TrainingText.class);
 		article.getElement().setInnerHTML(trainingText.article());
 
 		aside.setVisible(false);
@@ -83,16 +80,7 @@ public class TrainingViewImpl extends Composite {
 				a.setText(s);
 				panel.add(a);
 				a.setHash("#!Training:" + s.toLowerCase());
-				a.addFocusHandler(new FocusHandler() {
-
-					@Override
-					public void onFocus(FocusEvent event) {
-						Window.alert("FocusEvent");
-						History.newItem("#!Training:" + s.toLowerCase());
-					}
-				});
 				a.addMouseOverHandler(new MouseOverHandler() {
-
 					@Override
 					public void onMouseOver(MouseOverEvent event) {
 						History.newItem("!Training:" + s.toLowerCase());
@@ -109,7 +97,15 @@ public class TrainingViewImpl extends Composite {
 	}
 
 	public void setAside(String word) {
-		aside.getElement().setInnerText(word);
-		aside.setVisible(true);
+		switch (word.toLowerCase()) {
+		case "lorem":
+			aside.setVisible(true);
+			aside.getElement().setInnerText(trainingText.lorem());
+			break;
+		case "ipsum":
+			aside.setVisible(true);
+			aside.getElement().setInnerText(trainingText.ipsum());
+			break;
+		}
 	}
 }

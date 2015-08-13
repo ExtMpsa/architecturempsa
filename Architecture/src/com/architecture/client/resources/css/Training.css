@@ -3,7 +3,7 @@
 	display: table;
 }
 
-.training article, aside{
+.training article, aside {
 	display: table-cell;
 	background: rgb(200, 200, 250);
 	padding: 5px;

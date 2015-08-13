@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
+import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 
 public class ArchitectureViewImpl extends Composite implements ArchitectureView {
 
@@ -37,6 +38,7 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	FooterViewImpl footer;
 	@UiField
 	HTMLPanel header;
+	@UiField BreadCrumbViewImpl breadCrumb;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;

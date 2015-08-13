@@ -10,6 +10,7 @@
 			<p1:BannerLanguageViewImpl ui:field="bannerLanguage"/>
 			<p1:BannerViewImpl ui:field="banner"/>
 			<p1:NavigationViewImpl ui:field="nav"/>
+			<p1:BreadCrumbViewImpl ui:field="breadCrumb"/>
 		</g:HTMLPanel>
 		<g:HTMLPanel ui:field="main" styleName="main" tag="main">
 		</g:HTMLPanel>

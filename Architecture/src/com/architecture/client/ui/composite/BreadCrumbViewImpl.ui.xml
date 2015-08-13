@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.architecture.client.ui.widget">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel ui:field="wrapper" styleName="breadCrumb wrapper" tag="nav">
+		<g:HTMLPanel ui:field="content" styleName="content">
+			<p1:Anchor ui:field="dipet" text="Digital Performance Training"/>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

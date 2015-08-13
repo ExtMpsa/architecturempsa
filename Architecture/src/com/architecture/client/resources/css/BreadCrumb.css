@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+.breadCrumb.wrapper{
+	padding-bottom: 3px;
+	box-shadow: 0 8px 6px -8px rgba(0,0,0,.3);
+}
+
+.breadCrumb .content{
+	margin: auto;
+	min-width: 980px;
+	max-width: 980px;
+}

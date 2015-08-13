@@ -13,7 +13,7 @@ public interface ResourcesBanner extends ClientBundle {
 	@Source("css/Banner.css")
 	Style css();
 
-	@Source("images/logo_citroen.jpg")
+	@Source("images/logo_citroen.png")
 	ImageResource logoCitroen();
 
 	@Source("images/logo_ds.png")
