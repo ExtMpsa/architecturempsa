@@ -93,7 +93,7 @@ public class NavigationViewImpl extends Composite {
 		userExperience.getElement().setId("userExperience");
 
 		signUp.setText(navigationText.signUp().toUpperCase());
-		signUp.setHash("#!SignUp:");
+		signUp.setHash("#!SignUp:login");
 		signUp.getElement().setId("signUp");
 		signUp.getElement().addClassName("signUp");
 
@@ -109,6 +109,12 @@ public class NavigationViewImpl extends Composite {
 		case "Training":
 			training.getElement().addClassName("selected");
 			break;
+		case "SignUp":
+			signUp.getElement().addClassName("selected");
+			break;
+		case "SignIn":
+			signIn.getElement().addClassName("selected");
+			break;
 		}
 	}
 
@@ -121,6 +127,8 @@ public class NavigationViewImpl extends Composite {
 		tools.getElement().removeClassName("selected");
 		methodology.getElement().removeClassName("selected");
 		userExperience.getElement().removeClassName("selected");
+		signUp.getElement().removeClassName("selected");
+		signIn.getElement().removeClassName("selected");
 	}
 
 	@UiHandler("training")

@@ -6,7 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.HomeEvent;
+import com.architecture.client.event.SignUpEvent;
 import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.ui.account.SignUpPasswordViewImpl;
 import com.architecture.client.ui.account.SignUpView;
@@ -40,7 +40,7 @@ public class SignUpActivity extends ArchitectureActivity {
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		this.containerWidget = containerWidget;
 		setStep(step);
-		clientFactory.getEventBus().fireEvent(new HomeEvent());
+		clientFactory.getEventBus().fireEvent(new SignUpEvent());
 		removeLoader();
 	}
 

@@ -7,6 +7,10 @@ import com.architecture.client.event.HomeEvent;
 import com.architecture.client.event.HomeHandler;
 import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1Handler;
+import com.architecture.client.event.SignInEvent;
+import com.architecture.client.event.SignInHandler;
+import com.architecture.client.event.SignUpEvent;
+import com.architecture.client.event.SignUpHandler;
 import com.architecture.client.event.TrainingEvent;
 import com.architecture.client.event.TrainingHandler;
 import com.architecture.client.event.ValidateSignStep1Event;
@@ -374,6 +378,24 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onHome(HomeEvent event) {
 				getNavigationView().selected("");
 				getBreadCrumbView().setDigitalPerformanceTraining();
+			}
+		});
+
+		eventBus.addHandler(SignInEvent.TYPE, new SignInHandler() {
+
+			@Override
+			public void onSignIn(SignInEvent event) {
+				getNavigationView().selected("SignIn");
+				getBreadCrumbView().setSignIn();
+			}
+		});
+
+		eventBus.addHandler(SignUpEvent.TYPE, new SignUpHandler() {
+
+			@Override
+			public void onSignUp(SignUpEvent event) {
+				getNavigationView().selected("SignUp");
+				getBreadCrumbView().setSignUp();
 			}
 		});
 	}

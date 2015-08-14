@@ -48,14 +48,12 @@
 }
 
 .breadCrumb .content a::after{ 
-	z-index: 2;
 	border-left-color: #ddd;  
 }
 
 .breadCrumb .content a::before{
 	border-left-color: #ccc;  
 	right: -1.1em;
-	z-index: 1; 
 }
 
 .breadCrumb .content a:hover::after{
@@ -74,7 +72,11 @@
 	border-radius: 5px;
 }
 
+.breadCrumb .content .current{
+	color : black;
+}
+
 .breadCrumb .content .current::after,
 .breadCrumb .content .current::before{
-	content: normal;  
+	content: normal;
 }

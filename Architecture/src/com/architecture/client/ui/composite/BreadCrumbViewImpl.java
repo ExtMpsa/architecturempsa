@@ -42,6 +42,20 @@ public class BreadCrumbViewImpl extends Composite {
 		addItem(NavigationText.INSTANCE.training(), "#!Training:");
 	}
 
+	public void setSignIn() {
+		content.clear();
+		content.add(dipet);
+		dipet.getElement().removeClassName("current");
+		addItem(NavigationText.INSTANCE.signIn(), "#!SignIn:");
+	}
+
+	public void setSignUp() {
+		content.clear();
+		content.add(dipet);
+		dipet.getElement().removeClassName("current");
+		addItem(NavigationText.INSTANCE.signUp(), "#!SignUp:");
+	}
+
 	public void addItem(String s, String hash) {
 		Anchor a = new Anchor();
 		a.setText(s);

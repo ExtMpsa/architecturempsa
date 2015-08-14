@@ -99,7 +99,6 @@ button.gwt-Button:hover{
     background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
     border-color: #C6C6C6;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: rgb(0, 0, 0);
 }
 
 button.gwt-Button:focus{
@@ -107,6 +106,6 @@ button.gwt-Button:focus{
     outline: medium none;
 }
 
-a:hover{
+a:hover,button:hover{
 	color: blue;
 }
