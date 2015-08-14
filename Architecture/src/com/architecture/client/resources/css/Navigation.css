@@ -6,9 +6,6 @@
 }
 
 .nav .content{
-	margin: auto;
-	min-width: 980px;
-	max-width: 980px;
 	height: 30px;
 }
 
@@ -21,7 +18,7 @@
 	padding-bottom: 9.5px;
 }
 
-.nav .selected,.nav .nav-right a.selected{
+.nav .selected{
 	color: black;
 }
 
@@ -30,7 +27,7 @@
 	font-weight: bold;
 }
 
-.nav #sign-in{
+.nav #signIn{
 	margin-right: 0px;
 }
 
@@ -41,7 +38,6 @@
 	border: 1px solid;
 	border-color: rgba(0, 0, 0, 0.1);
 	border-radius: 2px 2px 2px 2px;
-	color: rgb(100, 100, 100);
 	padding: 0 8px;
 	text-align: center;
 }

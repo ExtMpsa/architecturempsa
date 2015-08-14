@@ -11,8 +11,7 @@
 	height: 30px;
 	font-size: 15px;
 	width: 284px;
-	margin: 5px;
-	margin-left: 330px;
+	margin: 5px auto;
 	padding: 0 8px;
 	display:block;
 }
@@ -26,8 +25,8 @@
 
 .account .gwt-CheckBox{
 	display: block;
-	width: 300px;
-	margin-left: 330px;
+	width: 310px;
+	margin: auto;
 }
 
 .account input:disabled{
@@ -38,9 +37,13 @@
 	display: block;
 	height: 30px;
 	width: 304px;
-	margin: 5px;
-	margin-left: 330px;
+	margin: 5px auto;
 }
+
+.account button::after {
+	content: .panelHelp;
+}
+ 
 
 .input-Error {
 	border-color: red;
@@ -69,7 +72,6 @@ input.input-Error:focus {
 
 .panelHelp {
 	float: right;
-	margin-right: 310px;
 }
 
 .account button.help-DataLayer:hover{

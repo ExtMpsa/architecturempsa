@@ -16,6 +16,10 @@
 	text-align: center;
 }
 
+.banner .content .row{
+	display: table-row;
+}
+
 .banner .cell{
 /* 	display: table-cell; */
 /* 	margin-bottom: 12px; */

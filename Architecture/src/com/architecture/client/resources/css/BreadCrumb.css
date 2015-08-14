@@ -3,12 +3,6 @@
 	box-shadow: 0 8px 6px -8px rgba(0,0,0,.3);
 }
 
-.breadCrumb .content{
-	margin: auto;
-	min-width: 980px;
-	max-width: 980px;
-}
-
 /*fil d'ariane*/
 .breadCrumb .content{
 	border-width: 0px 0px 0px 2px;
