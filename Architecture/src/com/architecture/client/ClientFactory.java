@@ -10,6 +10,7 @@ import com.architecture.client.ui.TracingPaperView;
 import com.architecture.client.ui.account.SignInView;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.event.shared.EventBus;
@@ -38,11 +39,13 @@ public interface ClientFactory {
 	/*
 	 * Views
 	 */
-	BannerLanguageViewImpl getBannerFlagView();
+	BannerLanguageViewImpl getLanguageView();
 
 	BannerViewImpl getBannerView();
 
 	NavigationViewImpl getNavigationView();
+
+	BreadCrumbViewImpl getBreadCrumbView();
 
 	HomeView getHomeView();
 

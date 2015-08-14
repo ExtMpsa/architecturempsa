@@ -1,13 +1,13 @@
 package com.architecture.client.ui.composite;
 
 import com.architecture.client.resources.ResourcesBreadCrumb;
+import com.architecture.client.resources.txt.NavigationText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
 public class BreadCrumbViewImpl extends Composite {
@@ -19,22 +19,34 @@ public class BreadCrumbViewImpl extends Composite {
 	HTMLPanel content;
 	@UiField
 	Anchor dipet;
-	ResourcesBreadCrumb resources = ResourcesBreadCrumb.INSTANCE;
 
 	interface BreadCrumbViewImplUiBinder extends UiBinder<Widget, BreadCrumbViewImpl> {
 	}
 
 	public BreadCrumbViewImpl() {
-		resources.css().ensureInjected();
+		ResourcesBreadCrumb.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
-		addItem("link", "");
+		dipet.getElement().addClassName("current");
+	}
+
+	public void setDigitalPerformanceTraining() {
+		content.clear();
+		content.add(dipet);
+		dipet.getElement().addClassName("current");
+	}
+
+	public void setTraining() {
+		content.clear();
+		content.add(dipet);
+		dipet.getElement().removeClassName("current");
+		addItem(NavigationText.INSTANCE.training(), "#!Training:");
 	}
 
 	public void addItem(String s, String hash) {
-		Image delimiter = new Image(resources.delimiter());
-		content.add(delimiter);
 		Anchor a = new Anchor();
 		a.setText(s);
 		a.setHash(hash);
+		a.getElement().addClassName("current");
+		content.add(a);
 	}
 }

@@ -4,6 +4,7 @@ import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.resources.Resources;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 import com.architecture.client.ui.composite.DisclamerViewImpl;
 import com.architecture.client.ui.composite.FooterViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
@@ -17,7 +18,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
-import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 
 public class ArchitectureViewImpl extends Composite implements ArchitectureView {
 
@@ -38,7 +38,8 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	FooterViewImpl footer;
 	@UiField
 	HTMLPanel header;
-	@UiField BreadCrumbViewImpl breadCrumb;
+	@UiField
+	BreadCrumbViewImpl breadCrumb;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;
@@ -101,13 +102,18 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	@Override
-	public BannerLanguageViewImpl getBannerFlag() {
+	public BannerLanguageViewImpl getLanguageView() {
 		return bannerLanguage;
 	}
 
 	@Override
 	public NavigationViewImpl getNavigationView() {
 		return nav;
+	}
+
+	@Override
+	public BreadCrumbViewImpl getBreadCrumbView() {
+		return breadCrumb;
 	}
 
 	@Override

@@ -31,6 +31,7 @@ import com.architecture.client.ui.account.SignInView;
 import com.architecture.client.ui.account.SignInViewImpl;
 import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
+import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.architecture.shared.model.Account;
 import com.architecture.shared.proxy.PersonProxy;
@@ -276,13 +277,18 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public BannerLanguageViewImpl getBannerFlagView() {
-		return appWidget.getBannerFlag();
+	public BannerLanguageViewImpl getLanguageView() {
+		return appWidget.getLanguageView();
 	}
 
 	@Override
 	public NavigationViewImpl getNavigationView() {
 		return appWidget.getNavigationView();
+	}
+
+	@Override
+	public BreadCrumbViewImpl getBreadCrumbView() {
+		return appWidget.getBreadCrumbView();
 	}
 
 	@Override
@@ -311,10 +317,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public ArchitectureView getArchitectureView() {
-		if (architectureView == null) {
-			architectureView = new ArchitectureViewImpl();
-		}
-		return architectureView;
+		return appWidget;
 	}
 
 	@Override
@@ -361,6 +364,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onTraining(TrainingEvent event) {
 				getNavigationView().selected("Training");
+				getBreadCrumbView().setTraining();
 			}
 		});
 
@@ -369,6 +373,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onHome(HomeEvent event) {
 				getNavigationView().selected("");
+				getBreadCrumbView().setDigitalPerformanceTraining();
 			}
 		});
 	}
