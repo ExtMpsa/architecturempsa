@@ -7,9 +7,13 @@
 	</ui:style>
 	<g:HTMLPanel styleName="header wrapper" ui:field="wrapper">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
-			<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
-			<g:SuggestBox animationEnabled="true" ui:field="search"/>
+			<g:HTMLPanel ui:field="cellLeft" styleName="left">
+				<p1:Anchor text="Digital Performance Training" ui:field="logo" styleName="logo"/>
+			</g:HTMLPanel>
+			<g:HTMLPanel ui:field="cellRight" styleName="right">
+				<g:SuggestBox animationEnabled="true" ui:field="search"/>
+				<g:ListBox visibleItemCount="1" ui:field="langChooser"/>
+			</g:HTMLPanel>
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

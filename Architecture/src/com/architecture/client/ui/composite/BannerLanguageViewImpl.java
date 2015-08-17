@@ -31,6 +31,8 @@ public class BannerLanguageViewImpl extends Composite {
 	HTMLPanel content;
 	@UiField
 	SuggestBox search;
+	@UiField HTMLPanel cellLeft;
+	@UiField HTMLPanel cellRight;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}

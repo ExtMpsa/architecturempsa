@@ -4,19 +4,23 @@
 	border-bottom: 1px solid rgba(230, 230, 230, 0.8);
 }
 
-.header  {
-	height:26px;
+.header .content{
+	display: table;
 }
 
-.header .content{
-	height: inherit;
+.header .left{
+	display: table-cell;
+}
+
+.header .right{
+	display: table-cell;
+	font-size: 0;
+	text-align: right;
 }
 
 .header .content .langChooser {
-	float: right;
 	height: 22px;
-	margin-top: 2px;
-	margin-bottom: 2px;
+	margin: 2px 0px 2px 4px;
 }
 
 .header .content .logo {
@@ -25,11 +29,10 @@
 
 /* Suggest Box */
 .gwt-SuggestBox{
-	margin: 2px;
+	margin: 2px 0px;
 }
 
 .header .content .gwt-SuggestBox{
-	float: right;
 	padding: 1px 4px;
 }
 

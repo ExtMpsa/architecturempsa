@@ -26,13 +26,14 @@
 }
 
 .wrapper{
-	
+	height: 100%;
 }
 
 .content{
 	min-width: 980px;
 	max-width: 1250px;
 	margin: auto;
+	width:100%;
 }
 
 .gwt-Grid td{

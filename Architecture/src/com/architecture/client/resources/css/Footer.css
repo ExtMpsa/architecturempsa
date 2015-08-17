@@ -24,10 +24,5 @@ footer{
 
 .footer.wrapper{
 	padding-bottom: 3px;
-}
-
-.footer .content{
-	margin: auto;
-	min-width: 980px;
-	max-width: 980px;
+	height: inherit;
 }
