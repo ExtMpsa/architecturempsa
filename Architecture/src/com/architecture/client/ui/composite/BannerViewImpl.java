@@ -33,8 +33,6 @@ public class BannerViewImpl extends Composite {
 	HTMLPanel content;
 	@UiField
 	HTMLPanel wrapper;
-	@UiField
-	HTMLPanel row1;
 
 	interface BannerViewImplUiBinder extends UiBinder<Widget, BannerViewImpl> {
 	}

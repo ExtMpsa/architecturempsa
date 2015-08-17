@@ -6,18 +6,18 @@
 	</ui:style>
 	<g:HTMLPanel styleName="banner wrapper" ui:field="wrapper">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<g:HTMLPanel ui:field="row1" styleName="row">
-				<a ui:field="citroenLink" target="_blank" class="cell">
+			
+				<a ui:field="citroenLink" target="_blank" class="cell left">
 					<g:Image resource="{res.logoCitroen}" ui:field="citroenLogo"/>
 				</a>
-				<a ui:field="dsLink" target="_blank" class="cell">
+				<a ui:field="dsLink" target="_blank" class="cell left">
 					<g:Image resource="{res.logoDs}" ui:field="dsLogo"/>
 				</a>
 				<h1 ui:field="title">Formation Google Analytics PSA</h1>
-				<a ui:field="peugeotLink" target="_blank" class="cell">
+				<a ui:field="peugeotLink" target="_blank" class="cell right">
 					<g:Image resource="{res.logoPeugeot}" ui:field="peugeotLogo"/>
 				</a>
-			</g:HTMLPanel>
+			
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

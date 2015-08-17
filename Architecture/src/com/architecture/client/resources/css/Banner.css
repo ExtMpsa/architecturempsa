@@ -12,26 +12,29 @@
 }
 
 .banner .content  {
-	display:table;
+	width: 100%;
 	text-align: center;
 }
 
-.banner .content .row{
-	display: table-row;
+.banner .cell.left{
+	float: left;
+}
+
+.banner .cell.right{
+	float: right;
 }
 
 .banner .cell{
-/* 	display: table-cell; */
-/* 	margin-bottom: 12px; */
-/* 	margin-top: 12px; */
-	vertical-align: sub;
+	height: 65px;
+	line-height: 100px;
+	vertical-align: middle;
 }
 
 .banner h1 {
   font-size: 3.5em;
   font-weight: bold;
   color: #777777;
-  margin: 40px 0px 70px;
+  margin: 0 auto;
   text-align: center;
-  display: table-cell;
+  display: inline-block;
 }
