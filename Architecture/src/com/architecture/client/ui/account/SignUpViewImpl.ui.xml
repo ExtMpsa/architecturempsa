@@ -9,14 +9,14 @@
 			<g:HTMLPanel ui:field="title" tag="h2">Sign Up</g:HTMLPanel>
 			<g:HTMLPanel styleName="panelHelp">
 				<g:Button ui:field="helpLogin" styleName="gwt-Button help-DataLayer"/>
+				<g:TextBox ui:field="login"/>
 			</g:HTMLPanel>
-			<g:TextBox ui:field="login"/>
 			<g:Label text="erreur Client" ui:field="loginErrorClient" styleName="gwt-Label-Error"/>
 			<g:Label text="erreur Serveur" ui:field="loginErrorServer" styleName="gwt-Label-Error"/>
 			<g:HTMLPanel styleName="panelHelp">
 				<g:Button styleName="gwt-Button help-DataLayer" ui:field="helpNext"/>
+				<g:Button ui:field="next" text="Next"/>
 			</g:HTMLPanel>
-			<g:Button ui:field="next" text="Next"/>
 			
 			<g:DecoratedPopupPanel ui:field="asideNext" styleName="gwt-Popup-Aside" autoHideEnabled="true" autoHideOnHistoryEventsEnabled="true">
 				<g:FocusPanel ui:field="focusPanel">
