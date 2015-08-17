@@ -22,6 +22,10 @@
 	color: black;
 }
 
+.nav .selected:hover{
+	color: blue;
+}
+
 .nav .selected {
 	border-bottom: 2px solid blue;
 	font-weight: bold;
