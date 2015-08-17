@@ -27,6 +27,7 @@
 
 .wrapper{
 	height: 100%;
+	min-width:920px;
 }
 
 .content{
