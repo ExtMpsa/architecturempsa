@@ -40,11 +40,6 @@
 	margin: 5px auto;
 }
 
-.account button::after {
-	content: .panelHelp;
-}
- 
-
 .input-Error {
 	border-color: red;
 	border-style: double;

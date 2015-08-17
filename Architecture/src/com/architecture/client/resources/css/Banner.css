@@ -12,22 +12,21 @@
 }
 
 .banner .content  {
-	width: 100%;
 	text-align: center;
-}
-
-.banner .cell.left{
-	float: left;
-}
-
-.banner .cell.right{
-	float: right;
+	display: table;
 }
 
 .banner .cell{
-	height: 65px;
-	line-height: 100px;
+	display: table-cell;
 	vertical-align: middle;
+}
+
+.banner .left{
+	text-align: left;
+}
+
+.banner .right{
+	text-align: right;
 }
 
 .banner h1 {

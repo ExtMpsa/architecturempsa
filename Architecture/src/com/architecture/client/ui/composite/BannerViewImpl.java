@@ -4,7 +4,6 @@ import com.architecture.client.resources.ResourcesBanner;
 import com.architecture.client.resources.txt.BannerText;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.AnchorElement;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,11 +27,15 @@ public class BannerViewImpl extends Composite {
 	@UiField
 	AnchorElement peugeotLink;
 	@UiField
-	HeadingElement title;
+	HTMLPanel title;
 	@UiField
 	HTMLPanel content;
 	@UiField
 	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel left;
+	@UiField
+	HTMLPanel right;
 
 	interface BannerViewImplUiBinder extends UiBinder<Widget, BannerViewImpl> {
 	}
@@ -56,7 +59,7 @@ public class BannerViewImpl extends Composite {
 
 	private void init() {
 		BannerText bannerText = GWT.create(BannerText.class);
-		title.setInnerText(bannerText.title());
+		title.getElement().setInnerText(bannerText.title());
 		citroenLink.setTitle(bannerText.titleLogoCitroen());
 		citroenLink.setHref(bannerText.hrefCitroen());
 		dsLink.setTitle(bannerText.titleLogoDs());
