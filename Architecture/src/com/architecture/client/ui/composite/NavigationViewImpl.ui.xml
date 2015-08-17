@@ -6,14 +6,16 @@
 	</ui:style>
 	<g:HTMLPanel ui:field="wrapper" styleName="nav wrapper" tag="nav">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<p1:Anchor ui:field="training" text="Training"/>
-			<p1:Anchor ui:field="webApp" text="Web App"/>
-			<p1:Anchor ui:field="performance" text="Performance"/>
-			<p1:Anchor ui:field="seo" text="SEO"/>
-			<p1:Anchor ui:field="webAnalytics" text="Web Analytics"/>
-			<p1:Anchor ui:field="tools" text="Tools"/>
-			<p1:Anchor ui:field="methodology" text="Methodology"/>
-			<p1:Anchor ui:field="userExperience" text="User Experience"/>
+			<g:HTMLPanel ui:field="navLeft">
+				<p1:Anchor ui:field="training" text="Training"/>
+				<p1:Anchor ui:field="webApp" text="Web App"/>
+				<p1:Anchor ui:field="performance" text="Performance"/>
+				<p1:Anchor ui:field="seo" text="SEO"/>
+				<p1:Anchor ui:field="webAnalytics" text="Web Analytics"/>
+				<p1:Anchor ui:field="tools" text="Tools"/>
+				<p1:Anchor ui:field="methodology" text="Methodology"/>
+				<p1:Anchor ui:field="userExperience" text="User Experience"/>
+			</g:HTMLPanel>
 			<g:HTMLPanel ui:field="navRight" styleName="nav-right">
 				<p1:Anchor ui:field="signUp" text="Sign Up"/>
 				<p1:Anchor ui:field="signIn" text="Sign In"/>

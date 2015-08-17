@@ -47,6 +47,7 @@ public class NavigationViewImpl extends Composite {
 	Anchor methodology;
 	@UiField
 	Anchor tools;
+	@UiField HTMLPanel navLeft;
 
 	interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
 	}
