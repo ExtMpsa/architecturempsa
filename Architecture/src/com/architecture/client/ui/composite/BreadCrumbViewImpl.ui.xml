@@ -6,7 +6,9 @@
 	</ui:style>
 	<g:HTMLPanel ui:field="wrapper" styleName="breadCrumb wrapper" tag="nav">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<p1:Anchor ui:field="dipet" text="Digital Performance Training" hash="#"/>
+			<g:HTMLPanel ui:field="decoration" styleName="decoration">
+				<p1:Anchor ui:field="dipet" text="Digital Performance Training" hash="#"/>
+			</g:HTMLPanel>
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

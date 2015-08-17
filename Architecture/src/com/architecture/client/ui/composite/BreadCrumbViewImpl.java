@@ -19,6 +19,8 @@ public class BreadCrumbViewImpl extends Composite {
 	HTMLPanel content;
 	@UiField
 	Anchor dipet;
+	@UiField
+	HTMLPanel decoration;
 
 	interface BreadCrumbViewImplUiBinder extends UiBinder<Widget, BreadCrumbViewImpl> {
 	}
@@ -30,28 +32,28 @@ public class BreadCrumbViewImpl extends Composite {
 	}
 
 	public void setDigitalPerformanceTraining() {
-		content.clear();
-		content.add(dipet);
+		decoration.clear();
+		decoration.add(dipet);
 		dipet.getElement().addClassName("current");
 	}
 
 	public void setTraining() {
-		content.clear();
-		content.add(dipet);
+		decoration.clear();
+		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
 		addItem(NavigationText.INSTANCE.training(), "#!Training:");
 	}
 
 	public void setSignIn() {
-		content.clear();
-		content.add(dipet);
+		decoration.clear();
+		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
 		addItem(NavigationText.INSTANCE.signIn(), "#!SignIn:");
 	}
 
 	public void setSignUp() {
-		content.clear();
-		content.add(dipet);
+		decoration.clear();
+		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
 		addItem(NavigationText.INSTANCE.signUp(), "#!SignUp:");
 	}
@@ -61,6 +63,6 @@ public class BreadCrumbViewImpl extends Composite {
 		a.setText(s);
 		a.setHash(hash);
 		a.getElement().addClassName("current");
-		content.add(a);
+		decoration.add(a);
 	}
 }
