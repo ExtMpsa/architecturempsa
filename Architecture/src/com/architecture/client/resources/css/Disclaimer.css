@@ -6,13 +6,21 @@
 }
 
 .disclaimer .content{
-	height: 30px;
-	margin: auto;
+	display: table;
+	width: 100%;
+}
+
+.disclaimer .right{
+	display: table-cell;
+	text-align: right;
+}
+
+.disclaimer .left{
+	display: table-cell;
 }
 
 .disclaimer.wrapper .gwt-Label, .gwt-Anchor{
 	display: inline;
-	vertical-align: sub;
 }
 
 .disclaimer.wrapper .gwt-Anchor{
@@ -24,8 +32,7 @@
 }
 
 .disclaimer.wrapper .gwt-Button{
-	float: right;
-	margin-top: 3px;
+	margin: 3px 0px;
 }
 
 .disclaimer .content button.gwt-Button{

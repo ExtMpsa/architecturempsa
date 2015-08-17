@@ -28,6 +28,8 @@ public class DisclamerViewImpl extends Composite {
 	HTMLPanel wrapper;
 	@UiField
 	HTMLPanel content;
+	@UiField HTMLPanel cellLeft;
+	@UiField HTMLPanel cellRight;
 	private Storage storage = null;
 
 	interface DisclamerViewImplUiBinder extends UiBinder<Widget, DisclamerViewImpl> {

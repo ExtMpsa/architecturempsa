@@ -6,9 +6,13 @@
 	</ui:style>
 	<g:HTMLPanel styleName="disclaimer wrapper" ui:field="wrapper">
 		<g:HTMLPanel ui:field="content" styleName="content">
-			<g:Label text="disclaimer" ui:field="text"/>
-			<p1:Anchor text="En savoir plus" ui:field="moreInformation"/>
-			<g:Button text="OK" ui:field="ok"/>
+			<g:HTMLPanel ui:field="cellLeft" styleName="left">
+				<g:Label text="disclaimer" ui:field="text"/>
+				<p1:Anchor text="En savoir plus" ui:field="moreInformation"/>
+			</g:HTMLPanel>
+			<g:HTMLPanel ui:field="cellRight" styleName="right">
+				<g:Button text="OK" ui:field="ok"/>
+			</g:HTMLPanel>
 		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
