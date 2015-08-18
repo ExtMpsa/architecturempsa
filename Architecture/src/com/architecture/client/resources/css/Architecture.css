@@ -22,7 +22,7 @@
 }
 
 .main{
-	margin-top: 15px;
+	margin: 15px 0px;
 }
 
 .wrapper{
@@ -36,6 +36,19 @@
 	margin: auto;
 	width: 98%;
 	padding: 0px 8px;
+}
+
+.content article{
+	width: 70%;
+	margin-right: 8px;
+	background: #efefef;
+	padding: 8px;
+	border-radius: 10px;
+}
+
+h2{
+	text-align: center;
+	margin: 0px;
 }
 
 .gwt-Grid td{

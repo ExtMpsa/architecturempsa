@@ -20,7 +20,19 @@ public class HomeViewImpl extends Composite implements HomeView {
 	@UiField
 	HTMLPanel title;
 	@UiField
-	HTMLPanel details;
+	HTMLPanel context;
+	@UiField
+	HTMLPanel answerContext;
+	@UiField
+	HTMLPanel answerContextListItem1;
+	@UiField
+	HTMLPanel answerContextListItem2;
+	@UiField
+	HTMLPanel answerContextListItem3;
+	@UiField
+	HTMLPanel article;
+	@UiField
+	HTMLPanel aside;
 	@SuppressWarnings("unused")
 	private HomeActivity activity;
 
@@ -35,8 +47,12 @@ public class HomeViewImpl extends Composite implements HomeView {
 
 	private void init() {
 		HomeText homeText = GWT.create(HomeText.class);
-		title.getElement().setInnerText(homeText.presentation());
-		details.getElement().setInnerText(homeText.presentationContent());
+		title.getElement().setInnerText(homeText.title());
+		context.getElement().setInnerText(homeText.context());
+		answerContext.getElement().setInnerText(homeText.answerContext());
+		answerContextListItem1.getElement().setInnerText(homeText.answerContextListItem1());
+		answerContextListItem2.getElement().setInnerText(homeText.answerContextListItem2());
+		answerContextListItem3.getElement().setInnerText(homeText.answerContextListItem3());
 	}
 
 	@Override
