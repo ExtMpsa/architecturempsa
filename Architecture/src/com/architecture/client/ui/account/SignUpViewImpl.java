@@ -1,5 +1,7 @@
 package com.architecture.client.ui.account;
 
+import java.util.ArrayList;
+
 import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
@@ -73,6 +75,8 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	String lastMailFailedServer = null;
 	boolean failByServer = false;
 	AccountText accountText = GWT.create(AccountText.class);
+	ExceptionText exceptionText = GWT.create(ExceptionText.class);
+	ArrayList<String> mailServerChecked = new ArrayList<String>();
 
 	interface SignUpViewUiBinder extends UiBinder<Widget, SignUpViewImpl> {
 	}
@@ -233,38 +237,46 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 			// Vérifier le comportement entre les différents navigateur.
 			// Chrome et firefox semble différent : https://bugzilla.mozilla.org/show_bug.cgi?id=654579
 			if (isOnLine()) {
-				service.checkMail(mail, new AsyncCallback<Void>() {
+				if (!mailAlreadyCheckedByServer(mail)) {
+					service.checkMail(mail, new AsyncCallback<Void>() {
 
-					@Override
-					public void onSuccess(Void result) {
-						action = action + " Success";
-						pushEvent("event", category, action, login.getText());
-						activity.getAccount().setMail(login.getText());
-						History.newItem("!SignUp:password");
-					}
-
-					@Override
-					public void onFailure(Throwable caught) {
-						ExceptionText exceptionText = GWT.create(ExceptionText.class);
-						removeLoader();
-						String details;
-						if (caught instanceof AttackHackingException) {
-							details = exceptionText.attackHackingGeneric();
-							action = action + " Failed Server Constraints Mail Not Valid";
-						} else if (caught instanceof MailAlreadyUsedException) {
-							action = action + " Failed Mail Already Registered";
-							details = exceptionText.mailAlreadyUsed();
-						} else {
-							action = action + " Failed Internal Server Error";
-							details = exceptionText.internalServerError() + caught.getClass().toString();
+						@Override
+						public void onSuccess(Void result) {
+							action = action + " Success";
+							pushEvent("event", category, action, login.getText());
+							activity.getAccount().setMail(login.getText());
+							History.newItem("!SignUp:password");
 						}
-						pushEvent("event", category, action, label);
-						loginErrorServer.setVisible(true);
-						loginErrorServer.setText(details);
-						login.addStyleName("input-Error");
-						lastMailFailedServer = login.getText();
-					}
-				});
+
+						@Override
+						public void onFailure(Throwable caught) {
+							ExceptionText exceptionText = GWT.create(ExceptionText.class);
+							removeLoader();
+							String details;
+							if (caught instanceof AttackHackingException) {
+								details = exceptionText.attackHackingGeneric();
+								action = action + " Failed Server Constraints Mail Not Valid";
+							} else if (caught instanceof MailAlreadyUsedException) {
+								action = action + " Failed Mail Already Registered";
+								details = exceptionText.mailAlreadyUsed();
+							} else {
+								action = action + " Failed Internal Server Error";
+								details = exceptionText.internalServerError() + caught.getClass().toString();
+							}
+							pushEvent("event", category, action, label);
+							loginErrorServer.setVisible(true);
+							loginErrorServer.setText(details);
+							login.addStyleName("input-Error");
+							lastMailFailedServer = login.getText();
+							mailServerChecked.add(lastMailFailedServer.toLowerCase());
+						}
+					});
+				} else {
+					loginErrorServer.setVisible(true);
+					loginErrorServer.setText(exceptionText.mailAlreadyUsed());
+					login.addStyleName("input-Error");
+					removeLoader();
+				}
 			} else {
 				loginErrorClient.setVisible(true);
 				loginErrorClient.setText(accountText.errorOffLine());
@@ -281,6 +293,10 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 		alreadyTryGoToPassword = true;
 	}
 
+	private boolean mailAlreadyCheckedByServer(String mail) {
+		return mailServerChecked.contains(mail.toLowerCase());
+	}
+
 	public boolean validateShowError(String mail) {
 		boolean validatedClient = false;
 		if (activity.validateMailClient(mail)) {
@@ -293,7 +309,7 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 			login.addStyleName("input-Error");
 			validatedClient = false;
 		}
-		if (lastMailFailedServer != null && mail.equalsIgnoreCase(lastMailFailedServer)) {
+		if (lastMailFailedServer != null && mailServerChecked.contains(mail.toLowerCase())) {
 			login.addStyleName("input-Error");
 			loginErrorServer.setVisible(true);
 			login.addStyleName("input-Error");

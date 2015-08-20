@@ -21,7 +21,8 @@ public class AccountServiceImpl implements AccountService {
 		if (account != null) {
 			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un e-mail déjà utilisé.");
 		} else if (!mail.matches(EMAIL_PATTERN)) {
-			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
+			throw new AttackHackingException(
+					"Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
 		}
 	}
 
@@ -32,7 +33,8 @@ public class AccountServiceImpl implements AccountService {
 		if (account != null) {
 			throw new MailAlreadyUsedException("Tentative d'enregistrement d'un compte avec un e-mail déjà utilisé.");
 		} else if (!mail.matches(EMAIL_PATTERN)) {
-			throw new AttackHackingException("Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
+			throw new AttackHackingException(
+					"Attaque du serveur par le client : tentative d'enregistrement d'un compte avec un e-mail qui ne respecte pas les contraintes de validation.");
 		} else {
 			account = new Account(mailLowerCase, password);
 			account.setCreatedDate(new Date());
@@ -47,6 +49,7 @@ public class AccountServiceImpl implements AccountService {
 		if (account != null) {
 			if (account.getPassword().equals(password)) {
 				account.setLastConnexion(new Date());
+				Datastore.put(account);
 				result = true;
 			}
 		}
