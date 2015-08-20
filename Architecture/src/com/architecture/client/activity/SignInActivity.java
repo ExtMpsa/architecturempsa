@@ -50,6 +50,10 @@ public class SignInActivity extends ArchitectureActivity {
 		clientFactory.getPlaceController().goTo(place);
 	}
 
+	public ClientFactory getClientFactory() {
+		return clientFactory;
+	}
+
 	public boolean validateMailClient(String mail) {
 		boolean validate = false;
 		account.setMail(mail);

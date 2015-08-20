@@ -9,6 +9,8 @@ import com.architecture.client.event.ModifySignStep1Event;
 import com.architecture.client.event.ModifySignStep1Handler;
 import com.architecture.client.event.SignInEvent;
 import com.architecture.client.event.SignInHandler;
+import com.architecture.client.event.SignInSuccessEvent;
+import com.architecture.client.event.SignInSuccessHandler;
 import com.architecture.client.event.SignUpEvent;
 import com.architecture.client.event.SignUpHandler;
 import com.architecture.client.event.TrainingEvent;
@@ -56,6 +58,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
@@ -422,6 +425,14 @@ public class ClientFactoryImpl implements ClientFactory {
 			}
 		});
 
+		eventBus.addHandler(SignInSuccessEvent.TYPE, new SignInSuccessHandler() {
+
+			@Override
+			public void onSignInSuccess(SignInSuccessEvent event) {
+				History.newItem("#");
+			}
+		});
+
 		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1Handler() {
 			@Override
 			public void onValidateStep1(ValidateSignStep1Event event) {
@@ -483,5 +494,9 @@ public class ClientFactoryImpl implements ClientFactory {
 				}
 			}
 		});
+	}
+
+	private SignInSuccessHandler SignInSuccessHandler() {
+		return null;
 	}
 }

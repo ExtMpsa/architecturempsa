@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.activity.SignInActivity;
+import com.architecture.client.event.SignInSuccessEvent;
 import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.resources.txt.SignText;
@@ -20,7 +21,6 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -67,6 +67,8 @@ public class SignInViewImpl extends Composite implements SignInView {
 	HTMLPanel content;
 	@UiField
 	HTMLPanel title;
+	@UiField
+	Label signInException;
 	SignInActivity activity;
 	String category;
 	String action;
@@ -94,7 +96,6 @@ public class SignInViewImpl extends Composite implements SignInView {
 		password.getElement().setAttribute("placeholder", signText.password());
 
 		signIn.setText(signText.signIn());
-		signInError.setVisible(false);
 		sizeMinError.setText(accountText.errorSizeMinPassword());
 		sizeMinError.setVisible(false);
 		sizeMaxError.setText(accountText.errorSizeMaxPassword());
@@ -109,6 +110,10 @@ public class SignInViewImpl extends Composite implements SignInView {
 		noSpecialError.setVisible(false);
 		whitespaceError.setText(accountText.errorWhiteSpace());
 		whitespaceError.setVisible(false);
+		signInError.setText(accountText.errorSignIn());
+		signInError.setVisible(false);
+		signInException.setText(accountText.errorExceptionServer());
+		signInException.setVisible(false);
 
 		register.setText(signText.register());
 
@@ -138,15 +143,15 @@ public class SignInViewImpl extends Composite implements SignInView {
 				@Override
 				public void onSuccess(Boolean result) {
 					if (result) {
-						Window.alert("Connecté");
+						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());
 					} else {
-						Window.alert("Echec");
+						signInError.setVisible(true);
 					}
 				}
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					signInException.setVisible(true);
 				}
 			});
 		}
@@ -255,6 +260,8 @@ public class SignInViewImpl extends Composite implements SignInView {
 		noUppercaseError.setVisible(noUppercase);
 		noSpecialError.setVisible(noSpecial);
 		whitespaceError.setVisible(whitespace);
+		signInError.setVisible(false);
+		signInException.setVisible(false);
 		alreadyCheckPassword = true;
 		return violations;
 	}

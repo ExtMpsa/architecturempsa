@@ -18,6 +18,7 @@
 			<g:Label styleName="gwt-Label-Error" text="erreur no special" ui:field="noSpecialError"/>
 			<g:Label styleName="gwt-Label-Error" text="erreur no whitespace" ui:field="whitespaceError"/>
 			<g:Label text="erreur connexion" styleName="gwt-Label-Error" ui:field="signInError"/>
+			<g:Label text="exception server" ui:field="signInException" styleName="gwt-Label-Error"/>
 			<g:Button ui:field="signIn" text="Sign In"/>
 			<g:CheckBox text="Register" ui:field="register"/>
 		</g:HTMLPanel>
