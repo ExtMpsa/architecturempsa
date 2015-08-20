@@ -72,7 +72,6 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	String action;
 	String label;
 	boolean alreadyTryGoToPassword = false;
-	String lastMailFailedServer = null;
 	boolean failByServer = false;
 	AccountText accountText = GWT.create(AccountText.class);
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
@@ -267,8 +266,7 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 							loginErrorServer.setVisible(true);
 							loginErrorServer.setText(details);
 							login.addStyleName("input-Error");
-							lastMailFailedServer = login.getText();
-							mailServerChecked.add(lastMailFailedServer.toLowerCase());
+							mailServerChecked.add(login.getText().toLowerCase());
 						}
 					});
 				} else {
@@ -309,7 +307,7 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 			login.addStyleName("input-Error");
 			validatedClient = false;
 		}
-		if (lastMailFailedServer != null && mailServerChecked.contains(mail.toLowerCase())) {
+		if (mailServerChecked.contains(mail.toLowerCase())) {
 			login.addStyleName("input-Error");
 			loginErrorServer.setVisible(true);
 			login.addStyleName("input-Error");
