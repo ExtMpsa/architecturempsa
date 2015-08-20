@@ -139,6 +139,8 @@ public class SignInViewImpl extends Composite implements SignInView {
 			verifyShowError("");
 		}
 		if (createShowError()) {
+			signInError.setVisible(false);
+			signInException.setVisible(false);
 			service.signIn(login.getText(), password.getText(), new AsyncCallback<Boolean>() {
 				@Override
 				public void onSuccess(Boolean result) {

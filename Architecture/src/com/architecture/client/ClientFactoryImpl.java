@@ -429,7 +429,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onSignInSuccess(SignInSuccessEvent event) {
-				History.newItem("#");
+				History.newItem("");
 			}
 		});
 
