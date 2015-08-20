@@ -140,12 +140,12 @@ public class ClientFactoryImpl implements ClientFactory {
 		return ClientFactoryImplHolder.instance;
 	}
 
-	private void initGoogleTagManager() {
+	private void initGoogleTagManager(String gtmId) {
 		setGtmVars();
 
 		Document doc = Document.get();
 		ScriptElement script = doc.createScriptElement();
-		script.setSrc("//www.googletagmanager.com/gtm.js?id=" + "GTM-PJ7D96");
+		script.setSrc("//www.googletagmanager.com/gtm.js?id=" + gtmId);
 		script.setType("text/javascript");
 		script.setLang("javascript");
 		script.setAttribute("async", "true");
@@ -330,7 +330,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public void setAccountToCreate(Account account) {
-		this.accountToCreate = account;
+		accountToCreate = account;
 	}
 
 	@Override
@@ -387,7 +387,7 @@ public class ClientFactoryImpl implements ClientFactory {
 		onMouseMoveHandlerForGtm = RootPanel.get().addDomHandler(new MouseMoveHandler() {
 			@Override
 			public void onMouseMove(MouseMoveEvent event) {
-				initGoogleTagManager();
+				initGoogleTagManager("GTM-PJ7D96");
 				onMouseMoveHandlerForGtm.removeHandler();
 			}
 		}, MouseMoveEvent.getType());
