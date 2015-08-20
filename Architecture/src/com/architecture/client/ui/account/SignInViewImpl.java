@@ -157,6 +157,7 @@ public class SignInViewImpl extends Composite implements SignInView {
 						alreadyCheckPassword = false;
 						Storage storage = Storage.getLocalStorageIfSupported();
 						if (storage != null) {
+							storage.setItem("connected", login.getText());
 							storage.setItem(login.getText(), result.toString());
 						}
 						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());

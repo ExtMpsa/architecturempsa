@@ -10,6 +10,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.storage.client.Storage;
+import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -47,7 +49,12 @@ public class NavigationViewImpl extends Composite {
 	Anchor methodology;
 	@UiField
 	Anchor tools;
-	@UiField HTMLPanel navLeft;
+	@UiField
+	HTMLPanel navLeft;
+	@UiField
+	Anchor accountParameter;
+	@UiField
+	Anchor disconnection;
 
 	interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
 	}
@@ -101,6 +108,27 @@ public class NavigationViewImpl extends Composite {
 		signIn.setText(navigationText.signIn().toUpperCase());
 		signIn.setHash("#!SignIn:");
 		signIn.getElement().setId("signIn");
+
+		Storage storage = Storage.getLocalStorageIfSupported();
+		final String connected = "connected";
+		String mail = "";
+		if (storage != null) {
+			StorageMap stockMap = new StorageMap(storage);
+			if (stockMap.containsKey(connected) == true) {
+				mail = storage.getItem(connected);
+			}
+		}
+		if (mail.equals("")) {
+			signIn.setVisible(true);
+			signUp.setVisible(true);
+			accountParameter.setVisible(false);
+			disconnection.setVisible(false);
+		} else {
+			signIn.setVisible(false);
+			signUp.setVisible(false);
+			accountParameter.setVisible(true);
+			disconnection.setVisible(true);
+		}
 
 	}
 
