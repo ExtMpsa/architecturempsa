@@ -12,10 +12,13 @@ import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.resources.txt.SignText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
+import com.architecture.client.ui.composite.LoaderViewImpl;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -29,6 +32,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -133,6 +137,7 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("signIn")
 	void onSignInClick(ClickEvent event) {
+		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (login.getText().equals("")) {
 			mailValidatedShowError("");
 		}
@@ -152,14 +157,18 @@ public class SignInViewImpl extends Composite implements SignInView {
 						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());
 					} else {
 						signInError.setVisible(true);
+						removeLoader();
 					}
 				}
 
 				@Override
 				public void onFailure(Throwable caught) {
 					signInException.setVisible(true);
+					removeLoader();
 				}
 			});
+		} else {
+			removeLoader();
 		}
 	}
 
@@ -304,5 +313,12 @@ public class SignInViewImpl extends Composite implements SignInView {
 		noUppercaseError.setVisible(false);
 		noSpecialError.setVisible(false);
 		whitespaceError.setVisible(false);
+	}
+
+	public void removeLoader() {
+		Element loader = Document.get().getElementById("loader");
+		if (loader != null) {
+			loader.removeFromParent();
+		}
 	}
 }
