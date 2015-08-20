@@ -123,15 +123,10 @@ public class AccountServiceImplTest extends ServletTestCase {
 		throw exception;
 	}
 
-	private Set<String> validPasswords = new HashSet<String>();
-
 	@Test
 	public void createWithValidPassword() throws Exception {
-		this.validPasswords.add("digitalperformanceT1@");
-		this.validPasswords.add("digitalPerformance12$");
-		for (String pwd : this.validPasswords) {
-			this.service.create("digitalPerformanceTraining@yahoo.com", pwd);
-		}
+		this.service.create("digitalPerformanceTraining@yahoo.com", "digitalperformanceT1@");
+		this.service.create("digitalPerformanceTraining2@yahoo.com", "digitalPerformance12$");
 	}
 
 	@Test
@@ -140,11 +135,11 @@ public class AccountServiceImplTest extends ServletTestCase {
 		Account account = Datastore.query(Account.class).asSingle();
 		assertThat(account, is(notNullValue()));
 		assertThat(account.getMail(), is("mail@gmail.com"));
-		assertThat(this.service.signIn("mail@gmail.com", "password"), is(true));
+		assertThat(this.service.signIn("mail@gmail.com", "password"), is(notNullValue()));
 	}
 
 	@Test
 	public void signInFail() throws Exception {
-		assertThat(this.service.signIn("mail@gmail.com", "password"), is(false));
+		assertThat(this.service.signIn("mail@gmail.com", "password"), is(nullValue()));
 	}
 }

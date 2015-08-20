@@ -1,5 +1,7 @@
 package com.architecture.client.service;
 
+import java.util.Date;
+
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -11,5 +13,5 @@ public interface AccountService extends RemoteService {
 
 	void checkMail(String mail) throws MailAlreadyUsedException, AttackHackingException;
 
-	boolean signIn(String mail, String password);
+	Date signIn(String mail, String password);
 }

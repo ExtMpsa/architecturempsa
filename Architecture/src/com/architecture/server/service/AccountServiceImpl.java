@@ -43,14 +43,14 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean signIn(String mail, String password) {
-		boolean result = false;
+	public Date signIn(String mail, String password) {
+		Date result = null;
 		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
 		if (account != null) {
 			if (account.getPassword().equals(password)) {
 				account.setLastConnexion(new Date());
 				Datastore.put(account);
-				result = true;
+				result = account.getLastConnexion();
 			}
 		}
 		return result;

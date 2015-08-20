@@ -1,5 +1,6 @@
 package com.architecture.client.ui.account;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -141,11 +142,13 @@ public class SignInViewImpl extends Composite implements SignInView {
 		if (createShowError()) {
 			signInError.setVisible(false);
 			signInException.setVisible(false);
-			service.signIn(login.getText(), password.getText(), new AsyncCallback<Boolean>() {
+			service.signIn(login.getText(), password.getText(), new AsyncCallback<Date>() {
 				@Override
-				public void onSuccess(Boolean result) {
-					if (result) {
+				public void onSuccess(Date result) {
+					if (result != null) {
 						activity.getClientFactory().setAccountToSignIn(null);
+						alreadyTryToValidateMail = false;
+						alreadyCheckPassword = false;
 						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());
 					} else {
 						signInError.setVisible(true);
