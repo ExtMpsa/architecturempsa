@@ -1,10 +1,15 @@
 eclipse.preferences.version=1
+encoding//src/com/architecture/client/resources/txt/AccountText.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/BannerFlagText.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/BannerText.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/BannerText_fr.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/CreateAccountText.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/CreateAccountText_fr.properties=UTF-8
+encoding//src/com/architecture/client/resources/txt/DisclaimerText.properties=UTF-8
+encoding//src/com/architecture/client/resources/txt/DisclaimerText_fr.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/ExceptionText_fr.properties=UTF-8
+encoding//src/com/architecture/client/resources/txt/FooterText.properties=UTF-8
+encoding//src/com/architecture/client/resources/txt/FooterText_fr.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/HomeText.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/HomeText_fr.properties=UTF-8
 encoding//src/com/architecture/client/resources/txt/MenuText.properties=UTF-8

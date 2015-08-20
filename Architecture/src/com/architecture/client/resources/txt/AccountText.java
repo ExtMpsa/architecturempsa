@@ -38,4 +38,8 @@ public interface AccountText extends Constants {
 	String errorWhiteSpace();
 
 	String errorOffLine();
+
+	String errorSignIn();
+
+	String errorExceptionServer();
 }
