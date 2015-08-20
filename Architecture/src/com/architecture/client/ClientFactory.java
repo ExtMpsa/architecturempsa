@@ -4,7 +4,6 @@ import javax.validation.Validator;
 
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
 import com.architecture.client.ui.ArchitectureView;
-import com.architecture.client.ui.FormsView;
 import com.architecture.client.ui.HomeView;
 import com.architecture.client.ui.TracingPaperView;
 import com.architecture.client.ui.account.SignInView;
@@ -48,8 +47,6 @@ public interface ClientFactory {
 	BreadCrumbViewImpl getBreadCrumbView();
 
 	HomeView getHomeView();
-
-	FormsView getFormsView();
 
 	TracingPaperView getTracingPaperView();
 

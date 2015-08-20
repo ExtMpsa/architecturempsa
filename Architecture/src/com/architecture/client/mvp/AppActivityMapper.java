@@ -3,14 +3,12 @@ package com.architecture.client.mvp;
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.EPrivacyActivity;
-import com.architecture.client.activity.FormsActivity;
 import com.architecture.client.activity.HomeActivity;
 import com.architecture.client.activity.SignInActivity;
 import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.activity.TracingPaperActivity;
 import com.architecture.client.activity.TrainingActivity;
 import com.architecture.client.place.EPrivacyPlace;
-import com.architecture.client.place.FormsPlace;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.place.SignInPlace;
 import com.architecture.client.place.SignUpPlace;
@@ -41,8 +39,6 @@ public class AppActivityMapper implements ActivityMapper {
 		Activity activity = null;
 		if (place instanceof HomePlace) {
 			activity = new HomeActivity((HomePlace) place, clientFactory);
-		} else if (place instanceof FormsPlace) {
-			activity = new FormsActivity((FormsPlace) place, clientFactory);
 		} else if (place instanceof TracingPaperPlace) {
 			activity = new TracingPaperActivity((TracingPaperPlace) place, clientFactory);
 		} else if (place instanceof EPrivacyPlace) {

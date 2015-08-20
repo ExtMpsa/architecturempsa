@@ -5,8 +5,6 @@ import javax.validation.Validator;
 
 import com.architecture.client.event.HomeEvent;
 import com.architecture.client.event.HomeHandler;
-import com.architecture.client.event.ModifySignStep1Event;
-import com.architecture.client.event.ModifySignStep1Handler;
 import com.architecture.client.event.SignInEvent;
 import com.architecture.client.event.SignInHandler;
 import com.architecture.client.event.SignInSuccessEvent;
@@ -15,20 +13,12 @@ import com.architecture.client.event.SignUpEvent;
 import com.architecture.client.event.SignUpHandler;
 import com.architecture.client.event.TrainingEvent;
 import com.architecture.client.event.TrainingHandler;
-import com.architecture.client.event.ValidateSignStep1Event;
-import com.architecture.client.event.ValidateSignStep1Handler;
-import com.architecture.client.event.ValidateSignStep2Event;
-import com.architecture.client.event.ValidateSignStep2Handler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
-import com.architecture.client.place.FormsPlace;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
-import com.architecture.client.requestfactory.PersonRequest;
 import com.architecture.client.ui.ArchitectureView;
 import com.architecture.client.ui.ArchitectureViewImpl;
-import com.architecture.client.ui.FormsView;
-import com.architecture.client.ui.FormsViewImpl;
 import com.architecture.client.ui.HomeView;
 import com.architecture.client.ui.HomeViewImpl;
 import com.architecture.client.ui.TracingPaperView;
@@ -40,7 +30,6 @@ import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.architecture.shared.model.Account;
-import com.architecture.shared.proxy.PersonProxy;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
@@ -60,7 +49,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
 
 public class ClientFactoryImpl implements ClientFactory {
@@ -91,7 +79,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Views
 	private static ArchitectureView architectureView;
 	private static HomeView homeView;
-	private static FormsView formsView;
 	private static TracingPaperView tracingPaperView;
 	private static SignInView signInView;
 
@@ -307,14 +294,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public FormsView getFormsView() {
-		if (formsView == null) {
-			formsView = new FormsViewImpl();
-		}
-		return formsView;
-	}
-
-	@Override
 	public TracingPaperView getTracingPaperView() {
 		if (tracingPaperView == null) {
 			tracingPaperView = new TracingPaperViewImpl();
@@ -430,68 +409,6 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onSignInSuccess(SignInSuccessEvent event) {
 				History.newItem("");
-			}
-		});
-
-		eventBus.addHandler(ValidateSignStep1Event.TYPE, new ValidateSignStep1Handler() {
-			@Override
-			public void onValidateStep1(ValidateSignStep1Event event) {
-				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-				if (current instanceof FormsPlace) {
-					if (((FormsPlace) current).getFormsName().equals("")) {
-						ClientFactoryImpl.getInstance().getFormsView().setStep("step2", true);
-					} else {
-						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step2"));
-					}
-				}
-			}
-		});
-
-		eventBus.addHandler(ModifySignStep1Event.TYPE, new ModifySignStep1Handler() {
-			@Override
-			public void onModifyStep1(ModifySignStep1Event event) {
-				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-				if (current instanceof FormsPlace) {
-					if (((FormsPlace) current).getFormsName().equals("")) {
-						ClientFactoryImpl.getInstance().getFormsView().setStep("step1", true);
-					} else {
-						ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("step1"));
-					}
-				}
-			}
-		});
-
-		eventBus.addHandler(ValidateSignStep2Event.TYPE, new ValidateSignStep2Handler() {
-			@Override
-			public void onValidateStep2(ValidateSignStep2Event event) {
-				Place current = ClientFactoryImpl.getInstance().getPlaceController().getWhere();
-				if (current instanceof FormsPlace) {
-					PersonRequest context = ClientFactoryImpl.getInstance().getArchitectureRequestFactory().getPersonRequest();
-					PersonProxy person = context.create(PersonProxy.class);
-
-					person.setDepartment(getFormsView().getPsaEntityValue().getValue());
-					person.setEmail(getFormsView().getMailValue().getValue());
-					person.setFirstName(getFormsView().getFirstNameValue().getValue());
-					person.setLastName(getFormsView().getNameValue().getValue());
-					if (((FormsPlace) current).getFormsName().equals("")) {
-						context.saveAsync(person).fire(new Receiver<Void>() {
-
-							@Override
-							public void onSuccess(Void response) {
-								ClientFactoryImpl.getInstance().getFormsView().setStep("signSuccess", true);
-							}
-						});
-					} else {
-						context.saveAsync(person).fire(new Receiver<Void>() {
-
-							@Override
-							public void onSuccess(Void response) {
-								ClientFactoryImpl.getInstance().getPlaceController().goTo(new FormsPlace("signSuccess"));
-							}
-						});
-
-					}
-				}
 			}
 		});
 	}
