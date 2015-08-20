@@ -145,6 +145,7 @@ public class SignInViewImpl extends Composite implements SignInView {
 				@Override
 				public void onSuccess(Boolean result) {
 					if (result) {
+						activity.getClientFactory().setAccountToSignIn(null);
 						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());
 					} else {
 						signInError.setVisible(true);
@@ -161,7 +162,13 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@Override
 	public void setAccountToSignIn(Account account) {
-		login.setText(account.getMail());
+		if (account != null) {
+			login.setText(account.getMail());
+		} else {
+			login.setText("");
+		}
+		password.setText("");
+
 	}
 
 	@UiHandler("login")
