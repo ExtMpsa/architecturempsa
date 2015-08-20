@@ -22,6 +22,7 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -154,6 +155,10 @@ public class SignInViewImpl extends Composite implements SignInView {
 						activity.getClientFactory().setAccountToSignIn(null);
 						alreadyTryToValidateMail = false;
 						alreadyCheckPassword = false;
+						Storage storage = Storage.getLocalStorageIfSupported();
+						if (storage != null) {
+							storage.setItem(login.getText(), result.toString());
+						}
 						activity.getClientFactory().getEventBus().fireEvent(new SignInSuccessEvent());
 					} else {
 						signInError.setVisible(true);
