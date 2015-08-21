@@ -410,6 +410,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onSignInSuccess(SignInSuccessEvent event) {
 				boolean isUserConnected = getNavigationView().isUserConnected();
 				getNavigationView().connected(isUserConnected);
+				initGoogleTagManager("");
 				History.newItem("");
 			}
 		});

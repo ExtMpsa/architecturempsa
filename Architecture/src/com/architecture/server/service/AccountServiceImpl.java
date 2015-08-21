@@ -9,6 +9,7 @@ import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.client.service.AccountService;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
+import com.architecture.shared.model.GoogleTagManager;
 
 public class AccountServiceImpl implements AccountService {
 	private AccountMeta a = new AccountMeta();
@@ -54,5 +55,20 @@ public class AccountServiceImpl implements AccountService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public Account getAccount(String mail) {
+		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		account.setPassword("");
+		return account;
+	}
+
+	@Override
+	public void saveGtm(String gtmId, String mail) {
+		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		GoogleTagManager gtm = new GoogleTagManager(gtmId);
+		account.getGtm().setModel(gtm);
+		Datastore.put(gtm, account);
 	}
 }

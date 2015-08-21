@@ -2,11 +2,16 @@ package com.architecture.client.ui.account;
 
 import com.architecture.client.activity.AccountParamsActivity;
 import com.architecture.client.resources.txt.AccountText;
+import com.architecture.client.service.AccountService;
+import com.architecture.client.service.AccountServiceAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -17,6 +22,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class AccountParamsViewImpl extends Composite implements AccountParamsView {
 
 	private static AccountParamsViewImplUiBinder uiBinder = GWT.create(AccountParamsViewImplUiBinder.class);
+	private static AccountServiceAsync service = GWT.create(AccountService.class);
+
 	@UiField
 	HTMLPanel wrapper;
 	@UiField
@@ -53,5 +60,23 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 
 	@UiHandler("saveGtm")
 	void onSaveGtmClick(ClickEvent event) {
+		Storage storage = Storage.getLocalStorageIfSupported();
+		String mail = "";
+		mail = storage.getItem("connected");
+		String gtmId = gtmIdValue.getText();
+		if (!mail.equals("")) {
+			service.saveGtm(gtmId, mail, new AsyncCallback<Void>() {
+
+				@Override
+				public void onSuccess(Void result) {
+					Window.alert("Gtm bien enregistré");
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Server Error");
+				}
+			});
+		}
 	}
 }

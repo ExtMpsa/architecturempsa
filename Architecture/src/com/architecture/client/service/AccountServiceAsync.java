@@ -2,6 +2,7 @@ package com.architecture.client.service;
 
 import java.util.Date;
 
+import com.architecture.shared.model.Account;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface AccountServiceAsync {
@@ -12,4 +13,7 @@ public interface AccountServiceAsync {
 
 	void checkMail(String mail, AsyncCallback<Void> callback);
 
+	void getAccount(String mail, AsyncCallback<Account> callback);
+
+	void saveGtm(String gtmId, String mail, AsyncCallback<Void> callback);
 }

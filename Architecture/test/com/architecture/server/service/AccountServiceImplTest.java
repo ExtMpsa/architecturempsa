@@ -14,6 +14,7 @@ import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
 import com.architecture.server.meta.AccountMeta;
 import com.architecture.shared.model.Account;
+import com.architecture.shared.model.GoogleTagManager;
 
 public class AccountServiceImplTest extends ServletTestCase {
 
@@ -141,5 +142,30 @@ public class AccountServiceImplTest extends ServletTestCase {
 	@Test
 	public void signInFail() throws Exception {
 		assertThat(this.service.signIn("mail@gmail.com", "password"), is(nullValue()));
+	}
+
+	@Test
+	public void getAccount() throws Exception {
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		Account account = new Account();
+		account.setMail(mail);
+		Datastore.put(account);
+		Account getAccount = service.getAccount(mail);
+		assertThat(getAccount.getMail(), is(mail));
+	}
+
+	@Test
+	public void saveGtm() throws Exception {
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		String password = "Azerty1@";
+		Account account = new Account();
+		account.setMail(mail);
+		account.setPassword(password);
+
+		String gtmId = "GTM-XXXXXX";
+		GoogleTagManager gtm = new GoogleTagManager(gtmId);
+
+		account.getGtm().setModel(gtm);
+		Datastore.put(gtm, account);
 	}
 }
