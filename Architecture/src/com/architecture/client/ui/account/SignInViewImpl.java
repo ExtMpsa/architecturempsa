@@ -21,6 +21,8 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.BlurEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -138,6 +140,10 @@ public class SignInViewImpl extends Composite implements SignInView {
 
 	@UiHandler("signIn")
 	void onSignInClick(ClickEvent event) {
+		signIn();
+	}
+
+	private void signIn() {
 		RootPanel.get().insert(new LoaderViewImpl(), 0);
 		if (login.getText().equals("")) {
 			mailValidatedShowError("");
@@ -190,6 +196,35 @@ public class SignInViewImpl extends Composite implements SignInView {
 	}
 
 	@UiHandler("login")
+	void onLoginKeyPress(KeyPressEvent event) {
+		// TODO :
+		// Utiliser le deferredBinding pour firefox
+		// http://stackoverflow.com/questions/3064383/browser-version-detect-using-gwt
+		// http://www.gwtproject.org/doc/latest/DevGuideCodingBasicsDeferred.html#replacement
+		int keyCode = event.getUnicodeCharCode();
+		if (keyCode == 0) {
+			// Probably Firefox
+			keyCode = event.getNativeEvent().getKeyCode();
+		}
+		if (keyCode == KeyCodes.KEY_ENTER) {
+			category = "Check Mail for Sign In";
+			action = "Key Press Enter";
+			String mail = login.getText();
+			if (mailValidatedShowError(mail)) {
+				if (password.getText().isEmpty()) {
+					password.setFocus(true);
+				} else {
+					signIn();
+				}
+			} else {
+				action = action + " Failed Client Constraint Mail Not Valid";
+				activity.pushEvent("event", category, action, mail);
+			}
+			alreadyTryToValidateMail = true;
+		}
+	}
+
+	@UiHandler("login")
 	void onLoginBlur(BlurEvent event) {
 		if (!login.getText().equals("")) {
 			category = "Check Mail for Sign In";
@@ -225,6 +260,35 @@ public class SignInViewImpl extends Composite implements SignInView {
 			mailValidated = false;
 		}
 		return mailValidated;
+	}
+
+	@UiHandler("password")
+	void onPasswordKeyPress(KeyPressEvent event) {
+		// TODO :
+		// Utiliser le deferredBinding pour firefox
+		// http://stackoverflow.com/questions/3064383/browser-version-detect-using-gwt
+		// http://www.gwtproject.org/doc/latest/DevGuideCodingBasicsDeferred.html#replacement
+		int keyCode = event.getUnicodeCharCode();
+		if (keyCode == 0) {
+			// Probably Firefox
+			keyCode = event.getNativeEvent().getKeyCode();
+		}
+		if (keyCode == KeyCodes.KEY_ENTER) {
+			category = "Check Password for Sign In";
+			action = "Key Press Enter";
+			String pwd = password.getText();
+			if (verifyShowError(pwd).isEmpty()) {
+				if (login.getText().isEmpty()) {
+					login.setFocus(true);
+				} else {
+					signIn();
+				}
+			} else {
+				action = action + " Failed Client Constraint Password Not Valid";
+				activity.pushEvent("event", category, action, pwd);
+			}
+			alreadyCheckPassword = true;
+		}
 	}
 
 	@UiHandler("password")
