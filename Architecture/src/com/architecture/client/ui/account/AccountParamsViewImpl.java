@@ -1,22 +1,49 @@
 package com.architecture.client.ui.account;
 
 import com.architecture.client.activity.AccountParamsActivity;
+import com.architecture.client.resources.txt.AccountText;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AccountParamsViewImpl extends Composite implements AccountParamsView {
 
 	private static AccountParamsViewImplUiBinder uiBinder = GWT.create(AccountParamsViewImplUiBinder.class);
+	@UiField
+	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel content;
+	@UiField
+	HTMLPanel title;
+	@UiField
+	Label gtmId;
+	@UiField
+	TextBox gtmIdValue;
+	@UiField
+	Button saveGtm;
 
 	AccountParamsActivity activity;
+	AccountText accountText = GWT.create(AccountText.class);
 
 	interface AccountParamsViewImplUiBinder extends UiBinder<Widget, AccountParamsViewImpl> {
 	}
 
 	public AccountParamsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+
+		title.getElement().setInnerText(accountText.accountParameter());
+		gtmId.setText(accountText.gtmId());
+		gtmId.setTitle(accountText.gtmIdTitle());
+		gtmIdValue.getElement().setAttribute("placeholder", accountText.placeholderGTM());
+		saveGtm.setText(accountText.saveGtm());
 	}
 
 	@Override
@@ -24,4 +51,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 		this.activity = activity;
 	}
 
+	@UiHandler("saveGtm")
+	void onSaveGtmClick(ClickEvent event) {
+	}
 }

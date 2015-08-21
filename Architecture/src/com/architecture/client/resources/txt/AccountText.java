@@ -42,4 +42,14 @@ public interface AccountText extends Constants {
 	String errorSignIn();
 
 	String errorExceptionServer();
+
+	String accountParameter();
+
+	String gtmId();
+
+	String gtmIdTitle();
+
+	String placeholderGTM();
+
+	String saveGtm();
 }

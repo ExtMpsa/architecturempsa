@@ -4,6 +4,12 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel styleName="account-Parameter wrapper" ui:field="wrapper" tag="article">
+		<g:HTMLPanel ui:field="content" styleName="content">
+			<g:HTMLPanel ui:field="title" tag="h2">Account Setting</g:HTMLPanel>
+			<g:Label text="GTM Id" ui:field="gtmId"/>
+			<g:TextBox ui:field="gtmIdValue"/>
+			<g:Button text="Enregistrer" ui:field="saveGtm"/>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
