@@ -34,7 +34,7 @@
 	<!-- Slim3 -->
 	<context-param>
         <param-name>slim3.rootPackage</param-name>
-        <param-value>architecture</param-value>
+        <param-value>com.architecture</param-value>
     </context-param>
     <context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
