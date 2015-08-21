@@ -16,4 +16,6 @@ public interface AccountServiceAsync {
 	void getAccount(String mail, AsyncCallback<Account> callback);
 
 	void saveGtm(String gtmId, String mail, AsyncCallback<Void> callback);
+
+	void getGtmId(String mail, AsyncCallback<String> callback);
 }

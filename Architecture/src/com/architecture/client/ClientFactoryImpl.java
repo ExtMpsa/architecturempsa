@@ -17,6 +17,8 @@ import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
+import com.architecture.client.service.AccountService;
+import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.ArchitectureView;
 import com.architecture.client.ui.ArchitectureViewImpl;
 import com.architecture.client.ui.HomeView;
@@ -47,7 +49,10 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
 
@@ -75,6 +80,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Model
 	private Account accountToCreate;
 	private Account accountToSignIn;
+
+	// Services
+	private static AccountServiceAsync accountService = GWT.create(AccountService.class);
 
 	// Views
 	private static ArchitectureView architectureView;
@@ -410,7 +418,21 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onSignInSuccess(SignInSuccessEvent event) {
 				boolean isUserConnected = getNavigationView().isUserConnected();
 				getNavigationView().connected(isUserConnected);
-				initGoogleTagManager("");
+				Storage storage = Storage.getLocalStorageIfSupported();
+				String mail = "";
+				mail = storage.getItem("connected");
+				accountService.getGtmId(mail, new AsyncCallback<String>() {
+
+					@Override
+					public void onSuccess(String result) {
+						initGoogleTagManager(result);
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Server Error");
+					}
+				});
 				History.newItem("");
 			}
 		});

@@ -71,4 +71,11 @@ public class AccountServiceImpl implements AccountService {
 		account.getGtm().setModel(gtm);
 		Datastore.put(gtm, account);
 	}
+
+	@Override
+	public String getGtmId(String mail) {
+		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		GoogleTagManager gtm = account.getGtm().getModel();
+		return gtm.getGtmId();
+	}
 }

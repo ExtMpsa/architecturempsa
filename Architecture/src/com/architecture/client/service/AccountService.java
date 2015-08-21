@@ -19,4 +19,6 @@ public interface AccountService extends RemoteService {
 	Account getAccount(String mail);
 
 	void saveGtm(String gtmId, String mail);
+
+	String getGtmId(String mail);
 }
