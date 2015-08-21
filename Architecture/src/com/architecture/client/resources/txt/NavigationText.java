@@ -25,4 +25,8 @@ public interface NavigationText extends Constants {
 	String signUp();
 
 	String signIn();
+
+	String parameter();
+
+	String disconnection();
 }

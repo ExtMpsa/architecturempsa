@@ -408,6 +408,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onSignInSuccess(SignInSuccessEvent event) {
+				boolean isUserConnected = getNavigationView().isUserConnected();
+				getNavigationView().connected(isUserConnected);
 				History.newItem("");
 			}
 		});

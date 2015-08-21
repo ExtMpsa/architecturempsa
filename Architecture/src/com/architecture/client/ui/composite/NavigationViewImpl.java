@@ -109,6 +109,19 @@ public class NavigationViewImpl extends Composite {
 		signIn.setHash("#!SignIn:");
 		signIn.getElement().setId("signIn");
 
+		accountParameter.setText(navigationText.parameter().toUpperCase());
+		accountParameter.setHash("#!AccountParameter:");
+		accountParameter.getElement().setId("parameter");
+
+		disconnection.setText(navigationText.disconnection().toUpperCase());
+		disconnection.setHash("#");
+		disconnection.getElement().setId("disconnection");
+
+		connected(isUserConnected());
+	}
+
+	public boolean isUserConnected() {
+		boolean result = false;
 		Storage storage = Storage.getLocalStorageIfSupported();
 		final String connected = "connected";
 		String mail = "";
@@ -119,17 +132,25 @@ public class NavigationViewImpl extends Composite {
 			}
 		}
 		if (mail.equals("")) {
-			signIn.setVisible(true);
-			signUp.setVisible(true);
-			accountParameter.setVisible(false);
-			disconnection.setVisible(false);
+			result = false;
 		} else {
+			result = true;
+		}
+		return result;
+	}
+
+	public void connected(boolean userConnected) {
+		if (userConnected) {
 			signIn.setVisible(false);
 			signUp.setVisible(false);
 			accountParameter.setVisible(true);
 			disconnection.setVisible(true);
+		} else {
+			signIn.setVisible(true);
+			signUp.setVisible(true);
+			accountParameter.setVisible(false);
+			disconnection.setVisible(false);
 		}
-
 	}
 
 	public void selected(String s) {
@@ -158,6 +179,21 @@ public class NavigationViewImpl extends Composite {
 		userExperience.getElement().removeClassName("selected");
 		signUp.getElement().removeClassName("selected");
 		signIn.getElement().removeClassName("selected");
+	}
+
+	public void disconnect() {
+		Storage storage = Storage.getLocalStorageIfSupported();
+		final String connected = "connected";
+		String mail = "";
+		if (storage != null) {
+			StorageMap stockMap = new StorageMap(storage);
+			if (stockMap.containsKey(connected) == true) {
+				mail = storage.getItem(connected);
+			}
+			storage.removeItem(mail);
+			storage.removeItem(connected);
+		}
+		connected(false);
 	}
 
 	@UiHandler("training")
@@ -230,6 +266,15 @@ public class NavigationViewImpl extends Composite {
 		if (!loaderExist() && !(current instanceof SignInPlace)) {
 			RootPanel.get().insert(new LoaderViewImpl(), 0);
 		}
+	}
+
+	@UiHandler("disconnection")
+	void onDisconnectionClick(ClickEvent event) {
+		disconnect();
+	}
+
+	@UiHandler("accountParameter")
+	void onAccountParameterClick(ClickEvent event) {
 	}
 
 	private boolean loaderExist() {
