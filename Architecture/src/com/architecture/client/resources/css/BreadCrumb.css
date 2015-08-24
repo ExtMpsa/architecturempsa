@@ -42,7 +42,8 @@
 }
 
 .breadCrumb .content .decoration a::after{ 
-	border-left-color: #ddd;  
+	border-left-color: #ddd; 
+	z-index: 2;
 }
 
 .breadCrumb .content .decoration a::before{
@@ -53,7 +54,6 @@
 .breadCrumb .content .decoration a:hover::after{
 	border-left-color: #fff;
 }
-
 
 .breadCrumb .content .decoration .current,
 .breadCrumb .content .decoration .current:hover{
