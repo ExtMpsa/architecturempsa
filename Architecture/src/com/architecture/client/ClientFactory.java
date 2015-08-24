@@ -1,5 +1,7 @@
 package com.architecture.client;
 
+import java.util.HashMap;
+
 import javax.validation.Validator;
 
 import com.architecture.client.requestfactory.ArchitectureRequestFactory;
@@ -34,6 +36,10 @@ public interface ClientFactory {
 	void setAccountToSignIn(Account account);
 
 	Account getAccountToSignIn();
+
+	HashMap<String, String> getMailAlreadyChecked();
+
+	void setMailAlreadyChecked(HashMap<String, String> mailAlreadyChecked);
 
 	/*
 	 * Views

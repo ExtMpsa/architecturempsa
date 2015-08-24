@@ -1,5 +1,7 @@
 package com.architecture.client;
 
+import java.util.HashMap;
+
 import javax.validation.Validation;
 import javax.validation.Validator;
 
@@ -80,6 +82,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Model
 	private Account accountToCreate;
 	private Account accountToSignIn;
+	HashMap<String, String> mailAlreadyChecked = new HashMap<String, String>();
 
 	// Services
 	private static AccountServiceAsync accountService = GWT.create(AccountService.class);
@@ -349,6 +352,16 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public void setAccountToSignIn(Account accountToSignIn) {
 		this.accountToSignIn = accountToSignIn;
+	}
+
+	@Override
+	public HashMap<String, String> getMailAlreadyChecked() {
+		return mailAlreadyChecked;
+	}
+
+	@Override
+	public void setMailAlreadyChecked(HashMap<String, String> mailAlreadyChecked) {
+		this.mailAlreadyChecked = mailAlreadyChecked;
 	}
 
 	// Bind

@@ -1,5 +1,6 @@
 package com.architecture.client.activity;
 
+import java.util.HashMap;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -100,6 +101,14 @@ public class SignUpActivity extends ArchitectureActivity {
 	public void setAccountToSignIn(Account account) {
 		account.setPassword(null);
 		clientFactory.setAccountToSignIn(account);
+	}
+
+	public HashMap<String, String> getMailAlreadyChecked() {
+		return clientFactory.getMailAlreadyChecked();
+	}
+
+	public void setMailAlreadyChecked(HashMap<String, String> mailAlreadyChecked) {
+		clientFactory.setMailAlreadyChecked(mailAlreadyChecked);
 	}
 
 	@Override

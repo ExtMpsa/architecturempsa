@@ -292,6 +292,7 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 				service.create(activity.getAccount().getMail(), pwd, new AsyncCallback<Void>() {
 					@Override
 					public void onSuccess(Void result) {
+						activity.getMailAlreadyChecked().put(activity.getAccount().getMail(), "false");
 						action = action + " Success";
 						pushEvent("event", category, action, activity.getAccount().getMail());
 						activity.setAccountToSignIn(activity.getAccount());

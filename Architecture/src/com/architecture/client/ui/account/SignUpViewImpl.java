@@ -1,7 +1,5 @@
 package com.architecture.client.ui.account;
 
-import java.util.ArrayList;
-
 import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
@@ -75,7 +73,6 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	boolean failByServer = false;
 	AccountText accountText = GWT.create(AccountText.class);
 	ExceptionText exceptionText = GWT.create(ExceptionText.class);
-	ArrayList<String> mailServerChecked = new ArrayList<String>();
 
 	interface SignUpViewUiBinder extends UiBinder<Widget, SignUpViewImpl> {
 	}
@@ -241,10 +238,8 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 
 						@Override
 						public void onSuccess(Void result) {
-							action = action + " Success";
-							pushEvent("event", category, action, login.getText());
-							activity.getAccount().setMail(login.getText());
-							History.newItem("!SignUp:password");
+							activity.getMailAlreadyChecked().put(login.getText().toLowerCase(), "true");
+							mailValidated();
 						}
 
 						@Override
@@ -266,14 +261,19 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 							loginErrorServer.setVisible(true);
 							loginErrorServer.setText(details);
 							login.addStyleName("input-Error");
-							mailServerChecked.add(login.getText().toLowerCase());
+							activity.getMailAlreadyChecked().put(login.getText().toLowerCase(), "false");
 						}
 					});
 				} else {
-					loginErrorServer.setVisible(true);
-					loginErrorServer.setText(exceptionText.mailAlreadyUsed());
-					login.addStyleName("input-Error");
-					removeLoader();
+					if (activity.getMailAlreadyChecked().get(mail).equals("true")) {
+						loginErrorServer.setVisible(false);
+						mailValidated();
+					} else {
+						loginErrorServer.setVisible(true);
+						loginErrorServer.setText(exceptionText.mailAlreadyUsed());
+						login.addStyleName("input-Error");
+						removeLoader();
+					}
 				}
 			} else {
 				loginErrorClient.setVisible(true);
@@ -291,8 +291,15 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 		alreadyTryGoToPassword = true;
 	}
 
+	private void mailValidated() {
+		action = action + " Success";
+		pushEvent("event", category, action, login.getText());
+		activity.getAccount().setMail(login.getText());
+		History.newItem("!SignUp:password");
+	}
+
 	private boolean mailAlreadyCheckedByServer(String mail) {
-		return mailServerChecked.contains(mail.toLowerCase());
+		return activity.getMailAlreadyChecked().containsKey(mail.toLowerCase());
 	}
 
 	public boolean validateShowError(String mail) {
@@ -307,10 +314,17 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 			login.addStyleName("input-Error");
 			validatedClient = false;
 		}
-		if (mailServerChecked.contains(mail.toLowerCase())) {
-			login.addStyleName("input-Error");
-			loginErrorServer.setVisible(true);
-			login.addStyleName("input-Error");
+		if (activity.getMailAlreadyChecked().containsKey(mail.toLowerCase())) {
+			if (activity.getMailAlreadyChecked().get(mail.toLowerCase()).equals("true")) {
+				loginErrorServer.setVisible(false);
+				if (validatedClient) {
+					login.removeStyleName("input-Error");
+				}
+			} else {
+				login.addStyleName("input-Error");
+				loginErrorServer.setVisible(true);
+				login.addStyleName("input-Error");
+			}
 		} else {
 			loginErrorServer.setVisible(false);
 			if (validatedClient) {
