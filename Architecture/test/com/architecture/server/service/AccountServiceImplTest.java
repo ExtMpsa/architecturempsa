@@ -23,7 +23,7 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 	@Test
 	public void test() throws Exception {
-		assertThat(this.service, is(notNullValue()));
+		assertThat(service, is(notNullValue()));
 	}
 
 	private final String mail = "mail@gmail.com";
@@ -33,10 +33,10 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 	@Test
 	public void createWithEmptyDataStore() throws Exception {
-		this.service.create(this.mail, this.pwd);
-		Account account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail)).asSingle();
+		service.create(mail, pwd);
+		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
 		assertThat(account, is(notNullValue()));
-		assertThat(account.getMail(), is(this.mail));
+		assertThat(account.getMail(), is(mail));
 	}
 
 	@Test
@@ -51,43 +51,43 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 	@Test
 	public void createWithNotEmptyDataStore() throws Exception {
-		this.service.create(this.mail, this.pwd);
-		Account account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail)).asSingle();
+		service.create(mail, pwd);
+		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
 		assertThat(account, is(notNullValue()));
-		assertThat(account.getMail(), is(this.mail));
+		assertThat(account.getMail(), is(mail));
 
-		this.service.create(this.mail2, this.pwd);
-		account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail2)).asSingle();
+		service.create(mail2, pwd);
+		account = Datastore.query(a).filter(a.mail.startsWith(mail2)).asSingle();
 		assertThat(account, is(notNullValue()));
-		assertThat(account.getMail(), is(this.mail2));
+		assertThat(account.getMail(), is(mail2));
 	}
 
 	@Test(expected = MailAlreadyUsedException.class)
 	public void createWithMailUsed() throws Exception {
-		this.service.create(this.mail, this.pwd);
-		Account account = Datastore.query(this.a).filter(this.a.mail.startsWith(this.mail)).asSingle();
+		service.create(mail, pwd);
+		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
 		assertThat(account, is(notNullValue()));
-		assertThat(account.getMail(), is(this.mail));
+		assertThat(account.getMail(), is(mail));
 
-		this.service.create(this.mail, this.pwd);
+		service.create(mail, pwd);
 	}
 
 	private Set<String> validMails = new HashSet<String>();
 
 	@Test
 	public void createWithValidMails() throws Exception {
-		this.validMails.add("digitalPerformanceTraining@yahoo.com");
-		this.validMails.add("digitalPerformanceTraining-100@yahoo.com");
-		this.validMails.add("digitalPerformanceTraining.100@yahoo.com");
-		this.validMails.add("digitalPerformanceTraining111@digitalPerformanceTraining.com");
-		this.validMails.add("digitalPerformanceTraining-100@digitalPerformanceTraining.net");
-		this.validMails.add("digitalPerformanceTraining.100@digital.Performance.Training");
-		this.validMails.add("digitalPerformanceTraining@1.com");
-		this.validMails.add("digitalPerformanceTraining@gmail.com.com");
-		this.validMails.add("digitalPerformanceTraining+100@gmail.com");
-		this.validMails.add("digitalPerformanceTraining-100@yahoo-test.com");
-		for (String mail : this.validMails) {
-			this.service.create(mail, this.pwd);
+		validMails.add("digitalPerformanceTraining@yahoo.com");
+		validMails.add("digitalPerformanceTraining-100@yahoo.com");
+		validMails.add("digitalPerformanceTraining.100@yahoo.com");
+		validMails.add("digitalPerformanceTraining111@digitalPerformanceTraining.com");
+		validMails.add("digitalPerformanceTraining-100@digitalPerformanceTraining.net");
+		validMails.add("digitalPerformanceTraining.100@digital.Performance.Training");
+		validMails.add("digitalPerformanceTraining@1.com");
+		validMails.add("digitalPerformanceTraining@gmail.com.com");
+		validMails.add("digitalPerformanceTraining+100@gmail.com");
+		validMails.add("digitalPerformanceTraining-100@yahoo-test.com");
+		for (String mail : validMails) {
+			service.create(mail, pwd);
 		}
 	}
 
@@ -95,22 +95,22 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 	@Test(expected = AttackHackingException.class)
 	public void createWithInvalidMails() throws Exception {
-		this.invalidMails.add("digitalPerformanceTraining");
-		this.invalidMails.add("digitalPerformanceTraining@.com.my");
-		this.invalidMails.add("digitalPerformanceTraining123@gmail.a");
-		this.invalidMails.add("digitalPerformanceTraining123@.com");
-		this.invalidMails.add("digitalPerformanceTraining123@.com.com");
-		this.invalidMails.add(".digitalPerformanceTraining@digitalPerformanceTraining.com");
-		this.invalidMails.add("digitalPerformanceTraining()*@gmail.com");
-		this.invalidMails.add("digitalPerformanceTraining@%*.com");
-		this.invalidMails.add("digitalPerformanceTraining..2015@gmail.com");
-		this.invalidMails.add("digitalPerformanceTraining.@gmail.com");
-		this.invalidMails.add("digitalPerformance@Training@gmail.com");
-		this.invalidMails.add("digitalPerformance@gmail.com.1a");
+		invalidMails.add("digitalPerformanceTraining");
+		invalidMails.add("digitalPerformanceTraining@.com.my");
+		invalidMails.add("digitalPerformanceTraining123@gmail.a");
+		invalidMails.add("digitalPerformanceTraining123@.com");
+		invalidMails.add("digitalPerformanceTraining123@.com.com");
+		invalidMails.add(".digitalPerformanceTraining@digitalPerformanceTraining.com");
+		invalidMails.add("digitalPerformanceTraining()*@gmail.com");
+		invalidMails.add("digitalPerformanceTraining@%*.com");
+		invalidMails.add("digitalPerformanceTraining..2015@gmail.com");
+		invalidMails.add("digitalPerformanceTraining.@gmail.com");
+		invalidMails.add("digitalPerformance@Training@gmail.com");
+		invalidMails.add("digitalPerformance@gmail.com.1a");
 		Exception exception = null;
-		for (String mail : this.invalidMails) {
+		for (String mail : invalidMails) {
 			try {
-				this.service.create(mail, this.pwd);
+				service.create(mail, pwd);
 				throw new Exception();
 			} catch (Exception e) {
 				if (e instanceof AttackHackingException) {
@@ -126,22 +126,22 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 	@Test
 	public void createWithValidPassword() throws Exception {
-		this.service.create("digitalPerformanceTraining@yahoo.com", "digitalperformanceT1@");
-		this.service.create("digitalPerformanceTraining2@yahoo.com", "digitalPerformance12$");
+		service.create("digitalPerformanceTraining@yahoo.com", "digitalperformanceT1@");
+		service.create("digitalPerformanceTraining2@yahoo.com", "digitalPerformance12$");
 	}
 
 	@Test
 	public void signInTrue() throws Exception {
-		this.service.create("mail@gmail.com", "password");
+		service.create("mail@gmail.com", "password");
 		Account account = Datastore.query(Account.class).asSingle();
 		assertThat(account, is(notNullValue()));
 		assertThat(account.getMail(), is("mail@gmail.com"));
-		assertThat(this.service.signIn("mail@gmail.com", "password"), is(notNullValue()));
+		assertThat(service.signIn("mail@gmail.com", "password"), is(notNullValue()));
 	}
 
 	@Test
 	public void signInFail() throws Exception {
-		assertThat(this.service.signIn("mail@gmail.com", "password"), is(nullValue()));
+		assertThat(service.signIn("mail@gmail.com", "password"), is(nullValue()));
 	}
 
 	@Test
@@ -174,26 +174,37 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 
 	@Test
-	public void getGtmId() throws Exception {
-		// create account
-		String mail = "digitalPerformanceTraining@yahoo.com";
-		String password = "Azerty1@";
-		service.create(mail, password);
-
-		// create gtm
+	public void mapGtm() throws Exception {
+		service.create(mail, pwd);
 		String gtmId = "GTM-123456";
 		service.saveGtm(gtmId, mail);
+		assertThat(service.getGtmId(mail), is("GTM-123456"));
+	}
 
-		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
+	@Test
+	public void getGtmId() throws Exception {
+		// create account
+		service.create(mail, pwd);
+
+		// create gtm
+		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
+		String gtmId = "GTM-123456";
+		GoogleTagManager gtm = new GoogleTagManager(gtmId);
+
+		assertThat(account, is(notNullValue()));
+		account.getGtm().setModel(gtm);
+
+		// Save it
+		Datastore.put(gtm, account);
+
+		assertThat(service.getGtmId(mail), is("GTM-123456"));
 	}
 
 	@Test
 	public void getGtmIdNotMapped() throws Exception {
 		// create account
-		String mail = "digitalPerformanceTraining@yahoo.com";
-		String password = "Azerty1@";
-		service.create(mail, password);
+		service.create(mail, pwd);
 
-		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(""));
+		assertThat(service.getGtmId(mail), is(""));
 	}
 }
