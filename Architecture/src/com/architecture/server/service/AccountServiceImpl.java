@@ -76,6 +76,10 @@ public class AccountServiceImpl implements AccountService {
 	public String getGtmId(String mail) {
 		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
 		GoogleTagManager gtm = account.getGtm().getModel();
-		return gtm.getGtmId();
+		String result = "";
+		if (gtm != null && gtm.getGtmId() != null) {
+			result = gtm.getGtmId();
+		}
+		return result;
 	}
 }

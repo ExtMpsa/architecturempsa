@@ -53,6 +53,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
@@ -451,13 +452,19 @@ public class ClientFactoryImpl implements ClientFactory {
 
 					@Override
 					public void onSuccess(String result) {
-						initGoogleTagManager(result);
-						History.newItem("");
+						if (!result.equals("")) {
+							initGoogleTagManager(result);
+							History.newItem("");
+						} else {
+							History.newItem("!AccountParameter:");
+						}
+
 					}
 
 					@Override
 					public void onFailure(Throwable caught) {
-						History.newItem("!AccountParameter:");
+						// TODO : Gérer les cas d'échec
+						Window.alert("TODO : manage Server Error");
 					}
 				});
 			}
