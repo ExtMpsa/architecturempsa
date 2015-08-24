@@ -24,6 +24,12 @@ public interface NavigationText extends Constants {
 
 	String signUp();
 
+	String signUpLogin();
+
+	String signUpPassword();
+
+	String signUpPasswordVerify();
+
 	String signIn();
 
 	String parameter();

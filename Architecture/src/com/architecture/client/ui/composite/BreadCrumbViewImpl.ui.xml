@@ -7,7 +7,7 @@
 	<g:HTMLPanel ui:field="wrapper" styleName="breadCrumb wrapper" tag="nav">
 		<g:HTMLPanel ui:field="content" styleName="content">
 			<g:HTMLPanel ui:field="decoration" styleName="decoration">
-				<p1:Anchor ui:field="dipet" text="Digital Performance Training" hash="#"/>
+				<p1:Anchor ui:field="dipet" text="Digital Performance Training" hash="#" styleName="gwt-Anchor first"/>
 			</g:HTMLPanel>
 		</g:HTMLPanel>
 	</g:HTMLPanel>

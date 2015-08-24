@@ -7,7 +7,7 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.SignUpEvent;
+import com.architecture.client.event.account.SignUpEvent;
 import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.ui.account.SignUpPasswordViewImpl;
 import com.architecture.client.ui.account.SignUpView;
@@ -41,7 +41,7 @@ public class SignUpActivity extends ArchitectureActivity {
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		this.containerWidget = containerWidget;
 		setStep(step);
-		clientFactory.getEventBus().fireEvent(new SignUpEvent());
+		// clientFactory.getEventBus().fireEvent(new SignUpEvent());
 		removeLoader();
 	}
 
@@ -62,6 +62,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:password");
 			}
 			signUpView = new SignUpPasswordViewImpl();
+			clientFactory.getEventBus().fireEvent(new SignUpEvent("password"));
 		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccountToCreate().getMail())
 				&& validatePasswordClient(clientFactory.getAccountToCreate().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:passwordVerify"));
@@ -73,6 +74,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:passwordVerify");
 			}
 			signUpView = new SignUpPasswordViewImpl();
+			clientFactory.getEventBus().fireEvent(new SignUpEvent("passwordVerify"));
 		} else {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:login"));
 			if (!step.equals("login")) {
@@ -83,6 +85,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:login");
 			}
 			signUpView = new SignUpViewImpl();
+			clientFactory.getEventBus().fireEvent(new SignUpEvent("login"));
 		}
 		signUpView.setAccount(account);
 		signUpView.setActivity(this);

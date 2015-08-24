@@ -69,12 +69,17 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 
 				@Override
 				public void onSuccess(Void result) {
+					// TODO :
+					// injecter GTM et supprimer l'ancien.
+					// Vérifier que le GTM est valide.
 					Window.alert("Gtm bien enregistré");
 				}
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Server Error");
+					// TODO :
+					// Afficher un message d'erreur.
+					Window.alert("GTM non enregistré. Server Error.");
 				}
 			});
 		}

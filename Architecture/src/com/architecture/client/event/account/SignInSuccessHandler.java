@@ -1,4 +1,4 @@
-package com.architecture.client.event;
+package com.architecture.client.event.account;
 
 import com.google.gwt.event.shared.EventHandler;
 

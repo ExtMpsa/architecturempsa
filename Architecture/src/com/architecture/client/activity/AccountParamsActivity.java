@@ -1,7 +1,7 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
-import com.architecture.client.event.AccountParamsEvent;
+import com.architecture.client.event.account.AccountParamsEvent;
 import com.architecture.client.place.AccountParamsPlace;
 import com.architecture.client.ui.account.AccountParamsView;
 import com.architecture.client.ui.account.AccountParamsViewImpl;

@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import com.architecture.client.activity.SignInActivity;
-import com.architecture.client.event.SignInSuccessEvent;
+import com.architecture.client.event.account.SignInSuccessEvent;
 import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.resources.txt.SignText;

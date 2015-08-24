@@ -7,14 +7,14 @@ import javax.validation.Validator;
 
 import com.architecture.client.event.HomeEvent;
 import com.architecture.client.event.HomeHandler;
-import com.architecture.client.event.SignInEvent;
-import com.architecture.client.event.SignInHandler;
-import com.architecture.client.event.SignInSuccessEvent;
-import com.architecture.client.event.SignInSuccessHandler;
-import com.architecture.client.event.SignUpEvent;
-import com.architecture.client.event.SignUpHandler;
 import com.architecture.client.event.TrainingEvent;
 import com.architecture.client.event.TrainingHandler;
+import com.architecture.client.event.account.SignInEvent;
+import com.architecture.client.event.account.SignInHandler;
+import com.architecture.client.event.account.SignInSuccessEvent;
+import com.architecture.client.event.account.SignInSuccessHandler;
+import com.architecture.client.event.account.SignUpEvent;
+import com.architecture.client.event.account.SignUpHandler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.HomePlace;
@@ -53,7 +53,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
@@ -398,7 +397,21 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onSignUp(SignUpEvent event) {
 				getNavigationView().selected("SignUp");
-				getBreadCrumbView().setSignUp();
+				switch (event.getStep()) {
+				case "login":
+					getBreadCrumbView().setSignUp("login");
+					break;
+				case "password":
+					getBreadCrumbView().setSignUp("password");
+					break;
+				case "passwordVerify":
+					getBreadCrumbView().setSignUp("passwordVerify");
+					break;
+				default:
+					getBreadCrumbView().setSignUp();
+					break;
+				}
+
 			}
 		});
 	}
@@ -439,14 +452,14 @@ public class ClientFactoryImpl implements ClientFactory {
 					@Override
 					public void onSuccess(String result) {
 						initGoogleTagManager(result);
+						History.newItem("");
 					}
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Server Error");
+						History.newItem("!AccountParameter:");
 					}
 				});
-				History.newItem("");
 			}
 		});
 	}
