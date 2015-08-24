@@ -118,6 +118,9 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 	@Override
 	public void setAccount(Account account) {
 		login.setText(account.getMail());
+		if (account.getMail() != null) {
+			alreadyTryGoToPassword = true;
+		}
 	}
 
 	@Override
@@ -321,8 +324,8 @@ public class SignUpViewImpl extends Composite implements SignUpView {
 					login.removeStyleName("input-Error");
 				}
 			} else {
-				login.addStyleName("input-Error");
 				loginErrorServer.setVisible(true);
+				loginErrorServer.setText(exceptionText.mailAlreadyUsed());
 				login.addStyleName("input-Error");
 			}
 		} else {
