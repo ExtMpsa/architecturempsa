@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.SignUpActivity;
 import com.architecture.client.exception.AttackHackingException;
 import com.architecture.client.exception.MailAlreadyUsedException;
@@ -32,6 +33,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SignUpPasswordViewImpl extends Composite implements SignUpView {
@@ -41,6 +43,10 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 
 	@UiField
 	HTMLPanel wrapper;
+	@UiField
+	HTMLPanel content;
+	@UiField
+	TextBox mailToRegister;
 	@UiField
 	PasswordTextBox password;
 	@UiField
@@ -69,8 +75,6 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 	Label createError;
 	@UiField
 	HTMLPanel title;
-	@UiField
-	HTMLPanel content;
 	String category;
 	String action;
 	String label;
@@ -88,6 +92,7 @@ public class SignUpPasswordViewImpl extends Composite implements SignUpView {
 		initWidget(uiBinder.createAndBindUi(this));
 		title.getElement().setInnerHTML(accountText.title());
 
+		mailToRegister.setText(ClientFactoryImpl.getInstance().getAccountToCreate().getMail());
 		password.getElement().setAttribute("placeholder", accountText.placeholderPassword());
 		sizeMinError.setText(accountText.errorSizeMinPassword());
 		sizeMinError.setVisible(false);
