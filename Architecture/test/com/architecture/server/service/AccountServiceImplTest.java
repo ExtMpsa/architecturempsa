@@ -155,7 +155,7 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 
 	@Test
-	public void saveGtm() throws Exception {
+	public void updateGtm() throws Exception {
 		String mail = "digitalPerformanceTraining@yahoo.com";
 		String password = "Azerty1@";
 		Account account = new Account();
@@ -167,5 +167,33 @@ public class AccountServiceImplTest extends ServletTestCase {
 
 		account.getGtm().setModel(gtm);
 		Datastore.put(gtm, account);
+		gtmId = "GTM-123456";
+
+		service.saveGtm(gtmId, mail);
+		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
+	}
+
+	@Test
+	public void getGtmId() throws Exception {
+		// create account
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		String password = "Azerty1@";
+		service.create(mail, password);
+
+		// create gtm
+		String gtmId = "GTM-123456";
+		service.saveGtm(gtmId, mail);
+
+		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
+	}
+
+	@Test
+	public void getGtmIdNotMapped() throws Exception {
+		// create account
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		String password = "Azerty1@";
+		service.create(mail, password);
+
+		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(""));
 	}
 }

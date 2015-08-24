@@ -39,7 +39,9 @@ public class AccountServiceImpl implements AccountService {
 		} else {
 			account = new Account(mailLowerCase, password);
 			account.setCreatedDate(new Date());
-			Datastore.put(account);
+			GoogleTagManager gtm = new GoogleTagManager("");
+			account.getGtm().setModel(gtm);
+			Datastore.put(gtm, account);
 		}
 	}
 
@@ -67,18 +69,38 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void saveGtm(String gtmId, String mail) {
 		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
-		GoogleTagManager gtm = new GoogleTagManager(gtmId);
-		account.getGtm().setModel(gtm);
-		Datastore.put(gtm, account);
+		GoogleTagManager gtm;
+		if (account != null) {
+			if (account.getGtm() != null) {
+				if (account.getGtm().getModel() != null) {
+					gtm = account.getGtm().getModel();
+					gtm.setGtmId(gtmId);
+				} else {
+					gtm = new GoogleTagManager(gtmId);
+				}
+				account.getGtm().setModel(gtm);
+				Datastore.put(gtm, account);
+			}
+		}
 	}
 
 	@Override
 	public String getGtmId(String mail) {
-		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
-		GoogleTagManager gtm = account.getGtm().getModel();
 		String result = "";
-		if (gtm != null && gtm.getGtmId() != null) {
-			result = gtm.getGtmId();
+		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		if (account != null) {
+			if (account.getGtm() != null) {
+				GoogleTagManager gtm = account.getGtm().getModel();
+				if (gtm != null) {
+					if (gtm.getGtmId() != null) {
+						result = gtm.getGtmId();
+					} else {
+						result = "gtm.getGtmId()=null";
+					}
+				} else {
+					result = "gtm=null";
+				}
+			}
 		}
 		return result;
 	}
