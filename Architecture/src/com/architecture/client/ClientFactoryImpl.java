@@ -435,7 +435,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 					@Override
 					public void onSuccess(String result) {
-						if (!result.equals("")) {
+						if (!result.equals("null")) {
 							initGoogleTagManager(result);
 							History.newItem("");
 						} else {

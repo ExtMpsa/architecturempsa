@@ -39,16 +39,18 @@ public class AccountServiceImpl implements AccountService {
 		} else {
 			account = new Account(mailLowerCase, password);
 			account.setCreatedDate(new Date());
-			GoogleTagManager gtm = new GoogleTagManager("");
-			account.getGtm().setModel(gtm);
-			Datastore.put(gtm, account);
+			// GoogleTagManager gtm = new GoogleTagManager("");
+			// account.getGtm().setModel(gtm);
+			// Datastore.put(gtm, account);
+			Datastore.put(account);
 		}
 	}
 
 	@Override
 	public Date signIn(String mail, String password) {
 		Date result = null;
-		Account account = Datastore.query(Account.class).filter(a.mail.equal(mail)).asSingle();
+		String mailLowerCase = mail.toLowerCase();
+		Account account = Datastore.query(Account.class).filter(a.mail.equal(mailLowerCase)).asSingle();
 		if (account != null) {
 			if (account.getPassword().equals(password)) {
 				account.setLastConnexion(new Date());

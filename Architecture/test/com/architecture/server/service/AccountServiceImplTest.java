@@ -204,25 +204,6 @@ public class AccountServiceImplTest extends ServletTestCase {
 		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(gtmId));
 	}
 
-	// @Test
-	// public void updateGtm() throws Exception {
-	// String mail = "digitalPerformanceTraining@yahoo.com";
-	// String password = "Azerty1@";
-	// Account account = new Account();
-	// account.setMail(mail);
-	// account.setPassword(password);
-	//
-	// String gtmId = "GTM-XXXXXX";
-	// GoogleTagManager gtm = new GoogleTagManager(gtmId);
-	//
-	// account.getGtm().setModel(gtm);
-	// Datastore.put(gtm, account);
-	// gtmId = "GTM-123456";
-	//
-	// service.saveGtm(gtmId, mail);
-	// assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
-	// }
-
 	@Test
 	public void mapGtm() throws Exception {
 		service.create(mail, pwd);
@@ -255,6 +236,6 @@ public class AccountServiceImplTest extends ServletTestCase {
 		// create account
 		service.create(mail, pwd);
 
-		assertThat(service.getGtmId(mail), is(""));
+		assertThat(service.getGtmId(mail), is(nullValue()));
 	}
 }

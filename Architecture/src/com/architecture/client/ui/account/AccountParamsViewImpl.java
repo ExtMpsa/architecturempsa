@@ -60,10 +60,18 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 
 	@UiHandler("saveGtm")
 	void onSaveGtmClick(ClickEvent event) {
+		String gtmId = gtmIdValue.getText();
+		if (activity.validateGtmIdClient(gtmId)) {
+			saveGtm(gtmId);
+		} else {
+			Window.alert("Id GTM non valide.");
+		}
+	}
+
+	private void saveGtm(String gtmId) {
 		Storage storage = Storage.getLocalStorageIfSupported();
 		String mail = "";
 		mail = storage.getItem("connected");
-		String gtmId = gtmIdValue.getText();
 		if (!mail.equals("")) {
 			service.saveGtm(gtmId, mail, new AsyncCallback<Void>() {
 

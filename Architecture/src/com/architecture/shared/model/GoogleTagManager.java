@@ -2,6 +2,9 @@ package com.architecture.shared.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelRef;
 import org.slim3.datastore.Model;
@@ -12,6 +15,7 @@ import com.google.appengine.api.datastore.Key;
 public class GoogleTagManager implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static final String GTMID_PATTERN = "^GTM-......$";
 
 	@Attribute(primaryKey = true)
 	private Key key;
@@ -22,6 +26,9 @@ public class GoogleTagManager implements Serializable {
 	@Attribute(persistent = false)
 	private InverseModelRef<Account, GoogleTagManager> account = new InverseModelRef<Account, GoogleTagManager>(Account.class, "gtm", this);
 
+	@NotNull
+	@Pattern(regexp = GTMID_PATTERN,
+			message = "The GTM id isn't valid.")
 	private String gtmId;
 
 	public GoogleTagManager() {
