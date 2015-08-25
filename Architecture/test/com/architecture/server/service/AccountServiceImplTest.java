@@ -32,6 +32,25 @@ public class AccountServiceImplTest extends ServletTestCase {
 	private final String pwd = "password";
 
 	@Test
+	public void checkMailAlreadyRegistered() throws Exception {
+		service.checkMail(mail);
+		assertThat(true, is(true));
+	}
+
+	@Test(expected = MailAlreadyUsedException.class)
+	public void checkMailAlreadyRegisteredMailAlreadyUsedException() throws Exception {
+		service.create(mail, pwd);
+		service.checkMail(mail);
+		assertThat(true, is(true));
+	}
+
+	@Test(expected = AttackHackingException.class)
+	public void checkMailAlreadyRegisteredAttackHackingException() throws Exception {
+		service.checkMail("digitalPerformanceTraining");
+		assertThat(true, is(true));
+	}
+
+	@Test
 	public void createWithEmptyDataStore() throws Exception {
 		service.create(mail, pwd);
 		Account account = Datastore.query(a).filter(a.mail.startsWith(mail)).asSingle();
