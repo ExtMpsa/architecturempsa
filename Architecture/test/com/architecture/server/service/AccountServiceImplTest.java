@@ -159,12 +159,21 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 
 	@Test
-	public void signInFail() throws Exception {
+	public void signInFailNull() throws Exception {
 		assertThat(service.signIn("mail@gmail.com", "password"), is(nullValue()));
 	}
 
 	@Test
-	public void getAccount() throws Exception {
+	public void signInFailNotMatch() throws Exception {
+		service.create("mail@gmail.com", "password");
+		Account account = Datastore.query(Account.class).asSingle();
+		assertThat(account, is(notNullValue()));
+		assertThat(account.getMail(), is("mail@gmail.com"));
+		assertThat(service.signIn("mail@gmail.com", "pwd"), is(nullValue()));
+	}
+
+	@Test
+	public void getAccount() {
 		String mail = "digitalPerformanceTraining@yahoo.com";
 		Account account = new Account();
 		account.setMail(mail);
@@ -174,23 +183,45 @@ public class AccountServiceImplTest extends ServletTestCase {
 	}
 
 	@Test
-	public void updateGtm() throws Exception {
+	public void saveGtmAccountNull() {
 		String mail = "digitalPerformanceTraining@yahoo.com";
-		String password = "Azerty1@";
-		Account account = new Account();
-		account.setMail(mail);
-		account.setPassword(password);
-
-		String gtmId = "GTM-XXXXXX";
-		GoogleTagManager gtm = new GoogleTagManager(gtmId);
-
-		account.getGtm().setModel(gtm);
-		Datastore.put(gtm, account);
-		gtmId = "GTM-123456";
+		String gtmId = "GTM-123456";
 
 		service.saveGtm(gtmId, mail);
-		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
+		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(nullValue()));
 	}
+
+	@Test
+	public void saveGtmAccountNotNull() {
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		Account account = new Account();
+		account.setMail(mail);
+		Datastore.put(account);
+
+		String gtmId = "GTM-123456";
+
+		service.saveGtm(gtmId, mail);
+		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(gtmId));
+	}
+
+	// @Test
+	// public void updateGtm() throws Exception {
+	// String mail = "digitalPerformanceTraining@yahoo.com";
+	// String password = "Azerty1@";
+	// Account account = new Account();
+	// account.setMail(mail);
+	// account.setPassword(password);
+	//
+	// String gtmId = "GTM-XXXXXX";
+	// GoogleTagManager gtm = new GoogleTagManager(gtmId);
+	//
+	// account.getGtm().setModel(gtm);
+	// Datastore.put(gtm, account);
+	// gtmId = "GTM-123456";
+	//
+	// service.saveGtm(gtmId, mail);
+	// assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is("GTM-123456"));
+	// }
 
 	@Test
 	public void mapGtm() throws Exception {
