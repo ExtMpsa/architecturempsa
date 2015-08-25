@@ -17,6 +17,26 @@ public class PersonTest extends AppEngineTestCase {
 	}
 
 	@Test
+	public void firstName() throws Exception {
+		String firstName = "firstName";
+		model.setFirstName(firstName);
+		assertThat(model.getFirstName(), is(firstName));
+	}
+
+	@Test
+	public void lastName() throws Exception {
+		String lastName = "lastName";
+		model.setLastName(lastName);
+		assertThat(model.getLastName(), is(lastName));
+	}
+
+	@Test
+	public void equalsTrueSameRef() throws Exception {
+		Datastore.put(model);
+		assertThat(model.equals(model), is(true));
+	}
+
+	@Test
 	public void equalsTrueSameKey() throws Exception {
 		Person obj = new Person();
 		obj.setKey(model.getKey());
