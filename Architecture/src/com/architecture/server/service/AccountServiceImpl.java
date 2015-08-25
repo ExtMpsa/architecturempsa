@@ -39,9 +39,6 @@ public class AccountServiceImpl implements AccountService {
 		} else {
 			account = new Account(mailLowerCase, password);
 			account.setCreatedDate(new Date());
-			// GoogleTagManager gtm = new GoogleTagManager("");
-			// account.getGtm().setModel(gtm);
-			// Datastore.put(gtm, account);
 			Datastore.put(account);
 		}
 	}

@@ -76,6 +76,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private Account accountToCreate;
 	private Account accountToSignIn;
 	HashMap<String, String> mailAlreadyChecked = new HashMap<String, String>();
+	private boolean gtmLoaded = false;
 
 	// Services
 	private static AccountServiceAsync accountService = GWT.create(AccountService.class);
@@ -406,6 +407,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onMouseMove(MouseMoveEvent event) {
 				initGoogleTagManager("GTM-PJ7D96");
+				loadGoogleTagManagerUser();
 				onMouseMoveHandlerForGtm.removeHandler();
 			}
 		}, MouseMoveEvent.getType());
@@ -426,35 +428,59 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onSignInSuccess(SignInSuccessEvent event) {
-				boolean isUserConnected = getNavigationView().isUserConnected();
-				getNavigationView().connected(isUserConnected);
-				Storage storage = Storage.getLocalStorageIfSupported();
-				String mail = "";
-				mail = storage.getItem("connected");
-				accountService.getGtmId(mail, new AsyncCallback<String>() {
-
-					@Override
-					public void onSuccess(String result) {
-						if (!result.equals("null")) {
-							initGoogleTagManager(result);
-							History.newItem("");
-						} else {
-							History.newItem("!AccountParameter:");
-						}
-
-					}
-
-					@Override
-					public void onFailure(Throwable caught) {
-						// TODO : Gérer les cas d'échec
-						Window.alert("TODO : manage Server Error");
-					}
-				});
+				loadGoogleTagManagerUserRedirect();
 			}
 		});
 	}
 
-	private SignInSuccessHandler SignInSuccessHandler() {
-		return null;
+	private void loadGoogleTagManagerUserRedirect() {
+		boolean isUserConnected = getNavigationView().isUserConnected();
+		getNavigationView().connected(isUserConnected);
+		Storage storage = Storage.getLocalStorageIfSupported();
+		String mail = "";
+		mail = storage.getItem("connected");
+		accountService.getGtmId(mail, new AsyncCallback<String>() {
+
+			@Override
+			public void onSuccess(String result) {
+				if (!result.equals("null")) {
+					initGoogleTagManager(result);
+					gtmLoaded = true;
+					History.newItem("");
+				} else {
+					History.newItem("!AccountParameter:");
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO : Gérer les cas d'échec
+				Window.alert("TODO : manage Server Error");
+			}
+		});
+	}
+
+	private void loadGoogleTagManagerUser() {
+		boolean isUserConnected = getNavigationView().isUserConnected();
+		getNavigationView().connected(isUserConnected);
+		Storage storage = Storage.getLocalStorageIfSupported();
+		String mail = "";
+		mail = storage.getItem("connected");
+		accountService.getGtmId(mail, new AsyncCallback<String>() {
+
+			@Override
+			public void onSuccess(String result) {
+				if (!result.equals("null")) {
+					initGoogleTagManager(result);
+					gtmLoaded = true;
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO : Gérer les cas d'échec
+				Window.alert("TODO : manage Server Error");
+			}
+		});
 	}
 }
