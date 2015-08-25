@@ -1,7 +1,7 @@
 package com.architecture.client.ui.widget;
 
+import com.architecture.shared.model.Person;
 import com.google.gwt.dom.client.InputElement;
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 public class TextBox extends com.google.gwt.user.client.ui.TextBox {
 
@@ -10,7 +10,7 @@ public class TextBox extends com.google.gwt.user.client.ui.TextBox {
 		setPlaceHolder("field");
 	}
 
-	public TextBox(EntityProxy e) {
+	public TextBox(Person e) {
 		super();
 		setPlaceHolder("field");
 	}

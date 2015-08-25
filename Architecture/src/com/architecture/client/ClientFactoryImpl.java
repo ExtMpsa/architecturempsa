@@ -18,7 +18,6 @@ import com.architecture.client.event.account.SignUpHandler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.place.HomePlace;
-import com.architecture.client.requestfactory.ArchitectureRequestFactory;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
 import com.architecture.client.ui.ArchitectureView;
@@ -56,7 +55,6 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.web.bindery.requestfactory.shared.RequestTransport;
 
 public class ClientFactoryImpl implements ClientFactory {
 	// Specific for Activities and Place with ClientFactory
@@ -70,11 +68,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	private ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
 	private AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
 	private PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
-
-	// RequestFactory
-	// Transport for intercept request and implement cursor wait
-	private static final RequestTransport transport = new ArchitectureRequestTransport();
-	private static final ArchitectureRequestFactory requestFactory = GWT.create(ArchitectureRequestFactory.class);
 
 	// Validator
 	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -106,11 +99,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
-		// initGoogleTagManager();
-		// Set up for Requestfactory
-		// For use RequestFactory in activities and place we have to initialise it before.
-		requestFactory.initialize(eventBus, transport);
-
 		// Set up for Activities and Place
 		activityManager.setDisplay(appWidget);
 
@@ -256,11 +244,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public EventBus getEventBus() {
 		return eventBus;
-	}
-
-	@Override
-	public ArchitectureRequestFactory getArchitectureRequestFactory() {
-		return requestFactory;
 	}
 
 	@Override

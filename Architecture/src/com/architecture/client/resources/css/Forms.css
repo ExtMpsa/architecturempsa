@@ -1,9 +1,0 @@
-@CHARSET "UTF-8";
-.gwt-SignStep input{
-	min-width: 200px;
-}
-
-.gwt-SignStep-Title h3{
-	display: inline;
-	margin-right: 300px;
-}
