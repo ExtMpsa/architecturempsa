@@ -8,6 +8,8 @@ import org.slim3.datastore.Datastore;
 import org.slim3.datastore.InverseModelRef;
 import org.slim3.tester.AppEngineTestCase;
 
+import com.architecture.server.meta.GoogleTagManagerMeta;
+
 public class GoogleTagManagerTest extends AppEngineTestCase {
 
 	private GoogleTagManager model = new GoogleTagManager();
@@ -94,5 +96,10 @@ public class GoogleTagManagerTest extends AppEngineTestCase {
 		Datastore.put(model, account);
 		InverseModelRef<Account, GoogleTagManager> obj = model.getAccount();
 		assertThat(obj, is(notNullValue()));
+	}
+	
+	@Test
+	public void getVersion() throws Exception {
+		assertThat(GoogleTagManagerMeta.get().getSchemaVersionName(), is("slim3.schemaVersion"));
 	}
 }
