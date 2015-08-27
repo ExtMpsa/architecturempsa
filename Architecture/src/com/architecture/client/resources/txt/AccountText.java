@@ -51,5 +51,7 @@ public interface AccountText extends Constants {
 
 	String placeholderGTM();
 
-	String saveGtm();
+	String edit();
+
+	String save();
 }

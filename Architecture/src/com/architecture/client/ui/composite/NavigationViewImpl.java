@@ -117,26 +117,7 @@ public class NavigationViewImpl extends Composite {
 		disconnection.setHash("#");
 		disconnection.getElement().setId("disconnection");
 
-		connected(isUserConnected());
-	}
-
-	public boolean isUserConnected() {
-		boolean result = false;
-		Storage storage = Storage.getLocalStorageIfSupported();
-		final String connected = "connected";
-		String mail = "";
-		if (storage != null) {
-			StorageMap stockMap = new StorageMap(storage);
-			if (stockMap.containsKey(connected) == true) {
-				mail = storage.getItem(connected);
-			}
-		}
-		if (mail.equals("")) {
-			result = false;
-		} else {
-			result = true;
-		}
-		return result;
+		connected(ClientFactoryImpl.getInstance().isUserConnected());
 	}
 
 	public void connected(boolean userConnected) {

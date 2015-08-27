@@ -16,6 +16,10 @@ public interface ResourcesAccount extends ClientBundle {
 	@Source("images/help.png")
 	ImageResource helpLoginLogo();
 
+	@NotStrict
+	@Source("css/AccountParameter.css")
+	Style cssAccountParameter();
+
 	public interface Style extends CssResource {
 	}
 }

@@ -51,6 +51,7 @@ import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
+import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -348,6 +349,26 @@ public class ClientFactoryImpl implements ClientFactory {
 		this.mailAlreadyChecked = mailAlreadyChecked;
 	}
 
+	@Override
+	public boolean isUserConnected() {
+		boolean result = false;
+		Storage storage = Storage.getLocalStorageIfSupported();
+		final String connected = "connected";
+		String mail = "";
+		if (storage != null) {
+			StorageMap stockMap = new StorageMap(storage);
+			if (stockMap.containsKey(connected) == true) {
+				mail = storage.getItem(connected);
+			}
+		}
+		if (mail.equals("")) {
+			result = false;
+		} else {
+			result = true;
+		}
+		return result;
+	}
+
 	// Bind
 	private void bindBeforeLoadingPlace() {
 		eventBus.addHandler(TrainingEvent.TYPE, new TrainingHandler() {
@@ -434,7 +455,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	private void loadGoogleTagManagerUserRedirect() {
-		boolean isUserConnected = getNavigationView().isUserConnected();
+		boolean isUserConnected = isUserConnected();
 		getNavigationView().connected(isUserConnected);
 		Storage storage = Storage.getLocalStorageIfSupported();
 		String mail = "";
@@ -461,7 +482,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	private void loadGoogleTagManagerUser() {
-		boolean isUserConnected = getNavigationView().isUserConnected();
+		boolean isUserConnected = isUserConnected();
 		getNavigationView().connected(isUserConnected);
 		Storage storage = Storage.getLocalStorageIfSupported();
 		String mail = "";

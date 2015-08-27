@@ -1,6 +1,8 @@
 package com.architecture.client.ui.account;
 
+import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.AccountParamsActivity;
+import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -15,6 +17,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -31,11 +34,17 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 	@UiField
 	HTMLPanel title;
 	@UiField
-	Label gtmId;
+	Label gtmIdLabel;
 	@UiField
-	TextBox gtmIdValue;
+	TextBox gtmIdInput;
 	@UiField
 	Button saveGtm;
+	@UiField
+	InlineLabel gtmIdValue;
+	@UiField
+	Button editGtm;
+	@UiField
+	HTMLPanel gtm;
 
 	AccountParamsActivity activity;
 	AccountText accountText = GWT.create(AccountText.class);
@@ -44,13 +53,34 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 	}
 
 	public AccountParamsViewImpl() {
+		ResourcesAccount.INSTANCE.cssAccountParameter().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 
 		title.getElement().setInnerText(accountText.accountParameter());
-		gtmId.setText(accountText.gtmId());
-		gtmId.setTitle(accountText.gtmIdTitle());
-		gtmIdValue.getElement().setAttribute("placeholder", accountText.placeholderGTM());
-		saveGtm.setText(accountText.saveGtm());
+		gtmIdLabel.setText(accountText.gtmId());
+		gtmIdLabel.setTitle(accountText.gtmIdTitle());
+		gtmIdInput.getElement().setAttribute("placeholder", accountText.placeholderGTM());
+		editGtm.setText(accountText.edit());
+		saveGtm.setText(accountText.save());
+		if (ClientFactoryImpl.getInstance().isUserConnected()) {
+			Storage storage = Storage.getLocalStorageIfSupported();
+			String mail = "";
+			mail = storage.getItem("connected");
+			if (!mail.equals("")) {
+				service.getGtmId(mail, new AsyncCallback<String>() {
+					@Override
+					public void onSuccess(String result) {
+						gtmIdValue.setText(result);
+						saveGtm.setVisible(false);
+						gtmIdInput.setVisible(false);
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+					}
+				});
+			}
+		}
 	}
 
 	@Override
@@ -60,7 +90,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 
 	@UiHandler("saveGtm")
 	void onSaveGtmClick(ClickEvent event) {
-		String gtmId = gtmIdValue.getText();
+		String gtmId = gtmIdInput.getText();
 		if (activity.validateGtmIdClient(gtmId)) {
 			saveGtm(gtmId);
 		} else {

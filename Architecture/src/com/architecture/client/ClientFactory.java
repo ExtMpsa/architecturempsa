@@ -58,6 +58,11 @@ public interface ClientFactory {
 	SignInView getSignInView();
 
 	/*
+	 * Utilities
+	 */
+	boolean isUserConnected();
+
+	/*
 	 * Google Tag Manager
 	 */
 	void eventGtm(String description, String launcher);
