@@ -25,8 +25,8 @@ public class OfflineLinker extends AbstractLinker {
 		builder.append("# Cache Version 10\n");
 		builder.append("CACHE:\n");
 
-		builder.append("/architecture.css\n");
-		builder.append("/architecture.html\n");
+		builder.append("/Architecture.html\n");
+		builder.append("/favicon.ico\n");
 		for (EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
 			if (emitted.isPrivate()) {
 				continue;
@@ -37,7 +37,7 @@ public class OfflineLinker extends AbstractLinker {
 			if (emitted.getPartialPath().endsWith(".txt")) {
 				continue;
 			}
-			builder.append("/myapp/" + emitted.getPartialPath()).append("\n");
+			builder.append("/architecture/" + emitted.getPartialPath()).append("\n");
 		}
 		builder.append("/architecture/hosted.html\n");
 		builder.append("/architecture/architecture.nocache.js\n");
