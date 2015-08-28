@@ -188,7 +188,7 @@ public class AccountServiceImplTest extends ServletTestCase {
 		String gtmId = "GTM-123456";
 
 		service.saveGtm(gtmId, mail);
-		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(nullValue()));
+		assertThat(service.getGtmId(mail), is(nullValue()));
 	}
 
 	@Test
@@ -201,7 +201,24 @@ public class AccountServiceImplTest extends ServletTestCase {
 		String gtmId = "GTM-123456";
 
 		service.saveGtm(gtmId, mail);
-		assertThat(service.getGtmId("digitalPerformanceTraining@yahoo.com"), is(gtmId));
+		assertThat(service.getGtmId(mail), is(gtmId));
+	}
+
+	@Test
+	public void saveGtmGetModelNotNull() throws Exception {
+		String mail = "digitalPerformanceTraining@yahoo.com";
+		Account account = new Account();
+		account.setMail(mail);
+		Datastore.put(account);
+
+		String gtmId = "GTM-123456";
+
+		service.saveGtm(gtmId, mail);
+		assertThat(service.getGtmId(mail), is(gtmId));
+
+		String gtmId2 = "GTM-654321";
+		service.saveGtm(gtmId2, mail);
+		assertThat(service.getGtmId(mail), is(gtmId2));
 	}
 
 	@Test

@@ -13,6 +13,7 @@ import com.architecture.server.meta.GoogleTagManagerMeta;
 public class GoogleTagManagerTest extends AppEngineTestCase {
 
 	private GoogleTagManager model = new GoogleTagManager();
+	private GoogleTagManagerMeta modelMeta = GoogleTagManagerMeta.get();
 
 	@Test
 	public void test() throws Exception {
@@ -97,9 +98,9 @@ public class GoogleTagManagerTest extends AppEngineTestCase {
 		InverseModelRef<Account, GoogleTagManager> obj = model.getAccount();
 		assertThat(obj, is(notNullValue()));
 	}
-	
+
 	@Test
-	public void getVersion() throws Exception {
-		assertThat(GoogleTagManagerMeta.get().getSchemaVersionName(), is("slim3.schemaVersion"));
+	public void getVersionMeta() throws Exception {
+		assertThat(modelMeta.getSchemaVersionName(), is("slim3.schemaVersion"));
 	}
 }

@@ -7,9 +7,12 @@ import org.junit.Test;
 import org.slim3.datastore.Datastore;
 import org.slim3.tester.AppEngineTestCase;
 
+import com.architecture.server.meta.AccountMeta;
+
 public class AccountTest extends AppEngineTestCase {
 
 	private Account model = new Account();
+	private AccountMeta modelMeta = AccountMeta.get();
 
 	@Test
 	public void test() throws Exception {
@@ -85,5 +88,10 @@ public class AccountTest extends AppEngineTestCase {
 		model.setKey(null);
 		int obj = model.hashCode();
 		assertThat(obj, is(notNullValue()));
+	}
+
+	@Test
+	public void getVersionMeta() throws Exception {
+		assertThat(modelMeta.getSchemaVersionName(), is("slim3.schemaVersion"));
 	}
 }
