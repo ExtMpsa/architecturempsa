@@ -5,13 +5,13 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
 
 public class HomePlace extends Place {
-	private String homeName;
+	private String token;
 
 	public HomePlace() {
 	}
 
-	public String getHomeName() {
-		return this.homeName;
+	public String getToken() {
+		return this.token;
 	}
 
 	@Prefix(value = "!Home")
@@ -21,7 +21,7 @@ public class HomePlace extends Place {
 		// Activity & Place add new Item. This item break the history. Have to fix it : look CreateAccountActivity.
 		@Override
 		public String getToken(HomePlace place) {
-			return "";
+			return place.getToken();
 		}
 
 		@Override

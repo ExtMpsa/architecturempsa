@@ -5,20 +5,20 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
 
 public class TracingPaperPlace extends Place {
-	private String tracingPaperName;
+	private String token;
 
 	public TracingPaperPlace() {
 	}
 
-	public String getTracingPaperName() {
-		return tracingPaperName;
+	public String getToken() {
+		return token;
 	}
 
 	@Prefix(value = "!TracingPaperPlace")
 	public static class Tokenizer implements PlaceTokenizer<TracingPaperPlace> {
 		@Override
 		public String getToken(TracingPaperPlace place) {
-			return "";
+			return place.getToken();
 		}
 
 		@Override

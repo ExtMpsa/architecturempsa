@@ -5,25 +5,24 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
 
 public class SignInPlace extends Place {
-	private String signIn;
+	private String token;
 
 	public SignInPlace() {
-		this.signIn = "";
 	}
 
-	public SignInPlace(String signIn) {
-		this.signIn = signIn;
+	public SignInPlace(String token) {
+		this.token = token;
 	}
 
-	public String getSignInName() {
-		return signIn;
+	public String getToken() {
+		return token;
 	}
 
 	@Prefix(value = "!SignIn")
 	public static class Tokenizer implements PlaceTokenizer<SignInPlace> {
 		@Override
 		public String getToken(SignInPlace place) {
-			return place.signIn;
+			return place.getToken();
 		}
 
 		@Override

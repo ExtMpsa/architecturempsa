@@ -28,7 +28,7 @@ public class SignUpActivity extends ArchitectureActivity {
 
 	public SignUpActivity(SignUpPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
-		step = place.getCreateAccountStep();
+		step = place.getToken();
 		if (clientFactory.getAccountToCreate() != null) {
 			account = clientFactory.getAccountToCreate();
 		} else {

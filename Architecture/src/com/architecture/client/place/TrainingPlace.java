@@ -5,14 +5,14 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
 
 public class TrainingPlace extends Place {
-	private String name;
+	private String token;
 
-	public TrainingPlace(String name) {
-		this.name = name.toLowerCase();
+	public TrainingPlace(String token) {
+		this.token = token.toLowerCase();
 	}
 
-	public String getName() {
-		return this.name;
+	public String getToken() {
+		return this.token;
 	}
 
 	@Prefix(value = "!Training")
@@ -22,7 +22,7 @@ public class TrainingPlace extends Place {
 		// Activity & Place add new Item. This item break the history. Have to fix it : look SignUpActivity.
 		@Override
 		public String getToken(TrainingPlace place) {
-			return place.getName();
+			return place.getToken();
 		}
 
 		@Override

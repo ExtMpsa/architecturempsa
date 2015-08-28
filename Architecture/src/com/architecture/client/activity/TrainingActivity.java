@@ -14,7 +14,7 @@ public class TrainingActivity extends ArchitectureActivity {
 
 	public TrainingActivity(TrainingPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
-		this.token = place.getName();
+		this.token = place.getToken();
 	}
 
 	@Override
