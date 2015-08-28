@@ -21,6 +21,7 @@ public class BreadCrumbViewImpl extends Composite {
 	Anchor dipet;
 	@UiField
 	HTMLPanel decoration;
+	NavigationText navigationText = GWT.create(NavigationText.class);
 
 	interface BreadCrumbViewImplUiBinder extends UiBinder<Widget, BreadCrumbViewImpl> {
 	}
@@ -41,37 +42,37 @@ public class BreadCrumbViewImpl extends Composite {
 		decoration.clear();
 		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
-		addItem(NavigationText.INSTANCE.training(), "#!Training:", "current");
+		addItem(navigationText.training(), "#!Training:", "current");
 	}
 
 	public void setSignIn() {
 		decoration.clear();
 		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
-		addItem(NavigationText.INSTANCE.signIn(), "#!SignIn:", "current");
+		addItem(navigationText.signIn(), "#!SignIn:", "current");
 	}
 
 	public void setSignUp() {
 		decoration.clear();
 		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
-		addItem(NavigationText.INSTANCE.signUp(), "#!SignUp:", "current");
+		addItem(navigationText.signUp(), "#!SignUp:", "current");
 	}
 
 	public void setSignUp(String step) {
 		decoration.clear();
 		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
-		addItem(NavigationText.INSTANCE.signUp(), "#!SignUp:", "element");
+		addItem(navigationText.signUp(), "#!SignUp:", "element");
 		switch (step) {
 		case "login":
-			addItem(NavigationText.INSTANCE.signUpLogin(), "#!SignUp:login", "current");
+			addItem(navigationText.signUpLogin(), "#!SignUp:login", "current");
 			break;
 		case "password":
-			addItem(NavigationText.INSTANCE.signUpPassword(), "#!SignUp:password", "current");
+			addItem(navigationText.signUpPassword(), "#!SignUp:password", "current");
 			break;
 		case "passwordVerify":
-			addItem(NavigationText.INSTANCE.signUpPasswordVerify(), "#!SignUp:passwordVerify", "current");
+			addItem(navigationText.signUpPasswordVerify(), "#!SignUp:passwordVerify", "current");
 			break;
 		}
 
