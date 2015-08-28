@@ -45,6 +45,9 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
+  <!-- Linker for Offline -->
+  <define-linker class="com.architecture.OfflineLinker" name="offline" />
+  <add-linker name="offline" />
   
   
   <extend-property name="locale" values="fr"/>
