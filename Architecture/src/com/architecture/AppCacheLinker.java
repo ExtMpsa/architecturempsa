@@ -36,10 +36,13 @@ public class AppCacheLinker extends AbstractLinker {
 			if (emitted.getPartialPath().endsWith(".txt")) {
 				continue;
 			}
+			// TODO : manage gwt.rpc
+			if (emitted.getPartialPath().endsWith(".gwt.rpc")) {
+				continue;
+			}
 			// builder.append("/architecture/" + emitted.getPartialPath()).append("\n");
 			builder.append(emitted.getPartialPath()).append("\n");
 		}
-		builder.append("/architecture/hosted.html\n");
 		builder.append("/architecture/architecture.nocache.js\n");
 		builder.append("NETWORK:\n");
 		builder.append("*\n");
