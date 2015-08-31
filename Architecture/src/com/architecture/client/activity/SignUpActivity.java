@@ -18,7 +18,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class SignUpActivity extends ArchitectureActivity {
@@ -44,11 +43,6 @@ public class SignUpActivity extends ArchitectureActivity {
 		setStep(step);
 		// clientFactory.getEventBus().fireEvent(new SignUpEvent());
 		removeLoader();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
 	}
 
 	public void setStep(String step) {

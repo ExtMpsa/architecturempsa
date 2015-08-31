@@ -5,7 +5,6 @@ import com.architecture.client.event.TrainingEvent;
 import com.architecture.client.place.TrainingPlace;
 import com.architecture.client.ui.TrainingViewImpl;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class TrainingActivity extends ArchitectureActivity {
@@ -27,10 +26,5 @@ public class TrainingActivity extends ArchitectureActivity {
 		containerWidget.setWidget(templateView.asWidget());
 		clientFactory.getEventBus().fireEvent(new TrainingEvent());
 		removeLoader();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		this.clientFactory.getPlaceController().goTo(place);
 	}
 }

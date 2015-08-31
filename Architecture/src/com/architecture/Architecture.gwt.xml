@@ -46,8 +46,8 @@
   <source path='client'/>
   <source path='shared'/>
   <!-- Linker for Offline -->
-  <define-linker class="com.architecture.OfflineLinker" name="offline" />
-  <add-linker name="offline" />
+  <define-linker class="com.architecture.AppCacheLinker" name="AppCacheLinker" />
+  <add-linker name="AppCacheLinker" />
   
   
   <extend-property name="locale" values="fr"/>

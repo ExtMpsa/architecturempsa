@@ -118,6 +118,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 					// TODO :
 					// Afficher un message d'erreur.
 					Window.alert("GTM non enregistré. Server Error.");
+					GWT.log("RPC Exception: " + caught.toString());
 				}
 			});
 		}

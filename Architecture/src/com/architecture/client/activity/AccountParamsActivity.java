@@ -13,7 +13,6 @@ import com.architecture.client.ui.account.AccountParamsViewImpl;
 import com.architecture.shared.model.GoogleTagManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class AccountParamsActivity extends ArchitectureActivity {
@@ -31,11 +30,6 @@ public class AccountParamsActivity extends ArchitectureActivity {
 		containerWidget.setWidget(accountParamsView.asWidget());
 		clientFactory.getEventBus().fireEvent(new AccountParamsEvent());
 		removeLoader();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
 	}
 
 	public ClientFactory getClientFactory() {

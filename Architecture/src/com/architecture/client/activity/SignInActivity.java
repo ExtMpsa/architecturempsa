@@ -12,7 +12,6 @@ import com.architecture.client.ui.account.SignInView;
 import com.architecture.shared.model.Account;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class SignInActivity extends ArchitectureActivity {
@@ -43,11 +42,6 @@ public class SignInActivity extends ArchitectureActivity {
 		containerWidget.setWidget(signInView.asWidget());
 		clientFactory.getEventBus().fireEvent(new SignInEvent());
 		removeLoader();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		clientFactory.getPlaceController().goTo(place);
 	}
 
 	public ClientFactory getClientFactory() {

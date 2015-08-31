@@ -5,7 +5,6 @@ import com.architecture.client.event.HomeEvent;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.ui.HomeView;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class HomeActivity extends ArchitectureActivity {
@@ -22,10 +21,5 @@ public class HomeActivity extends ArchitectureActivity {
 		containerWidget.setWidget(homeView.asWidget());
 		clientFactory.getEventBus().fireEvent(new HomeEvent());
 		removeLoader();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		this.clientFactory.getPlaceController().goTo(place);
 	}
 }
