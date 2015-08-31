@@ -1,5 +1,7 @@
 package com.architecture.client.ui.composite;
 
+import com.architecture.client.mvp.AppToken;
+import com.architecture.client.mvp.SignUpStep;
 import com.architecture.client.resources.ResourcesBreadCrumb;
 import com.architecture.client.resources.txt.NavigationText;
 import com.architecture.client.ui.widget.Anchor;
@@ -32,50 +34,40 @@ public class BreadCrumbViewImpl extends Composite {
 		dipet.getElement().addClassName("current");
 	}
 
-	public void setDigitalPerformanceTraining() {
-		decoration.clear();
-		decoration.add(dipet);
-		dipet.getElement().addClassName("current");
-	}
-
-	public void setTraining() {
+	public void setPlace(AppToken token) {
 		decoration.clear();
 		decoration.add(dipet);
 		dipet.getElement().removeClassName("current");
-		addItem(navigationText.training(), "#!Training:", "current");
-	}
-
-	public void setSignIn() {
-		decoration.clear();
-		decoration.add(dipet);
-		dipet.getElement().removeClassName("current");
-		addItem(navigationText.signIn(), "#!SignIn:", "current");
-	}
-
-	public void setSignUp() {
-		decoration.clear();
-		decoration.add(dipet);
-		dipet.getElement().removeClassName("current");
-		addItem(navigationText.signUp(), "#!SignUp:", "current");
-	}
-
-	public void setSignUp(String step) {
-		decoration.clear();
-		decoration.add(dipet);
-		dipet.getElement().removeClassName("current");
-		addItem(navigationText.signUp(), "#!SignUp:", "element");
-		switch (step) {
-		case "login":
-			addItem(navigationText.signUpLogin(), "#!SignUp:login", "current");
+		switch (token) {
+		case ACCOUNTSETTING:
 			break;
-		case "password":
-			addItem(navigationText.signUpPassword(), "#!SignUp:password", "current");
+		case HOME:
+			// Do nothing
 			break;
-		case "passwordVerify":
-			addItem(navigationText.signUpPasswordVerify(), "#!SignUp:passwordVerify", "current");
+		case SIGNIN:
+			addItem(navigationText.signIn(), "#" + AppToken.SIGNIN.getToken() + ":", "current");
+			break;
+		case SIGNUP:
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "current");
+			break;
+		case SIGNUPLOGIN:
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
+			addItem(navigationText.signUpLogin(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.LOGIN.getStep(), "current");
+			break;
+		case SIGNUPPASSWORD:
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
+			addItem(navigationText.signUpPassword(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.PASSWORD.getStep(), "current");
+			break;
+		case SIGNUPPASSWORDVERIFY:
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
+			addItem(navigationText.signUpPasswordVerify(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.PASSWORDVERIFY.getStep(), "current");
+			break;
+		case TRAINING:
+			addItem(navigationText.training(), "#!Training:", "current");
+			break;
+		default:
 			break;
 		}
-
 	}
 
 	public void addItem(String s, String hash, String style) {

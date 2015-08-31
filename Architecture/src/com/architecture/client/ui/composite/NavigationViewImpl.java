@@ -1,6 +1,7 @@
 package com.architecture.client.ui.composite;
 
 import com.architecture.client.ClientFactoryImpl;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.SignInPlace;
 import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.resources.ResourcesNavigation;
@@ -134,17 +135,19 @@ public class NavigationViewImpl extends Composite {
 		}
 	}
 
-	public void selected(String s) {
+	public void selected(AppToken token) {
 		removeClassSelected();
-		switch (s) {
-		case "Training":
+		switch (token) {
+		case TRAINING:
 			training.getElement().addClassName("selected");
 			break;
-		case "SignUp":
+		case SIGNUP:
 			signUp.getElement().addClassName("selected");
 			break;
-		case "SignIn":
+		case SIGNIN:
 			signIn.getElement().addClassName("selected");
+			break;
+		default:
 			break;
 		}
 	}

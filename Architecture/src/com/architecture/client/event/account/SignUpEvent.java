@@ -1,13 +1,14 @@
 package com.architecture.client.event.account;
 
+import com.architecture.client.mvp.SignUpStep;
 import com.google.gwt.event.shared.GwtEvent;
 
 public class SignUpEvent extends GwtEvent<SignUpHandler> {
 	public static Type<SignUpHandler> TYPE = new Type<SignUpHandler>();
-	private String step;
+	private SignUpStep step;
 
-	public SignUpEvent(String step) {
-		this.setStep(step);
+	public SignUpEvent(SignUpStep step) {
+		setStep(step);
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class SignUpEvent extends GwtEvent<SignUpHandler> {
 	 * @category Accessor
 	 * @return the step
 	 */
-	public String getStep() {
+	public SignUpStep getStep() {
 		return step;
 	}
 
@@ -33,7 +34,7 @@ public class SignUpEvent extends GwtEvent<SignUpHandler> {
 	 * @param step
 	 *            the step to set
 	 */
-	public void setStep(String step) {
+	public void setStep(SignUpStep step) {
 		this.step = step;
 	}
 

@@ -17,6 +17,7 @@ import com.architecture.client.event.account.SignUpEvent;
 import com.architecture.client.event.account.SignUpHandler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.HomePlace;
 import com.architecture.client.service.AccountService;
 import com.architecture.client.service.AccountServiceAsync;
@@ -375,8 +376,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onTraining(TrainingEvent event) {
-				getNavigationView().selected("Training");
-				getBreadCrumbView().setTraining();
+				getNavigationView().selected(AppToken.TRAINING);
+				getBreadCrumbView().setPlace(AppToken.TRAINING);
 			}
 		});
 
@@ -384,8 +385,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onHome(HomeEvent event) {
-				getNavigationView().selected("");
-				getBreadCrumbView().setDigitalPerformanceTraining();
+				getNavigationView().selected(AppToken.HOME);
+				getBreadCrumbView().setPlace(AppToken.HOME);
 			}
 		});
 
@@ -393,8 +394,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onSignIn(SignInEvent event) {
-				getNavigationView().selected("SignIn");
-				getBreadCrumbView().setSignIn();
+				getNavigationView().selected(AppToken.SIGNIN);
+				getBreadCrumbView().setPlace(AppToken.SIGNIN);
 			}
 		});
 
@@ -402,19 +403,19 @@ public class ClientFactoryImpl implements ClientFactory {
 
 			@Override
 			public void onSignUp(SignUpEvent event) {
-				getNavigationView().selected("SignUp");
+				getNavigationView().selected(AppToken.SIGNUP);
 				switch (event.getStep()) {
-				case "login":
-					getBreadCrumbView().setSignUp("login");
+				case LOGIN:
+					getBreadCrumbView().setPlace(AppToken.SIGNUPLOGIN);
 					break;
-				case "password":
-					getBreadCrumbView().setSignUp("password");
+				case PASSWORD:
+					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORD);
 					break;
-				case "passwordVerify":
-					getBreadCrumbView().setSignUp("passwordVerify");
+				case PASSWORDVERIFY:
+					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORDVERIFY);
 					break;
 				default:
-					getBreadCrumbView().setSignUp();
+					getBreadCrumbView().setPlace(AppToken.SIGNUP);
 					break;
 				}
 

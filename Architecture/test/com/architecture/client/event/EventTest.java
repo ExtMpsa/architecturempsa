@@ -14,6 +14,7 @@ import com.architecture.client.event.account.SignInSuccessEvent;
 import com.architecture.client.event.account.SignInSuccessHandler;
 import com.architecture.client.event.account.SignUpEvent;
 import com.architecture.client.event.account.SignUpHandler;
+import com.architecture.client.mvp.SignUpStep;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 
@@ -99,7 +100,7 @@ public class EventTest extends AppEngineTestCase {
 
 	@Test
 	public void SignUpEvent() {
-		String step = "step";
+		SignUpStep step = SignUpStep.LOGIN;
 		SignUpEvent e = new SignUpEvent(step);
 		eventBus.addHandler(SignUpEvent.TYPE, new SignUpHandler() {
 
@@ -110,5 +111,6 @@ public class EventTest extends AppEngineTestCase {
 		eventBus.fireEvent(e);
 		assertThat(e.getAssociatedType(), is(notNullValue()));
 		assertThat(e.getStep(), is(step));
+		assertThat(step.getStep(), is("!login:"));
 	}
 }

@@ -8,6 +8,7 @@ import javax.validation.ConstraintViolation;
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.event.account.SignUpEvent;
+import com.architecture.client.mvp.SignUpStep;
 import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.ui.account.SignUpPasswordViewImpl;
 import com.architecture.client.ui.account.SignUpView;
@@ -62,7 +63,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:password");
 			}
 			signUpView = new SignUpPasswordViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent("password"));
+			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.PASSWORD));
 		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccountToCreate().getMail())
 				&& validatePasswordClient(clientFactory.getAccountToCreate().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:passwordVerify"));
@@ -74,7 +75,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:passwordVerify");
 			}
 			signUpView = new SignUpPasswordViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent("passwordVerify"));
+			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.PASSWORDVERIFY));
 		} else {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:login"));
 			if (!step.equals("login")) {
@@ -85,7 +86,7 @@ public class SignUpActivity extends ArchitectureActivity {
 				historyReplaceState("!SignUp:login");
 			}
 			signUpView = new SignUpViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent("login"));
+			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.LOGIN));
 		}
 		signUpView.setAccount(account);
 		signUpView.setActivity(this);
