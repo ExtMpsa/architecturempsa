@@ -6,6 +6,7 @@ import com.architecture.client.ui.composite.BannerLanguageViewImpl;
 import com.architecture.client.ui.composite.BannerViewImpl;
 import com.architecture.client.ui.composite.BreadCrumbViewImpl;
 import com.architecture.client.ui.composite.DisclamerViewImpl;
+import com.architecture.client.ui.composite.ErrorServerViewImpl;
 import com.architecture.client.ui.composite.FooterViewImpl;
 import com.architecture.client.ui.composite.NavigationViewImpl;
 import com.google.gwt.core.client.GWT;
@@ -23,23 +24,25 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 
 	private static ArchitectureViewImplUiBinder uiBinder = GWT.create(ArchitectureViewImplUiBinder.class);
 	@UiField
-	BannerViewImpl banner;
-	@UiField
 	HTMLPanel appContainer;
-	@UiField
-	BannerLanguageViewImpl bannerLanguage;
-	@UiField
-	HTMLPanel main;
-	@UiField
-	DisclamerViewImpl disclaimer;
-	@UiField
-	NavigationViewImpl nav;
-	@UiField
-	FooterViewImpl footer;
 	@UiField
 	HTMLPanel header;
 	@UiField
+	ErrorServerViewImpl errorServer;
+	@UiField
+	DisclamerViewImpl disclaimer;
+	@UiField
+	BannerLanguageViewImpl bannerLanguage;
+	@UiField
+	BannerViewImpl banner;
+	@UiField
+	NavigationViewImpl nav;
+	@UiField
 	BreadCrumbViewImpl breadCrumb;
+	@UiField
+	HTMLPanel main;
+	@UiField
+	FooterViewImpl footer;
 	Widget widget;
 	@SuppressWarnings("unused")
 	private ClientFactoryImpl clientFactory;
@@ -55,6 +58,7 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	private void init() {
+		errorServer.setVisible(false);
 		storage = Storage.getLocalStorageIfSupported();
 		final String privacyKey = "isPrivacyValidated";
 		String privacyValue = "";
@@ -97,13 +101,18 @@ public class ArchitectureViewImpl extends Composite implements ArchitectureView 
 	}
 
 	@Override
-	public BannerViewImpl getBanner() {
-		return banner;
+	public ErrorServerViewImpl getErrorServerView() {
+		return null;
 	}
 
 	@Override
 	public BannerLanguageViewImpl getLanguageView() {
 		return bannerLanguage;
+	}
+
+	@Override
+	public BannerViewImpl getBanner() {
+		return banner;
 	}
 
 	@Override

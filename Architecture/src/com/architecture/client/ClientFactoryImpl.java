@@ -54,7 +54,6 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -477,7 +476,8 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO : Gérer les cas d'échec
-				Window.alert("TODO : manage Server Error");
+				appWidget.getErrorServerView().setVisible(true);
+				appWidget.getErrorServerView().setMessage(appWidget.getErrorServerView().getMessage() + " ErrorLoadGTMRedirect");
 			}
 		});
 	}
@@ -501,7 +501,8 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO : Gérer les cas d'échec
-				Window.alert("TODO : manage Server Error");
+				appWidget.getErrorServerView().setVisible(true);
+				appWidget.getErrorServerView().setMessage(appWidget.getErrorServerView().getMessage() + " ErrorLoadGTM");
 			}
 		});
 	}
