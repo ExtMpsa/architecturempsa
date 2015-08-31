@@ -9,12 +9,12 @@
     <welcome-file>Architecture.html</welcome-file>
   </welcome-file-list>
   
-	<!-- Manifest for App Cache -->
-	<mime-mapping>
-	<extension>manifest</extension>
-	<mime-type>text/cache-manifest</mime-type>
-	</mime-mapping>
-
+  <!-- Manifest for App Cache -->
+  <mime-mapping>     
+     <extension>manifest</extension>     
+     <mime-type>text/cache-manifest</mime-type>   
+ </mime-mapping> 
+  
 	<!-- Slim3 -->
 	<context-param>
         <param-name>slim3.rootPackage</param-name>
