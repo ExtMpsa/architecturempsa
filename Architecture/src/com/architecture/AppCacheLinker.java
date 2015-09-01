@@ -26,6 +26,7 @@ public class AppCacheLinker extends AbstractLinker {
 		builder.append("CACHE:\n");
 
 		builder.append("/Architecture.html\n");
+		builder.append("/favicon.ico\n");
 		for (EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
 			if (emitted.isPrivate()) {
 				continue;
@@ -34,6 +35,12 @@ public class AppCacheLinker extends AbstractLinker {
 				continue;
 			}
 			if (emitted.getPartialPath().endsWith(".txt")) {
+				continue;
+			}
+			if (emitted.getPartialPath().endsWith("junit.html")) {
+				continue;
+			}
+			if (emitted.getPartialPath().endsWith("junit-standards.html")) {
 				continue;
 			}
 			// TODO : manage gwt.rpc

@@ -15,7 +15,7 @@
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>
     
-	<include path="**.html" expiration="60s">
+	<include path="**.html" expiration="1d">
     	<http-header name="Content-Type" value="text/html; charset=UTF-8" />
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>
@@ -43,7 +43,7 @@
     	<http-header name="Vary" value="Accept-Encoding" />
     	<http-header name="Content-Type" value="application/x-javascript" />
     </include>	
-     <include path="/**.devmode.js" expiration="0s">
+    <include path="/**.devmode.js" expiration="0s">
     	<http-header name="Vary" value="Accept-Encoding" />
     	<http-header name="Content-Type" value="application/x-javascript" />
     </include>
