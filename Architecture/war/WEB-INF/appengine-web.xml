@@ -24,7 +24,7 @@
     	<http-header name="Vary" value="Accept-Encoding" />
     	<http-header name="Content-Type" value="application/font-woff" />
     </include>
-     <include path="**.manifest" expiration="0s" >
+     <include path="**.appcache" expiration="0s" >
     	<http-header name="Vary" value="Accept-Encoding" />
     	<http-header name="Content-Type" value="text/cache-manifest" />
     </include>

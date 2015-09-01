@@ -46,7 +46,7 @@ public class AppCacheLinker extends AbstractLinker {
 		builder.append("/architecture/architecture.nocache.js\n");
 		builder.append("NETWORK:\n");
 		builder.append("*\n");
-		EmittedArtifact manifest = emitString(logger, builder.toString(), "appcache.manifest");
+		EmittedArtifact manifest = emitString(logger, builder.toString(), "architecture.appcache");
 		artifactset.add(manifest);
 		return artifactset;
 	}
