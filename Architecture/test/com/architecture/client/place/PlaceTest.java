@@ -23,7 +23,7 @@ public class PlaceTest extends AppEngineTestCase {
 		assertThat(place, is(notNullValue()));
 		HomePlace.Tokenizer tokenizer = new HomePlace.Tokenizer();
 		assertThat(tokenizer.getPlace(""), is(notNullValue()));
-		assertThat(tokenizer.getToken(place), is(nullValue()));
+		assertThat(tokenizer.getToken(place), is(""));
 	}
 
 	@Test
@@ -73,6 +73,6 @@ public class PlaceTest extends AppEngineTestCase {
 		assertThat(place, is(notNullValue()));
 		WebAnalyticsPlace.Tokenizer tokenizer = new WebAnalyticsPlace.Tokenizer();
 		assertThat(tokenizer.getPlace(""), is(notNullValue()));
-		assertThat(tokenizer.getToken(place), is(nullValue()));
+		assertThat(tokenizer.getToken(place), is(""));
 	}
 }
