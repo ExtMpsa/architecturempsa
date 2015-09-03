@@ -4,29 +4,29 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
 
-public class HomePlace extends Place {
+public class WebAnalyticsPlace extends Place {
 	private String token = "";
 
-	public HomePlace() {
+	public WebAnalyticsPlace() {
 	}
 
 	public String getToken() {
 		return this.token;
 	}
 
-	@Prefix(value = "!Home")
-	public static class Tokenizer implements PlaceTokenizer<HomePlace> {
+	@Prefix(value = "!WebAnalytics")
+	public static class Tokenizer implements PlaceTokenizer<WebAnalyticsPlace> {
 
 		// TODO :
 		// Activity & Place add new Item. This item break the history. Have to fix it : look CreateAccountActivity.
 		@Override
-		public String getToken(HomePlace place) {
+		public String getToken(WebAnalyticsPlace place) {
 			return place.getToken();
 		}
 
 		@Override
-		public HomePlace getPlace(String token) {
-			return new HomePlace();
+		public WebAnalyticsPlace getPlace(String token) {
+			return new WebAnalyticsPlace();
 		}
 	}
 }

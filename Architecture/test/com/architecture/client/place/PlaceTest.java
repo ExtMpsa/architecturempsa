@@ -66,4 +66,13 @@ public class PlaceTest extends AppEngineTestCase {
 		assertThat(tokenizer.getPlace(token), is(notNullValue()));
 		assertThat(tokenizer.getToken(place), is(token));
 	}
+
+	@Test
+	public void webAnalyticsPlaceTest() {
+		WebAnalyticsPlace place = new WebAnalyticsPlace();
+		assertThat(place, is(notNullValue()));
+		WebAnalyticsPlace.Tokenizer tokenizer = new WebAnalyticsPlace.Tokenizer();
+		assertThat(tokenizer.getPlace(""), is(notNullValue()));
+		assertThat(tokenizer.getToken(place), is(nullValue()));
+	}
 }
