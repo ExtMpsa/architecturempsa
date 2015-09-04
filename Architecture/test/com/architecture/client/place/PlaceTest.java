@@ -14,7 +14,7 @@ public class PlaceTest extends AppEngineTestCase {
 		assertThat(place, is(notNullValue()));
 		AccountParamsPlace.Tokenizer tokenizer = new AccountParamsPlace.Tokenizer();
 		assertThat(tokenizer.getPlace(""), is(notNullValue()));
-		assertThat(tokenizer.getToken(place), is(nullValue()));
+		assertThat(tokenizer.getToken(place), is(""));
 	}
 
 	@Test

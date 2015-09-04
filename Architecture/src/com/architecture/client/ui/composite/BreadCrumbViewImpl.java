@@ -36,9 +36,11 @@ public class BreadCrumbViewImpl extends Composite {
 	public void setPlace(AppToken token) {
 		decoration.clear();
 		decoration.add(dipet);
-		dipet.getElement().removeClassName("current");
+		dipet.getElement().addClassName("current");
 		switch (token) {
 		case ACCOUNTSETTING:
+			dipet.getElement().removeClassName("current");
+			addItem(navigationText.settings(), "#" + AppToken.ACCOUNTSETTING.getToken(), "current");
 			break;
 		case HOME:
 			// Do nothing
@@ -50,20 +52,25 @@ public class BreadCrumbViewImpl extends Composite {
 		case SEO:
 			break;
 		case SIGNIN:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.signIn(), "#" + AppToken.SIGNIN.getToken(), "current");
 			break;
 		case SIGNUP:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "current");
 			break;
 		case SIGNUPLOGIN:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "element");
 			addItem(navigationText.signUpLogin(), "#" + AppToken.SIGNUPLOGIN.getToken(), "current");
 			break;
 		case SIGNUPPASSWORD:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "element");
 			addItem(navigationText.signUpPassword(), "#" + AppToken.SIGNUPPASSWORD.getToken(), "current");
 			break;
 		case SIGNUPPASSWORDVERIFY:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
 			addItem(navigationText.signUpPasswordVerify(), "#" + AppToken.SIGNUPPASSWORDVERIFY.getToken(), "current");
 			break;
@@ -72,11 +79,13 @@ public class BreadCrumbViewImpl extends Composite {
 		case TRACINGPAPER:
 			break;
 		case TRAINING:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.training(), "#" + AppToken.TRAINING.getToken(), "current");
 			break;
 		case UX:
 			break;
 		case WEBANALYTICS:
+			dipet.getElement().removeClassName("current");
 			addItem(navigationText.webAnalytics(), "#" + AppToken.WEBANALYTICS.getToken(), "current");
 			break;
 		case WEBAPPLICATION:

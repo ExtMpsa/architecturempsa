@@ -29,7 +29,7 @@ public interface NavigationText extends Constants {
 
 	String signIn();
 
-	String parameter();
+	String settings();
 
 	String disconnection();
 }

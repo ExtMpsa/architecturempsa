@@ -53,7 +53,7 @@ public class NavigationViewImpl extends Composite {
 	@UiField
 	HTMLPanel navLeft;
 	@UiField
-	Anchor accountParameter;
+	Anchor accountSetting;
 	@UiField
 	Anchor disconnection;
 
@@ -110,9 +110,9 @@ public class NavigationViewImpl extends Composite {
 		signIn.setHash("#" + AppToken.SIGNIN.getToken() + ":");
 		signIn.getElement().setId("signIn");
 
-		accountParameter.setText(navigationText.parameter().toUpperCase());
-		accountParameter.setHash("#" + AppToken.ACCOUNTSETTING.getToken());
-		accountParameter.getElement().setId("parameter");
+		accountSetting.setText(navigationText.settings().toUpperCase());
+		accountSetting.setHash("#" + AppToken.ACCOUNTSETTING.getToken());
+		accountSetting.getElement().setId("parameter");
 
 		disconnection.setText(navigationText.disconnection().toUpperCase());
 		disconnection.setHash("#");
@@ -125,12 +125,12 @@ public class NavigationViewImpl extends Composite {
 		if (userConnected) {
 			signIn.setVisible(false);
 			signUp.setVisible(false);
-			accountParameter.setVisible(true);
+			accountSetting.setVisible(true);
 			disconnection.setVisible(true);
 		} else {
 			signIn.setVisible(true);
 			signUp.setVisible(true);
-			accountParameter.setVisible(false);
+			accountSetting.setVisible(false);
 			disconnection.setVisible(false);
 		}
 	}
@@ -139,6 +139,7 @@ public class NavigationViewImpl extends Composite {
 		removeClassSelected();
 		switch (token) {
 		case ACCOUNTSETTING:
+			accountSetting.getElement().addClassName("selected");
 			break;
 		case HOME:
 			// Do nothing
@@ -200,6 +201,7 @@ public class NavigationViewImpl extends Composite {
 		userExperience.getElement().removeClassName("selected");
 		signUp.getElement().removeClassName("selected");
 		signIn.getElement().removeClassName("selected");
+		accountSetting.getElement().removeClassName("selected");
 	}
 
 	public void disconnect() {
@@ -294,8 +296,8 @@ public class NavigationViewImpl extends Composite {
 		disconnect();
 	}
 
-	@UiHandler("accountParameter")
-	void onAccountParameterClick(ClickEvent event) {
+	@UiHandler("accountSetting")
+	void onAccountSettingClick(ClickEvent event) {
 	}
 
 	private boolean loaderExist() {

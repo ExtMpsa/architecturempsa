@@ -370,6 +370,8 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onActivity(ActivityEvent event) {
 				switch (event.getActivityName()) {
 				case ACCOUNTSETTING:
+					getNavigationView().selected(AppToken.ACCOUNTSETTING);
+					getBreadCrumbView().setPlace(AppToken.ACCOUNTSETTING);
 					break;
 				case HOME:
 					getNavigationView().selected(AppToken.HOME);
@@ -381,6 +383,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					break;
 				case SIGNUP:
 					getNavigationView().selected(AppToken.SIGNUP);
+					getBreadCrumbView().setPlace(AppToken.SIGNIN);
 					break;
 				case SIGNUPLOGIN:
 					getNavigationView().selected(AppToken.SIGNUP);
@@ -458,7 +461,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					gtmLoaded = true;
 					History.newItem("");
 				} else {
-					History.newItem("!AccountParameter:");
+					History.newItem(AppToken.ACCOUNTSETTING.getToken());
 				}
 			}
 

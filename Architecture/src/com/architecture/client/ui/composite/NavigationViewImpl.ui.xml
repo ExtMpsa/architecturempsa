@@ -19,7 +19,7 @@
 			<g:HTMLPanel ui:field="navRight" styleName="nav-right">
 				<p1:Anchor ui:field="signUp" text="Sign Up"/>
 				<p1:Anchor ui:field="signIn" text="Sign In"/>
-				<p1:Anchor text="Account Parameter" ui:field="accountParameter"/>
+				<p1:Anchor text="Account Setting" ui:field="accountSetting"/>
 				<p1:Anchor text="Disconnection" ui:field="disconnection"/>
 			</g:HTMLPanel>
 		</g:HTMLPanel>
