@@ -7,8 +7,8 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.account.SignUpEvent;
-import com.architecture.client.mvp.SignUpStep;
+import com.architecture.client.event.ActivityEvent;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.SignUpPlace;
 import com.architecture.client.ui.account.SignUpPasswordViewImpl;
 import com.architecture.client.ui.account.SignUpView;
@@ -54,10 +54,10 @@ public class SignUpActivity extends ArchitectureActivity {
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!SignUp:password");
+				historyReplaceState(AppToken.SIGNUPPASSWORD.getToken());
 			}
 			signUpView = new SignUpPasswordViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.PASSWORD));
+			clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.SIGNUPPASSWORD));
 		} else if (step.equalsIgnoreCase("passwordVerify") && validateMailClient(clientFactory.getAccountToCreate().getMail())
 				&& validatePasswordClient(clientFactory.getAccountToCreate().getPassword()).isEmpty()) {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:passwordVerify"));
@@ -66,10 +66,10 @@ public class SignUpActivity extends ArchitectureActivity {
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!SignUp:passwordVerify");
+				historyReplaceState(AppToken.SIGNUPPASSWORDVERIFY.getToken());
 			}
 			signUpView = new SignUpPasswordViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.PASSWORDVERIFY));
+			clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.SIGNUPPASSWORDVERIFY));
 		} else {
 			// Window.Location.replace(Window.Location.getHref().replaceFirst(History.getToken(), "!SignUp:login"));
 			if (!step.equals("login")) {
@@ -77,10 +77,10 @@ public class SignUpActivity extends ArchitectureActivity {
 				if (!ClientFactoryImpl.isLoaded()) {
 					ClientFactoryImpl.redirectFirstLoad = true;
 				}
-				historyReplaceState("!SignUp:login");
+				historyReplaceState(AppToken.SIGNUPLOGIN.getToken());
 			}
 			signUpView = new SignUpViewImpl();
-			clientFactory.getEventBus().fireEvent(new SignUpEvent(SignUpStep.LOGIN));
+			clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.SIGNUPLOGIN));
 		}
 		signUpView.setAccount(account);
 		signUpView.setActivity(this);

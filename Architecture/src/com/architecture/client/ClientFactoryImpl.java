@@ -9,8 +9,6 @@ import com.architecture.client.event.ActivityEvent;
 import com.architecture.client.event.ActivityHandler;
 import com.architecture.client.event.account.SignInSuccessEvent;
 import com.architecture.client.event.account.SignInSuccessHandler;
-import com.architecture.client.event.account.SignUpEvent;
-import com.architecture.client.event.account.SignUpHandler;
 import com.architecture.client.mvp.AppActivityMapper;
 import com.architecture.client.mvp.AppPlaceHistoryMapper;
 import com.architecture.client.mvp.AppToken;
@@ -368,7 +366,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	// Bind
 	private void bindBeforeLoadingPlace() {
 		eventBus.addHandler(ActivityEvent.TYPE, new ActivityHandler() {
-
 			@Override
 			public void onActivity(ActivityEvent event) {
 				switch (event.getActivityName()) {
@@ -410,29 +407,6 @@ public class ClientFactoryImpl implements ClientFactory {
 				default:
 					break;
 				}
-			}
-		});
-
-		eventBus.addHandler(SignUpEvent.TYPE, new SignUpHandler() {
-
-			@Override
-			public void onSignUp(SignUpEvent event) {
-				getNavigationView().selected(AppToken.SIGNUP);
-				switch (event.getStep()) {
-				case LOGIN:
-					getBreadCrumbView().setPlace(AppToken.SIGNUPLOGIN);
-					break;
-				case PASSWORD:
-					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORD);
-					break;
-				case PASSWORDVERIFY:
-					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORDVERIFY);
-					break;
-				default:
-					getBreadCrumbView().setPlace(AppToken.SIGNUP);
-					break;
-				}
-
 			}
 		});
 	}
