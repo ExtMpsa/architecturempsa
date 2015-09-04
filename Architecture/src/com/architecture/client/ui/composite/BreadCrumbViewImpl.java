@@ -63,7 +63,10 @@ public class BreadCrumbViewImpl extends Composite {
 			addItem(navigationText.signUpPasswordVerify(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.PASSWORDVERIFY.getStep(), "current");
 			break;
 		case TRAINING:
-			addItem(navigationText.training(), "#!Training:", "current");
+			addItem(navigationText.training(), "#" + AppToken.TRAINING.getToken() + ":", "current");
+			break;
+		case WEBANALYTICS:
+			addItem(navigationText.webAnalytics(), "#" + AppToken.WEBANALYTICS.getToken() + ":", "current");
 			break;
 		default:
 			break;

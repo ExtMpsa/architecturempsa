@@ -54,7 +54,7 @@ public class PlaceTest extends AppEngineTestCase {
 		assertThat(place, is(notNullValue()));
 		TracingPaperPlace.Tokenizer tokenizer = new TracingPaperPlace.Tokenizer();
 		assertThat(tokenizer.getPlace(""), is(notNullValue()));
-		assertThat(tokenizer.getToken(place), is(nullValue()));
+		assertThat(tokenizer.getToken(place), is(""));
 	}
 
 	@Test

@@ -138,14 +138,51 @@ public class NavigationViewImpl extends Composite {
 	public void selected(AppToken token) {
 		removeClassSelected();
 		switch (token) {
-		case TRAINING:
-			training.getElement().addClassName("selected");
+		case ACCOUNTSETTING:
+			break;
+		case HOME:
+			// Do nothing
+			break;
+		case METHODS:
+			methodology.getElement().addClassName("selected");
+			break;
+		case PERFORMANCE:
+			performance.getElement().addClassName("selected");
+			break;
+		case SEO:
+			seo.getElement().addClassName("selected");
+			break;
+		case SIGNIN:
+			signIn.getElement().addClassName("selected");
 			break;
 		case SIGNUP:
 			signUp.getElement().addClassName("selected");
 			break;
-		case SIGNIN:
-			signIn.getElement().addClassName("selected");
+		case SIGNUPLOGIN:
+			signUp.getElement().addClassName("selected");
+			break;
+		case SIGNUPPASSWORD:
+			signUp.getElement().addClassName("selected");
+			break;
+		case SIGNUPPASSWORDVERIFY:
+			signUp.getElement().addClassName("selected");
+			break;
+		case TOOLS:
+			tools.getElement().addClassName("selected");
+			break;
+		case TRACINGPAPER:
+			break;
+		case TRAINING:
+			training.getElement().addClassName("selected");
+			break;
+		case UX:
+			userExperience.getElement().addClassName("selected");
+			break;
+		case WEBANALYTICS:
+			webAnalytics.getElement().addClassName("selected");
+			break;
+		case WEBAPPLICATION:
+			webApp.getElement().addClassName("selected");
 			break;
 		default:
 			break;

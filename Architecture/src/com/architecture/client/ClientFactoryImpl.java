@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import com.architecture.client.event.ActivityEvent;
+import com.architecture.client.event.ActivityHandler;
 import com.architecture.client.event.HomeEvent;
 import com.architecture.client.event.HomeHandler;
 import com.architecture.client.event.TrainingEvent;
@@ -386,6 +388,52 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onHome(HomeEvent event) {
 				getNavigationView().selected(AppToken.HOME);
 				getBreadCrumbView().setPlace(AppToken.HOME);
+			}
+		});
+
+		eventBus.addHandler(ActivityEvent.TYPE, new ActivityHandler() {
+
+			@Override
+			public void onActivity(ActivityEvent event) {
+				switch (event.getActivityName()) {
+				case ACCOUNTSETTING:
+					break;
+				case HOME:
+					getNavigationView().selected(AppToken.HOME);
+					getBreadCrumbView().setPlace(AppToken.HOME);
+					break;
+				case SIGNIN:
+					getNavigationView().selected(AppToken.SIGNIN);
+					getBreadCrumbView().setPlace(AppToken.SIGNIN);
+					break;
+				case SIGNUP:
+					getNavigationView().selected(AppToken.SIGNUP);
+					break;
+				case SIGNUPLOGIN:
+					getNavigationView().selected(AppToken.SIGNUP);
+					getBreadCrumbView().setPlace(AppToken.SIGNUPLOGIN);
+					break;
+				case SIGNUPPASSWORD:
+					getNavigationView().selected(AppToken.SIGNUP);
+					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORD);
+					break;
+				case SIGNUPPASSWORDVERIFY:
+					getNavigationView().selected(AppToken.SIGNUP);
+					getBreadCrumbView().setPlace(AppToken.SIGNUPPASSWORDVERIFY);
+					break;
+				case TRACINGPAPER:
+					break;
+				case TRAINING:
+					getNavigationView().selected(AppToken.TRAINING);
+					getBreadCrumbView().setPlace(AppToken.TRAINING);
+					break;
+				case WEBANALYTICS:
+					getNavigationView().selected(AppToken.WEBANALYTICS);
+					getBreadCrumbView().setPlace(AppToken.WEBANALYTICS);
+					break;
+				default:
+					break;
+				}
 			}
 		});
 
