@@ -6,7 +6,8 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.account.SignInEvent;
+import com.architecture.client.event.ActivityEvent;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.SignInPlace;
 import com.architecture.client.ui.account.SignInView;
 import com.architecture.shared.model.Account;
@@ -40,7 +41,7 @@ public class SignInActivity extends ArchitectureActivity {
 			signInView.resetPasswordError();
 		}
 		containerWidget.setWidget(signInView.asWidget());
-		clientFactory.getEventBus().fireEvent(new SignInEvent());
+		clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.SIGNIN));
 		removeLoader();
 	}
 

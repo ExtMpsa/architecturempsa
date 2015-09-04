@@ -70,48 +70,48 @@ public class NavigationViewImpl extends Composite {
 		NavigationText navigationText = GWT.create(NavigationText.class);
 
 		training.setText(navigationText.training().toUpperCase());
-		training.setHash("#!Training:");
+		training.setHash("#" + AppToken.TRAINING.getToken());
 		training.getElement().setId("training");
 
 		webApp.setText(navigationText.webApp().toUpperCase());
-		webApp.setHash("#!WebApplication:");
+		webApp.setHash("#" + AppToken.WEBAPPLICATION.getToken());
 		webApp.getElement().setId("webApp");
 
 		performance.setText(navigationText.performance().toUpperCase());
-		performance.setHash("#!Performance:");
+		performance.setHash("#" + AppToken.PERFORMANCE.getToken());
 		performance.getElement().setId("performance");
 
 		seo.setText(navigationText.seo().toUpperCase());
-		seo.setHash("#!SEO:");
+		seo.setHash("#" + AppToken.SEO.getToken());
 		seo.getElement().setId("seo");
 
 		webAnalytics.setText(navigationText.webAnalytics().toUpperCase());
-		webAnalytics.setHash("#!WebAnalytics:");
+		webAnalytics.setHash("#" + AppToken.WEBANALYTICS.getToken());
 		webAnalytics.getElement().setId("webAnalytics");
 
 		tools.setText(navigationText.tools().toUpperCase());
-		tools.setHash("#!WebAnalytics:");
+		tools.setHash("#" + AppToken.TOOLS.getToken());
 		tools.getElement().setId("tools");
 
 		methodology.setText(navigationText.methodology().toUpperCase());
-		methodology.setHash("#!WebAnalytics:");
+		methodology.setHash("#" + AppToken.METHODS.getToken());
 		methodology.getElement().setId("methodology");
 
 		userExperience.setText(navigationText.userExperience().toUpperCase());
-		userExperience.setHash("#!UserExperience:");
+		userExperience.setHash("#" + AppToken.UX.getToken());
 		userExperience.getElement().setId("userExperience");
 
 		signUp.setText(navigationText.signUp().toUpperCase());
-		signUp.setHash("#!SignUp:login");
+		signUp.setHash("#" + AppToken.SIGNUPLOGIN.getToken());
 		signUp.getElement().setId("signUp");
 		signUp.getElement().addClassName("signUp");
 
 		signIn.setText(navigationText.signIn().toUpperCase());
-		signIn.setHash("#!SignIn:");
+		signIn.setHash("#" + AppToken.SIGNIN.getToken() + ":");
 		signIn.getElement().setId("signIn");
 
 		accountParameter.setText(navigationText.parameter().toUpperCase());
-		accountParameter.setHash("#!AccountParameter:");
+		accountParameter.setHash("#" + AppToken.ACCOUNTSETTING.getToken());
 		accountParameter.getElement().setId("parameter");
 
 		disconnection.setText(navigationText.disconnection().toUpperCase());

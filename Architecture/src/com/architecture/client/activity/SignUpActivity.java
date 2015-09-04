@@ -41,7 +41,7 @@ public class SignUpActivity extends ArchitectureActivity {
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		this.containerWidget = containerWidget;
 		setStep(step);
-		// clientFactory.getEventBus().fireEvent(new SignUpEvent());
+		// clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.SIGNUP));
 		removeLoader();
 	}
 

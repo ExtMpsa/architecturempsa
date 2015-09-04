@@ -1,7 +1,6 @@
 package com.architecture.client.ui.composite;
 
 import com.architecture.client.mvp.AppToken;
-import com.architecture.client.mvp.SignUpStep;
 import com.architecture.client.resources.ResourcesBreadCrumb;
 import com.architecture.client.resources.txt.NavigationText;
 import com.architecture.client.ui.widget.Anchor;
@@ -44,29 +43,43 @@ public class BreadCrumbViewImpl extends Composite {
 		case HOME:
 			// Do nothing
 			break;
+		case METHODS:
+			break;
+		case PERFORMANCE:
+			break;
+		case SEO:
+			break;
 		case SIGNIN:
-			addItem(navigationText.signIn(), "#" + AppToken.SIGNIN.getToken() + ":", "current");
+			addItem(navigationText.signIn(), "#" + AppToken.SIGNIN.getToken(), "current");
 			break;
 		case SIGNUP:
-			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "current");
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "current");
 			break;
 		case SIGNUPLOGIN:
-			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
-			addItem(navigationText.signUpLogin(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.LOGIN.getStep(), "current");
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "element");
+			addItem(navigationText.signUpLogin(), "#" + AppToken.SIGNUPLOGIN.getToken(), "current");
 			break;
 		case SIGNUPPASSWORD:
-			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
-			addItem(navigationText.signUpPassword(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.PASSWORD.getStep(), "current");
+			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken(), "element");
+			addItem(navigationText.signUpPassword(), "#" + AppToken.SIGNUPPASSWORD.getToken(), "current");
 			break;
 		case SIGNUPPASSWORDVERIFY:
 			addItem(navigationText.signUp(), "#" + AppToken.SIGNUP.getToken() + ":", "element");
-			addItem(navigationText.signUpPasswordVerify(), "#" + AppToken.SIGNUP.getToken() + ":" + SignUpStep.PASSWORDVERIFY.getStep(), "current");
+			addItem(navigationText.signUpPasswordVerify(), "#" + AppToken.SIGNUPPASSWORDVERIFY.getToken(), "current");
+			break;
+		case TOOLS:
+			break;
+		case TRACINGPAPER:
 			break;
 		case TRAINING:
-			addItem(navigationText.training(), "#" + AppToken.TRAINING.getToken() + ":", "current");
+			addItem(navigationText.training(), "#" + AppToken.TRAINING.getToken(), "current");
+			break;
+		case UX:
 			break;
 		case WEBANALYTICS:
-			addItem(navigationText.webAnalytics(), "#" + AppToken.WEBANALYTICS.getToken() + ":", "current");
+			addItem(navigationText.webAnalytics(), "#" + AppToken.WEBANALYTICS.getToken(), "current");
+			break;
+		case WEBAPPLICATION:
 			break;
 		default:
 			break;

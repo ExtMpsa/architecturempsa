@@ -7,12 +7,6 @@ import javax.validation.Validator;
 
 import com.architecture.client.event.ActivityEvent;
 import com.architecture.client.event.ActivityHandler;
-import com.architecture.client.event.HomeEvent;
-import com.architecture.client.event.HomeHandler;
-import com.architecture.client.event.TrainingEvent;
-import com.architecture.client.event.TrainingHandler;
-import com.architecture.client.event.account.SignInEvent;
-import com.architecture.client.event.account.SignInHandler;
 import com.architecture.client.event.account.SignInSuccessEvent;
 import com.architecture.client.event.account.SignInSuccessHandler;
 import com.architecture.client.event.account.SignUpEvent;
@@ -373,24 +367,6 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	// Bind
 	private void bindBeforeLoadingPlace() {
-		eventBus.addHandler(TrainingEvent.TYPE, new TrainingHandler() {
-
-			@Override
-			public void onTraining(TrainingEvent event) {
-				getNavigationView().selected(AppToken.TRAINING);
-				getBreadCrumbView().setPlace(AppToken.TRAINING);
-			}
-		});
-
-		eventBus.addHandler(HomeEvent.TYPE, new HomeHandler() {
-
-			@Override
-			public void onHome(HomeEvent event) {
-				getNavigationView().selected(AppToken.HOME);
-				getBreadCrumbView().setPlace(AppToken.HOME);
-			}
-		});
-
 		eventBus.addHandler(ActivityEvent.TYPE, new ActivityHandler() {
 
 			@Override
@@ -434,15 +410,6 @@ public class ClientFactoryImpl implements ClientFactory {
 				default:
 					break;
 				}
-			}
-		});
-
-		eventBus.addHandler(SignInEvent.TYPE, new SignInHandler() {
-
-			@Override
-			public void onSignIn(SignInEvent event) {
-				getNavigationView().selected(AppToken.SIGNIN);
-				getBreadCrumbView().setPlace(AppToken.SIGNIN);
 			}
 		});
 

@@ -1,7 +1,8 @@
 package com.architecture.client.activity;
 
 import com.architecture.client.ClientFactory;
-import com.architecture.client.event.TrainingEvent;
+import com.architecture.client.event.ActivityEvent;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.TrainingPlace;
 import com.architecture.client.ui.TrainingViewImpl;
 import com.google.gwt.event.shared.EventBus;
@@ -24,7 +25,7 @@ public class TrainingActivity extends ArchitectureActivity {
 			templateView.setAside(token);
 		}
 		containerWidget.setWidget(templateView.asWidget());
-		clientFactory.getEventBus().fireEvent(new TrainingEvent());
+		clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.TRAINING));
 		removeLoader();
 	}
 }

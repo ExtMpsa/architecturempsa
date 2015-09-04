@@ -6,7 +6,8 @@ import javax.validation.ConstraintViolation;
 
 import com.architecture.client.ClientFactory;
 import com.architecture.client.ClientFactoryImpl;
-import com.architecture.client.event.account.AccountParamsEvent;
+import com.architecture.client.event.ActivityEvent;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.place.AccountParamsPlace;
 import com.architecture.client.ui.account.AccountParamsView;
 import com.architecture.client.ui.account.AccountParamsViewImpl;
@@ -28,7 +29,7 @@ public class AccountParamsActivity extends ArchitectureActivity {
 		AccountParamsView accountParamsView = new AccountParamsViewImpl();
 		accountParamsView.setActivity(this);
 		containerWidget.setWidget(accountParamsView.asWidget());
-		clientFactory.getEventBus().fireEvent(new AccountParamsEvent());
+		clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.ACCOUNTSETTING));
 		removeLoader();
 	}
 
