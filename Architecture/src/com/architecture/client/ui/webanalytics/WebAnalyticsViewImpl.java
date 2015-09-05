@@ -1,10 +1,11 @@
 package com.architecture.client.ui.webanalytics;
 
-import com.architecture.client.resources.Resources;
+import com.architecture.client.resources.ResourcesWebAnalytics;
 import com.architecture.client.resources.txt.WebAnalyticsText;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -40,12 +41,14 @@ public class WebAnalyticsViewImpl extends Composite {
 	HTMLPanel prerequisites2;
 	@UiField
 	HTMLPanel analyticsAcademy;
+	@UiField
+	Anchor analyticsAcademyAnchor;
 
 	interface WebAnalyticsViewImplUiBinder extends UiBinder<Widget, WebAnalyticsViewImpl> {
 	}
 
 	public WebAnalyticsViewImpl() {
-		Resources.INSTANCE.css().ensureInjected();
+		ResourcesWebAnalytics.INSTANCE.css().ensureInjected();
 		initWidget(uiBinder.createAndBindUi(this));
 		WebAnalyticsText webAnalyticsText = GWT.create(WebAnalyticsText.class);
 		title.getElement().setInnerText(webAnalyticsText.title());
@@ -58,6 +61,8 @@ public class WebAnalyticsViewImpl extends Composite {
 		prerequisites1.getElement().setInnerText(webAnalyticsText.prerequisites1());
 		prerequisites2.getElement().setInnerText(webAnalyticsText.prerequisites2());
 		analyticsAcademy.getElement().setInnerText(webAnalyticsText.analyticsAcademy());
+		analyticsAcademyAnchor.setText(webAnalyticsText.analyticsAcademyAnchor());
+		analyticsAcademyAnchor.setHref("https://analyticsacademy.withgoogle.com/course01");
 	}
 
 }

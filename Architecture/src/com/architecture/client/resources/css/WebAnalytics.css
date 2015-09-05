@@ -1,1 +1,4 @@
 @CHARSET "UTF-8";
+.webAnalytics .inline{
+	display: inline-block;
+}

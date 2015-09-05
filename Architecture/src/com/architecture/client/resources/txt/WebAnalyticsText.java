@@ -22,4 +22,6 @@ public interface WebAnalyticsText extends Constants {
 	String prerequisites2();
 
 	String analyticsAcademy();
+
+	String analyticsAcademyAnchor();
 }

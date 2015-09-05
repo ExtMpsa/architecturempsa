@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel ui:field="wrapper" styleName="wrapper" tag="section">
+	<g:HTMLPanel ui:field="wrapper" styleName="webAnalytics wrapper" tag="section">
 		<g:HTMLPanel ui:field="content" styleName="content">
 			<g:HTMLPanel ui:field="article" tag="article">
 				<g:HTMLPanel ui:field="title" tag="h2">Title</g:HTMLPanel>
@@ -14,9 +14,10 @@
 				<g:HTMLPanel ui:field="goal2" tag="li">goal2</g:HTMLPanel>
 				<g:HTMLPanel ui:field="goal3" tag="li">goal3</g:HTMLPanel>
 				<g:HTMLPanel ui:field="tools" tag="p">tools</g:HTMLPanel>
-				<g:HTMLPanel ui:field="prerequisites1" tag="p">prerequisites1</g:HTMLPanel>
-				<g:HTMLPanel ui:field="prerequisites2" tag="p">prerequisites2</g:HTMLPanel>
-				<g:HTMLPanel ui:field="analyticsAcademy" tag="p">analyticsAcademy</g:HTMLPanel>
+				<g:HTMLPanel ui:field="prerequisites1" tag="li">prerequisites1</g:HTMLPanel>
+				<g:HTMLPanel ui:field="prerequisites2" tag="li">prerequisites2</g:HTMLPanel>
+				<g:HTMLPanel ui:field="analyticsAcademy" tag="p" styleName="inline">analyticsAcademy</g:HTMLPanel>
+				<g:Anchor ui:field="analyticsAcademyAnchor" text="Analytics Academy with Google" href="https://analyticsacademy.withgoogle.com/course01"/>
 			</g:HTMLPanel>
 			<g:HTMLPanel ui:field="aside" tag="aside"/>
 		</g:HTMLPanel>
