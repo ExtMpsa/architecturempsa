@@ -11,7 +11,7 @@
   <!-- Crawling servlet filter -->
   <filter>
       <filter-name>DigitalPerformanceTraining</filter-name>
-      <filter-class>com.architecture.server.CrawlServlet</filter-class>
+      <filter-class>com.architecture.server.GoogleCrawlerFilter</filter-class>
   </filter>
   <filter-mapping>
       <filter-name>DigitalPerformanceTraining</filter-name>
