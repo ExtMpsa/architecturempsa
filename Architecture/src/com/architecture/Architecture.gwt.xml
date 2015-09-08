@@ -48,6 +48,7 @@
   <!--   <set-property-fallback name="locale" value="fr"/>  -->
   <set-configuration-property name="locale.cookie" value="GWT_LOCALE" />
   <set-configuration-property name="locale.useragent" value="Y" />
+  <set-property-fallback name="user.agent" value="safari"/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>
