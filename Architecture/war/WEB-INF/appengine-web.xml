@@ -30,7 +30,9 @@
     </include>
 
     <!-- The following line requires App Engine 1.3.2 SDK -->
-    <include path="/**.nocache.*" expiration="365d" />
+    <include path="/**.nocache.*" expiration="365d">
+    	<http-header name="Vary" value="Accept-Encoding" />
+    </include>
     <include path="/**.cache.*" expiration="365d">
     	<http-header name="Vary" value="Accept-Encoding" />
     </include>

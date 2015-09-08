@@ -72,13 +72,11 @@ public final class GoogleCrawlerFilter implements Filter {
 		final HttpServletRequest httpRequest = (HttpServletRequest) request;
 		final String requestURI = httpRequest.getRequestURI();
 		final String queryString = httpRequest.getQueryString();
-		LOGGER.log(Level.INFO, "Uri requested + query : " + requestURI + "?" + queryString);
 		final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 		if ((queryString != null) && (queryString.contains(ESCAPED_FRAGMENT_FORMAT1))) {
 			// This is a Googlebot crawler request, let's return a static indexable html page
 			// post javascript execution, as rendered in the browser.
-			LOGGER.log(Level.INFO, "Googlebot crawler request with query : " + queryString);
 			final String domain = httpRequest.getServerName();
 			final int port = httpRequest.getServerPort();
 
@@ -88,7 +86,6 @@ public final class GoogleCrawlerFilter implements Filter {
 			final String urlStringWithHashFragment = requestURI + rewriteQueryString(queryString);
 			final String protocol = httpRequest.getScheme();
 			final URL urlWithHashFragment = new URL(protocol, domain, port, urlStringWithHashFragment);
-			LOGGER.log(Level.INFO, "URL : " + urlWithHashFragment.toString());
 			final WebRequest webRequest = new WebRequest(urlWithHashFragment);
 
 			// Use the headless browser to obtain an HTML snapshot.
@@ -144,6 +141,7 @@ public final class GoogleCrawlerFilter implements Filter {
 			out.close();
 		} else {
 			if (requestURI.contains(".nocache.")) {
+				LOGGER.log(Level.INFO, "Set Header Uri requested : " + requestURI);
 				// Ensure the gwt nocache bootstrapping file is never cached.
 				// References:
 				// http://stackoverflow.com/questions/4274053/how-to-clear-cache-in-gwt
@@ -154,6 +152,18 @@ public final class GoogleCrawlerFilter implements Filter {
 				httpResponse.setDateHeader("Expires", now.getTime() - 86400000L); // One day old.
 				httpResponse.setHeader("Pragma", "no-cache");
 				httpResponse.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+				httpResponse.setHeader("Vary", "Accept-Encoding");
+			} else if (requestURI.equalsIgnoreCase("/") || requestURI.equalsIgnoreCase("/Architecture.html")) {
+				final Date now = new Date();
+				httpResponse.setContentType("text/html; charset=UTF-8");
+				httpResponse.setDateHeader("Expires", now.getTime() + 30 * 86400000L);
+			} else if (requestURI.contains(".cache.")) {
+				final Date now = new Date();
+				httpResponse.setDateHeader("Expires", now.getTime() + 30 * 86400000L);
+			} else if (requestURI.contains("service.s3gwt")) {
+				final Date now = new Date();
+				httpResponse.setDateHeader("Expires", now.getTime() + 30 * 86400000L);
+				httpResponse.setDateHeader("Last-Modified", now.getTime());
 			}
 
 			filterChain.doFilter(request, response);
