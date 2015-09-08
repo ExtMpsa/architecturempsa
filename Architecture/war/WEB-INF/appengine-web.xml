@@ -48,6 +48,7 @@
     	<http-header name="Content-Type" value="application/x-javascript" />
     </include>
     <exclude path="**.gwt.rpc" />
+    <exclude path="**Architecture.html" />
   </static-files>
 
   <!-- Configure java.util.logging -->

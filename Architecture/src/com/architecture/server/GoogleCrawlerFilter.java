@@ -6,6 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -27,6 +29,8 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
  * Servlet that makes this application crawlable. ({@link https://developers.google.com/webmasters/ajax-crawling/docs/getting-started}
  */
 public final class GoogleCrawlerFilter implements Filter {
+	private final static Logger LOGGER = Logger.getLogger(GoogleCrawlerFilter.class.getName());
+
 	/**
 	 * Special URL token that gets passed from the crawler to the servlet filter. This token is used in case there are already existing query parameters.
 	 */
@@ -63,16 +67,18 @@ public final class GoogleCrawlerFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+		LOGGER.setLevel(Level.INFO);
 		// Grab the request uri and query strings.
 		final HttpServletRequest httpRequest = (HttpServletRequest) request;
 		final String requestURI = httpRequest.getRequestURI();
 		final String queryString = httpRequest.getQueryString();
+		LOGGER.log(Level.INFO, "Uri requested + query : " + requestURI + "?" + queryString);
 		final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 		if ((queryString != null) && (queryString.contains(ESCAPED_FRAGMENT_FORMAT1))) {
 			// This is a Googlebot crawler request, let's return a static indexable html page
 			// post javascript execution, as rendered in the browser.
-
+			LOGGER.log(Level.INFO, "Googlebot crawler request with query : " + queryString);
 			final String domain = httpRequest.getServerName();
 			final int port = httpRequest.getServerPort();
 
@@ -80,12 +86,13 @@ public final class GoogleCrawlerFilter implements Filter {
 			// -- basically remove _escaped_fragment_ from the query.
 			// Unescape any %XX characters as need be.
 			final String urlStringWithHashFragment = requestURI + rewriteQueryString(queryString);
-			final String protocol = httpRequest.getProtocol();
+			final String protocol = httpRequest.getScheme();
 			final URL urlWithHashFragment = new URL(protocol, domain, port, urlStringWithHashFragment);
+			LOGGER.log(Level.INFO, "URL : " + urlWithHashFragment.toString());
 			final WebRequest webRequest = new WebRequest(urlWithHashFragment);
 
 			// Use the headless browser to obtain an HTML snapshot.
-			webClient = new WebClient(BrowserVersion.FIREFOX_17);
+			webClient = new WebClient(BrowserVersion.getDefault());
 			webClient.getCache().clear();
 			webClient.getOptions().setJavaScriptEnabled(true);
 			webClient.getOptions().setThrowExceptionOnScriptError(false);
