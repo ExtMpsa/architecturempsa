@@ -31,8 +31,10 @@ public class BannerLanguageViewImpl extends Composite {
 	HTMLPanel content;
 	@UiField
 	SuggestBox search;
-	@UiField HTMLPanel cellLeft;
-	@UiField HTMLPanel cellRight;
+	@UiField
+	HTMLPanel cellLeft;
+	@UiField
+	HTMLPanel cellRight;
 
 	interface BannerFlagViewImplUiBinder extends UiBinder<Widget, BannerLanguageViewImpl> {
 	}
@@ -58,7 +60,7 @@ public class BannerLanguageViewImpl extends Composite {
 	private void init() {
 		LanguageChooserText languageChooserText = GWT.create(LanguageChooserText.class);
 
-		logo.setHash("#");
+		logo.setHash("#!");
 		logo.getElement().setId("logo");
 
 		langChooser.setStyleName("langChooser");

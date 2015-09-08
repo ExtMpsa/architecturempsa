@@ -53,9 +53,9 @@ public final class GoogleCrawlerFilter implements Filter {
 
 	private WebClient webClient = null;
 
-	private static final long _pumpEventLoopTimeoutMillis = 200;
-	private static final long _jsTimeoutMillis = 200;
-	private static final long _pageWaitMillis = 100;
+	private static final long _pumpEventLoopTimeoutMillis = 2000;
+	private static final long _jsTimeoutMillis = 2000;
+	private static final long _pageWaitMillis = 1000;
 	final int _maxLoopChecks = 2;
 
 	@Override
@@ -74,7 +74,10 @@ public final class GoogleCrawlerFilter implements Filter {
 		final String queryString = httpRequest.getQueryString();
 		final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+		LOGGER.log(Level.INFO, "Requested URI + query" + httpRequest.getRequestURI() + "?" + queryString);
+
 		if ((queryString != null) && (queryString.contains(ESCAPED_FRAGMENT_FORMAT1))) {
+			LOGGER.log(Level.INFO, "Googlebot crawler request : " + httpRequest.getRequestURI() + "?" + queryString);
 			// This is a Googlebot crawler request, let's return a static indexable html page
 			// post javascript execution, as rendered in the browser.
 			final String domain = httpRequest.getServerName();
