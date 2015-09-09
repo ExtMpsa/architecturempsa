@@ -53,9 +53,9 @@ public final class GoogleCrawlerFilter implements Filter {
 
 	private WebClient webClient = null;
 
-	private static final long _pumpEventLoopTimeoutMillis = 2000;
-	private static final long _jsTimeoutMillis = 2000;
-	private static final long _pageWaitMillis = 1000;
+	private static final long _pumpEventLoopTimeoutMillis = 4000;
+	private static final long _jsTimeoutMillis = 4000;
+	private static final long _pageWaitMillis = 2000;
 	final int _maxLoopChecks = 2;
 
 	@Override
