@@ -42,8 +42,8 @@
   <define-linker class="com.architecture.linker.AppCacheLinker" name="AppCacheLinker" />
   <add-linker name="AppCacheLinker" />
   
-  <!-- Linker for undefined.nocache.js -->
-  <define-linker class="com.architecture.linker.UndefinedNoCacheLinker" name="undefinedLinker" />
+  <!-- Linker for undefined.cache.js -->
+  <define-linker class="com.architecture.linker.UndefinedCacheLinker" name="undefinedLinker" />
   <add-linker name="undefinedLinker" />
   
   <!-- i18n property -->

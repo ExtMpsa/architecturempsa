@@ -13,8 +13,8 @@ import com.google.gwt.core.ext.linker.LinkerOrder;
 import com.google.gwt.core.ext.linker.LinkerOrder.Order;
 
 @LinkerOrder(Order.POST)
-public class UndefinedNoCacheLinker extends AbstractLinker {
-	private final static Logger LOGGER = Logger.getLogger(UndefinedNoCacheLinker.class.getName());
+public class UndefinedCacheLinker extends AbstractLinker {
+	private final static Logger LOGGER = Logger.getLogger(UndefinedCacheLinker.class.getName());
 
 	@Override
 	public String getDescription() {
@@ -33,7 +33,7 @@ public class UndefinedNoCacheLinker extends AbstractLinker {
 				break;
 			}
 		}
-		EmittedArtifact undefinedNocache = emitString(logger, builder.toString(), "undefined.nocache.js");
+		EmittedArtifact undefinedNocache = emitString(logger, builder.toString(), "undefined.cache.js");
 		artifactset.add(undefinedNocache);
 		return artifactset;
 	}
