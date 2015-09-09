@@ -1,4 +1,4 @@
-package com.architecture;
+package com.architecture.linker;
 
 import com.google.gwt.core.ext.LinkerContext;
 import com.google.gwt.core.ext.TreeLogger;

@@ -74,10 +74,10 @@ public final class GoogleCrawlerFilter implements Filter {
 		final String queryString = httpRequest.getQueryString();
 		final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-		LOGGER.log(Level.INFO, "Requested URI + query" + httpRequest.getRequestURI() + "?" + queryString);
+		LOGGER.log(Level.INFO, "Requested URL = " + httpRequest.getRequestURL());
 
 		if ((queryString != null) && (queryString.contains(ESCAPED_FRAGMENT_FORMAT1))) {
-			LOGGER.log(Level.INFO, "Googlebot crawler request : " + httpRequest.getRequestURI() + "?" + queryString);
+			LOGGER.log(Level.INFO, "Googlebot crawler request : " + httpRequest.getRequestURL());
 			// This is a Googlebot crawler request, let's return a static indexable html page
 			// post javascript execution, as rendered in the browser.
 			final String domain = httpRequest.getServerName();
@@ -144,7 +144,7 @@ public final class GoogleCrawlerFilter implements Filter {
 			out.close();
 		} else {
 			if (requestURI.contains(".nocache.")) {
-				LOGGER.log(Level.INFO, "Set Header Uri requested : " + requestURI);
+				LOGGER.log(Level.INFO, "Set Header Uri requested : " + httpRequest.getRequestURL());
 				// Ensure the gwt nocache bootstrapping file is never cached.
 				// References:
 				// http://stackoverflow.com/questions/4274053/how-to-clear-cache-in-gwt
@@ -176,7 +176,7 @@ public final class GoogleCrawlerFilter implements Filter {
 	/**
 	 * Maps from the query string that contains _escaped_fragment_ to one that doesn't, but is instead followed by a hash fragment. It also unescapes any characters that were escaped by the crawler.
 	 * If the query string does not contain _escaped_fragment_, it is not modified.
-	 * 
+	 *
 	 * @param queryString
 	 * @return A modified query string followed by a hash fragment if applicable. The non-modified query string otherwise.
 	 * @throws UnsupportedEncodingException

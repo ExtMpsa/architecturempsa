@@ -39,10 +39,14 @@
   <source path='shared'/>
   
   <!-- Linker for AppCache -->
-  <define-linker class="com.architecture.AppCacheLinker" name="AppCacheLinker" />
+  <define-linker class="com.architecture.linker.AppCacheLinker" name="AppCacheLinker" />
   <add-linker name="AppCacheLinker" />
   
+  <!-- Linker for undefined.nocache.js -->
+  <define-linker class="com.architecture.linker.UndefinedNoCacheLinker" name="undefinedLinker" />
+  <add-linker name="undefinedLinker" />
   
+  <!-- i18n property -->
   <extend-property name="locale" values="fr"/>
   <extend-property name="locale" values="en"/>
   <!--   <set-property-fallback name="locale" value="fr"/>  -->
