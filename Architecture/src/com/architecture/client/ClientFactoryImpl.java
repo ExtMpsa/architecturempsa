@@ -2,9 +2,12 @@ package com.architecture.client;
 
 import java.util.HashMap;
 
+import javax.annotation.Nonnull;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import com.architecture.client.appcache.ApplicationCache;
+import com.architecture.client.appcache.event.UpdateReadyEvent;
 import com.architecture.client.event.ActivityEvent;
 import com.architecture.client.event.ActivityHandler;
 import com.architecture.client.event.account.SignInSuccessEvent;
@@ -122,6 +125,22 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		// Event
 		bindAfterLoadingPlace();
+
+		// App Cache
+		final ApplicationCache cache = ApplicationCache.getApplicationCacheIfSupported();
+		if (null != cache) {
+			cache.addUpdateReadyHandler(new UpdateReadyEvent.Handler() {
+				@Override
+				public void onUpdateReadyEvent(@Nonnull final UpdateReadyEvent event) {
+					// Force a cache update if new version is available
+					cache.swapCache();
+				}
+			});
+
+			// Ask the browser to recheck the cache
+			cache.requestUpdate();
+		}
+
 	}
 
 	/** Holder */

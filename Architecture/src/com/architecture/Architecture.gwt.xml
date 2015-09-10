@@ -38,8 +38,8 @@
   <source path='shared'/>
   
   <!-- Linker for AppCache -->
-  <define-linker class="com.architecture.linker.AppCacheLinkerOld" name="AppCacheLinkerOld" />
-  <add-linker name="AppCacheLinkerOld" />
+<!--   <define-linker class="com.architecture.linker.AppCacheLinkerOld" name="AppCacheLinkerOld" /> -->
+<!--   <add-linker name="AppCacheLinkerOld" /> -->
   
   <!-- Start Module for Appcache advanced -->
   <!-- Module Client for Appcache advanced -->
@@ -64,6 +64,13 @@
   <define-linker name="appcache" class="com.architecture.linker.AppcacheLinker"/>
   <define-configuration-property name="appcache_static_files" is-multi-valued="true"/>
   <define-configuration-property name="appcache_fallback_files" is-multi-valued="true"/>
+  <add-linker name="appcache"/>
+  <extend-configuration-property name="appcache_static_files" value="./"/>
+  <extend-configuration-property name="appcache_static_files" value="Architecture.html"/>
+  <!-- configure fallback rules used by the client when offline -->
+  <extend-configuration-property name="appcache_fallback_files" value="online.png offline.png"/>
+  <extend-configuration-property name="appcache_fallback_files" value="myDynamicService.jsp  myOfflineData.json"/>
+  <extend-configuration-property name="appcache_fallback_files" value="time offline_time.txt"/>
   
   <!-- End Module for Appcache advanced -->
   

@@ -51,6 +51,7 @@
     </include>
     <exclude path="**.gwt.rpc" />
     <exclude path="**Architecture.html" />
+    <exclude path="**architecture.appcache" />
   </static-files>
 
   <!-- Configure java.util.logging -->
