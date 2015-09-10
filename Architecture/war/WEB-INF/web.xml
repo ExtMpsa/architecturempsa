@@ -8,6 +8,7 @@
   <welcome-file-list>
     <welcome-file>Architecture.html</welcome-file>
   </welcome-file-list>
+  
   <!-- Crawling servlet filter -->
   <filter>
       <filter-name>DigitalPerformanceTraining</filter-name>
@@ -23,7 +24,7 @@
      <extension>manifest</extension>     
      <mime-type>text/cache-manifest</mime-type>   
  </mime-mapping>
-  
+ 
 	<!-- Slim3 -->
 	<context-param>
         <param-name>slim3.rootPackage</param-name>

@@ -18,7 +18,7 @@ public class UndefinedCacheLinker extends AbstractLinker {
 
 	@Override
 	public String getDescription() {
-		return "undefined.nocache.js Linker";
+		return "undefined.cache.js Linker";
 	}
 
 	@Override
