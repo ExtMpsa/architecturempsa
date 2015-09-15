@@ -53,9 +53,9 @@ public final class GoogleCrawlerFilter implements Filter {
 
 	private WebClient webClient = null;
 
-	private static final long _pumpEventLoopTimeoutMillis = 4000;
-	private static final long _jsTimeoutMillis = 4000;
-	private static final long _pageWaitMillis = 2000;
+	private static final long _pumpEventLoopTimeoutMillis = 400;
+	private static final long _jsTimeoutMillis = 400;
+	private static final long _pageWaitMillis = 200;
 	final int _maxLoopChecks = 2;
 
 	@Override
@@ -92,7 +92,8 @@ public final class GoogleCrawlerFilter implements Filter {
 			final WebRequest webRequest = new WebRequest(urlWithHashFragment);
 
 			// Use the headless browser to obtain an HTML snapshot.
-			webClient = new WebClient(BrowserVersion.getDefault());
+			// webClient = new WebClient(BrowserVersion.getDefault());
+			webClient = new WebClient(BrowserVersion.CHROME);
 			webClient.getCache().clear();
 			webClient.getOptions().setJavaScriptEnabled(true);
 			webClient.getOptions().setThrowExceptionOnScriptError(false);
@@ -176,7 +177,7 @@ public final class GoogleCrawlerFilter implements Filter {
 	/**
 	 * Maps from the query string that contains _escaped_fragment_ to one that doesn't, but is instead followed by a hash fragment. It also unescapes any characters that were escaped by the crawler.
 	 * If the query string does not contain _escaped_fragment_, it is not modified.
-	 *
+	 * 
 	 * @param queryString
 	 * @return A modified query string followed by a hash fragment if applicable. The non-modified query string otherwise.
 	 * @throws UnsupportedEncodingException

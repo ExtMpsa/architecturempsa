@@ -10,14 +10,14 @@
   </welcome-file-list>
   
   <!-- Crawling servlet filter -->
-  <filter>
-      <filter-name>DigitalPerformanceTraining</filter-name>
-      <filter-class>com.architecture.server.GoogleCrawlerFilter</filter-class>
-  </filter>
-  <filter-mapping>
-      <filter-name>DigitalPerformanceTraining</filter-name>
-      <url-pattern>/*</url-pattern>
-  </filter-mapping>
+<!--   <filter> -->
+<!--       <filter-name>DigitalPerformanceTraining</filter-name> -->
+<!--       <filter-class>com.architecture.server.GoogleCrawlerFilter</filter-class> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--       <filter-name>DigitalPerformanceTraining</filter-name> -->
+<!--       <url-pattern>/*</url-pattern> -->
+<!--   </filter-mapping> -->
     
   <!-- Manifest for App Cache -->
   <mime-mapping>     
@@ -25,16 +25,28 @@
      <mime-type>text/cache-manifest</mime-type>   
   </mime-mapping>
   
-  <!-- Servlet for App Cache Advanced-->
+  <!-- MGWT Servlet for App Cache Advanced-->
   <servlet>
     <servlet-name>ManifestServlet</servlet-name>
-    <servlet-class>com.architecture.server.appcache.ManifestServlet</servlet-class>
+    <servlet-class>com.architecture.server.appcache.Html5ManifestI18nServlet</servlet-class>
   </servlet>
-  
+
   <servlet-mapping>
     <servlet-name>ManifestServlet</servlet-name>
-    <url-pattern>/architecture.appcache</url-pattern>
+    <url-pattern>/architecture.manifest</url-pattern>
   </servlet-mapping>
+  
+  <!-- Servlet for App Cache Advanced-->
+<!--   <servlet> -->
+<!--     <servlet-name>ManifestServlet</servlet-name> -->
+<!--     <servlet-class>com.architecture.server.appcache.ManifestServlet</servlet-class> -->
+<!--     <load-on-startup>1</load-on-startup> -->
+<!--   </servlet> -->
+  
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>ManifestServlet</servlet-name> -->
+<!--     <url-pattern>/architecture.appcache</url-pattern> -->
+<!--   </servlet-mapping> -->
  
 	<!-- Slim3 -->
 	<context-param>

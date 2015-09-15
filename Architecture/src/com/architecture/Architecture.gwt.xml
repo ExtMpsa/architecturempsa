@@ -15,6 +15,7 @@
   <inherits name="com.google.gwt.place.Place"/>
   <inherits name="com.google.gwt.editor.Editor"/>
   <inherits name="org.slim3.gwt.emul.S3Emulation" />
+  <inherits name="com.googlecode.mgwt.linker.Linker" />
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.architecture.client.Architecture'/>
@@ -37,54 +38,29 @@
   <source path='client'/>
   <source path='shared'/>
   
+  <!-- MGWT Linker for AppCache -->
+  <add-linker name="permutationmaplinker" />
+<!--   <extend-configuration-property name="html5manifestlinker_files" value="/Architecture.html" /> -->
+<!--   <extend-configuration-property name="html5manifestlinker_files" value="favicon.ico" /> -->
+
   <!-- Linker for AppCache -->
 <!--   <define-linker class="com.architecture.linker.AppCacheLinkerOld" name="AppCacheLinkerOld" /> -->
 <!--   <add-linker name="AppCacheLinkerOld" /> -->
   
-  <!-- Start Module for Appcache advanced -->
-  <!-- Module Client for Appcache advanced -->
-  <inherits name='com.google.gwt.event.Event'/>
-  <inherits name='com.google.web.bindery.event.Event'/>
-  <inherits name='com.google.gwt.dom.DOM'/>
-  <define-property name="appcacheSupport" values="maybe,no"/>
-  <set-property name="appcacheSupport" value="maybe"/>
-  <set-property name="appcacheSupport" value="no">
-    <any>
-      <when-property-is name="user.agent" value="ie6"/>
-      <when-property-is name="user.agent" value="ie7"/>
-      <when-property-is name="user.agent" value="ie8"/>
-    </any>
-  </set-property>
-  <replace-with class="com.architecture.client.appcache.ApplicationCache.NoSupportDetector">
-    <when-type-is class="com.architecture.client.appcache.ApplicationCache.SupportDetector"/>
-    <when-property-is name="appcacheSupport" value="no"/>
-  </replace-with>
-  
-  <!-- Module Linker for Appcache advanced -->
-  <define-linker name="appcache" class="com.architecture.linker.AppcacheLinker"/>
-  <define-configuration-property name="appcache_static_files" is-multi-valued="true"/>
-  <define-configuration-property name="appcache_fallback_files" is-multi-valued="true"/>
-  <add-linker name="appcache"/>
-  <extend-configuration-property name="appcache_static_files" value="./"/>
-  <extend-configuration-property name="appcache_static_files" value="Architecture.html"/>
-  <!-- configure fallback rules used by the client when offline -->
-  <extend-configuration-property name="appcache_fallback_files" value="online.png offline.png"/>
-  <extend-configuration-property name="appcache_fallback_files" value="myDynamicService.jsp  myOfflineData.json"/>
-  <extend-configuration-property name="appcache_fallback_files" value="time offline_time.txt"/>
-  
-  <!-- End Module for Appcache advanced -->
-  
   <!-- Linker for undefined.cache.js -->
-  <define-linker class="com.architecture.linker.UndefinedCacheLinker" name="undefinedLinker" />
-  <add-linker name="undefinedLinker" />
+  <!--   <define-linker class="com.architecture.linker.UndefinedCacheLinker" name="undefinedLinker" /> -->
+  <!--   <add-linker name="undefinedLinker" /> -->
   
   <!-- i18n property -->
-  <extend-property name="locale" values="fr"/>
-  <extend-property name="locale" values="en"/>
+<!--   <extend-property name="locale" values="fr"/> -->
+<!--   <extend-property name="locale" values="en"/> -->
   <!--   <set-property-fallback name="locale" value="fr"/>  -->
-  <set-configuration-property name="locale.cookie" value="GWT_LOCALE" />
-  <set-configuration-property name="locale.useragent" value="Y" />
-  <set-property-fallback name="user.agent" value="safari"/>
+<!--   <set-configuration-property name="locale.cookie" value="GWT_LOCALE" /> -->
+<!--   <set-configuration-property name="locale.useragent" value="Y" /> -->
+<!--   <set-property-fallback name="user.agent" value="safari"/> -->
+
+  <!-- user.agent property default -->
+  <set-property name="user.agent" value="safari,gecko1_8,ie8,ie9,ie10" />
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>
