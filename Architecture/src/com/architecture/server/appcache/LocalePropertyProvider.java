@@ -10,13 +10,12 @@ import java.util.logging.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import com.architecture.server.GoogleCrawlerFilter;
 import com.googlecode.mgwt.linker.server.propertyprovider.PropertyProviderBaseImpl;
 import com.googlecode.mgwt.linker.server.propertyprovider.PropertyProviderException;
 
 public class LocalePropertyProvider extends PropertyProviderBaseImpl {
 	private static final long serialVersionUID = 2187082486368116532L;
-	private final static Logger LOGGER = Logger.getLogger(GoogleCrawlerFilter.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(LocalePropertyProvider.class.getName());
 
 	@Override
 	public String getPropertyName() {
