@@ -54,7 +54,7 @@
   <!-- i18n property -->
 <!--   <extend-property name="locale" values="fr"/> -->
 <!--   <extend-property name="locale" values="en"/> -->
-  <!--   <set-property-fallback name="locale" value="fr"/>  -->
+<!--   <set-property-fallback name="locale" value="fr"/>  -->
 <!--   <set-configuration-property name="locale.cookie" value="GWT_LOCALE" /> -->
 <!--   <set-configuration-property name="locale.useragent" value="Y" /> -->
 <!--   <set-property-fallback name="user.agent" value="safari"/> -->

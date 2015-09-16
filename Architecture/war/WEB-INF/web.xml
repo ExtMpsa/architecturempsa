@@ -28,7 +28,7 @@
   <!-- MGWT Servlet for App Cache Advanced-->
   <servlet>
     <servlet-name>ManifestServlet</servlet-name>
-    <servlet-class>com.architecture.server.appcache.Html5ManifestI18nServlet</servlet-class>
+    <servlet-class>com.architecture.server.appcache.ManifestServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
