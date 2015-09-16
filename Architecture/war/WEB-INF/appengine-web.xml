@@ -53,7 +53,7 @@
     <include path="**compilation-mappings.txt" expiration="365d"/>
     <exclude path="**.gwt.rpc" />
 <!--     <exclude path="**Architecture.html" /> -->
-<!--     <exclude path="**architecture.appcache" /> -->
+    <exclude path="**architecture.manifest"/>
   </static-files>
 
   <!-- Configure java.util.logging -->
