@@ -50,6 +50,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -98,6 +99,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	/** Constructeur privé */
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
+		// Set cookie for locale language
+		Cookies.setCookie("locale", LocaleInfo.getCurrentLocale().getLocaleName());
+
 		// Set up for Activities and Place
 		activityManager.setDisplay(appWidget);
 

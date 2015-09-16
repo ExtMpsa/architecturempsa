@@ -35,18 +35,6 @@
     <servlet-name>ManifestServlet</servlet-name>
     <url-pattern>/architecture.manifest</url-pattern>
   </servlet-mapping>
-  
-  <!-- Servlet for App Cache Advanced-->
-<!--   <servlet> -->
-<!--     <servlet-name>ManifestServlet</servlet-name> -->
-<!--     <servlet-class>com.architecture.server.appcache.ManifestServlet</servlet-class> -->
-<!--     <load-on-startup>1</load-on-startup> -->
-<!--   </servlet> -->
-  
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>ManifestServlet</servlet-name> -->
-<!--     <url-pattern>/architecture.appcache</url-pattern> -->
-<!--   </servlet-mapping> -->
  
 	<!-- Slim3 -->
 	<context-param>
