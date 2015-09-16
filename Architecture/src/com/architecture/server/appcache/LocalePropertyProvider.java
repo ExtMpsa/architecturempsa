@@ -29,12 +29,10 @@ public class LocalePropertyProvider extends PropertyProviderBaseImpl {
 		Set<Cookie> cookieSet = new HashSet<Cookie>(Arrays.asList(cookies));
 		cookieSet.contains(new Cookie("locale", "fr"));
 
-		LOGGER.log(Level.INFO, "req.getLocale() = " + req.getLocale().toLanguageTag());
-		LOGGER.log(Level.INFO, "cookieSet.toString() = " + cookieSet.toString());
-
 		if (cookieSet != null) {
 			for (Cookie current : cookieSet) {
 				if (current.getName().contains("locale")) {
+					LOGGER.log(Level.INFO, "current.getValue() = " + current.getValue());
 					if (current.getValue().contains("default")) {
 						return "default";
 					}
@@ -53,8 +51,8 @@ public class LocalePropertyProvider extends PropertyProviderBaseImpl {
 		LOGGER.log(Level.INFO, "cookie not used");
 
 		if (locale != null) {
-			if (locale.toLanguageTag().contains("defaut")) {
-				return "defaut";
+			if (locale.toLanguageTag().contains("default")) {
+				return "default";
 			}
 
 			if (locale.toLanguageTag().contains("fr")) {
