@@ -54,7 +54,7 @@
     <exclude path="**.gwt.rpc" />
 <!--     <exclude path="**Architecture.html" /> -->
     <exclude path="**architecture.manifest"/>
-    <exclude path="/**/*"/>
+    <exclude path="/fr/*"/>
   </static-files>
 
   <!-- Configure java.util.logging -->

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class I18nFilter implements Filter {
 	private final static Logger LOGGER = Logger.getLogger(I18nFilter.class.getName());
@@ -26,6 +27,11 @@ public class I18nFilter implements Filter {
 		String requestURI = httpRequest.getRequestURI();
 		LOGGER.log(Level.INFO, "request = " + httpRequest.getRequestURL());
 		LOGGER.log(Level.INFO, "request uri = " + httpRequest.getRequestURI());
+
+		final HttpServletResponse httpResponse = (HttpServletResponse) resp;
+		httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0
+		httpResponse.setDateHeader("Expires", 0);
 
 		if (requestURI.startsWith("/fr/")) {
 			String toReplace = "/fr/";
