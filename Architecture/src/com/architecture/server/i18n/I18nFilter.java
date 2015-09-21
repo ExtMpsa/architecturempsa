@@ -32,15 +32,16 @@ public class I18nFilter implements Filter {
 		httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
 		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0
 		httpResponse.setDateHeader("Expires", 0);
-		httpResponse.setHeader("Content-type", "text/html; charset=UTF-8");
 
 		if (requestURI.startsWith("/fr")) {
 			String newURI = "/ArchitectureFr.html";
 			LOGGER.log(Level.INFO, "newURI = " + newURI);
+			httpResponse.setHeader("Content-Type", "text/html; charset=UTF-8");
 			req.getRequestDispatcher(newURI).forward(req, resp);
 		} else if (requestURI.startsWith("/en")) {
 			String newURI = "/ArchitectureEn.html";
 			LOGGER.log(Level.INFO, "newURI = " + newURI);
+			httpResponse.setHeader("Content-Type", "text/html; charset=UTF-8");
 			req.getRequestDispatcher(newURI).forward(req, resp);
 		} else {
 			filterChain.doFilter(req, resp);
