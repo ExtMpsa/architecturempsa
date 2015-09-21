@@ -33,12 +33,12 @@ public class I18nFilter implements Filter {
 		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0
 		httpResponse.setDateHeader("Expires", 0);
 
-		if (requestURI.startsWith("/fr")) {
+		if (requestURI.toLowerCase().startsWith("/fr")) {
 			String newURI = "/ArchitectureFr.html";
 			LOGGER.log(Level.INFO, "newURI = " + newURI);
 			httpResponse.setHeader("Content-Type", "text/html; charset=UTF-8");
 			req.getRequestDispatcher(newURI).forward(req, resp);
-		} else if (requestURI.startsWith("/en")) {
+		} else if (requestURI.toLowerCase().startsWith("/en")) {
 			String newURI = "/ArchitectureEn.html";
 			LOGGER.log(Level.INFO, "newURI = " + newURI);
 			httpResponse.setHeader("Content-Type", "text/html; charset=UTF-8");
