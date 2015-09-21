@@ -18,7 +18,7 @@ public class I18nFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+		// do nothing
 	}
 
 	@Override
@@ -33,9 +33,12 @@ public class I18nFilter implements Filter {
 		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0
 		httpResponse.setDateHeader("Expires", 0);
 
-		if (requestURI.startsWith("/fr/")) {
-			String toReplace = "/fr/";
-			String newURI = requestURI.replace(toReplace, "/ArchitectureFr.html");
+		if (requestURI.startsWith("/fr")) {
+			String newURI = "/ArchitectureFr.html";
+			LOGGER.log(Level.INFO, "newURI = " + newURI);
+			req.getRequestDispatcher(newURI).forward(req, resp);
+		} else if (requestURI.startsWith("/en")) {
+			String newURI = "/ArchitectureEn.html";
 			LOGGER.log(Level.INFO, "newURI = " + newURI);
 			req.getRequestDispatcher(newURI).forward(req, resp);
 		} else {
@@ -45,7 +48,7 @@ public class I18nFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
+		// do nothing
 	}
 
 }

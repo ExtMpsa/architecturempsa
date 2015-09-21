@@ -5,6 +5,7 @@ import com.architecture.client.resources.txt.LanguageChooserText;
 import com.architecture.client.ui.widget.Anchor;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.http.client.UrlBuilder;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -101,12 +102,16 @@ public class BannerLanguageViewImpl extends Composite {
 		switch (langChooser.getItemText(langChooser.getSelectedIndex())) {
 		case "Français (France)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "fr") {
-				Window.Location.assign(Location.createUrlBuilder().setParameter("locale", "fr").buildString());
+				UrlBuilder urlBuilder = Location.createUrlBuilder().removeParameter("locale");
+				urlBuilder.setPath("/fr/");
+				Window.Location.assign(urlBuilder.buildString());
 			}
 			break;
 		case "English (United States)":
 			if (LocaleInfo.getCurrentLocale().getLocaleName() != "en") {
-				Window.Location.assign(Location.createUrlBuilder().setParameter("locale", "en").buildString());
+				UrlBuilder urlBuilder = Location.createUrlBuilder().removeParameter("locale");
+				urlBuilder.setPath("/en/");
+				Window.Location.assign(urlBuilder.buildString());
 			}
 			break;
 		}
