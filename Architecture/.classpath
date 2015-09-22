@@ -22,6 +22,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/testng-6.8.7-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/testng-6.8.7.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/mgwt-2.0.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mgwt-2.0.0.jar" sourcepath="war/WEB-INF/lib/mgwt-2.0.0-sources.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
