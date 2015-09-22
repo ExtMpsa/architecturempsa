@@ -114,11 +114,13 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 		editGtm.setVisible(false);
 	}
 
-	private void saveGtm(String gtmId) {
-		Storage storage = Storage.getLocalStorageIfSupported();
+	private void saveGtm(final String gtmId) {
+		final Storage storage = Storage.getLocalStorageIfSupported();
 		String mail = "";
 		mail = storage.getItem("connected");
-		if (!mail.equals("")) {
+		String previousGtm = "";
+		previousGtm = storage.getItem("gtm");
+		if (!mail.equals("") && !previousGtm.equals(gtmId)) {
 			service.saveGtm(gtmId, mail, new AsyncCallback<Void>() {
 
 				@Override
@@ -126,6 +128,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 					// TODO :
 					// injecter GTM et supprimer l'ancien.
 					// Vérifier que le GTM est valide.
+					storage.setItem("gtm", gtmId);
 					Window.alert("Gtm bien enregistré");
 				}
 
@@ -137,6 +140,8 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 					GWT.log("RPC Exception: " + caught.toString());
 				}
 			});
+		} else {
+			History.newItem(AppToken.ACCOUNTSETTING.getToken());
 		}
 	}
 
