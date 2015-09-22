@@ -107,7 +107,7 @@ public class NavigationViewImpl extends Composite {
 		signUp.getElement().addClassName("signUp");
 
 		signIn.setText(navigationText.signIn().toUpperCase());
-		signIn.setHash("#" + AppToken.SIGNIN.getToken() + ":");
+		signIn.setHash("#" + AppToken.SIGNIN.getToken());
 		signIn.getElement().setId("signIn");
 
 		accountSetting.setText(navigationText.settings().toUpperCase());
