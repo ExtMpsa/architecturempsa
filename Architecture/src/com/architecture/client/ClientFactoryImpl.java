@@ -47,7 +47,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -97,7 +96,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	@SuppressWarnings("deprecation")
 	private ClientFactoryImpl() {
 		// Set cookie for locale language
-		Cookies.setCookie("locale", LocaleInfo.getCurrentLocale().getLocaleName());
+		// Cookies.setCookie("locale", LocaleInfo.getCurrentLocale().getLocaleName());
 
 		// Set up for Activities and Place
 		activityManager.setDisplay(appWidget);
@@ -227,7 +226,25 @@ public class ClientFactoryImpl implements ClientFactory {
 						- $wnd.startTime,
 				elapsedTimeSinceGetActivity : new Date().getTime()
 						- $wnd.getActivityStartTime,
-				lastAjaxUrl : $wnd["lastAjaxUrl"]
+				previousPath : $wnd["lastAjaxUrl"]
+			});
+		} catch (e) {
+			$wnd.dataLayer.push({
+				event : launcher,
+			});
+		}
+	}-*/;
+
+	private native void pushTiming() /*-{
+		try {
+			$wnd["dataLayer"] = $wnd["dataLayer"] || [];
+			$wnd.dataLayer.push({
+				event : "time",
+				timingCategory : "Page View",
+				timingLabel : "Display Time Page View",
+				timingValue : new Date().getTime() - $wnd.startTime
+						|| $wnd.elapsedTime,
+				timingVar : "Display"
 			});
 		} catch (e) {
 			$wnd.dataLayer.push({
@@ -414,6 +431,13 @@ public class ClientFactoryImpl implements ClientFactory {
 				default:
 					break;
 				}
+			}
+		});
+
+		eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+			@Override
+			public void onPlaceChange(PlaceChangeEvent event) {
+				pushTiming();
 			}
 		});
 	}

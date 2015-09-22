@@ -36,12 +36,10 @@ public class I18nFilter implements Filter {
 
 		if (requestURI.toLowerCase().startsWith("/fr")) {
 			String newURI = "/ArchitectureFr.html";
-			LOGGER.log(Level.INFO, "newURI = " + newURI);
 			httpResponse.setContentType("text/html; charset=UTF-8");
 			req.getRequestDispatcher(newURI).forward(req, resp);
 		} else if (requestURI.toLowerCase().startsWith("/en")) {
 			String newURI = "/ArchitectureEn.html";
-			LOGGER.log(Level.INFO, "newURI = " + newURI);
 			httpResponse.setContentType("text/html; charset=UTF-8");
 			req.getRequestDispatcher(newURI).forward(req, resp);
 		} else {

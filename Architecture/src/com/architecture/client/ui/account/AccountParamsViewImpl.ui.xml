@@ -9,7 +9,7 @@
 			<g:HTMLPanel ui:field="title" tag="h2">Account Setting</g:HTMLPanel>
 			<g:HTMLPanel ui:field="gtm" styleName="gtmContent">
 				<g:InlineLabel text="GTM Id" ui:field="gtmIdLabel"/>
-				<g:InlineLabel text="GTM-XXXXXX" ui:field="gtmIdValue" styleName="value"/>
+				<g:InlineLabel ui:field="gtmIdValue" styleName="value"/>
 				<g:TextBox ui:field="gtmIdInput"/>
 				<g:Button text="Modifier" ui:field="editGtm"/>
 				<g:Button text="Enregistrer" ui:field="saveGtm"/>

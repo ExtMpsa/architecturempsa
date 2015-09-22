@@ -10,7 +10,7 @@ public class PlaceTest extends AppEngineTestCase {
 
 	@Test
 	public void accountParamsPlaceTest() {
-		AccountParamsPlace place = new AccountParamsPlace();
+		AccountParamsPlace place = new AccountParamsPlace("");
 		assertThat(place, is(notNullValue()));
 		AccountParamsPlace.Tokenizer tokenizer = new AccountParamsPlace.Tokenizer();
 		assertThat(tokenizer.getPlace(""), is(notNullValue()));

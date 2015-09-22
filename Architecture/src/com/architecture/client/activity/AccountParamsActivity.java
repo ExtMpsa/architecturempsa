@@ -19,9 +19,11 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 public class AccountParamsActivity extends ArchitectureActivity {
 	private ClientFactory clientFactory;
 	private GoogleTagManager gtm = GWT.create(GoogleTagManager.class);
+	String token;
 
 	public AccountParamsActivity(AccountParamsPlace place, ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
+		token = place.getToken();
 	}
 
 	@Override
@@ -29,7 +31,17 @@ public class AccountParamsActivity extends ArchitectureActivity {
 		AccountParamsView accountParamsView = new AccountParamsViewImpl();
 		accountParamsView.setActivity(this);
 		containerWidget.setWidget(accountParamsView.asWidget());
-		clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.ACCOUNTSETTING));
+		switch (token) {
+		case "":
+			clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.ACCOUNTSETTING));
+			break;
+		case "editGtm":
+			accountParamsView.editGtm();
+			clientFactory.getEventBus().fireEvent(new ActivityEvent(AppToken.ACCOUNTSETTINGEDITGTM));
+			break;
+		default:
+			break;
+		}
 		removeLoader();
 	}
 

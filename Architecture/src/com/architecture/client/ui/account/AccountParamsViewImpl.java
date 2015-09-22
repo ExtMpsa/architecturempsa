@@ -2,6 +2,7 @@ package com.architecture.client.ui.account;
 
 import com.architecture.client.ClientFactoryImpl;
 import com.architecture.client.activity.AccountParamsActivity;
+import com.architecture.client.mvp.AppToken;
 import com.architecture.client.resources.ResourcesAccount;
 import com.architecture.client.resources.txt.AccountText;
 import com.architecture.client.service.AccountService;
@@ -12,6 +13,7 @@ import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -63,7 +65,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 		editGtm.setText(accountText.edit());
 		saveGtm.setText(accountText.save());
 		if (ClientFactoryImpl.getInstance().isUserConnected()) {
-			Storage storage = Storage.getLocalStorageIfSupported();
+			final Storage storage = Storage.getLocalStorageIfSupported();
 			String mail = "";
 			mail = storage.getItem("connected");
 			if (!mail.equals("")) {
@@ -71,16 +73,22 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 					@Override
 					public void onSuccess(String result) {
 						gtmIdValue.setText(result);
-						saveGtm.setVisible(false);
-						gtmIdInput.setVisible(false);
+						gtmIdInput.setText(result);
+						storage.setItem("gtm", result);
 					}
 
 					@Override
 					public void onFailure(Throwable caught) {
+						// TODO : afficher message d'erreur.
+						String gtmId = storage.getItem("gtm");
+						gtmIdValue.setText(gtmId);
+						gtmIdInput.setText(gtmId);
 					}
 				});
 			}
 		}
+		saveGtm.setVisible(false);
+		gtmIdInput.setVisible(false);
 	}
 
 	@Override
@@ -96,6 +104,14 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 		} else {
 			Window.alert("Id GTM non valide.");
 		}
+	}
+
+	@Override
+	public void editGtm() {
+		gtmIdInput.setVisible(true);
+		gtmIdValue.setVisible(false);
+		saveGtm.setVisible(true);
+		editGtm.setVisible(false);
 	}
 
 	private void saveGtm(String gtmId) {
@@ -122,5 +138,10 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 				}
 			});
 		}
+	}
+
+	@UiHandler("editGtm")
+	void onEditGtmClick(ClickEvent event) {
+		History.newItem(AppToken.ACCOUNTSETTINGEDITGTM.getToken());
 	}
 }

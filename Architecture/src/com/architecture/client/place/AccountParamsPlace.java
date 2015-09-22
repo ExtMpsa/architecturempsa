@@ -7,7 +7,8 @@ import com.google.gwt.place.shared.Prefix;
 public class AccountParamsPlace extends Place {
 	private String token = "";
 
-	public AccountParamsPlace() {
+	public AccountParamsPlace(String token) {
+		this.token = token;
 	}
 
 	public String getToken() {
@@ -26,7 +27,7 @@ public class AccountParamsPlace extends Place {
 
 		@Override
 		public AccountParamsPlace getPlace(String token) {
-			return new AccountParamsPlace();
+			return new AccountParamsPlace(token);
 		}
 	}
 }
