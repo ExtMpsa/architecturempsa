@@ -280,6 +280,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			}
 			
 			// *********************************************************************************************
+			// fonction utilitaire pour événements de personnalisation: 
+			// *********************************************************************************************
+			function dataLayerPushEvent(action,category,label){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					event:"uaevent",
+					eventAction: action,
+					eventCategory: category,
+					eventLabel: label});
+			}
+			
+			// *********************************************************************************************
 			// fonction utilitaire : recuperation contenu RTD
 			// *********************************************************************************************
 			function getRTDContent(kruxEventData) {
@@ -372,11 +384,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 										logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 										if (contentSize <= 0) {
 											logTime("rtdReplaceContent no content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-											dataLayer.push({
-												event:"uaevent",
-												eventAction: "Customized Page Called",
-												eventCategory: "Personalization Engine",
-												eventLabel: "Customized page (no offer)"});
+											dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (no offer)");
 										}
 										else if (contentSize == 1) {
 											logTime("rtdReplaceContent 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -388,18 +396,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 											if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
 												eval(javascript);
-												dataLayer.push({
-													event:"uaevent",
-													eventAction: "Customized Page Called",
-													eventCategory: "Personalization Engine",
-													eventLabel: "Customized page"});
+												dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page");
 											} else {
 												logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-												dataLayer.push({
-													event:"uaevent",
-													eventAction: "Customized Page Called",
-													eventCategory: "Personalization Engine",
-													eventLabel: "Customized page (RTD js content error)"});
+												dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (RTD js content error)");
 											}
 										} else {
 											logTime("rtdReplaceContent more than 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -422,33 +422,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											}
 											if(customized==true){
 												if(errorJs==false){
-													dataLayer.push({
-														event:"uaevent",
-														eventAction: "Customized Page Called",
-														eventCategory: "Personalization Engine",
-														eventLabel: "Customized page"});
+													dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page");
 												}else{
-													dataLayer.push({
-														event:"uaevent",
-														eventAction: "Customized Page Called",
-														eventCategory: "Personalization Engine",
-														eventLabel: "Customized page (with error RTD js content)"});
+													dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (with RTD js content error)");
 												}
 											}else{
-												dataLayer.push({
-													event:"uaevent",
-													eventAction: "Customized Page Called",
-													eventCategory: "Personalization Engine",
-													eventLabel: "Non-customized page (error RTD js content)"});
+												dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD js content error)");
 											}
 										}
 									} else {
 										logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-										dataLayer.push({
-											event:"uaevent",
-											eventAction: "Customized Page Called",
-											eventCategory: "Personalization Engine",
-											eventLabel: "Customized page (no offer)"});
+										dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (no offer)");
 									}
 									logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");							
 									
@@ -456,11 +440,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									showBody();
 								  } else {
 									  window["personalizationUseCase"] = "No customisation (RTD error)";
-									  dataLayer.push({
-											event:"uaevent",
-											eventAction: "Customized Page Called",
-											eventCategory: "Personalization Engine",
-											eventLabel: "Non-customized page (error RTD request)"});
+									  dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD request error)");
 									  window["rtdErrorType"] = "RTD script xmlDoc status";
 									  showBody();
 								  }
@@ -469,11 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							xmlDoc.send(JSON.stringify(br));
 						} catch(e){
 							window["personalizationUseCase"] = "No customisation (RTD error)";
-							dataLayer.push({
-								event:"uaevent",
-								eventAction: "Customized Page Called",
-								eventCategory: "Personalization Engine",
-								eventLabel: "Non-customized page (error RTD generic js)"});
+							dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD generic js error)");
 							window["rtdErrorType"] = "RTD script xmlDoc exception";
 							showBody();
 						}
@@ -511,11 +487,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 								if (contentSize <= 0) {
 									logTime("rtdReplaceContent no content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-									dataLayer.push({
-										event:"uaevent",
-										eventAction: "Customized Page Called",
-										eventCategory: "Personalization Engine",
-										eventLabel: "Customized page (no offer)"});
+									dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (no offer)");
 								}
 								else if (contentSize == 1) {
 									logTime("rtdReplaceContent 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -527,18 +499,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
 									if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
 										eval(javascript);
-										dataLayer.push({
-											event:"uaevent",
-											eventAction: "Customized Page Called",
-											eventCategory: "Personalization Engine",
-											eventLabel: "Customized page"});
+										dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page");
 									} else {
 										logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-										dataLayer.push({
-											event:"uaevent",
-											eventAction: "Customized Page Called",
-											eventCategory: "Personalization Engine",
-											eventLabel: "Customized page (RTD js content error)"});
+										dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (RTD js content error)");
 									}
 								}
 								else {
@@ -562,34 +526,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									}
 									if(customized==true){
 										if(errorJs==false){
-											dataLayer.push({
-												event:"uaevent",
-												eventAction: "Customized Page Called",
-												eventCategory: "Personalization Engine",
-												eventLabel: "Customized page"});
+											dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page");
 										}else{
-											dataLayer.push({
-												event:"uaevent",
-												eventAction: "Customized Page Called",
-												eventCategory: "Personalization Engine",
-												eventLabel: "Customized page (with error RTD js content)"});
+											dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (with RTD js content error)");
 										}
 									}else{
-										dataLayer.push({
-											event:"uaevent",
-											eventAction: "Customized Page Called",
-											eventCategory: "Personalization Engine",
-											eventLabel: "Non-customized page (error RTD js content)"});
+										dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD js content error)");
 									}
 								}
 							}
 							else {
 								logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-								dataLayer.push({
-									event:"uaevent",
-									eventAction: "Customized Page Called",
-									eventCategory: "Personalization Engine",
-									eventLabel: "Customized page (no offer)"});
+								dataLayerPushEvent("Customized Page Called","Personalization Engine","Customized page (no offer)");
 							}
 							logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 							window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
@@ -597,21 +545,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						};
 						xmlDoc.onerror = function() {
 							window["personalizationUseCase"] = "No customisation (RTD error)";
-							dataLayer.push({
-								event:"uaevent",
-								eventAction: "Customized Page Called",
-								eventCategory: "Personalization Engine",
-								eventLabel: "Non-customized page (error RTD request)"});
+							dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD request error)");
 							window["rtdErrorType"] = "RTD request error";
 							showBody();
 						};
 						xmlDoc.ontimeout = function() {
 							window["personalizationUseCase"] = "No customisation (RTD error)";
-							dataLayer.push({
-								event:"uaevent",
-								eventAction: "Customized Page Called",
-								eventCategory: "Personalization Engine",
-								eventLabel: "Non-customized page (timeout RTD request)"});
+							dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (timeout RTD request)");
 							window["rtdErrorType"] = "RTD request timeout";
 							showBody();
 						};
@@ -626,6 +566,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							} catch(e){
 								// IE5, IE6 et IE7 ne gère pas l'objet JSON
 								window["personalizationUseCase"] = "No customisation (RTD error)";
+								dataLayerPushEvent("Customized Page Called","Personalization Engine","Non-customized page (RTD generic script error)");
 								window["rtdErrorType"] = "RTD script xmlDoc exception)";
 								showBody();
 							}
