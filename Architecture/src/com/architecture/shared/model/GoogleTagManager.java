@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.Key;
 public class GoogleTagManager implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final String GTMID_PATTERN = "^GTM-......$";
+	private static final String GTMID_PATTERN = "^GTM-......$||^$";
 
 	@Attribute(primaryKey = true)
 	private Key key;

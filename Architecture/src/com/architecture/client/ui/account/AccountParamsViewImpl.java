@@ -47,6 +47,7 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 	Button editGtm;
 	@UiField
 	HTMLPanel gtm;
+	@UiField Label gtmError;
 
 	AccountParamsActivity activity;
 	AccountText accountText = GWT.create(AccountText.class);
@@ -129,7 +130,8 @@ public class AccountParamsViewImpl extends Composite implements AccountParamsVie
 					// injecter GTM et supprimer l'ancien.
 					// Vérifier que le GTM est valide.
 					storage.setItem("gtm", gtmId);
-					Window.alert("Gtm bien enregistré");
+					ClientFactoryImpl.getInstance().loadGoogleTagManagerUser();
+					History.newItem(AppToken.ACCOUNTSETTING.getToken());
 				}
 
 				@Override

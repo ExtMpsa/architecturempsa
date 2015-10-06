@@ -1,0 +1,486 @@
+  <!-- BEGIN Krux Control Tag for "PSA%20Peugeot%20Testing" -->
+<!-- Source: /snippet/controltag?confid=J9fJRtAj&site=PSA%2520Peugeot%2520Testing&edit=1&raw=1 -->
+<script class="kxct" data-id="J9fJRtAj" data-timing="async" data-version="1.9" type="text/javascript">
+  window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+  (function(){
+    var k=document.createElement('script');k.type='text/javascript';k.async=true;
+    var m,src=(m=location.href.match(/\bkxsrc=([^&]+)/))&&decodeURIComponent(m[1]);
+    k.src = /^https?:\/\/([a-z0-9_\-\.]+\.)?krxd\.net(:\d{1,5})?\//i.test(src) ? src : src === "disable" ? "" :
+      (location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=J9fJRtAj"
+  ;
+    var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+  }());
+  
+</script>
+<!-- END Krux Controltag -->
+   
+<!-- Begin RTD Tag VERSION 29 Final GA -->
+<script type="text/javascript">
+			// *********************************************************************************************
+			// fonction utilitaire : attente valorisation date krux
+			// *********************************************************************************************
+			function waitKrux(onComplete,timeout) {			  
+			  window["kruxTimeout"]=setTimeout(function () {
+				  window["ddmUseCase"] = "RTD call with old Krux segments";
+				  onComplete();
+			  },timeout);
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : verification navigateur
+			// *********************************************************************************************
+			function isIE () {
+			  var myNav = navigator.userAgent.toLowerCase();
+			  return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : 
+			// *********************************************************************************************
+			function getTime (time, elapsedTime){
+				window[time] = window[time]||new Date().getTime();
+				window[elapsedTime] = (window[time] -  window["startHidden"]);
+				return;
+			}
+			
+			function logTime(tagStatus, bodyStatus){
+				window["startHidden"] = window["startHidden"] || new Date().getTime();
+				window["elapsedTime"] = new Date().getTime() - window.startHidden;
+				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | kruxLastUpdate : " + window["kruxLastUpdate"]);
+				return;
+			}
+			// *********************************************************************************************
+			// fonction utilitaire : Affichage du body masqu� par DDM
+			// *********************************************************************************************
+			function showBody(){
+				logTime("showBody : showing body",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+				document.body.style.visibility = "visible";
+				logTime("showBody : body visible",document.readyState+" | "+document.body.style.visibility+" | Body visible");
+
+				// Calcul et mise � jour des temps et use case DDM
+				window["timeBetweenRtdAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				if (document.readyState == "interactive"){
+					window["ddmTechnicalUseCase"] = "DDM display between domInteractive and load event";
+				}else if (document.readyState == "complete"){
+					window["ddmTechnicalUseCase"] = "DDM display after load event";
+				} else {
+					window["ddmTechnicalUseCase"] = "DDM display before domInteractive";
+				}
+				updateDataLayerDDM();
+				// Push RTD user timing even though Krux didn t finish
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenRtdAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page li�e � la personnalisation (DDM)");
+				if (window["needPushKruxTiming"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
+				}
+				return;
+			}
+			// *********************************************************************************************
+			// initialisation des variables utilisées pour la collecte des données Google Analytics
+			// *********************************************************************************************
+			window["personalizationUseCase"]="Google Analytics Collect happened before the Personalization Engine call";
+			// *********************************************************************************************
+			// fonction utilitaire pour user timing: 
+			// *********************************************************************************************
+			function dataLayerUserTiming(timingCategory , timingVar, timingValue, timingLabel){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					event : "timingevent",
+					timingCategory : timingCategory,
+					timingVar: timingVar,
+					timingValue: timingValue,
+					timingLabel: timingLabel,
+					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"]||"",
+					personalizationUseCase: window["personalizationUseCase"],
+					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"],
+					personalizationStartDate : window["personalizationStartDate"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire pour page view: 
+			// *********************************************************************************************
+			function updateDataLayerDDM(){
+				window["dataLayer"] = window["dataLayer"] || [];
+				dataLayer.push({
+					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"],
+					personalizationUseCase: window["personalizationUseCase"],
+					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"]||"Google Analytics Collect happened before RTD finish",
+					personalizationStartDate : window["personalizationStartDate"]
+				});
+			}
+			
+			// *********************************************************************************************
+			// fonction utilitaire : recuperation contenu RTD
+			// *********************************************************************************************
+			function getRTDContent(kruxEventData) {
+				window.removeEventListener("krux-update-user",ddmListener,false);
+
+				
+				var callingUrl = window.location
+				var callingHost = window.location.hostname
+				var callingPath = window.location.pathname
+
+				if (typeof kruxEventData != "undefined" && typeof kruxEventData.detail != "undefined") {
+					logTime("getRTDContent => get Krux Event data : OK", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					
+					var rtduser = (typeof kruxEventData.detail.user != "undefined" && kruxEventData.detail.user != "") ? kruxEventData.detail.user : "DEF";
+					var rtdsegments = (typeof kruxEventData.detail.segments != "undefined" && kruxEventData.detail.segments != "") ? kruxEventData.detail.segments : "{}";
+					var rtdAttributes = [];
+					rtdAttributes.push({"slotId":"Center Right Slot"});
+					if (typeof kruxEventData.detail.lastProduct != "undefined") { rtdAttributes.push({"lastProduct":kruxEventData.detail.lastProduct.item}); }
+					if (typeof kruxEventData.detail.lastFuel != "undefined") { rtdAttributes.push({"lastFuel":kruxEventData.detail.lastFuel.item});}
+					if (typeof kruxEventData.detail.lastColorLabel != "undefined") { rtdAttributes.push({"lastColorLabel":kruxEventData.detail.lastColorLabel.item});}
+					if (typeof kruxEventData.detail.lastGearBox != "undefined") { rtdAttributes.push({"lastGearBox":kruxEventData.detail.lastGearBox.item});}
+					if (typeof kruxEventData.detail.time != "undefined") { rtdAttributes.push({"time":kruxEventData.detail.time});}
+
+					var lang = navigator.language || navigator.userLanguage;
+					var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributes":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
+
+					logTime("getRTDContent => get Krux data rtduser : "+rtduser+" / "+kruxEventData.detail.user, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments+" / "+kruxEventData.detail.segments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+				}
+				else {
+						logTime("getRTDContent => get Krux Event data : KO => switching to local storage", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						// on bascule sur une lecture du local storage krux
+						logTime("getRTDContent local storage read start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);
+						(function(){
+							function retrieve(n){
+							  var m, k='kxpsatesting_'+n;
+							  if (window.localStorage) {
+								  return window.localStorage[k] || "";
+							  } else if (navigator.cookieEnabled) {
+								  m = document.cookie.match(k+'=([^;]*)');
+								  return (m && unescape(m[1])) || "";
+							  } else {
+								  return '';
+							  }
+							}
+							Krux.user = retrieve('user');
+							Krux.segments = retrieve('allsegs') ? retrieve('allsegs').split(',') : [];
+						})();
+						logTime("getRTDContent local storage read end", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						
+						var rtduser = (typeof Krux != "undefined" && typeof Krux.user != "undefined" && Krux.user != "") ? Krux.user : "DEF";
+						var rtdsegments = (typeof Krux != "undefined" && typeof Krux.segments != "undefined" && Krux.segments != "") ? Krux.segments : {};
+						
+						var rtdAttributes = new Object();
+						//rtdAttributes["time"] = kruxEventData.detail.time;
+						//rtdAttributes["lastProduct"] = kruxEventData.detail.lastProduct;
+						//rtdAttributes["lastFuel"] = kruxEventData.detail.lastFuel;
+						//rtdAttributes["lastColorLabel"] = kruxEventData.detail.lastColorLabel;
+						//rtdAttributes["lastGearBox"] = kruxEventData.detail.lastGearBox;
+						rtdAttributes["slotId"] = "Center Right Slot";
+						
+						var lang = navigator.language || navigator.userLanguage;
+						var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributes":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
+
+						logTime("getRTDContent => get Krux data rtduser : "+rtduser, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+				}
+				
+				var xmlDoc;
+				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
+					logTime("getRTDContent : IE7+ Chrome FF Opera", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					xmlDoc = new XMLHttpRequest();
+					if('withCredentials' in xmlDoc) { // IE10+ Chrome FF Opera
+						logTime("getRTDContent : IE10+ Chrome FF Opera", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						try{
+							xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisor', true);
+							xmlDoc.setRequestHeader("Content-type", "application/json; charset=utf-8");
+							xmlDoc.onreadystatechange = function() {
+							  if (xmlDoc.readyState === 4) {
+								  if(xmlDoc.status === 200){
+									logTime("rtdReplaceContent Start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									var jsonObject = JSON.parse(xmlDoc.responseText);
+									if (jsonObject != '' && jsonObject != 'undefined') {
+										var dataLayer = dataLayer||[];
+										var contentSize = jsonObject.rtdResponse.size;
+										var contentList = jsonObject.rtdResponse.responseItems;
+										logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										if (contentSize <= 0) {
+											logTime("rtdReplaceContent no content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											dataLayer.push({
+												event:"uaevent",
+												eventAction: "Customized Page Called",
+												eventCategory: "Personalization Engine",
+												eventLabel: "Customized page (no offer)"});
+										}
+										else if (contentSize == 1) {
+											logTime("rtdReplaceContent 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											var content = contentList;
+											logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											//logTime("rtdReplaceContent content.attributes "+JSON.stringify(content.attributes),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											//logTime("rtdReplaceContent content.attributes.jsDocument "+JSON.stringify(content.attributes.jsDocument),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											var javascript = content.attributes.jsDocument;
+											logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
+												eval(javascript);
+												dataLayer.push({
+													event:"uaevent",
+													eventAction: "Customized Page Called",
+													eventCategory: "Personalization Engine",
+													eventLabel: "Customized page"});
+											} else {
+												logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+												dataLayer.push({
+													event:"uaevent",
+													eventAction: "Customized Page Called",
+													eventCategory: "Personalization Engine",
+													eventLabel: "Non-customized page (error js RTD content)"});
+											}
+										}
+										else {
+											logTime("rtdReplaceContent more than 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											var customized = false;
+											var errorJs = false;
+											for(var i = 0; i < contentSize; i++) {
+												var content = contentList[i];
+												logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+												//logTime("rtdReplaceContent content.attributes "+JSON.stringify(content.attributes),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+												//logTime("rtdReplaceContent content.attributes.jsDocument "+JSON.stringify(content.attributes.jsDocument),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+												var javascript = content.attributes.jsDocument;
+												logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
+												if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
+													eval(javascript);
+													customized = true;
+												} else {
+													logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+													errorJs = true;
+												}
+											}
+											if(customized == true){
+												if(errorJs == false){
+													dataLayer.push({
+														event:"uaevent",
+														eventAction: "Customized Page Called",
+														eventCategory: "Personalization Engine",
+														eventLabel: "Customized page"});
+												}else{
+													dataLayer.push({
+														event:"uaevent",
+														eventAction: "Customized Page Called",
+														eventCategory: "Personalization Engine",
+														eventLabel: "Customized page (with error js RTD content)"});
+												}
+											} else{
+												dataLayer.push({
+													event:"uaevent",
+													eventAction: "Customized Page Called",
+													eventCategory: "Personalization Engine",
+													eventLabel: "Non-customized page (error js RTD content)"});
+											}
+										}
+									}
+									else {
+										logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Customized page (no offer)"});
+									}
+									logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");							
+									
+									window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+									showBody();
+								  } else {
+									  window["personalizationUseCase"] = "No customisation (RTD error)";
+									  window["rtdErrorType"] = "RTD script xmlDoc status";
+									  showBody();
+								  }
+							  }
+							}
+							xmlDoc.send(JSON.stringify(br));
+						} catch(e){
+							window["personalizationUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD script xmlDoc exception";
+							showBody();
+						}
+					} else if (window.XDomainRequest) {
+						// IE8 et IE9
+						logTime("getRTDContent : IE8 et IE9", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						if (isIE () == 8) {
+							logTime("rtdTag detect IE8", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+							var timeIE8 = 2000;
+							setTimeout(function () {
+								if (document.readyState == "complete"){
+									showBody();
+									clearTimeout(timeIE8);
+									logTime("rtdTag IE8 timeout known bug", document.readyState+" | "+document.body.style.visibility+" | Body visible");
+								}else{
+									logTime("rtdTag IE8 timeout known bug", document.readyState+" | "+document.body.style.visibility+" | Body still hidden");
+								}
+							}, timeIE8);
+						}
+
+						xmlDoc = new XDomainRequest();
+						xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisor');
+						xmlDoc.onload = function () {
+						
+							var dom  = new ActiveXObject('Microsoft.XMLDOM');
+							//var response = JSON.parse(xmlDoc.responseText);
+							dom.async = false;
+							//var response = JSON.parse(xmlDoc.responseText);
+							
+							logTime("rtdReplaceContent Start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+							var jsonObject = JSON.parse(xmlDoc.responseText);
+							if (jsonObject != '' && jsonObject != 'undefined') {
+								var contentSize = jsonObject.rtdResponse.size;
+								var contentList = jsonObject.rtdResponse.responseItems;
+								logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+								if (contentSize <= 0) {
+									logTime("rtdReplaceContent no content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									dataLayer.push({
+										event:"uaevent",
+										eventAction: "Customized Page Called",
+										eventCategory: "Personalization Engine",
+										eventLabel: "Customized page (no offer)"});
+								} else if (contentSize == 1) {
+									logTime("rtdReplaceContent 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									var content = contentList;
+									logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									//logTime("rtdReplaceContent content.attributes "+JSON.stringify(content.attributes),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									//logTime("rtdReplaceContent content.attributes.jsDocument "+JSON.stringify(content.attributes.jsDocument),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									var javascript = content.attributes.jsDocument;
+									logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
+									if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
+										eval(javascript);
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Customized page"});
+									} else {
+										logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Non-customized page (error js RTD content)"});
+									}
+								} else {
+									logTime("rtdReplaceContent more than 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									var customized = false;
+									var errorJs = false;
+									for(var i = 0; i < contentSize; i++) {
+										var content = contentList[i];
+										logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										//logTime("rtdReplaceContent content.attributes "+JSON.stringify(content.attributes),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										//logTime("rtdReplaceContent content.attributes.jsDocument "+JSON.stringify(content.attributes.jsDocument),document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										var javascript = content.attributes.jsDocument;
+										logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
+										if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
+											eval(javascript);
+											var customized = true;
+										} else {
+											logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											var errorJs = true;
+										}
+									}
+									if(customized == true){
+										if(errorJs == false){
+											dataLayer.push({
+												event:"uaevent",
+												eventAction: "Customized Page Called",
+												eventCategory: "Personalization Engine",
+												eventLabel: "Customized page"});
+										}else{
+											dataLayer.push({
+												event:"uaevent",
+												eventAction: "Customized Page Called",
+												eventCategory: "Personalization Engine",
+												eventLabel: "Customized page (with error js RTD content)"});
+										}
+									} else{
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Non-customized page (error js RTD content)"});
+									}
+								}
+							} else {
+								logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+							}
+							logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+							window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
+							showBody();
+						};
+						xmlDoc.onerror = function() {
+							window["personalizationUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request error";
+							showBody();
+						};
+						xmlDoc.ontimeout = function() {
+							window["personalizationUseCase"] = "No customisation (RTD error)";
+							window["rtdErrorType"] = "RTD request timeout";
+							showBody();
+						};
+						xmlDoc.onprogress = function() {
+							logTime("rtdTagOnProgress_XDR : response onprogress", document.readyState+" | "+document.body.style.visibility+" | Body still Hidden");
+						};
+						// setTimeout corrige le probl�me al�atoire du onload sur IE8
+						setTimeout(function () {
+							try{
+								xmlDoc.send(JSON.stringify(br));
+								logTime("rtdTag setTimeout due to onload bug IE8", document.readyState+" | "+document.body.style.visibility+" | Body still Hidden");
+							} catch(e){
+								// IE5, IE6 et IE7 ne g�re pas l'objet JSON
+								window["personalizationUseCase"] = "No customisation (RTD error)";
+								window["rtdErrorType"] = "RTD script xmlDoc exception)";
+								showBody();
+							}
+						}, 0);
+					} else { //IE7
+						logDataLayerTime();
+						showBody();
+						logTime("rtdTagError (IE7): window.XDomainRequest doesn't exist", document.readyState+" | "+document.body.style.visibility+" | Body visible");
+					}
+				} else { // IE5 et IE6
+					window["personalizationUseCase"] = "No customisation (RTD script error)";
+					window["rtdErrorType"] = "RTD script error due to XDomainRequest)";
+					showBody();
+				}
+			}
+			
+			logTime("RTD Main tag : hidding body",document.readyState+" | "+document.body.style.visibility+" | Body visible");
+			document.body.style.visibility = "hidden";
+			logTime("RTD Main tag : body hidden",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+			window["personalizationStartDate"] = new Date().getTime();
+			
+			var ddmListener = function (e) {
+				clearTimeout(window["kruxTimeout"]);
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["personalizationUseCase"] = "RTD call with updated Krux segments";
+				updateDataLayerDDM();
+				window["needPushKruxTiming"]=true;
+				getRTDContent(e);
+			};
+			
+			var kruxListener = function (e) {
+				window["kruxLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				updateDataLayerDDM();
+				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
+					window["needPushKruxTiming"]=false;
+				}else{
+					// Push Krux user timing when RTD will finish
+					window["needPushKruxTiming"]=true;
+				}
+			};
+			
+			window.addEventListener("krux-update-user", ddmListener, false);
+			window.addEventListener("krux-update-user", kruxListener, false);
+			waitKrux(getRTDContent, 1000);
+			
+		</script>
+<!-- End RTD Tag -->

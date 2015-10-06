@@ -13,6 +13,7 @@
 				<g:TextBox ui:field="gtmIdInput"/>
 				<g:Button text="Modifier" ui:field="editGtm"/>
 				<g:Button text="Enregistrer" ui:field="saveGtm"/>
+				<g:Label text="New Label" ui:field="gtmError" styleName="gwt-Label-Error"/>
 			</g:HTMLPanel>
 		</g:HTMLPanel>
 	</g:HTMLPanel>

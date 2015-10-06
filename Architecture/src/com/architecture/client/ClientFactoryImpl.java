@@ -487,8 +487,10 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onSuccess(String result) {
 				if (!result.equals("null")) {
-					initGoogleTagManager(result, false);
-					gtmLoaded = true;
+					if (!result.equals("")) {
+						initGoogleTagManager(result, false);
+						gtmLoaded = true;
+					}
 					History.newItem("");
 				} else {
 					History.newItem(AppToken.ACCOUNTSETTING.getToken());
@@ -504,7 +506,7 @@ public class ClientFactoryImpl implements ClientFactory {
 		});
 	}
 
-	private void loadGoogleTagManagerUser() {
+	public void loadGoogleTagManagerUser() {
 		boolean isUserConnected = isUserConnected();
 		getNavigationView().connected(isUserConnected);
 		Storage storage = Storage.getLocalStorageIfSupported();
@@ -515,8 +517,10 @@ public class ClientFactoryImpl implements ClientFactory {
 			@Override
 			public void onSuccess(String result) {
 				if (!result.equals("null")) {
-					initGoogleTagManager(result, false);
-					gtmLoaded = true;
+					if (!result.equals("")) {
+						initGoogleTagManager(result, false);
+						gtmLoaded = true;
+					}
 				}
 			}
 
