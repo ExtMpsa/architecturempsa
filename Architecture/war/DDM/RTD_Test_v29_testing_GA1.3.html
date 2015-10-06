@@ -14,14 +14,14 @@
 </script>
 <!-- END Krux Controltag -->
    
-<!-- Begin RTD Tag VERSION 29 Final GA -->
+<!-- Begin RTD Tag VERSION 29 Final GA1.3 -->
 <script type="text/javascript">
 			// *********************************************************************************************
 			// fonction utilitaire : attente valorisation date krux
 			// *********************************************************************************************
 			function waitKrux(onComplete,timeout) {			  
 			  window["kruxTimeout"]=setTimeout(function () {
-				  window["ddmUseCase"] = "RTD call with old Krux segments";
+				  window["personalizationUseCase"] = "RTD call with old Krux segments";
 				  onComplete();
 			  },timeout);
 			}
@@ -57,20 +57,20 @@
 				document.body.style.visibility = "visible";
 				logTime("showBody : body visible",document.readyState+" | "+document.body.style.visibility+" | Body visible");
 
-				// Calcul et mise � jour des temps et use case DDM
-				window["timeBetweenRtdAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				// Calcul et mise à jour des temps et use case DDM
+				window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
 				if (document.readyState == "interactive"){
-					window["ddmTechnicalUseCase"] = "DDM display between domInteractive and load event";
+					window["personalizationTechnicalUseCase"] = "DDM display between domInteractive and load event";
 				}else if (document.readyState == "complete"){
-					window["ddmTechnicalUseCase"] = "DDM display after load event";
+					window["personalizationTechnicalUseCase"] = "DDM display after load event";
 				} else {
-					window["ddmTechnicalUseCase"] = "DDM display before domInteractive";
+					window["personalizationTechnicalUseCase"] = "DDM display before domInteractive";
 				}
 				updateDataLayerDDM();
 				// Push RTD user timing even though Krux didn t finish
-				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenRtdAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page li�e � la personnalisation (DDM)");
+				dataLayerUserTiming("RTD","Customizing Engine", window["timeBetweenPersonalizationEngineAndDomInteractive"], "Augmentation du temps (en ms) d'affichage de la page liée à la personnalisation (DDM)");
 				if (window["needPushKruxTiming"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
 				}
 				return;
 			}
@@ -258,7 +258,7 @@
 									}
 									logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");							
 									
-									window["ddmUseCase"] = window["ddmUseCase"] + " (success)";
+									window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
 									showBody();
 								  } else {
 									  window["personalizationUseCase"] = "No customisation (RTD error)";
@@ -400,10 +400,10 @@
 			
 			var kruxListener = function (e) {
 				window["kruxLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenKruxAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
 				updateDataLayerDDM();
 				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
-					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenKruxAndDomLoading"], "Temps mis par la DMP pour mettre � jour les segments");
+					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
 					window["needPushKruxTiming"]=false;
 				}else{
 					// Push Krux user timing when RTD will finish
