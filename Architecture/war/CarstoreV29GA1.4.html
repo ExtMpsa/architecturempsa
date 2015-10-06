@@ -8,13 +8,13 @@
 <head>
 <!-- BEGIN Krux Control Tag for "PSA POC Stage Sites" -->
 <!-- Source: /snippet/controltag?confid=Jd977EwZ&site=PSA%20POC%20Stage%20Sites&edit=1 -->
-<script class="kxct" data-id="Jd977EwZ" data-timing="async" data-version="1.9" type="text/javascript">
+<script class="kxct" data-id="J9fJRtAj" data-timing="async" data-version="1.9" type="text/javascript">
   window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
   (function(){
     var k=document.createElement('script');k.type='text/javascript';k.async=true;
     var m,src=(m=location.href.match(/\bkxsrc=([^&]+)/))&&decodeURIComponent(m[1]);
     k.src = /^https?:\/\/([a-z0-9_\-\.]+\.)?krxd\.net(:\d{1,5})?\//i.test(src) ? src : src === "disable" ? "" :
-      (location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=Jd977EwZ"
+      (location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=J9fJRtAj"
   ;
     var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
   }());
@@ -182,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
  
 <body class="home specACIT">
-<!-- Begin RTD Tag VERSION 29 Final GA1.3 -->
+<!-- Begin RTD Tag VERSION 29 Final GA -->
 <script type="text/javascript">
 			// *********************************************************************************************
 			// fonction utilitaire : attente valorisation date krux
@@ -214,7 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			function logTime(tagStatus, bodyStatus){
 				window["startHidden"] = window["startHidden"] || new Date().getTime();
 				window["elapsedTime"] = new Date().getTime() - window.startHidden;
-				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | kruxLastUpdate : " + window["kruxLastUpdate"]);
+				console.log(tagStatus + " | " + bodyStatus + " | Hidden time : " + window["elapsedTime"] + " | Document State : "+ document.readyState + " | dmpLastUpdate : " + window["dmpLastUpdate"]);
 				return;
 			}
 			// *********************************************************************************************
@@ -284,7 +284,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			// *********************************************************************************************
 			function getRTDContent(kruxEventData) {
 				window.removeEventListener("krux-update-user",ddmListener,false);
-
 				
 				var callingUrl = window.location
 				var callingHost = window.location.hostname
@@ -310,8 +309,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments+" / "+kruxEventData.detail.segments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 					logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 					logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-				}
-				else {
+				} else {
 						logTime("getRTDContent => get Krux Event data : KO => switching to local storage", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 						// on bascule sur une lecture du local storage krux
 						logTime("getRTDContent local storage read start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -354,6 +352,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				}
 				
 				var xmlDoc;
+				var dataLayer = dataLayer||[];
 				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
 					logTime("getRTDContent : IE7+ Chrome FF Opera", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 					xmlDoc = new XMLHttpRequest();
@@ -368,7 +367,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									logTime("rtdReplaceContent Start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 									var jsonObject = JSON.parse(xmlDoc.responseText);
 									if (jsonObject != '' && jsonObject != 'undefined') {
-										var dataLayer = dataLayer||[];
 										var contentSize = jsonObject.rtdResponse.size;
 										var contentList = jsonObject.rtdResponse.responseItems;
 										logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -401,11 +399,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 													event:"uaevent",
 													eventAction: "Customized Page Called",
 													eventCategory: "Personalization Engine",
-													eventLabel: "Customized page (error RTD content)"});
+													eventLabel: "Customized page (RTD js content error)"});
 											}
-										}
-										else {
+										} else {
 											logTime("rtdReplaceContent more than 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											var customized = false;
+											var errorJs = false;
 											for(var i = 0; i < contentSize; i++) {
 												var content = contentList[i];
 												logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -415,14 +414,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
 												if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
 													eval(javascript);
+													customized = true;
 												} else {
 													logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+													errorJs = true;
 												}
 											}
+											if(customized==true){
+												if(errorJs==false){
+													dataLayer.push({
+														event:"uaevent",
+														eventAction: "Customized Page Called",
+														eventCategory: "Personalization Engine",
+														eventLabel: "Customized page"});
+												}else{
+													dataLayer.push({
+														event:"uaevent",
+														eventAction: "Customized Page Called",
+														eventCategory: "Personalization Engine",
+														eventLabel: "Customized page (with error RTD js content)"});
+												}
+											}else{
+												dataLayer.push({
+													event:"uaevent",
+													eventAction: "Customized Page Called",
+													eventCategory: "Personalization Engine",
+													eventLabel: "Non-customized page (error RTD js content)"});
+											}
 										}
-									}
-									else {
+									} else {
 										logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Customized page (no offer)"});
 									}
 									logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");							
 									
@@ -430,6 +456,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									showBody();
 								  } else {
 									  window["personalizationUseCase"] = "No customisation (RTD error)";
+									  dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Non-customized page (error RTD request)"});
 									  window["rtdErrorType"] = "RTD script xmlDoc status";
 									  showBody();
 								  }
@@ -438,6 +469,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							xmlDoc.send(JSON.stringify(br));
 						} catch(e){
 							window["personalizationUseCase"] = "No customisation (RTD error)";
+							dataLayer.push({
+								event:"uaevent",
+								eventAction: "Customized Page Called",
+								eventCategory: "Personalization Engine",
+								eventLabel: "Non-customized page (error RTD generic js)"});
 							window["rtdErrorType"] = "RTD script xmlDoc exception";
 							showBody();
 						}
@@ -475,6 +511,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								logTime("rtdReplaceContent Content found "+contentSize,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 								if (contentSize <= 0) {
 									logTime("rtdReplaceContent no content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									dataLayer.push({
+										event:"uaevent",
+										eventAction: "Customized Page Called",
+										eventCategory: "Personalization Engine",
+										eventLabel: "Customized page (no offer)"});
 								}
 								else if (contentSize == 1) {
 									logTime("rtdReplaceContent 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -486,12 +527,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
 									if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
 										eval(javascript);
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Customized page"});
 									} else {
 										logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Customized page (RTD js content error)"});
 									}
 								}
 								else {
 									logTime("rtdReplaceContent more than 1 content", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+									var customized = false;
+									var errorJs = false;
 									for(var i = 0; i < contentSize; i++) {
 										var content = contentList[i];
 										logTime("rtdReplaceContent Content "+content.choiceId,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -501,14 +554,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 										logTime("rtdReplaceContent before Eval",document.readyState+" | "+document.body.style.visibility+" | Body hidden");												
 										if (javascript != 'undefined' && javascript != '' && javascript != 'errorJSSkeletonNotFound' && javascript != 'errorEmptyJSSkeletonID' ) {
 											eval(javascript);
+											customized = true;
 										} else {
 											logTime("rtdReplaceContent Error in Javascript Eval: "+javascript,document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+											errorJs = true;
 										}
+									}
+									if(customized==true){
+										if(errorJs==false){
+											dataLayer.push({
+												event:"uaevent",
+												eventAction: "Customized Page Called",
+												eventCategory: "Personalization Engine",
+												eventLabel: "Customized page"});
+										}else{
+											dataLayer.push({
+												event:"uaevent",
+												eventAction: "Customized Page Called",
+												eventCategory: "Personalization Engine",
+												eventLabel: "Customized page (with error RTD js content)"});
+										}
+									}else{
+										dataLayer.push({
+											event:"uaevent",
+											eventAction: "Customized Page Called",
+											eventCategory: "Personalization Engine",
+											eventLabel: "Non-customized page (error RTD js content)"});
 									}
 								}
 							}
 							else {
 								logTime("rtdReplaceContent no Content to replace",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+								dataLayer.push({
+									event:"uaevent",
+									eventAction: "Customized Page Called",
+									eventCategory: "Personalization Engine",
+									eventLabel: "Customized page (no offer)"});
 							}
 							logTime("rtdReplaceContent End", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 							window["personalizationUseCase"] = window["personalizationUseCase"] + " (success)";
@@ -516,24 +597,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						};
 						xmlDoc.onerror = function() {
 							window["personalizationUseCase"] = "No customisation (RTD error)";
+							dataLayer.push({
+								event:"uaevent",
+								eventAction: "Customized Page Called",
+								eventCategory: "Personalization Engine",
+								eventLabel: "Non-customized page (error RTD request)"});
 							window["rtdErrorType"] = "RTD request error";
 							showBody();
 						};
 						xmlDoc.ontimeout = function() {
 							window["personalizationUseCase"] = "No customisation (RTD error)";
+							dataLayer.push({
+								event:"uaevent",
+								eventAction: "Customized Page Called",
+								eventCategory: "Personalization Engine",
+								eventLabel: "Non-customized page (timeout RTD request)"});
 							window["rtdErrorType"] = "RTD request timeout";
 							showBody();
 						};
 						xmlDoc.onprogress = function() {
 							logTime("rtdTagOnProgress_XDR : response onprogress", document.readyState+" | "+document.body.style.visibility+" | Body still Hidden");
 						};
-						// setTimeout corrige le probl�me al�atoire du onload sur IE8
+						// setTimeout corrige le problème aléatoire du onload sur IE8
 						setTimeout(function () {
 							try{
 								xmlDoc.send(JSON.stringify(br));
 								logTime("rtdTag setTimeout due to onload bug IE8", document.readyState+" | "+document.body.style.visibility+" | Body still Hidden");
 							} catch(e){
-								// IE5, IE6 et IE7 ne g�re pas l'objet JSON
+								// IE5, IE6 et IE7 ne gère pas l'objet JSON
 								window["personalizationUseCase"] = "No customisation (RTD error)";
 								window["rtdErrorType"] = "RTD script xmlDoc exception)";
 								showBody();
@@ -546,7 +637,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					}
 				} else { // IE5 et IE6
 					window["personalizationUseCase"] = "No customisation (RTD script error)";
-					window["rtdErrorType"] = "RTD script error due to XDomainRequest)";
+					dataLayer.push({
+						event:"uaevent",
+						eventAction: "Customized Page Called",
+						eventCategory: "Personalization Engine",
+						eventLabel: "No customisation (browser not supported)"});
+					window["rtdErrorType"] = "RTD script error due to XMLHttpRequest)";
 					showBody();
 				}
 			}
@@ -558,8 +654,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			
 			var ddmListener = function (e) {
 				clearTimeout(window["kruxTimeout"]);
-				window["kruxLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["dmpLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
 				window["personalizationUseCase"] = "RTD call with updated Krux segments";
 				updateDataLayerDDM();
 				window["needPushKruxTiming"]=true;
@@ -567,8 +663,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			};
 			
 			var kruxListener = function (e) {
-				window["kruxLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenDmpAndDomLoading"] = window["kruxLastUpdateTime"] - window.performance.timing.domLoading;
+				window["dmpLastUpdateTime"] = new Date().getTime();
+				window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
 				updateDataLayerDDM();
 				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
 					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
