@@ -29,7 +29,7 @@
     <!--[if lt IE 9]><link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/components/tools/html5shiv.min.js"/><![endif]-->
 <link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/classic.common.min.css"/>
 <link rel="stylesheet" media="all" type="text/css" href="/Styles/ACIT/classic.home.min.css"/>
-    <!-- DataLayer-->
+<!-- DataLayer-->
 <script type="text/javascript">
     dataLayer = [{ 
         'brand': 'citroen',
@@ -166,23 +166,7 @@ if (!!window.sessionStorage) {
 }
 </script>
 <!-- End DataLayer-->
-<!-- Google Tag Manager NBA_GTM_V1 -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJ7D96"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PJ7D96');</script>
-<!-- End Google Tag Manager -->
-
-    
-       
-    <link rel="shortcut icon" href="/Images/ACIT/classic/favicon.ico" /> 
-</head>
- 
-<body class="home specACIT">
-<!-- Begin RTD Tag VERSION 29 Final GA -->
+<!-- Begin DDM Tag 2/3 to place between the dataLayer declaration and GTM snippet -->
 <script type="text/javascript">
 			// *********************************************************************************************
 			// fonction utilitaire : attente valorisation date krux
@@ -218,7 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				return;
 			}
 			// *********************************************************************************************
-			// fonction utilitaire : Affichage du body masqu� par DDM
+			// fonction utilitaire : Affichage du body masqué par DDM
 			// *********************************************************************************************
 			function showBody(){
 				logTime("showBody : showing body",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -250,6 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			window["personalizationUseCase"]="Google Analytics Collect happened before the Personalization Engine call";
 			window["eventAction"]="Customized Page Called";
 			window["eventCategory"]="Personalization Engine";
+			window["personalizationStartDate"] = new Date().getTime();
 			// *********************************************************************************************
 			// fonction utilitaire pour user timing: 
 			// *********************************************************************************************
@@ -282,7 +267,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					personalizationStartDate : window["personalizationStartDate"]
 				});
 			}
-			
+			//Update dataLayer before Google Analytics Collect
+			updateDataLayerDDM();
 			// *********************************************************************************************
 			// fonction utilitaire pour événements de personnalisation: 
 			// *********************************************************************************************
@@ -588,11 +574,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				}
 			}
 			
-			logTime("RTD Main tag : hidding body",document.readyState+" | "+document.body.style.visibility+" | Body visible");
-			document.body.style.visibility = "hidden";
-			logTime("RTD Main tag : body hidden",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-			window["personalizationStartDate"] = new Date().getTime();
-			
 			var ddmListener = function (e) {
 				clearTimeout(window["kruxTimeout"]);
 				window["dmpLastUpdateTime"] = new Date().getTime();
@@ -621,7 +602,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			waitKrux(getRTDContent, 1000);
 			
 		</script>
-<!-- End RTD Tag -->
+<!-- End DDM Tag 2/3 to place between the dataLayer declaration and GTM snippet -->
+<!-- Google Tag Manager NBA_GTM_V1 -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJ7D96"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ7D96');</script>
+<!-- End Google Tag Manager -->
+       
+    <link rel="shortcut icon" href="/Images/ACIT/classic/favicon.ico" /> 
+</head>
+ 
+<body class="home specACIT">
+<!-- Begin DDM Tag 3/3 to place in first element to the body tag -->
+<script type="text/javascript">
+logTime("RTD Main tag : hidding body",document.readyState+" | "+document.body.style.visibility+" | Body visible");
+document.body.style.visibility = "hidden";
+logTime("RTD Main tag : body hidden",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+</script>
+<!-- End DDM Tag 3/3 to place in first element to the body tag -->
+
     
 <header class="header-flat new">
     <div class="wrapper-main-header">
