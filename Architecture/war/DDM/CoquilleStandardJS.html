@@ -1,0 +1,49 @@
+<script>
+function executeJavascript(content) {
+    console.log("#### Debut Execution JS RTD V1.0 Generic Standard 20151012_1");
+    try  {
+        console.log("###### JS RTD : 1");
+        if (typeof (content) == "undefined") {
+            throw "Contenu vide";
+        }
+        console.log("###### JS RTD : 2");
+        var elementId = content.attributes.zone;
+        console.log("###### JS RTD : elementId = " + elementId);
+        var psaElement = document.getElementById(elementId);
+        if (typeof (psaElement) != "undefined") {
+            var html = content.attributes.htmlDocument.replace('\\\\', '');
+            var htmlVars = content.attributes.creativeVars;
+            console.log("###### JS RTD : ID " + elementId + " found in page, starting injection");
+            console.log("###### JS RTD : htmlVars = " + htmlVars);
+            if (typeof (htmlVars) != "undefined") {
+                console.log("###### JS RTD : found vars to replace");
+                var jsonObjectVars = JSON.parse(htmlVars);
+                for (var item in jsonObjectVars) {
+                    var variable = jsonObjectVars[item].variable;
+                    var value = jsonObjectVars[item].value;
+                    escapedVariable = variable.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+                    html = html.replace(new RegExp(escapedVariable, 'g'), value);
+                    // Begin update dataLayer for personalization zone - collect Google Analytics
+                    var dataLayer = window["dataLayer"]||[];
+                    dataLayer.push({
+                    	event: "uaevent",
+                    	eventAction: "Customized Zone",
+                    	eventCategory: "Personalization Engine",
+                    	eventLabel: elementId
+                    });
+                 	// End update dataLayer for personalization zone - collect Google Analytics
+                }
+            } else {
+                console.log("###### JS RTD : no vars to replace");
+            }
+            psaElement.innerHTML = html;
+            psaElement.style.display = "block";
+        } else {
+            console.log("###### JS RTD : ID " + elementId + " not found in page, can not replace it");
+        }
+    } catch (err) {
+        console.log('Exception ' + err);
+    }
+    console.log("#### Fin Execution JS RTD");
+}
+</script>
