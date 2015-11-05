@@ -1,31 +1,28 @@
 <script>
-(function open_Popup()
-{
-        width = 500;
-        height = 600;
-        if(window.innerWidth)
-        {
-                var left = (window.innerWidth-width)/2;
-                var top = (window.innerHeight-height)/2;
-        }
-        else
-        {
-                var left = (document.body.clientWidth-width)/2;
-                var top = (document.body.clientHeight-height)/2;
-        }
-       //URL Landing page à rendre en variable
-	   window.open('http://lp.preprod.citroen.fr/fr/landing-page/lorem-ipsum/','Landing Page','menubar=no, scrollbars=no, top='+top+', left='+left+', width='+width+', height='+height+'');
-	   // Begin update dataLayer for personalization zone - collect Google Analytics
-       var dataLayer = window["dataLayer"]||[];
-       dataLayer.push({
-       	event: "uaevent",
-       	eventAction: "Customized Zone",
-       	eventCategory: "Personalization Engine",
-       	eventLabel: "Popin lp.preprod.citroen.fr/fr/landing-page/lorem-ipsum/"
-       });
-       // End update dataLayer for personalization zone - collect Google Analytics
+(function open_Popup() {
+	width = 500;
+	height = 600;
+	if(window.innerWidth)
+	{
+		var left = (window.innerWidth-width)/2;
+		var top = (window.innerHeight-height)/2;
+	} else {
+		var left = (document.body.clientWidth-width)/2;
+		var top = (document.body.clientHeight-height)/2;
+	}
+	//URL Landing page à rendre en variable
+	window.open('http://lp.preprod.citroen.fr/fr/landing-page/lorem-ipsum/','Landing Page','menubar=no, scrollbars=no, top='+top+', left='+left+', width='+width+', height='+height+'');
+	// Begin update dataLayer for personalization zone - collect Google Analytics
+	var dataLayer = window["dataLayer"]||[];
+	dataLayer.push({
+		event: "uaevent",
+     	eventAction: "Customized Zone",
+     	eventCategory: "Personalization Engine",
+     	eventLabel: "Popin lp.preprod.citroen.fr/fr/landing-page/lorem-ipsum/"
+     });
+     // End update dataLayer for personalization zone - collect Google Analytics
 }
-
-var handler = setTimeout(function(){open_Popup(); }, 5000); window.addEventListener("mousemove",function(){clearTimeout(handler);handler = setTimeout(function(){ open_Popup(); }, 5000);});
+var handler = setTimeout(function(){open_Popup(); }, 5000);
+window.addEventListener("mousemove",function(){clearTimeout(handler);handler = setTimeout(function(){ open_Popup(); }, 5000);});
 )
 </script>

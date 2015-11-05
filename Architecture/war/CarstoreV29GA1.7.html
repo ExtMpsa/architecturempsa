@@ -235,6 +235,8 @@ if (!!window.sessionStorage) {
 			window["eventAction"]="Customized Page Called";
 			window["eventCategory"]="Personalization Engine";
 			window["personalizationStartDate"] = new Date().getTime();
+			window["timeBetweenDmpAndDomLoading"] = "";
+			window["timeBetweenPersonalizationEngineAndDomInteractive"] = "";
 			// *********************************************************************************************
 			// fonction utilitaire pour user timing: 
 			// *********************************************************************************************

@@ -1,4 +1,8 @@
 <!-- Begin DDM Tag 1/3 to place first element of head tag -->
+<style>
+.ddm-hidden
+{ opacity: 0.0; }
+</style>
 <!-- Source: /snippet/controltag?confid=J9fJRtAj&site=PSA%2520Peugeot%2520Testing&edit=1&raw=1 -->
 <script class="kxct" data-id="J9fJRtAj" data-timing="async" data-version="1.9" type="text/javascript">
   window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
@@ -52,12 +56,20 @@
 			// fonction utilitaire : Affichage du body masqué par DDM
 			// *********************************************************************************************
 			function showBody(){
+				
 				logTime("showBody : showing body",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-				document.body.style.visibility = "visible";
+				var strClassName = document.body.className;
+				strClassName = strClassName.replace('ddm-hidden', '');
+				document.body.className = strClassName;
 				logTime("showBody : body visible",document.readyState+" | "+document.body.style.visibility+" | Body visible");
 
 				// Calcul et mise à jour des temps et use case DDM
-				window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				if(window.performance){
+					window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
+				} else{
+					window["timeBetweenPersonalizationEngineAndDomInteractive"] = "";
+					dataLayerPushEvent("Performance API support browser compatibility","Performance","Performance API not supported by browser");
+				}
 				if (document.readyState == "interactive"){
 					window["personalizationTechnicalUseCase"] = "DDM display between domInteractive and load event";
 				}else if (document.readyState == "complete"){
@@ -87,18 +99,22 @@
 			// *********************************************************************************************
 			function dataLayerUserTiming(timingCategory , timingVar, timingValue, timingLabel){
 				window["dataLayer"] = window["dataLayer"] || [];
-				dataLayer.push({
-					event : "timingevent",
-					timingCategory : timingCategory,
-					timingVar: timingVar,
-					timingValue: timingValue,
-					timingLabel: timingLabel,
-					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"]||"",
-					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"]||"",
-					personalizationUseCase: window["personalizationUseCase"],
-					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"],
-					personalizationStartDate : window["personalizationStartDate"]
-				});
+				if(timingLabel!=""){
+					dataLayer.push({
+						event : "timingevent",
+						timingCategory : timingCategory,
+						timingVar: timingVar,
+						timingValue: timingValue,
+						timingLabel: timingLabel,
+						timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+						timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"]||"",
+						personalizationUseCase: window["personalizationUseCase"],
+						personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"],
+						personalizationStartDate : window["personalizationStartDate"]
+					});
+				}else{
+					//Do nothing
+				}
 			}
 			
 			// *********************************************************************************************
@@ -107,8 +123,8 @@
 			function updateDataLayerDDM(){
 				window["dataLayer"] = window["dataLayer"] || [];
 				dataLayer.push({
-					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"]||"",
-					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"]||"",
+					timeBetweenPersonalizationEngineAndDomInteractive : window["timeBetweenPersonalizationEngineAndDomInteractive"],
+					timeBetweenDmpAndDomLoading: window["timeBetweenDmpAndDomLoading"],
 					personalizationUseCase: window["personalizationUseCase"],
 					personalizationTechnicalUseCase: window["personalizationTechnicalUseCase"]||"Google Analytics Collect happened before RTD finish",
 					personalizationStartDate : window["personalizationStartDate"]
@@ -127,13 +143,32 @@
 					eventCategory: category,
 					eventLabel: label});
 			}
-			
+
+			// *********************************************************************************************
+			// fonction utilitaire : lecture LastAttributes dans LocalStorage
+			// *********************************************************************************************
+			function getLast(item){
+			  var ls = window.localStorage;
+			  var data;
+			  // stored in json in the localStorage
+			  if(!ls || !JSON){return '';}
+			  
+			  if(ls['KruxPSALast'+item] && ls['KruxPSALast'+item].match(/\{/)){
+				try{
+				  data = JSON.parse(ls['KruxPSALast'+item]);
+				  if(data.item){
+					return data.item;
+				  }
+				}
+				catch(e){}
+			  }
+			}			
+
 			// *********************************************************************************************
 			// fonction utilitaire : recuperation contenu RTD
 			// *********************************************************************************************
 			function getRTDContent(kruxEventData) {
 				window.removeEventListener("krux-update-user",ddmListener,false);
-				
 				var callingUrl = window.location
 				var callingHost = window.location.hostname
 				var callingPath = window.location.pathname
@@ -141,24 +176,75 @@
 				if (typeof kruxEventData != "undefined" && typeof kruxEventData.detail != "undefined") {
 					logTime("getRTDContent => get Krux Event data : OK", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 					
-					var rtduser = (typeof kruxEventData.detail.user != "undefined" && kruxEventData.detail.user != "") ? kruxEventData.detail.user : "DEF";
-					var rtdsegments = (typeof kruxEventData.detail.segments != "undefined" && kruxEventData.detail.segments != "") ? kruxEventData.detail.segments : "{}";
-					var rtdAttributes = [];
-					rtdAttributes.push({"slotId":"Center Right Slot"});
-					if (typeof kruxEventData.detail.lastProduct != "undefined") { rtdAttributes.push({"lastProduct":kruxEventData.detail.lastProduct.item}); }
-					if (typeof kruxEventData.detail.lastFuel != "undefined") { rtdAttributes.push({"lastFuel":kruxEventData.detail.lastFuel.item});}
-					if (typeof kruxEventData.detail.lastColorLabel != "undefined") { rtdAttributes.push({"lastColorLabel":kruxEventData.detail.lastColorLabel.item});}
-					if (typeof kruxEventData.detail.lastGearBox != "undefined") { rtdAttributes.push({"lastGearBox":kruxEventData.detail.lastGearBox.item});}
-					if (typeof kruxEventData.detail.time != "undefined") { rtdAttributes.push({"time":kruxEventData.detail.time});}
+					if (typeof kruxEventData.detail.user != "undefined" && kruxEventData.detail.user != "" && typeof kruxEventData.detail.segments != "undefined" && kruxEventData.detail.segments != "") {
+					
+						var rtduser = (typeof kruxEventData.detail.user != "undefined" && kruxEventData.detail.user != "") ? kruxEventData.detail.user : "DEF";
+						var rtdsegments = (typeof kruxEventData.detail.segments != "undefined" && kruxEventData.detail.segments != "") ? kruxEventData.detail.segments : "{}";
+						
+						var rtdAttributes = [];
+						rtdAttributes.push({"slotId":"Center Right Slot"});
+						if (typeof kruxEventData.detail.lastProduct != "undefined") { rtdAttributes.push({"lastProduct":kruxEventData.detail.lastProduct.item}); }
+						if (typeof kruxEventData.detail.lastFuel != "undefined") { rtdAttributes.push({"lastFuel":kruxEventData.detail.lastFuel.item});}
+						if (typeof kruxEventData.detail.lastColorLabel != "undefined") { rtdAttributes.push({"lastColorLabel":kruxEventData.detail.lastColorLabel.item});}
+						if (typeof kruxEventData.detail.lastGearBox != "undefined") { rtdAttributes.push({"lastGearBox":kruxEventData.detail.lastGearBox.item});}
+						if (typeof kruxEventData.detail.lastCountry != "undefined") { rtdAttributes.push({"lastLanguage":kruxEventData.detail.Country.item});}
+						if (typeof kruxEventData.detail.lastLanguage != "undefined") { rtdAttributes.push({"lastCountry":kruxEventData.detail.lastLanguage.item});}
+						if (typeof kruxEventData.detail.time != "undefined") { rtdAttributes.push({"time":kruxEventData.detail.time});}
 
-					var lang = navigator.language || navigator.userLanguage;
-					var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributes":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
 
-					logTime("getRTDContent => get Krux data rtduser : "+rtduser+" / "+kruxEventData.detail.user, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-					logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments+" / "+kruxEventData.detail.segments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-					logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-					logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
-				} else {
+						
+						var lang = navigator.language || navigator.userLanguage;
+						var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributs":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
+
+						logTime("getRTDContent => get Krux data rtduser : "+rtduser+" / "+kruxEventData.detail.user, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments+" / "+kruxEventData.detail.segments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					}
+					else {
+						logTime("getRTDContent => get Krux Event data : OK / EMPTY EVENT => switching to local storage", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						// on bascule sur une lecture du local storage krux
+						logTime("getRTDContent local storage read start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);
+						(function(){
+							function retrieve(n){
+							  var m, k='kxpsatesting_'+n;
+							  if (window.localStorage) {
+								  return window.localStorage[k] || "";
+							  } else if (navigator.cookieEnabled) {
+								  m = document.cookie.match(k+'=([^;]*)');
+								  return (m && unescape(m[1])) || "";
+							  } else {
+								  return '';
+							  }
+							}
+							Krux.user = retrieve('user');
+							Krux.segments = retrieve('allsegs') ? retrieve('allsegs').split(',') : [];
+						})();
+						logTime("getRTDContent local storage read end", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						
+						var rtduser = (typeof Krux != "undefined" && typeof Krux.user != "undefined" && Krux.user != "") ? Krux.user : "DEF";
+						var rtdsegments = (typeof Krux != "undefined" && typeof Krux.segments != "undefined" && Krux.segments != "") ? Krux.segments : {};
+						
+						var rtdAttributes = [];
+						rtdAttributes.push({"slotId":"Center Right Slot"});
+						if (typeof getLast('Product') != "undefined") { rtdAttributes.push({"lastProduct":getLast('Product')}); }
+						if (typeof getLast('Fuel') != "undefined") { rtdAttributes.push({"lastFuel":getLast('Fuel')});}
+						if (typeof getLast('ColorLabel') != "undefined") { rtdAttributes.push({"lastColorLabel":getLast('ColorLabel')});}
+						if (typeof getLast('GearBox') != "undefined") { rtdAttributes.push({"lastGearBox":getLast('GearBox')});}
+						if (typeof getLast('Language') != "undefined") { rtdAttributes.push({"lastLanguage":getLast('Language')});}
+						if (typeof getLast('Country') != "undefined") { rtdAttributes.push({"lastCountry":getLast('Country')});}
+						
+						var lang = navigator.language || navigator.userLanguage;
+						var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributes":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
+
+						logTime("getRTDContent => get Krux data rtduser : "+rtduser, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdsegments : "+rtdsegments, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data rtdattributes : "+rtdAttributes, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+						logTime("getRTDContent => get Krux data br : "+br, document.readyState+" | "+document.body.style.visibility+" | Body hidden");
+					}
+				}
+				else {
 						logTime("getRTDContent => get Krux Event data : KO => switching to local storage", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 						// on bascule sur une lecture du local storage krux
 						logTime("getRTDContent local storage read start", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
@@ -184,12 +270,14 @@
 						var rtdsegments = (typeof Krux != "undefined" && typeof Krux.segments != "undefined" && Krux.segments != "") ? Krux.segments : {};
 						
 						var rtdAttributes = new Object();
-						//rtdAttributes["time"] = kruxEventData.detail.time;
-						//rtdAttributes["lastProduct"] = kruxEventData.detail.lastProduct;
-						//rtdAttributes["lastFuel"] = kruxEventData.detail.lastFuel;
-						//rtdAttributes["lastColorLabel"] = kruxEventData.detail.lastColorLabel;
-						//rtdAttributes["lastGearBox"] = kruxEventData.detail.lastGearBox;
-						rtdAttributes["slotId"] = "Center Right Slot";
+						var rtdAttributes = [];
+						rtdAttributes.push({"slotId":"Center Right Slot"});
+						if (typeof getLast('Product') != "undefined") { rtdAttributes.push({"lastProduct":getLast('Product')}); }
+						if (typeof getLast('Fuel') != "undefined") { rtdAttributes.push({"lastFuel":getLast('Fuel')});}
+						if (typeof getLast('ColorLabel') != "undefined") { rtdAttributes.push({"lastColorLabel":getLast('ColorLabel')});}
+						if (typeof getLast('GearBox') != "undefined") { rtdAttributes.push({"lastGearBox":getLast('GearBox')});}
+						if (typeof getLast('Language') != "undefined") { rtdAttributes.push({"lastLanguage":getLast('Language')});}
+						if (typeof getLast('Country') != "undefined") { rtdAttributes.push({"lastCountry":getLast('Country')});}
 						
 						var lang = navigator.language || navigator.userLanguage;
 						var br='{"inlineServiceName":"RTD_Base_Marketing","integrationPointName":"GetCreative","deploymentState":"MAX","sessionKey":{"key":"sessionId","value":"'+rtduser+'"},"arguments": {"sessionId":"'+rtduser+'","debug":"true","callingUrl":"'+callingUrl+'","callingHost":"'+callingHost+'","callingPath":"'+callingPath+'","slotId":"Center Right Slot","kruxSegmentIdArray":'+JSON.stringify(rtdsegments)+',"kruxAttributes":'+JSON.stringify(rtdAttributes)+',"language":"'+lang+'","pageAttributeArray":{}},"trace":"true"}';
@@ -201,14 +289,20 @@
 				}
 				
 				var xmlDoc;
+				var dataLayer = dataLayer||[];
 				if (window.XMLHttpRequest) { // IE7+ Chrome FF Opera
 					logTime("getRTDContent : IE7+ Chrome FF Opera", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 					xmlDoc = new XMLHttpRequest();
 					if('withCredentials' in xmlDoc) { // IE10+ Chrome FF Opera
 						logTime("getRTDContent : IE10+ Chrome FF Opera", document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 						try{
-							xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisor', true);
+							xmlDoc.timeout = 1500;
+							xmlDoc.open('POST', (location.protocol==='https:'?'https:':'http:')+'//rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisor', true);
 							xmlDoc.setRequestHeader("Content-type", "application/json; charset=utf-8");
+							xmlDoc.ontimeout =  function () { 
+								logTime("Timed out!!!", document.readyState+" | "+document.body.style.visibility+" | Body hidden"); 
+								showBody();
+								}
 							xmlDoc.onreadystatechange = function() {
 							  if (xmlDoc.readyState === 4) {
 								  if(xmlDoc.status === 200){
@@ -307,7 +401,8 @@
 						}
 
 						xmlDoc = new XDomainRequest();
-						xmlDoc.open('POST', 'https://rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisor');
+						xmlDoc.timeout = 1500;
+						xmlDoc.open('POST', (location.protocol==='https:'?'https:':'http:')+'//rtdpsapeugcitroendstest.oracleoutsourcing.com/ws2/resource/advisorIE9');
 						xmlDoc.onload = function () {
 						
 							var dom  = new ActiveXObject('Microsoft.XMLDOM');
@@ -423,7 +518,11 @@
 			var ddmListener = function (e) {
 				clearTimeout(window["kruxTimeout"]);
 				window["dmpLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
+				if(window.performance){
+					window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
+				}else{
+					window["timeBetweenDmpAndDomLoading"] = "";
+				}
 				window["personalizationUseCase"] = "RTD call with updated Krux segments";
 				updateDataLayerDDM();
 				window["needPushKruxTiming"]=true;
@@ -432,7 +531,11 @@
 			
 			var kruxListener = function (e) {
 				window["dmpLastUpdateTime"] = new Date().getTime();
-				window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
+				if(window.performance){
+					window["timeBetweenDmpAndDomLoading"] = window["dmpLastUpdateTime"] - window.performance.timing.domLoading;
+				}else{
+					window["timeBetweenDmpAndDomLoading"] = "";
+				}
 				updateDataLayerDDM();
 				if(window["timeBetweenPersonalizationEngineAndDomInteractive"]){
 					dataLayerUserTiming("Krux","Data Management Platform", window["timeBetweenDmpAndDomLoading"], "Temps mis par la DMP pour mettre à jour les segments");
@@ -445,7 +548,7 @@
 			
 			window.addEventListener("krux-update-user", ddmListener, false);
 			window.addEventListener("krux-update-user", kruxListener, false);
-			waitKrux(getRTDContent, 1000);
+			waitKrux(getRTDContent, 0);
 			
 		</script>
 <!-- End DDM Tag 2/3 to place between the dataLayer declaration and GTM snippet -->
@@ -453,7 +556,7 @@
 <!-- Begin DDM Tag 3/3 to place in first element to the body tag -->
 <script type="text/javascript">
 logTime("RTD Main tag : hidding body",document.readyState+" | "+document.body.style.visibility+" | Body visible");
-document.body.style.visibility = "hidden";
+document.body.className = document.body.className  + " ddm-hidden";
 logTime("RTD Main tag : body hidden",document.readyState+" | "+document.body.style.visibility+" | Body hidden");
 </script>
 <!-- End DDM Tag 3/3 to place in first element to the body tag -->
