@@ -1,0 +1,111 @@
+
+/* MODULE HOME */
+.module_home{
+	width: 343px;
+	padding-top: 95px;
+	background: transparent url('../../Styles/img/dealerAdvisor/bg_module_home.png') no-repeat left top;
+	background-position: 0 95px;
+	font-size: 10px;
+    line-height: 1.4;
+	color: #7a7a7a;
+	position: relative;
+}
+.module_home a{
+	color: #dc002e;
+	font-size: 1em;
+	text-decoration: none;
+	float: right;
+	position: relative;
+}
+.module_home a:hover{
+	text-decoration: underline;
+}
+.module_home p{
+	padding: 3px;
+	line-height:17px;
+	font-size:14px;
+}
+.titre_module_home{
+	width: 120px;
+	height: 38px;
+	float: left;
+	color: #595959;
+	padding: 10px 0 0 10px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.avis_module_home{
+	width: 213px;
+	float: left;
+}
+
+.etoiles_1_gris_module{
+	width: 15px;
+	height: 16px;
+	background-color: #808080;
+	float: left;
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	margin: 0 5px 0 0;
+}
+.etoiles_1_rouge_module{
+	width: 15px;
+	height: 16px;
+	background-color: #dc002e;
+	float: left;
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	margin: 0 5px 0 0;
+}
+.etoiles_1_middle_module{
+	width: 15px;
+	height: 16px;
+	background: transparent url('../../Styles/img/dealerAdvisor/etoile_middle_module.png') no-repeat top left;
+	float: left;
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	margin: 0 5px 0 0;
+}
+
+.content_notes_module{
+	padding: 5px 0 0 0;
+}
+
+.content_notes_module.APV_Without_VN{
+	padding-top: 27px;
+}
+
+.titre_notes_module{
+	float: left;
+	padding: 0 10px 0 0;
+	width: 50px;
+	font-weight:bold;
+	font-size:1.2em;
+}
+.titre_notes_module h3{
+	font-size: 0.80em;
+	color: #595959;
+	font-weight: normal;
+}
+.notes_module{
+	float: left;
+}
+.text_notes_module{
+	float: left;
+	color: #595959 ;
+}
+.text_notes_module a{
+	font-size: 1.1em;
+	color: #595959;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;
+}
+.text_notes_module a:hover{
+	text-decoration: underline;
+}
+
+/* FIN */

@@ -1,0 +1,30 @@
+@font-face {
+	font-family: 'citroen_regular';
+	src: url('../fonts/citroen_regular-webfont.eot');
+	src: url('../fonts/citroen_regular-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/citroen_regular-webfont.woff') format('woff'),
+			 url('../fonts/citroen_regular-webfont.ttf') format('truetype'),
+			 url('../fonts/citroen_regular-webfont.svg#citroen_regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'citroen_light';
+	src: url('../fonts/citroen_light-webfont.eot');
+	src: url('../fonts/citroen_light-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/citroen_light-webfont.woff') format('woff'),
+			 url('../fonts/citroen_light-webfont.ttf') format('truetype'),
+			 url('../fonts/citroen_light-webfont.svg#citroen_light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'citroen_bold';
+	src: url('../fonts/citroen_bold-webfont.eot');
+	src: url('../fonts/citroen_bold-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/citroen_bold-webfont.woff') format('woff'),
+			 url('../fonts/citroen_bold-webfont.ttf') format('truetype'),
+			 url('../fonts/citroen_bold-webfont.svg#citroen_bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

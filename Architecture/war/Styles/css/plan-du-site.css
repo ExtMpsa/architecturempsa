@@ -1,0 +1,41 @@
+/*
+#plan-container-right{background:url('../img/backgrounds/bg_plan_right.gif') right center no-repeat; }
+#plan-container-left{background:url('../img/backgrounds/bg_plan_left.gif')  left center no-repeat; padding: 0 30px;  }
+#plan{ font-size:11px; background:url('../img/backgrounds/bg_plan.gif') bottom repeat-x; width:875 px; margin:0 auto;  height:100%;}
+*/
+#plan .cat-bloc{
+  /*border-right:1px dotted #cdcdcd;*/
+  padding:13px 0;
+  margin : 5px 0;
+  float:left;
+  width:33.2%;
+  
+}
+#plan .last{border:none; width:auto; min-width:250px;}
+
+.cat-bloc .cat-name{
+  font-size:15px;
+  font-weight:bold;
+  padding:0 0 5px 36px;
+  display:inline-block;
+  background: url('../img/icones/plan_arrows.gif') 25px 3px no-repeat;
+}
+.cat-plan-container{
+  padding-top:10px;
+  background: url('../img/icones/plan_arrows.gif') 60px -90px  no-repeat;
+}
+.cat-bloc ul{
+  background:#f3f3f3;
+  padding:5px 10px;
+  margin :0 25px;
+}
+.cat-bloc ul li a{
+  background:url('../img/icones/plan_arrows.gif') 0 -29px no-repeat;
+  padding:3px 0 3px 10px;
+  display:inline-block;
+  color:#000;
+  font-weight:bold;
+}
+.cat-bloc ul li a:hover{
+  color:#dc002e;
+}

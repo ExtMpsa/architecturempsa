@@ -65,7 +65,7 @@
 
 				// Calcul et mise à jour des temps et use case DDM
 				if(window.performance){
-					if (new Date().getTime() - window.performance.timing.domInteractive > 0){
+					if (window.performance.timing.domInteractive > 0){
 						window["timeBetweenPersonalizationEngineAndDomInteractive"] = new Date().getTime() - window.performance.timing.domInteractive;
 					} else {
 						window["timeBetweenPersonalizationEngineAndDomInteractive"] = 0;
