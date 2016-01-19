@@ -2275,7 +2275,7 @@ function manageLinkListener(){
 			link.addEventListener('blur', windowAddLaunchTagListener, false);
 		} else if (window.attachEvent) {
 			link.attachEvent('onfocus', removeLaunchTagListener);
-			link.addEventListener('onblur', windowAddLaunchTagListener, false);
+			link.attachEvent('onblur', windowAddLaunchTagListener, false);
 		}
 	}
 }
