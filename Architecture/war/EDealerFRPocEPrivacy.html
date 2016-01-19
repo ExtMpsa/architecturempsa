@@ -2195,15 +2195,23 @@ Sys.Application.add_init(function() {
 	    	j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
 	    	f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer', "GTM-MVRT82");
-		<!-- Google Tag Manager End -->
+	}
+	
+	function removeLaunchTagListener() {
 		if (window.removeEventListener){
-			window.removeEventListener('click', launchTag);
+			window.removeEventListener('click', launchTagListener);
 		} else if (window.detachEvent) {
-			window.detachEvent('onclick', launchTag);
+			window.detachEvent('onclick', launchTagListener);
 		}
 	}
 	
-	
+	function windowAddLaunchTagListener(){
+		if (window.addEventListener){
+			window.addEventListener('click', launchTagListener, false);
+		} else if (window.attachEvent) {
+			window.attachEvent('onclick', launchTagListener);
+		}
+	}
 	
 	if (ePrivacy()){
 		launchTag();
@@ -2223,16 +2231,12 @@ Sys.Application.add_init(function() {
 				})(window,document,'script','dataLayer', "GTM-MVRT82");
 				<!-- Google Tag Manager End -->
 				if (window.removeEventListener){
-					window.removeEventListener('click', launchTag);
+					window.removeEventListener('click', launchTagListener);
 				} else if (window.detachEvent) {
-					window.detachEvent('onclick', launchTag);
+					window.detachEvent('onclick', launchTagListener);
 				}
-			}
-		if (window.addEventListener){
-			window.addEventListener('click', launchTagListener, false);
-		} else if (window.attachEvent) {
-			window.attachEvent('onclick', launchTagListener);
-		}
+			};
+			windowAddLaunchTagListener();
 	}
 	
 	
@@ -2256,9 +2260,31 @@ Sys.Application.add_init(function() {
   (function() {
     var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6523); hn.setAttribute('data-ev-hover-ocid', 3484);
     hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
+    hn.id="hn";
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
   })();
 </script>
 <!-- End EPrivacy Script banner -->
+<!-- Cancel launch when EPrivacy Link launch -->
+<script type="text/javascript">
+function manageLinkListener(){
+	var link = document.getElementById("_ePrivacy-link");
+	if (link){
+		if (window.addEventListener){
+			link.addEventListener('focus', removeLaunchTagListener, false);
+			link.addEventListener('blur', windowAddLaunchTagListener, false);
+		} else if (window.attachEvent) {
+			link.attachEvent('onfocus', removeLaunchTagListener);
+			link.addEventListener('onblur', windowAddLaunchTagListener, false);
+		}
+	}
+}
+var hn = document.getElementById("hn");
+if (window.addEventListener){
+	window.addEventListener('load', manageLinkListener, false);
+} else if (window.attachEvent) {
+	window.attachEvent('onload', manageLinkListener);
+}
+</script>
 </body>
 </html>
