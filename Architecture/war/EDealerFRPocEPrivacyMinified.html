@@ -2147,109 +2147,14 @@ Sys.Application.add_init(function() {
 <div class="pac-container pac-logo" style="display: none; width: 454px; position: absolute; left: -999991px; top: -999589px;">
 </div>
 <script type="text/javascript">
-	function ePrivacy() {
-		var ric_c = null;
-		var ric_sc = null;
-		function getCookie(sName) {
-		  var oRegex = new RegExp("(?:; )?" + sName + ".*" + "=([^;]*);?","i");
-		  if (oRegex.test(document.cookie)) {
-		    return decodeURIComponent(RegExp["$1"]);
-		  } else {
-		    return null;
-		  }
-		}
-		ric_c = getCookie("__ric_c");
-		ric_sc = getCookie("__ric_sc");
-		if (ric_c == null){
-		  ric_c = false;
-		} else {
-		  ric_c = true;
-		}
-		if (ric_sc == null){
-		  ric_sc = false;
-		} else {
-		  ric_sc = true;
-		}
-		
-		return (ric_c&&ric_sc);
-	}
-	
-	function launchTag() {
-		(function(w,d,s,l,i){
-	    	w[l]=w[l]||[];
-	    	w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-	    	var
-	    	f=d.getElementsByTagName(s)[0],
-	    	j=d.createElement(s),
-	    	dl=l!='dataLayer'?'&l='+l:'';
-	    	j.async=true;
-	    	j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
-	    	f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer', "GTM-MVRT82");
-	}
-	
-	function removeLaunchTagListener() {
-		if (window.removeEventListener){
-			window.removeEventListener('click', launchTagListener);
-		} else if (window.detachEvent) {
-			window.detachEvent('onclick', launchTagListener);
-		}
-	}
-	
-	function windowAddLaunchTagListener(){
-		if (window.addEventListener){
-			window.addEventListener('click', launchTagListener, false);
-		} else if (window.attachEvent) {
-			window.attachEvent('onclick', launchTagListener);
-		}
-	}
-	
-	if (ePrivacy()){
-		launchTag();
-	}else{
-		var launchTagListener = function (){
-				launchTag();
-				
-				if (window.removeEventListener){
-					window.removeEventListener('click', launchTagListener);
-				} else if (window.detachEvent) {
-					window.detachEvent('onclick', launchTagListener);
-				}
-			};
-			windowAddLaunchTagListener();
-	}
-	
-	(function() {
-	  var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid', 6523); ev.setAttribute('data-ev-tag-ocid', 3484); 
-	  ev.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/pub/tag.js';
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ev, s);
-	})();
-	(function() {
-	  var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6523); hn.setAttribute('data-ev-hover-ocid', 3484);
-	  hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
-	  hn.id="hn";
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
-	})();
-
-	function manageLinkListener(){
-		var link = document.getElementById("_ePrivacy-link");
-		if (link){
-			if (window.addEventListener){
-				link.addEventListener('focus', removeLaunchTagListener, false);
-				link.addEventListener('blur', windowAddLaunchTagListener, false);
-			} else if (window.attachEvent) {
-				link.attachEvent('onfocus', removeLaunchTagListener);
-				link.attachEvent('onblur', windowAddLaunchTagListener, false);
-			}
-		}
-	}
-	
-	var hn = document.getElementById("hn");
-	if (window.addEventListener){
-		window.addEventListener('load', manageLinkListener, false);
-	} else if (window.attachEvent) {
-		window.attachEvent('onload', manageLinkListener);
-	}
+function ePrivacy(){function a(a){return(new RegExp("(?:; )?"+a+".*=([^;]*);?","i")).test(document.cookie)?decodeURIComponent(RegExp.$1):null}var b=null,c=null,b=a("__ric_c"),c=a("__ric_sc");return(null==b?!1:!0)&&(null==c?!1:!0)}
+function launchTag(){var a=window;a.dataLayer=a.dataLayer||[];a.dataLayer.push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=document.getElementsByTagName("script")[0],b=document.createElement("script");b.async=!0;b.src="//www.googletagmanager.com/gtm.js?id=GTM-MVRT82";a.parentNode.insertBefore(b,a)}function removeLaunchTagListener(){window.removeEventListener?window.removeEventListener("click",launchTagListener):window.detachEvent&&window.detachEvent("onclick",launchTagListener)}
+function windowAddLaunchTagListener(){window.addEventListener?window.addEventListener("click",launchTagListener,!1):window.attachEvent&&window.attachEvent("onclick",launchTagListener)}
+if(ePrivacy())launchTag();else{var launchTagListener=function(){var a=window;a.dataLayer=a.dataLayer||[];a.dataLayer.push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=document.getElementsByTagName("script")[0],b=document.createElement("script");b.async=!0;b.src="//www.googletagmanager.com/gtm.js?id=GTM-MVRT82";a.parentNode.insertBefore(b,a);window.removeEventListener?window.removeEventListener("click",launchTagListener):window.detachEvent&&window.detachEvent("onclick",launchTagListener)};
+windowAddLaunchTagListener()}(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.setAttribute("data-ev-tag-pid",6523);a.setAttribute("data-ev-tag-ocid",3484);a.src=("https:"==document.location.protocol?"https://":"http://")+"c.betrad.com/pub/tag.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
+(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.setAttribute("data-ev-hover-pid",6523);a.setAttribute("data-ev-hover-ocid",3484);a.src=("https:"==document.location.protocol?"https://":"http://")+"c.betrad.com/geo/h1.js";a.id="hn";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
+function manageLinkListener(){var a=document.getElementById("_ePrivacy-link");a&&(window.addEventListener?(a.addEventListener("focus",removeLaunchTagListener,!1),a.addEventListener("blur",windowAddLaunchTagListener,!1)):window.attachEvent&&(a.attachEvent("onfocus",removeLaunchTagListener),a.attachEvent("onblur",windowAddLaunchTagListener,!1)))}var hn=document.getElementById("hn");
+window.addEventListener?window.addEventListener("load",manageLinkListener,!1):window.attachEvent&&window.attachEvent("onload",manageLinkListener);
 </script>
 </body>
 </html>
