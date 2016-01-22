@@ -2,6 +2,7 @@
 	function ePrivacy() {
 		var ric_c = null;
 		var ric_sc = null;
+		var cookies_allowed = null;
 		function getCookie(sName) {
 		  var oRegex = new RegExp("(?:; )?" + sName + ".*" + "=([^;]*);?","i");
 		  if (oRegex.test(document.cookie)) {
@@ -12,6 +13,7 @@
 		}
 		ric_c = getCookie("__ric_c");
 		ric_sc = getCookie("__ric_sc");
+		cookies_allowed = getCookie("cookies_allowed");
 		if (ric_c == null){
 		  ric_c = false;
 		} else {
@@ -22,8 +24,13 @@
 		} else {
 		  ric_sc = true;
 		}
+		if(cookies_allowed == null){
+			cookies_allowed = false;
+		}else{
+			cookies_allowed = true;
+		}
 		
-		return (ric_c&&ric_sc);
+		return ((ric_c&&ric_sc)||cookies_allowed);
 	}
 	
 	function launchTag() {
@@ -60,34 +67,27 @@
 		launchTag();
 	}else{
 		var launchTagListener = function (){
-				(function(w,d,s,l,i){
-			    	w[l]=w[l]||[];
-			    	w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-			    	var
-			    	f=d.getElementsByTagName(s)[0],
-			    	j=d.createElement(s),
-			    	dl=l!='dataLayer'?'&l='+l:'';
-			    	j.async=true;
-			    	j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
-			    	f.parentNode.insertBefore(j,f);
-				})(window,document,'script','dataLayer', "GTM-MVRT82");
-				
-				if (window.removeEventListener){
-					window.removeEventListener('click', launchTagListener);
-				} else if (window.detachEvent) {
-					window.detachEvent('onclick', launchTagListener);
+				if (ePrivacy()){
+					launchTag();
+					if (window.removeEventListener){
+						window.removeEventListener('click', launchTagListener);
+					} else if (window.detachEvent) {
+						window.detachEvent('onclick', launchTagListener);
+					}
+				}else{
+					
 				}
 			};
 			windowAddLaunchTagListener();
 	}
 	
 	(function() {
-	  var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid', 6523); ev.setAttribute('data-ev-tag-ocid', 3484); 
+	  var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid', 6701); ev.setAttribute('data-ev-tag-ocid', 3484); 
 	  ev.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/pub/tag.js';
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ev, s);
 	})();
 	(function() {
-	  var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6523); hn.setAttribute('data-ev-hover-ocid', 3484);
+	  var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6701); hn.setAttribute('data-ev-hover-ocid', 3484);
 	  hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
 	  hn.id="hn";
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
