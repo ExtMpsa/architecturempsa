@@ -2263,5 +2263,20 @@ Sys.Application.add_init(function() {
 		window.attachEvent('onload', manageLinkListener);
 	}
 </script>
+<script>
+	var counter=0;
+	var thisInt=setInterval(function(){
+		counter++;
+		if(counter>200)
+		{
+		    clearInterval(thisInt);
+		}
+		if(document.getElementById('_evh-ric-c'))
+		{
+		    document.getElementById('_evh-ric-c').src='https://c.betrad.com/custom/closeButtons/RedInWhite.png';
+		    clearInterval(thisInt);
+		}
+	},10);
+</script>
 </body>
 </html>

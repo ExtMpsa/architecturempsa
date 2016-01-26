@@ -2158,5 +2158,20 @@ function windowAddLaunchTagListener(){window.addEventListener?window.addEventLis
 (function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.setAttribute("data-ev-hover-pid",6523);a.setAttribute("data-ev-hover-ocid",3484);a.src=("https:"==document.location.protocol?"https://":"http://")+"c.betrad.com/geo/h1.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
 function manageLinkListener(){var a=document.getElementById("_ePrivacy-link");a&&(window.addEventListener?(a.addEventListener("focus",removeLaunchTagListener,!1),a.addEventListener("blur",windowAddLaunchTagListener,!1)):window.attachEvent&&(a.attachEvent("onfocus",removeLaunchTagListener),a.attachEvent("onblur",windowAddLaunchTagListener,!1)))}window.addEventListener?window.addEventListener("load",manageLinkListener,!1):window.attachEvent&&window.attachEvent("onload",manageLinkListener);
 </script>
+<script>
+	var counter=0;
+	var thisInt=setInterval(function(){
+		counter++;
+		if(counter>200)
+		{
+		    clearInterval(thisInt);
+		}
+		if(document.getElementById('_evh-ric-c'))
+		{
+		    document.getElementById('_evh-ric-c').src='https://c.betrad.com/custom/closeButtons/RedInWhite.png';
+		    clearInterval(thisInt);
+		}
+	},10);
+</script>
 </body>
 </html>
