@@ -1,0 +1,127 @@
+<a id="_bapw-link" href="#" target="_blank" style="text-decoration:none !important;visibility: hidden;">
+<img id="_bapw-icon" style="border:0 !important;display:inline !important;vertical-align:middle !important;padding-right:5px !important;"/>
+<span style="vertical-align:middle !important">Gérer les cookies</span>
+</a>
+<script type="text/javascript">
+	function ePrivacy() {
+		var ric_c = null;
+		var ric_sc = null;
+		var cookies_allowed = null;
+		function getCookie(sName) {
+		  var oRegex = new RegExp("(?:; )?" + sName + ".*" + "=([^;]*);?","i");
+		  if (oRegex.test(document.cookie)) {
+		    return decodeURIComponent(RegExp["$1"]);
+		  } else {
+		    return null;
+		  }
+		}
+		ric_c = getCookie("__ric_c");
+		ric_sc = getCookie("__ric_sc");
+		cookies_allowed = getCookie("cookies_allowed");
+		if (ric_c == null){
+		  ric_c = false;
+		} else {
+		  ric_c = true;
+		}
+		if (ric_sc == null){
+		  ric_sc = false;
+		} else {
+		  ric_sc = true;
+		}
+		if(cookies_allowed == null){
+			cookies_allowed = false;
+		}else{
+			cookies_allowed = true;
+		}
+		
+		return ((ric_c&&ric_sc)||cookies_allowed);
+	}
+	
+	function launchTag() {
+		<!-- Google Tag Manager lifestyle.citroen.com -->
+		(function(w,d,s,l,i){
+	    	w[l]=w[l]||[];
+	    	w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+	    	var
+	    	f=d.getElementsByTagName(s)[0],
+	    	j=d.createElement(s),
+	    	dl=l!='dataLayer'?'&l='+l:'';
+	    	j.async=true;
+	    	j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
+	    	f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer', "GTM-MBQQVR");
+		<!-- Hotjar Tracking Code for lifestyle.citroen.com -->
+		(function(h,o,t,j,a,r){
+	        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+	        h._hjSettings={hjid:55204,hjsv:5};
+	        a=o.getElementsByTagName('head')[0];
+	        r=o.createElement('script');r.async=1;
+	        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+	        a.appendChild(r);
+	    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	}
+	
+	function removeLaunchTagListener() {
+		if (window.removeEventListener){
+			window.removeEventListener('click', launchTagListener);
+		} else if (window.detachEvent) {
+			window.detachEvent('onclick', launchTagListener);
+		}
+	}
+	
+	function windowAddLaunchTagListener(){
+		if (window.addEventListener){
+			window.addEventListener('click', launchTagListener, false);
+		} else if (window.attachEvent) {
+			window.attachEvent('onclick', launchTagListener);
+		}
+	}
+	
+	if (ePrivacy()){
+		launchTag();
+	}else{
+		var launchTagListener = function (){
+				if (ePrivacy()){
+					launchTag();
+					if (window.removeEventListener){
+						window.removeEventListener('click', launchTagListener);
+					} else if (window.detachEvent) {
+						window.detachEvent('onclick', launchTagListener);
+					}
+				}else{
+					
+				}
+			};
+			windowAddLaunchTagListener();
+	}
+	
+	(function() {
+	  var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid', 6523); ev.setAttribute('data-ev-tag-ocid', 3484); 
+	  ev.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/pub/tag.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ev, s);
+	})();
+	(function() {
+	  var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6523); hn.setAttribute('data-ev-hover-ocid', 3484);
+	  hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
+	})();
+
+	function manageLinkListener(){
+		var link = document.getElementById("_ePrivacy-link");
+		if (link){
+			if (window.addEventListener){
+				link.addEventListener('focus', removeLaunchTagListener, false);
+				link.addEventListener('blur', windowAddLaunchTagListener, false);
+			} else if (window.attachEvent) {
+				link.attachEvent('onfocus', removeLaunchTagListener);
+				link.attachEvent('onblur', windowAddLaunchTagListener, false);
+			}
+		}
+	}
+	
+	if (window.addEventListener){
+		window.addEventListener('load', manageLinkListener, false);
+	} else if (window.attachEvent) {
+		window.attachEvent('onload', manageLinkListener);
+	}
+</script>
