@@ -2234,12 +2234,18 @@ Sys.Application.add_init(function() {
 	}
 	
 	(function() {
-	  var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid', 6701); ev.setAttribute('data-ev-tag-ocid', 3484); 
+	  var ev = document.createElement('script');
+	  ev.type = 'text/javascript';
+	  ev.async = true; ev.setAttribute('data-ev-tag-pid', 6701);
+	  ev.setAttribute('data-ev-tag-ocid', 3484); 
 	  ev.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/pub/tag.js';
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ev, s);
 	})();
 	(function() {
-	  var hn = document.createElement('script'); hn.type = 'text/javascript'; hn.async = true; hn.setAttribute('data-ev-hover-pid', 6701); hn.setAttribute('data-ev-hover-ocid', 3484);
+	  var hn = document.createElement('script');
+	  hn.type = 'text/javascript'; hn.async = true;
+	  hn.setAttribute('data-ev-hover-pid', 6701);
+	  hn.setAttribute('data-ev-hover-ocid', 3484);
 	  hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
 	})();
@@ -2257,10 +2263,38 @@ Sys.Application.add_init(function() {
 		}
 	}
 	
+	function hideExplicitButtonListener(){
+		var acceptationButtonExplicit = document.getElementById("__ev_bc_accept");
+		if(acceptationButtonExplicit){
+			if (window.addEventListener){
+				acceptationButtonExplicit.addEventListener('click', hideExplicitButton, false);
+			} else if (window.attachEvent) {
+				acceptationButtonExplicit.attachEvent('onclick', hideExplicitButton);
+			}
+		}
+	}
+	
+	function hideExplicitButton(timer){
+		setTimeout(function(){
+			var linkExplicit = document.getElementById("_evh-button");
+			if(linkExplicit){
+				linkExplicit.style.visibility = "hidden";
+				console.log("linkExplicit find");
+			}else{
+				hideExplicitButton(10);
+				console.log("linkExplicit null");
+			}	
+		},timer);
+		
+	}
+	
 	if (window.addEventListener){
 		window.addEventListener('load', manageLinkListener, false);
+		window.addEventListener('load', hideExplicitButtonListener, false);
+		hideExplicitButton(220);
 	} else if (window.attachEvent) {
 		window.attachEvent('onload', manageLinkListener);
+		window.attachEvent('onload', hideExplicitButtonListener(120));
 	}
 </script>
 </body>
