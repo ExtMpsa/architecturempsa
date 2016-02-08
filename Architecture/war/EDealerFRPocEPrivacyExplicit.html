@@ -2215,7 +2215,22 @@ Sys.Application.add_init(function() {
 		}
 	}
 	
+	function hideExplicitButton(timer){
+		setTimeout(function(){
+			var linkExplicit = document.getElementById("_evh-button");
+			if(linkExplicit){
+				linkExplicit.style.visibility = "hidden";
+				console.log("linkExplicit find");
+			}else{
+				hideExplicitButton(10);
+				console.log("linkExplicit null");
+			}	
+		},timer);
+		
+	}
+	
 	if (ePrivacy()){
+		hideExplicitButton(300);
 		launchTag();
 	}else{
 		var launchTagListener = function (){
@@ -2274,24 +2289,9 @@ Sys.Application.add_init(function() {
 		}
 	}
 	
-	function hideExplicitButton(timer){
-		setTimeout(function(){
-			var linkExplicit = document.getElementById("_evh-button");
-			if(linkExplicit){
-				linkExplicit.style.visibility = "hidden";
-				console.log("linkExplicit find");
-			}else{
-				hideExplicitButton(10);
-				console.log("linkExplicit null");
-			}	
-		},timer);
-		
-	}
-	
 	if (window.addEventListener){
 		window.addEventListener('load', manageLinkListener, false);
 		window.addEventListener('load', hideExplicitButtonListener, false);
-		hideExplicitButton(220);
 	} else if (window.attachEvent) {
 		window.attachEvent('onload', manageLinkListener);
 		window.attachEvent('onload', hideExplicitButtonListener(120));

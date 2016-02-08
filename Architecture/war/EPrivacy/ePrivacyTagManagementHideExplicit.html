@@ -67,7 +67,22 @@
 		}
 	}
 	
+	function hideExplicitButton(timer){
+		setTimeout(function(){
+			var linkExplicit = document.getElementById("_evh-button");
+			if(linkExplicit){
+				linkExplicit.style.visibility = "hidden";
+				console.log("linkExplicit find");
+			}else{
+				hideExplicitButton(10);
+				console.log("linkExplicit null");
+			}	
+		},timer);
+		
+	}
+	
 	if (ePrivacy()){
+		hideExplicitButton(300);
 		launchTag();
 	}else{
 		var launchTagListener = function (){
@@ -101,7 +116,7 @@
 	  hn.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/geo/h1.js';
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hn, s);
 	})();
-
+	
 	function manageLinkListener(){
 		var link = document.getElementById("_ePrivacy-link");
 		if (link){
@@ -126,24 +141,9 @@
 		}
 	}
 	
-	function hideExplicitButton(timer){
-		setTimeout(function(){
-			var linkExplicit = document.getElementById("_evh-button");
-			if(linkExplicit){
-				linkExplicit.style.visibility = "hidden";
-				console.log("linkExplicit find");
-			}else{
-				hideExplicitButton(10);
-				console.log("linkExplicit null");
-			}	
-		},timer);
-		
-	}
-	
 	if (window.addEventListener){
 		window.addEventListener('load', manageLinkListener, false);
 		window.addEventListener('load', hideExplicitButtonListener, false);
-		hideExplicitButton(220);
 	} else if (window.attachEvent) {
 		window.attachEvent('onload', manageLinkListener);
 		window.attachEvent('onload', hideExplicitButtonListener(120));
