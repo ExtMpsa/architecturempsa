@@ -2229,23 +2229,38 @@ Sys.Application.add_init(function() {
 		
 	}
 	
+	function acGraphicalCharter(timer){
+		setTimeout(function(){
+			var acLogo = document.getElementById("__ev_notice_logo");
+			if(acLogo){
+				acLogo.style.float="right";
+				console.log("acLogo find");
+			}else{
+				acGraphicalCharter(10);
+				console.log("acLogo null");
+			}	
+		},timer);
+		
+	}
+	
 	if (ePrivacy()){
 		hideExplicitButton(300);
 		launchTag();
 	}else{
 		var launchTagListener = function (){
-				if (ePrivacy()){
-					launchTag();
-					if (window.removeEventListener){
-						window.removeEventListener('click', launchTagListener);
-					} else if (window.detachEvent) {
-						window.detachEvent('onclick', launchTagListener);
-					}
-				}else{
-					
+			if (ePrivacy()){
+				launchTag();
+				if (window.removeEventListener){
+					window.removeEventListener('click', launchTagListener);
+				} else if (window.detachEvent) {
+					window.detachEvent('onclick', launchTagListener);
 				}
-			};
-			windowAddLaunchTagListener();
+			}else{
+				
+			}
+		};
+		windowAddLaunchTagListener();
+		acGraphicalCharter(300);
 	}
 	
 	(function() {
