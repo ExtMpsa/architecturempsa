@@ -1,3 +1,3 @@
 <script type="text/javascript">
-function launchUAeventDPM(a){a=a.dataGtm.split("|");var c=a[1],d=a[2],b=a[3]+" "+a[4];""!=a[5]&&(b+=" - position "+a[5]);dataLayer.push({event:"uaevent",eventCategory:c,eventAction:d,eventLabel:b})}function cppEventListener(){window.addEventListener?window.document.addEventListener("gtm",launchUAeventDPM,!1):window.attachEvent&&window.document.attachEvent("gtm",launchUAeventDPM)};
+function launchCppUaEvent(a){a=a.dataGtm.split("|");var c=a[1],d=a[2],b=a[3]+" "+a[4];""!=a[5]&&(b+=" - position "+a[5]);dataLayer.push({event:"uaevent",eventCategory:c,eventAction:d,eventLabel:b})}window.addEventListener?window.document.addEventListener("gtm",launchCppUaEvent,!1):window.attachEvent&&window.document.attachEvent("gtm",launchCppUaEvent);
 </script>

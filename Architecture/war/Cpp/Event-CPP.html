@@ -1,26 +1,24 @@
 <script type="text/javascript">
-	function launchUAeventDPM(e) {
-	    var splitter = (e.dataGtm).split('|');
-		var eventCategory = splitter[1];
-		var eventAction = splitter[2];
-		var eventLabel = splitter[3]+' '+splitter[4];
-		
-		if (splitter[5] != ''){
-			eventLabel += ' - position '+splitter[5];
-		}
-		dataLayer.push({
-			'event' : 'uaevent',
-			'eventCategory' : eventCategory,
-			'eventAction' : eventAction,
-			'eventLabel' : eventLabel
-		});
-    }
+function launchCppUaEvent(e) {
+    var splitter = (e.dataGtm).split('|');
+	var eventCategory = splitter[1];
+	var eventAction = splitter[2];
+	var eventLabel = splitter[3]+' '+splitter[4];
 	
-	function cppEventListener(){
-		if (window.addEventListener){
-			window.document.addEventListener('gtm', launchUAeventDPM, false);
-		} else if (window.attachEvent) {
-			window.document.attachEvent('gtm', launchUAeventDPM);
-		}
+	if (splitter[5] != ''){
+		eventLabel += ' - position '+splitter[5];
 	}
+	dataLayer.push({
+		'event' : 'uaevent',
+		'eventCategory' : eventCategory,
+		'eventAction' : eventAction,
+		'eventLabel' : eventLabel
+	});
+   }
+
+if (window.addEventListener){
+	window.document.addEventListener('gtm', launchCppUaEvent, false);
+} else if (window.attachEvent) {
+	window.document.attachEvent('gtm', launchCppUaEvent);
+}
 </script>
