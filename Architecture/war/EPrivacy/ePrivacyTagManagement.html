@@ -71,18 +71,33 @@
 		launchTag();
 	}else{
 		var launchTagListener = function (){
-				if (ePrivacy()){
-					launchTag();
-					if (window.removeEventListener){
-						window.removeEventListener('click', launchTagListener);
-					} else if (window.detachEvent) {
-						window.detachEvent('onclick', launchTagListener);
-					}
-				}else{
-					
+			if (ePrivacy()){
+				launchTag();
+				if (window.removeEventListener){
+					window.removeEventListener('click', launchTagListener);
+				} else if (window.detachEvent) {
+					window.detachEvent('onclick', launchTagListener);
 				}
-			};
-			windowAddLaunchTagListener();
+			}else{
+				
+			}
+		};
+		windowAddLaunchTagListener();
+		var firstClickEPrivacyListener = function(event){
+			event.preventDefault();
+			window["source"] = event.target || event.srcElement;
+			console.log(source);
+			setTimeout(function(){
+				console.log(source);
+				source.dispatchEvent(new Event('click'));
+				window.document.removeEventListener("click",firstClickEPrivacyListener);
+			}, 200);
+		};
+		if (window.addEventListener){
+			window.document.addEventListener("click", firstClickEPrivacyListener, false);
+		} else if (window.attachEvent) {
+			window.attachEvent('onclick', firstClickEPrivacyListener);
+		}
 	}
 	
 	(function() {
