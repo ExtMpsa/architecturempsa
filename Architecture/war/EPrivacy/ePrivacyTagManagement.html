@@ -97,7 +97,8 @@
 				try{
 					source.dispatchEvent(new Event('click'));
 				}catch (e){
-					console.log("ePrivacy, have to fix the first click of new user : " + e);
+					console.log("ePrivacy, manage error ie9 & ie11 dispatchEvent : " + e);
+					source.click();
 				}
 			}, 200);
 		};
