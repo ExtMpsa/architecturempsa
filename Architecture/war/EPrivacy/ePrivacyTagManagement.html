@@ -94,12 +94,7 @@
 				} else if (window.detachEvent) {
 					window.detachEvent('onclick', firstClickEPrivacyListener);
 				}
-				try{
-					source.dispatchEvent(new Event('click'));
-				}catch (e){
-					console.log("ePrivacy, manage error ie9 & ie11 dispatchEvent : " + e);
-					source.click();
-				}
+				source.click();
 			}, 200);
 		};
 		if (window.addEventListener){
