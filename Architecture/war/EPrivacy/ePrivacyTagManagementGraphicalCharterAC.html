@@ -90,8 +90,12 @@
 			console.log(source);
 			setTimeout(function(){
 				console.log(source);
-				source.dispatchEvent(new Event('click'));
-				window.document.removeEventListener("click",firstClickEPrivacyListener);
+				if (window.removeEventListener){
+					window.document.removeEventListener("click",firstClickEPrivacyListener);
+				} else if (window.detachEvent) {
+					window.detachEvent('onclick', firstClickEPrivacyListener);
+				}
+				source.click();
 			}, 200);
 		};
 		if (window.addEventListener){
