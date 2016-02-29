@@ -87,11 +87,18 @@
 		var firstClickEPrivacyListener = function(event){
 			event.preventDefault();
 			window["source"] = event.target || event.srcElement;
-			console.log(source);
 			setTimeout(function(){
 				console.log(source);
-				source.dispatchEvent(new Event('click'));
-				window.document.removeEventListener("click",firstClickEPrivacyListener);
+				if (window.removeEventListener){
+					window.document.removeEventListener("click",firstClickEPrivacyListener);
+				} else if (window.detachEvent) {
+					window.detachEvent('onclick', firstClickEPrivacyListener);
+				}
+				try{
+					source.dispatchEvent(new Event('click'));
+				}catch (e){
+					console.log("ePrivacy, have to fix the first click of new user : " + e);
+				}
 			}, 200);
 		};
 		if (window.addEventListener){
