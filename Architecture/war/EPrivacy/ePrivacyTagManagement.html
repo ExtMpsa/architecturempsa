@@ -85,24 +85,21 @@
 		};
 		windowAddLaunchTagListener();
 		var firstClickEPrivacyListener = function(event){
-			try{
-				window["source"] = event.target || event.srcElement;
-				setTimeout(function(){
-					console.log(source);
-					if (window.removeEventListener){
-						window.removeEventListener("click",firstClickEPrivacyListener);
-					} else if (window.detachEvent) {
-						window.detachEvent('onclick', firstClickEPrivacyListener);
-					}
-					source.click();
-				}, 200);
-				if(event.preventDefault){
-					event.preventDefault();
-				}else{
-					event.returnValue = false;
-				}
-			} catch(e) {
-				console.log("EPrivacy error ie9 : catch error in firstClickEPrivacyListener. See follow : " + e);
+			window["source"] = event.target || event.srcElement;
+			if (window.removeEventListener){
+				window.removeEventListener("click",firstClickEPrivacyListener);
+			} else if (window.detachEvent) {
+				window.detachEvent('onclick', firstClickEPrivacyListener);
+			}
+			setTimeout(function(){
+				// On ie9 this function is ramdomly isn't called but when the dev tools console is opened it's called always
+				// ie9 bug and doesn't support anymore by Microsoft
+				source.click();
+			}, 200);
+			if(event.preventDefault){
+				event.preventDefault();
+			}else{
+				event.returnValue = false;
 			}
 		};
 		if (window.addEventListener){
