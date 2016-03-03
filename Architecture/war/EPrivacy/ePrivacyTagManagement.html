@@ -85,20 +85,28 @@
 		};
 		windowAddLaunchTagListener();
 		var firstClickEPrivacyListener = function(event){
-			event.preventDefault();
-			window["source"] = event.target || event.srcElement;
-			setTimeout(function(){
-				console.log(source);
-				if (window.removeEventListener){
-					window.document.removeEventListener("click",firstClickEPrivacyListener);
-				} else if (window.detachEvent) {
-					window.detachEvent('onclick', firstClickEPrivacyListener);
+			try{
+				window["source"] = event.target || event.srcElement;
+				setTimeout(function(){
+					console.log(source);
+					if (window.removeEventListener){
+						window.removeEventListener("click",firstClickEPrivacyListener);
+					} else if (window.detachEvent) {
+						window.detachEvent('onclick', firstClickEPrivacyListener);
+					}
+					source.click();
+				}, 200);
+				if(event.preventDefault){
+					event.preventDefault();
+				}else{
+					event.returnValue = false;
 				}
-				source.click();
-			}, 200);
+			} catch(e) {
+				console.log("EPrivacy error ie9 : catch error in firstClickEPrivacyListener. See follow : " + e);
+			}
 		};
 		if (window.addEventListener){
-			window.document.addEventListener("click", firstClickEPrivacyListener, false);
+			window.addEventListener("click", firstClickEPrivacyListener, false);
 		} else if (window.attachEvent) {
 			window.attachEvent('onclick', firstClickEPrivacyListener);
 		}
