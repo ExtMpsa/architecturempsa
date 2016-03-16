@@ -2,8 +2,8 @@
 (function(open) {
     XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
         this.addEventListener("readystatechange", function() {
-            console.log(url +" state : "+ this.readyState); // this one I changed
-			if (this.readyState==4){
+			if (this.readyState==4 && url.indexOf("/forms/v2?instanceid=")!=-1){
+				console.log(url +" state : "+ this.readyState);
 				setTimeout(function(){
 					(function(w,d,s,l,i){
 			            w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
