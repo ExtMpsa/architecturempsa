@@ -2203,16 +2203,36 @@ Sys.Application.add_init(function() {
 	function removeLaunchTagListener() {
 		if (window.removeEventListener){
 			window.removeEventListener('click', launchTagListener);
+			window.removeEventListener('scroll', launchTagListener);
 		} else if (window.detachEvent) {
 			window.detachEvent('onclick', launchTagListener);
+			window.detachEvent('onscroll', launchTagListener);
 		}
 	}
 	
 	function windowAddLaunchTagListener(){
 		if (window.addEventListener){
 			window.addEventListener('click', launchTagListener, false);
+			window.addEventListener('scroll', launchTagListener, false);
 		} else if (window.attachEvent) {
 			window.attachEvent('onclick', launchTagListener);
+			window.attachEvent('onscroll', launchTagListener);
+		}
+	}
+	
+	function removeFirstClickListener() {
+		if (window.removeEventListener){
+			window.removeEventListener('click', firstClickEPrivacyListener);
+		} else if (window.detachEvent) {
+			window.detachEvent('onclick', firstClickEPrivacyListener);
+		}
+	}
+	
+	function windowAddFirstClickListener(){
+		if (window.addEventListener){
+			window.addEventListener("click", firstClickEPrivacyListener, false);
+		} else if (window.attachEvent) {
+			window.attachEvent('onclick', firstClickEPrivacyListener);
 		}
 	}
 	
@@ -2222,31 +2242,27 @@ Sys.Application.add_init(function() {
 		var launchTagListener = function (){
 			if (ePrivacy()){
 				launchTag();
-				if (window.removeEventListener){
-					window.removeEventListener('click', launchTagListener);
-				} else if (window.detachEvent) {
-					window.detachEvent('onclick', launchTagListener);
-				}
+				removeLaunchTagListener();
 			}else{
 				
 			}
 		};
 		windowAddLaunchTagListener();
 		var firstClickEPrivacyListener = function(event){
-			event.preventDefault();
 			window["source"] = event.target || event.srcElement;
-			console.log(source);
+			removeFirstClickListener();
 			setTimeout(function(){
-				console.log(source);
-				source.dispatchEvent(new Event('click'));
-				window.document.removeEventListener("click",firstClickEPrivacyListener);
+				// On ie9 this function is ramdomly isn't called but when the dev tools console is opened it's called always
+				// ie9 bug and doesn't support anymore by Microsoft
+				source.click();
 			}, 200);
+			if(event.preventDefault){
+				event.preventDefault();
+			}else{
+				event.returnValue = false;
+			}
 		};
-		if (window.addEventListener){
-			window.document.addEventListener("click", firstClickEPrivacyListener, false);
-		} else if (window.attachEvent) {
-			window.attachEvent('onclick', firstClickEPrivacyListener);
-		}
+		windowAddFirstClickListener();
 	}
 	
 	(function() {
