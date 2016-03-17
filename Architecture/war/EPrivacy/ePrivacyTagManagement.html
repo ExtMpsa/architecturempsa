@@ -68,17 +68,29 @@
 		}
 	}
 	
+	function removeFirstClickListener() {
+		if (window.removeEventListener){
+			window.removeEventListener('click', firstClickEPrivacyListener);
+		} else if (window.detachEvent) {
+			window.detachEvent('onclick', firstClickEPrivacyListener);
+		}
+	}
+	
+	function windowAddFirstClickListener(){
+		if (window.addEventListener){
+			window.addEventListener("click", firstClickEPrivacyListener, false);
+		} else if (window.attachEvent) {
+			window.attachEvent('onclick', firstClickEPrivacyListener);
+		}
+	}
+	
 	if (ePrivacy()){
 		launchTag();
 	}else{
 		var launchTagListener = function (){
 			if (ePrivacy()){
 				launchTag();
-				if (window.removeEventListener){
-					window.removeEventListener('click', launchTagListener);
-				} else if (window.detachEvent) {
-					window.detachEvent('onclick', launchTagListener);
-				}
+				removeFirstClickListener();
 			}else{
 				
 			}
@@ -86,11 +98,7 @@
 		windowAddLaunchTagListener();
 		var firstClickEPrivacyListener = function(event){
 			window["source"] = event.target || event.srcElement;
-			if (window.removeEventListener){
-				window.removeEventListener("click",firstClickEPrivacyListener);
-			} else if (window.detachEvent) {
-				window.detachEvent('onclick', firstClickEPrivacyListener);
-			}
+			removeFirstClickListener();
 			setTimeout(function(){
 				// On ie9 this function is ramdomly isn't called but when the dev tools console is opened it's called always
 				// ie9 bug and doesn't support anymore by Microsoft
@@ -102,11 +110,7 @@
 				event.returnValue = false;
 			}
 		};
-		if (window.addEventListener){
-			window.addEventListener("click", firstClickEPrivacyListener, false);
-		} else if (window.attachEvent) {
-			window.attachEvent('onclick', firstClickEPrivacyListener);
-		}
+		windowAddFirstClickListener();
 	}
 	
 	(function() {
