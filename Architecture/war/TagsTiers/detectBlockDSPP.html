@@ -1,0 +1,99 @@
+<!--   	script Tags Tiers Detection Blocage Begin -->
+<script>
+  	function checkResource(resource,name) {
+		var result = null
+		if (resource.name.indexOf(name) >= 0){
+		result =resource.name
+		}
+	    return result;
+	}
+  	function checkAdBlock(resource) {
+	    return checkResource(resource,"/design/DSPP/js/ghost/adblock.js");
+	}
+  	function checkGoogleTagManager(resource) {
+	    return checkResource(resource,"//www.googletagmanager.com/gtm.js?id=");
+	}
+  	function checkGoogleAnalyticsCollect(resource) {
+	    return checkResource(resource,"//www.google-analytics.com/r/collect?v=1");
+	}
+  	function checkKruxControlTag(resource) {
+	    return checkResource(resource,"//cdn.krxd.net/controltag?confid=");
+	}
+  	function checkKruxCollect(resource) {
+	    return checkResource(resource,"//beacon.krxd.net/pixel.gif");
+	}
+  	function collectGhostPixel(params){
+  		var headTag=document.getElementsByTagName("script")[0];
+    	var ghostPixel=document.createElement("script");
+    	ghostPixel.src="//mediapays.dspp.driveds.test.inetpsa.com/design/DSPP/js/ghost/ghost.js?"+params;
+    	headTag.parentNode.insertBefore(ghostPixel,headTag);
+  	}
+  	function initGhost(param,labelParam,valueOk,valueKo){
+  		var result;
+  		if(param.length > 0){
+  			result = labelParam+"="+valueOk;
+  	  	}else{
+  	  		result = labelParam+"="+valueKo;
+  	  	}
+  		return result;
+  	}
+  	function ghostPixel(){
+  		if (window.performance){
+  	  		try{
+  	  			var ghostAdBlock = window.performance.getEntriesByType("resource").filter(checkAdBlock);
+  	  			var ghostGTM = window.performance.getEntriesByType("resource").filter(checkGoogleTagManager);
+  	  	  	  	var ghostGA = window.performance.getEntriesByType("resource").filter(checkGoogleAnalyticsCollect);
+  	  	  	  	var ghostKruxCT = window.performance.getEntriesByType("resource").filter(checkKruxControlTag);
+  	  	  	  	var ghostKruxCollect = window.performance.getEntriesByType("resource").filter(checkKruxCollect);
+  	  	  		var ghostRTD = null;
+  	  	  	  	var ghostAdBlockParam = null;
+  	  	  	  	var ghostGTMParam = null;
+  		  	  	var ghostGAParam = null;
+  			  	var ghostKruxCTParam = null;
+  			  	var ghostKruxCollectParam = null;
+  			  	var ghostRTDParam = null;
+  			  	if(window["ghostRTDParam"]){
+  			  		ghostRTDParam=window["ghostRTDParam"];
+  			  	}else{
+  			  		ghostRTDParam="rtd=notSent";
+  			  	}
+  			  	ghostAdBlockParam=initGhost(ghostAdBlock,"adblock","disabled","activated");
+  			  	ghostGTMParam=initGhost(ghostGTM,"gtm","loaded","blocked");
+  			  	ghostGAParam=initGhost(ghostGA,"ga","sent","notSent");
+  			  	ghostKruxCTParam=initGhost(ghostKruxCT,"kruxCt","loaded","blocked");
+  			  	ghostKruxCollectParam=initGhost(ghostKruxCollect,"kruxCollect","sent","notSent");
+  			  	collectGhostPixel(ghostAdBlockParam+"&"+ghostGTMParam+"&"+ghostGAParam+"&"+ghostKruxCTParam+"&"+ghostRTDParam);
+  			  	console.log("collectGhostPixel");
+  	  		}catch(e){
+  	  			collectGhostPixel("unknowException");
+  	  		}
+  	  	}else{
+  	  		collectGhostPixel("window.performance=notSupported");
+  	  	}
+  	}
+  	if(window.addEventListener){
+  		window.addEventListener("load",ghostPixel);
+  	} else if (window.attachEvent){
+  		window.attachEvent("onload",ghostPixel);
+  	} else{
+  		collectGhostPixel("window.addEventListener|window.attachEvent=notSupported");
+  	}
+	(function(open) {
+	    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+	        try{
+	        	this.addEventListener("readystatechange", function() {
+					if (this.readyState==4 && this.status==0 && url.indexOf("/ws2/resource/advisor")!=-1){
+						console.log("rtd=blocked");
+						window["ghostRTDParam"] = "rtd=blocked";
+					}else if (this.readyState==4 && this.status==200 && url.indexOf("/ws2/resource/advisor")!=-1){
+						window["ghostRTDParam"] = "rtd=success";
+						console.log("rtd=success");
+					}
+		        }, false);
+		        open.call(this, method, url, async, user, pass);
+	        }catch(e){
+	        	console.log("detect browser block rtd : " + e);
+	        }
+	    };
+	})(XMLHttpRequest.prototype.open);
+</script>
