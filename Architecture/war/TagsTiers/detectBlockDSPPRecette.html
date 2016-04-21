@@ -2,9 +2,9 @@
 <script async src="//mediapays.dspp.driveds.test.inetpsa.com/design/DSPP/js/ghost/adblock.js"></script>
 <script>
   	function checkResource(resource,name) {
-		var result = null
+		var result = null;
 		if (resource.name.indexOf(name) >= 0){
-		result =resource.name
+		result = resource.name;
 		}
 	    return result;
 	}
@@ -15,7 +15,7 @@
 	    return checkResource(resource,"//www.googletagmanager.com/gtm.js?id=");
 	}
   	function checkGoogleAnalyticsCollect(resource) {
-	    return checkResource(resource,"//www.google-analytics.com/r/collect?v=1");
+	    return checkResource(resource,"/collect?v=");
 	}
   	function checkKruxControlTag(resource) {
 	    return checkResource(resource,"//cdn.krxd.net/controltag?confid=");

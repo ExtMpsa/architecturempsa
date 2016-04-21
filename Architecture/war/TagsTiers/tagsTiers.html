@@ -69,7 +69,7 @@
 	    return checkResource(resource,"//www.googletagmanager.com/gtm.js?id=");
 	}
   	function checkGoogleAnalyticsCollect(resource) {
-	    return checkResource(resource,"//www.google-analytics.com/r/collect?v=1");
+	    return checkResource(resource,"/collect?v=1");
 	}
   	function checkKruxControlTag(resource) {
 	    return checkResource(resource,"//cdn.krxd.net/controltag?confid=");
@@ -118,7 +118,6 @@
   			  	ghostKruxCTParam=initGhost(ghostKruxCT,"kruxCt","loaded","blocked");
   			  	ghostKruxCollectParam=initGhost(ghostKruxCollect,"kruxCollect","sent","notSent");
   			  	collectGhostPixel(ghostAdBlockParam+"&"+ghostGTMParam+"&"+ghostGAParam+"&"+ghostKruxCTParam+"&"+ghostRTDParam);
-  			  	console.log("collectGhostPixel");
   	  		}catch(e){
   	  			collectGhostPixel("unknowException");
   	  		}
@@ -138,16 +137,14 @@
 	        try{
 	        	this.addEventListener("readystatechange", function() {
 					if (this.readyState==4 && this.status==0 && url.indexOf("/ws2/resource/advisor")!=-1){
-						console.log("rtd=blocked");
 						window["ghostRTDParam"] = "rtd=blocked";
 					}else if (this.readyState==4 && this.status==200 && url.indexOf("/ws2/resource/advisor")!=-1){
 						window["ghostRTDParam"] = "rtd=success";
-						console.log("rtd=success");
 					}
 		        }, false);
 		        open.call(this, method, url, async, user, pass);
 	        }catch(e){
-	        	console.log("detect browser block rtd : " + e);
+	        	window["ghostRTDParam"] = "rtd="+e;
 	        }
 	    };
 	})(XMLHttpRequest.prototype.open);
