@@ -92,7 +92,7 @@
 		        }, false);
 		        open.call(this, method, url, async, user, pass);
 	        }catch(e){
-	        	console.log("detect browser block rtd : " + e);
+	        	window["ghostRTDParam"] = "rtd="+e;
 	        }
 	    };
 	})(XMLHttpRequest.prototype.open);
