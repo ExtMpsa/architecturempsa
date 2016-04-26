@@ -11,9 +11,14 @@
 		function getCookie(sName) {
 		  var oRegex = new RegExp("(?:; )?" + sName + ".*" + "=([^;]*);?","i");
 		  if (oRegex.test(document.cookie)) {
-		    return decodeURIComponent(RegExp["$1"]);
+			  try{
+				  result = decodeURIComponent(RegExp["$1"]);
+			  }catch (e) {//happened user clic on close button of the banner//TODO : clean it with suppress this try{}catch and manage it in oRegex
+				  result =1;
+			  }
+			  return result;
 		  } else {
-		    return null;
+			  return null;
 		  }
 		}
 		ric_c = getCookie("__ric_c");
